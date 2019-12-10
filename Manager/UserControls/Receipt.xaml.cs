@@ -123,16 +123,26 @@ namespace Manager.UserControls
             {
                 Printer.Print(bill as Bill, printMethod);
             }
+
+            bool status = false;
+            string message = "", method="";
+            var Id = (bill as Bill).Id;
+            if(Id == null)
+            {
+                status = await FirestoreManager<Bill>.Instance.Add(bill);
+                method = "Thêm";
+            }else{
+                status = await FirestoreManager<Bill>.Instance.Update(bill, Id);
+                method = "Cập nhật";
+            }
             
-            bool status = await FirestoreManager<Bill>.Instance.Add(bill);
-            string message = "";
             if (status)
             {
-                message = "Thêm hoá đơn thành công";
+                message = method + " hoá đơn thành công";
             }
             else
             {
-                message = "Thêm hoá đơn thất bại";
+                message = method + " hoá đơn thất bại";
             }
 
             RadWindow.Confirm(new DialogParameters
