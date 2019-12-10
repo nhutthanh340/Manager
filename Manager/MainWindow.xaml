@@ -1,0 +1,235 @@
+﻿<Window x:Class="Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:Manager.Helpers"
+        mc:Ignorable="d" xmlns:store="clr-namespace:Manager.UserControls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Closing="Window_Closing"
+        Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <telerik:RadRichTextBoxRibbonUI x:Name="richTextBoxRibbonUI" ApplicationName="Quản lý cửa hàng">
+
+            <telerik:RadRichTextBoxRibbonUI.Style>
+                <Style TargetType="telerik:RadRichTextBoxRibbonUI">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="1">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="2">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadRichTextBoxRibbonUI.Style>
+
+            <telerik:RadRibbonTab Header="Quản lý" telerik:KeyTipService.AccessText="Q" Height="25" VerticalAlignment="Top">
+
+                <telerik:RadRibbonGroup Header="File">
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonButton Text="Xuất File"
+                                             Command="{Binding ExportExcelCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Thêm mới hoặc nhập hàng"
+                                             telerik:ScreenTip.Description="Ấn vào đây để thêm mới hoặc nhập hàng từ file"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="FileExport" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Nhập File"
+                                             Command="{Binding ImportExcelCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Thêm mới hoặc nhập hàng"
+                                             telerik:ScreenTip.Description="Ấn vào đây để thêm mới hoặc nhập hàng từ file"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="FileImport" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+                    </telerik:RadCollapsiblePanel>
+                </telerik:RadRibbonGroup>
+
+                <telerik:RadRibbonGroup Header="Thao tác">
+                    <telerik:RadCollapsiblePanel>
+
+
+                        <telerik:RadRibbonButton Text="Thêm mới"
+                                             AllowDrop="True"
+                                             Size="Large"
+                                             telerik:ScreenTip.Title="Thêm mặt hàng mới"
+                                             telerik:ScreenTip.Description="Ấn vào đây để thêm loại mặt hàng mới để bán"
+                                             telerik:KeyTipService.AccessText="N"
+                                             Command="{Binding NewCommand}">
+                            <materialDesign:PackIcon
+                                                Kind="CreateNewFolder" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Chỉnh sửa"
+                                             AllowDrop="True"
+                                             Size="Large"
+                                             telerik:ScreenTip.Title="Thay đổi thông tin nếu nhập sai"
+                                             telerik:ScreenTip.Description="Chọn mặt hàng và ấn vào đây để chỉnh sửa mặt hàng đó"
+                                             telerik:KeyTipService.AccessText="N"
+                                             Command="{Binding EditCommand}" 
+                                                 >
+                            <materialDesign:PackIcon
+                                                Kind="Edit" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Xoá"
+                                             Command="{Binding DeleteCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Xoá sản phẩm"
+                                             telerik:ScreenTip.Description="Chọn sản phẩm và ấn vào đây để xoá"
+                                             telerik:KeyTipService.AccessText="Q">
+                            <materialDesign:PackIcon
+                                                Kind="Delete" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+                    </telerik:RadCollapsiblePanel>
+                </telerik:RadRibbonGroup>
+
+                <telerik:RadRibbonGroup Header="Ẩn / Hiện">
+                    <telerik:RadCollapsiblePanel>
+
+                        <telerik:RadRibbonButton Text="Giá nhập"
+                                             Command="{Binding VisibilityCommand}"
+                                             CommandParameter="0"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Ẩn hiện giá nhập hàng"
+                                             telerik:ScreenTip.Description="Ấn vào đây để ẩn hiện giá nhập hàng"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Money" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Ngày cập nhật"
+                                             Command="{Binding VisibilityCommand}"
+                                                 CommandParameter="1"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Ẩn hiện Ngày cập nhật"
+                                             telerik:ScreenTip.Description="Ấn vào đây để ẩn hiện ngày cập nhật"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Update" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                    </telerik:RadCollapsiblePanel>
+
+
+                </telerik:RadRibbonGroup>
+
+                <telerik:RadRibbonGroup Header="Hoá đơn">
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonButton Text="Thêm mới"
+                                             Command="{Binding NewReceiptCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Thêm hoá đơn mới"
+                                             telerik:ScreenTip.Description="Ấn vào đây để thêm mới hoá đơn"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="NewBox" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Xoá"
+                                             Command="{Binding DeleteReceiptCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Xoá hoá đơn này"
+                                             telerik:ScreenTip.Description="Ấn vào đây để xoá hoá đơn này"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="DeleteEmpty" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                    </telerik:RadCollapsiblePanel>
+                    
+                </telerik:RadRibbonGroup>
+
+                <telerik:RadRibbonGroup Header="In hoá đơn">
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonToggleButton Text="Pdf"
+                                             Size="Large"
+                                             IsChecked="{Binding Instance.IsPdf}"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Pdf"
+                                             telerik:ScreenTip.Description="Ấn vào đây để in hoá đơn ra file"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="PdfBox" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonToggleButton>
+
+                        <telerik:RadRibbonToggleButton Text="Máy in"
+                                             Size="Large"
+                                             IsChecked="{Binding Instance.IsPrinter}"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Máy in"
+                                             telerik:ScreenTip.Description="Ấn vào đây để in hoá đơn ra giấy"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Printer" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonToggleButton>
+
+                    </telerik:RadCollapsiblePanel>
+
+                </telerik:RadRibbonGroup>
+
+            </telerik:RadRibbonTab>
+
+            <telerik:RadRibbonTab Header="Lịch sử thanh toán" telerik:KeyTipService.AccessText="L">
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Báo cáo" telerik:KeyTipService.AccessText="B">
+            </telerik:RadRibbonTab>
+
+        </telerik:RadRichTextBoxRibbonUI>
+
+
+        <telerik:RadTabControl Name="tab" Grid.Row="1" SelectedIndex="{Binding ElementName=richTextBoxRibbonUI, Path=SelectedIndex}" BorderThickness="0" Width="auto">
+
+            <telerik:RadTabItem Visibility="Collapsed" Width="auto">
+                <store:Home/>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Visibility="Collapsed">
+                <store:History/>
+            </telerik:RadTabItem>
+
+        </telerik:RadTabControl>
+
+    </Grid>
+</Window>

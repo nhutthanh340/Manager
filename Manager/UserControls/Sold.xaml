@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Manager.UserControls.Sold"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Manager.UserControls"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Name="sold"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <telerik:RadGridView x:Name="gridViewBillItems"
+                                                     ItemsSource="{Binding Instance.SelectedBill.ListProducts}"
+                                                     IsSynchronizedWithCurrentItem="True"                
+                                                     AutoGenerateColumns="False"                                
+                                                     RowIndicatorVisibility="Collapsed"
+                                                     CanUserFreezeColumns="False"
+                                                     ShowGroupPanel="False"
+                                                     IsReadOnly="True"
+                                                     GridLinesVisibility="Horizontal"
+                                                     ColumnWidth="*">
+
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
+                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Count}" Header="Số lượng" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Total, StringFormat='0,0'}" Header="Thành tiền"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel 
+                Grid.Column="0" 
+                HorizontalAlignment="Left">
+                <TextBlock 
+                    Margin="0,10,0,0" 
+                    Text="{Binding Instance.SelectedBill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+                <TextBlock 
+                    Text="{Binding Instance.SelectedBill.CustomePay, StringFormat='ĐƯA TRƯỚC: {0:0,0}đ'}"/>
+                <TextBlock 
+                    Text="{Binding Instance.SelectedBill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+
+            </StackPanel>
+            
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Right" 
+                Grid.Column="2">
+                <StackPanel Margin="0 0 20 0">
+                    <TextBlock 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
+                        Giao hàng
+                    </TextBlock>
+                    <ToggleButton 
+                VerticalAlignment="Center"
+                Style="{StaticResource MaterialDesignActionToggleButton}"
+                Width="40"
+                Height="40"              
+                IsChecked="{Binding Instance.SelectedBill.Note}"
+                Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
+
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon 
+                        Width="25" 
+                        Height="25"
+                        Kind="Cancel" />
+                        </ToggleButton.Content>
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon 
+                        Width="25" 
+                        Height="25"
+                        Kind="Tick" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                    </ToggleButton>
+                </StackPanel>
+                <StackPanel >
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        Lưu
+                    </TextBlock>
+                    <Button 
+                    VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Height="40"
+                    Width="40"
+                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}" 
+                    Command="{Binding SaveCommand}">
+                        <materialDesign:PackIcon 
+                    Width="25" 
+                    Height="25"
+                    Kind="ContentSave"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,130 @@
+﻿<FixedPage   
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    Margin="20,20,20,20">
+
+    <StackPanel HorizontalAlignment="Center" Width="21cm" Height="30cm" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel DockPanel.Dock="Left" Grid.Column="0">
+                <TextBlock HorizontalAlignment="Center" FontSize="18">CỬA HÀNG</TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">THANH HẢI</TextBlock>
+            </StackPanel>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0">HOÁ ĐƠN</TextBlock>
+            <TextBlock Name="IdBill" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="10" FontWeight="Bold" Margin="0,0,10,0"></TextBlock>
+        </Grid>
+        <UniformGrid Columns="2">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">☎ : 0913 956 891 - 0945 956 891</TextBlock>
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">Địa Chỉ : Chợ Đường Thét , Ấp Mỹ Tây 2 , Xã Mỹ Quí ,</TextBlock>
+                <TextBlock Margin="100,0,0,0" FontSize="12" FontStyle="Italic">Huyện Tháp Mười , Đồng Tháp</TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0,0,20,0" VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Center" FontSize="12" FontStyle="Italic">CHUYÊN BÁN CÁC LOẠI</TextBlock>
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">SẮT: HỘP - VUÔNG - U - V - Ø - TAI DÊ - PHỤ KIỆN</TextBlock>
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">TOL - LƯỚI</TextBlock>
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">ALU - ỐNG NHỰA - PHỤ KIỆN ỐNG NƯỚC</TextBlock>
+            </StackPanel>
+        </UniformGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="Name" FontSize="13" FontStyle="Italic" Margin="50,10,0,0">Khách hàng:</TextBlock>
+            <TextBlock Name="Phone" Grid.Column="1" FontSize="13" FontStyle="Italic" Margin="50,10,0,0">SĐT:</TextBlock>
+        </Grid>
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="Address" FontSize="13" FontStyle="Italic" Margin="50,5,0,0" Grid.ColumnSpan="2">Địa chỉ:</TextBlock>
+            <TextBlock Name="Date" Grid.Column="1" FontSize="13" FontStyle="Italic" Margin="50,5,0,0">Ngày bán:</TextBlock>
+        </Grid>
+        <ListView Name="lstView"
+                  Background="White" Width="750" 
+                  BorderThickness="0"  AlternationCount="1000"      
+                  Foreground="Black" TextElement.FontSize="13">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView TextBlock.TextAlignment="Center">
+                    <GridView.Columns>
+                        <GridViewColumn Width="40" Header="STT">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding STT}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="Tên hàng">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        
+                        <GridViewColumn Width="100" Header="Đơn vị">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding UnitDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100" Header="Đơn giá">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PriceDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100" Header="Số lượng">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Count}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200" Header="Thành tiền">
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Total, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+            <StackPanel HorizontalAlignment="Left" Margin="50,0,100,0" Grid.Column="0">
+                <TextBlock HorizontalAlignment="Left" Name="Total"/>
+                <TextBlock HorizontalAlignment="Left" Name="CustomePay"></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Name="Remain"></TextBlock>
+            </StackPanel>
+
+
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
+">Khách hàng</TextBlock>
+            <TextBlock Grid.Column="1" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
+">Người bán</TextBlock>
+        </Grid>
+    </StackPanel>
+</FixedPage>

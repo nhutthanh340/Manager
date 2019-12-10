@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Manager.UserControls.Paid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helpers="clr-namespace:Manager.Helpers"
+             xmlns:local="clr-namespace:Manager.UserControls"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+        <local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>
+    </UserControl.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <telerik:RadWatermarkTextBox Margin="0,0,0,5" x:Name="SearchWatermarkTextBoxBill" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
+
+        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1">
+            <telerik:RadGridView x:Name="gridViewBill"
+                                                     ItemsSource="{Binding ListBills, IsAsync=True,FallbackValue=Loading}"
+                                                     SelectedItem="{Binding SelectedBill}"
+                                                     IsSynchronizedWithCurrentItem="True"                
+                                                     AutoGenerateColumns="False"
+                                                     helpers:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBoxBill}"                                                   
+                                                     RowIndicatorVisibility="Collapsed"
+                                                     CanUserFreezeColumns="False"
+                                                     ShowGroupPanel="False"
+                                                     SelectionMode="Single"
+                                                     IsReadOnly="True"
+                                                     AlternateRowBackground="Azure"
+                                                     GridLinesVisibility="Horizontal"
+                                                     AlternationCount="2" 
+                                                     ColumnWidth="*"
+                                                             >
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding CustomeName}"  Header="Tên khách hàng"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="Số điện thoại"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>
+
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </telerik:RadBusyIndicator>
+        <telerik:RadDataPager 
+            Grid.Row="2" 
+            PageSize="20" 
+            Source="{Binding ItemsSource, ElementName=gridViewBill}"/>
+
+    </Grid>
+</UserControl>

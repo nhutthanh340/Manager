@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="Manager.UserControls.Receipt"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10" Grid.Column="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <UniformGrid Columns="3" Grid.Row="0">
+            <telerik:RadWatermarkTextBox Margin="0,5,0,5" Text="{Binding Instance.SelectedBill.CustomeName}" WatermarkContent="Tên khách hàng"></telerik:RadWatermarkTextBox>
+            <telerik:RadWatermarkTextBox Margin="5,5,5,5" Text="{Binding Instance.SelectedBill.Phone}" WatermarkContent="Số điện thoại"></telerik:RadWatermarkTextBox>
+            <telerik:RadWatermarkTextBox Margin="0,5,0,5" Text="{Binding Instance.SelectedBill.Address}" WatermarkContent="Địa chỉ"></telerik:RadWatermarkTextBox>
+        </UniformGrid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <telerik:RadGridView Grid.Row="0" 
+                                     ItemsSource="{Binding Instance.SelectedBill.ListProducts, UpdateSourceTrigger=PropertyChanged}"                    
+                                     IsSynchronizedWithCurrentItem="True"                
+                                     AutoGenerateColumns="False"                                
+                                     RowIndicatorVisibility="Collapsed"
+                                     CanUserFreezeColumns="False"
+                                     ShowGroupPanel="False"
+                                     IsReadOnly="False"
+                                     ColumnWidth="*" Width="auto"
+                                     GridLinesVisibility="Horizontal" 
+                                     GroupRenderMode="Flat">
+
+                <telerik:RadGridView.Columns>
+
+                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Header="Tên hàng" />
+                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
+                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
+                    <telerik:GridViewDataColumn                   DataMemberBinding="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Header="Số lượng" />
+                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Total, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Thành tiền"/>
+                    <telerik:GridViewDataColumn Width="auto">
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton 
+                                    telerik:ScreenTip.Title="Xoá"
+                                    telerik:ScreenTip.Description="Ấn vào đây xoá mặt hàng này khỏi hoá đơn"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    Height="30"
+                                    Width="30"
+                                    Click="RemoveProduct"
+                                    Command="{Binding Path=DataContext.RemoveProductCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
+                                    CommandParameter="{Binding Path=DataContext.SelectedProduct, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
+                                    Margin="10,10,10,10" 
+                                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                                               >
+                                    <materialDesign:PackIcon
+                                                   Kind="Delete"
+                                                   Height="20"
+                                                   Width="20" />
+                                </telerik:RadButton>
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <telerik:RadDockPanel Grid.Row="1" LastChildFill="True">
+                <StackPanel>
+                    <TextBlock 
+                        Margin="0,10,0,10" 
+                        Text="{Binding Instance.SelectedBill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"/>
+                    <TextBox 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Margin="5,5,5,5" 
+                        Text="{Binding Instance.SelectedBill.CustomePay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" 
+                        materialDesign:HintAssist.Hint="ĐƯA TRƯỚC" 
+                        BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
+                    <TextBlock 
+                        Margin="0,10,0,10" 
+                        Text="{Binding Instance.SelectedBill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"/>
+                </StackPanel>
+                <telerik:RadButton 
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Content="Thanh toán" 
+                    telerik:RadDockPanel.Dock="Right"
+                    VerticalAlignment="Center"
+                    telerik:ScreenTip.Title="Thanh toán"
+                    telerik:ScreenTip.Description="Ấn vào đây để thanh toán hoá đơn"
+                    Command="{Binding Instance.PayCommand}"
+                    CommandParameter="{Binding Instance.SelectedBill}"
+                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                    Width="150"/>
+
+                <StackPanel VerticalAlignment="Center" Margin="10,10,10,10">
+                    <TextBlock>Giao hàng</TextBlock>
+                    <telerik:RadToggleButton  
+                        FontSize="13"
+                        telerik:ScreenTip.Title="Trạng thái"
+                        telerik:ScreenTip.Description="Ấn vào đây để đánh dấu hoá đơn đã giao hàng chưa ?"
+                        Width="40" 
+                        Height="40"
+                        IsChecked="False"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
+
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon 
+                                Width="25" 
+                                Height="25"
+                                Kind="Cancel"/>
+                        </ToggleButton.Content>
+
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon 
+                                Width="25" 
+                                Height="25"
+                                Kind="Tick"/>
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                    </telerik:RadToggleButton>
+                </StackPanel>
+                <ComboBox 
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                    ItemsSource="{Binding Instance.ListBills}"        
+                    materialDesign:HintAssist.Hint="Hoá đơn chưa thanh toán"
+                    materialDesign:HintAssist.HintOpacity=".26"
+                    SelectionChanged="SelectBillChanged"
+                    Text="Hoá đơn chưa thanh toán" 
+                    Width="auto" Height="auto" FontSize="20"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    VerticalAlignment="Center"
+                    BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                    Margin="20,0,20,0">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                        <Binding Path="CustomeName"/>
+                                        <Binding Path="SaleDate"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+
+                    </ComboBox.ItemTemplate>
+
+                </ComboBox>
+            </telerik:RadDockPanel>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
