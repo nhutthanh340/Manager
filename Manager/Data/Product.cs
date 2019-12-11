@@ -236,18 +236,18 @@ namespace Manager.Data
             {
                 if (isRetailing)
                 {
-                    if (this.price.Display != value)
+                    if (this.price.Retail != value)
                     {
-                        this.price.Display = value;
+                        this.price.Retail = value;
                         this.OnPropertyChanged(() => this.PriceDisplay);
                         this.OnPropertyChanged(() => this.Total);
                     }
                 }
                 else
                 {
-                    if (this.price.Retail != value)
+                    if (this.price.Display != value)
                     {
-                        this.price.Retail = value;
+                        this.price.Display = value;
                         this.OnPropertyChanged(() => this.PriceDisplay);
                         this.OnPropertyChanged(() => this.Total);
                     }
@@ -441,6 +441,17 @@ namespace Manager.Data
             }
 
             return objTarget;
+        }
+        public bool IsEmpty()
+        {
+            if (Name == "" || Id == "" || PriceOrigin == 0 || PriceDisplay == 0 || UnitDisplay == "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

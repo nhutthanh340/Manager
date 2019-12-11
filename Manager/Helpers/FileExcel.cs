@@ -41,12 +41,58 @@ namespace Manager.Helpers
                 return "";
             }
         }
+
+        public static async void Import(string filePath)
+        {
+            FileExcel fileExcel = new FileExcel(filePath);
+            int row = 2;
+            do
+            {
+                Product product = new Product();
+                product.Id = fileExcel.Read(1, row);
+                product.Name = fileExcel.Read(2, row);
+
+                ulong PriceOrigin = 0;
+                ulong.TryParse(fileExcel.Read(3, row), out PriceOrigin);
+                product.PriceOrigin = PriceOrigin;
+
+                bool IsRetailing = false;
+                bool.TryParse(fileExcel.Read(4, row), out IsRetailing);
+                product.IsRetailing = IsRetailing;
+
+                ulong PriceDisplay = 0;
+                ulong.TryParse(fileExcel.Read(5, row), out PriceDisplay);
+                product.PriceDisplay = PriceDisplay;
+
+                product.UnitDisplay = fileExcel.Read(6, row);
+                product.UpdateDate = DateTime.Now;
+                product.Count = 1;
+
+                if (product.Id != "")
+                {
+                    await FirestoreManager<Product>.Instance.Update(product, (product as Product).Id);
+                    fileExcel.Write("", 7, row);
+                }
+                else
+                {
+                    fileExcel.Write("Lỗi", 7, row);
+                    if(product.IsEmpty())
+                    {
+                        break;
+                    }
+                }
+
+                row++;
+            } while (true);
+            fileExcel.Close();
+        }
+
         public void Write(object value, int column, int row)
         {
             xlRange.Cells[row, column].Value2 = value;
             xlWorkbook.Save();
         }
-        public static void Write(QueryableCollectionView obj)
+        public static void Export(QueryableCollectionView obj)
         {
             // khởi tạo wb rỗng
             XSSFWorkbook wb = new XSSFWorkbook();
@@ -61,8 +107,9 @@ namespace Manager.Helpers
             row1.CreateCell(0).SetCellValue("Mã");
             row1.CreateCell(1).SetCellValue("Tên hàng");
             row1.CreateCell(2).SetCellValue("Giá nhập");
-            row1.CreateCell(3).SetCellValue("Giá bán");
-            row1.CreateCell(4).SetCellValue("Đơn vị");
+            row1.CreateCell(3).SetCellValue("Có bán lẻ");
+            row1.CreateCell(4).SetCellValue("Giá bán");
+            row1.CreateCell(5).SetCellValue("Đơn vị");
 
             // bắt đầu duyệt mảng và ghi tiếp tục
             int rowIndex = 1;
@@ -75,8 +122,9 @@ namespace Manager.Helpers
                 newRow.CreateCell(0).SetCellValue((item as Product).Id);
                 newRow.CreateCell(1).SetCellValue((item as Product).Name);
                 newRow.CreateCell(2).SetCellValue((item as Product).PriceOrigin);
-                newRow.CreateCell(3).SetCellValue((item as Product).PriceDisplay);
-                newRow.CreateCell(4).SetCellValue((item as Product).Count);
+                newRow.CreateCell(3).SetCellValue((item as Product).IsRetailing);
+                newRow.CreateCell(4).SetCellValue((item as Product).PriceDisplay);
+                newRow.CreateCell(5).SetCellValue((item as Product).UnitDisplay);
 
                 // tăng index
                 rowIndex++;

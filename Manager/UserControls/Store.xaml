@@ -22,7 +22,7 @@
                 </Grid.RowDefinitions>
                 <telerik:RadGridView 
                     Grid.Row="0"
-                    ItemsSource="{Binding Instance.ListProducts}"
+                    ItemsSource="{Binding Instance.ListProducts, IsAsync=True}"
                     SelectedItem="{Binding Instance.SelectedProduct}"
                     IsSynchronizedWithCurrentItem="True"                
                     AutoGenerateColumns="False" 

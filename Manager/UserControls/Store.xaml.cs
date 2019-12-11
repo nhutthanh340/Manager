@@ -52,12 +52,22 @@ namespace Manager.UserControls
             }
         }
 
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                isBusy = value;
+                this.NotifyChanged(PropertyChanged);
+            }
+        }
         public void VisibilityColumn(object obj)
         {
             string code = obj as string;
             if (code == "0")
             {
-                IsHidenPrice = !IsHidenPrice;                
+                IsHidenPrice = !IsHidenPrice;
             }
             else if (code == "1")
             {
@@ -75,36 +85,25 @@ namespace Manager.UserControls
             InitializeComponent();
             this.InititalizeCommand();
             DataContext = this;
-            ListProducts = new QueryableCollectionView(new List<Product>());
-
-            for (int i = 0; i < 10; i++)
-            {
-                ListProducts.AddNew(new Product()
-                {
-                    Name = "Thanh" + i.ToString(),
-                    Count = 1,
-                    Id = i.ToString(),
-                    IsRetailing = false,
-                    unit = new Unit()
-                    {
-                        Wholesale = "Cây",
-                        Retail = "M"
-                    },
-                    price = new Price()
-                    {
-                        Origin = 500,
-                        Display = 1000 * (ulong)(i + 1),
-                        Retail = 200
-                    },
-                    UpdateDate = DateTime.Now,
-                });
-            }
+            Initialize();
+        }
+        private async void Initialize()
+        {
+            ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
         }
 
+        private QueryableCollectionView listProducts;
         public QueryableCollectionView ListProducts
         {
-            get;
-            set;
+            get => listProducts;
+            set
+            {
+                if (listProducts != value)
+                {
+                    listProducts = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
         }
         private Product selectProduct;
         public Product SelectedProduct

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
+using System.Windows.Forms;
 using Telerik.Windows.Controls;
 
 namespace Manager
@@ -69,11 +70,24 @@ namespace Manager
         }
         public void ExportExcel(object file)
         {
-            FileExcel.Write(Store.Instance.ListProducts);
+            FileExcel.Export(Store.Instance.ListProducts);
         }
         public void ImportExcel(object file)
         {
-             
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Nguồn dữ liệu";
+
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Store.Instance.IsBusy = true;
+                Thread thread = new Thread(async () =>
+                {
+                    FileExcel.Import(ofd.FileName);
+                    Store.Instance.IsBusy = false;
+                    Store.Instance.ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                });
+                thread.Start();
+            }
         }
         public MainWindow()
         {
