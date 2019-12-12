@@ -98,6 +98,7 @@ namespace Manager
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             GC.Collect();
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

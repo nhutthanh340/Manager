@@ -38,7 +38,7 @@ namespace Manager.Data
                 await docRef.CreateAsync(obj);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }

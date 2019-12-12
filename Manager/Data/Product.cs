@@ -444,7 +444,7 @@ namespace Manager.Data
         }
         public bool IsEmpty()
         {
-            if (Name == "" || Id == "" || PriceOrigin == 0 || PriceDisplay == 0 || UnitDisplay == "")
+            if (Name == "" || PriceOrigin == 0 || PriceDisplay == 0 || UnitDisplay == "")
             {
                 return true;
             }

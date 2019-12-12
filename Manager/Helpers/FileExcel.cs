@@ -1,4 +1,5 @@
 ﻿using Manager.Data;
+using Manager.UserControls;
 using Microsoft.Office.Interop.Excel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
@@ -80,6 +81,11 @@ namespace Manager.Helpers
                     {
                         break;
                     }
+                    else
+                    {
+                        await FirestoreManager<Product>.Instance.Add(product);
+                        fileExcel.Write(product.Id, 1, row);
+                    }
                 }
 
                 row++;
@@ -139,10 +145,12 @@ namespace Manager.Helpers
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
+                Store.Instance.IsBusy = true;
                 Thread download = new Thread(() =>
                 {
                     FileStream fs = new FileStream(savefile.FileName, FileMode.Create);
                     wb.Write(fs);
+                    Store.Instance.IsBusy = false; 
                 });
                 download.Start();
             }
