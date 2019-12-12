@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using Manager.Helpers;
+using System.Threading;
 
 namespace Manager.UserControls
 {
@@ -87,9 +88,15 @@ namespace Manager.UserControls
             DataContext = this;
             Initialize();
         }
-        private async void Initialize()
+        private void Initialize()
         {
-            ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+            Thread thread = new Thread(async () =>
+            {
+                Instance.IsBusy = true;
+                ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                Instance.IsBusy = false;
+            });
+            thread.Start();
         }
 
         private QueryableCollectionView listProducts;

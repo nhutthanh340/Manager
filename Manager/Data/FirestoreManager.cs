@@ -34,20 +34,21 @@ namespace Manager.Data
             try
             {
                 DocumentReference docRef = db.Collection(obj.GetType().Name).Document();
+                (obj as dynamic).Id = docRef.Id;
                 await docRef.CreateAsync(obj);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
         }
 
-        public async Task<bool> Delete(object obj, string id)
+        public async Task<bool> Delete(object obj)
         {
             try
             {
-                DocumentReference docRef = db.Collection(obj.GetType().Name).Document(id);
+                DocumentReference docRef = db.Collection(obj.GetType().Name).Document((obj as dynamic).Id);
                 await docRef.DeleteAsync();
                 return true;
             }
@@ -57,11 +58,11 @@ namespace Manager.Data
             }
         }
 
-        public async Task<bool> Update(object obj, string id)
+        public async Task<bool> Update(object obj)
         {
             try
             {
-                DocumentReference docRef = db.Collection(obj.GetType().Name).Document(id);
+                DocumentReference docRef = db.Collection(obj.GetType().Name).Document((obj as dynamic).Id);
                 await docRef.SetAsync(obj);
                 return true;
             }
@@ -72,10 +73,23 @@ namespace Manager.Data
         }
 
 
-        public async Task<QueryableCollectionView> ReadAll()
+        public async Task<QueryableCollectionView> ReadAll(string key = null, object value = null, object limit = null)
         {
             Type type = typeof(T);
             Query allQuery = db.Collection(type.Name);
+
+            if (key != null)
+            {
+                allQuery = allQuery.WhereEqualTo(key, value);
+            }
+
+
+
+            if(limit != null)
+            {
+                allQuery.Limit((int)limit);
+            }
+
             QuerySnapshot allQuerySnapshot = await allQuery.GetSnapshotAsync();
             QueryableCollectionView results = new QueryableCollectionView(new List<T>());
             foreach (DocumentSnapshot documentSnapshot in allQuerySnapshot.Documents)

@@ -32,6 +32,7 @@ namespace Manager.Data
         private ulong customePay;
         private bool note;
         private string id;
+
         public string TextSearch
         {
             get
@@ -204,6 +205,12 @@ namespace Manager.Data
             {
                 this.saleDate = DateTime.Parse(value);
             }
+        }
+
+        [FirestoreProperty]
+        public bool IsDept
+        {
+            get => Remain > 0;
         }
     }
 }

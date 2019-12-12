@@ -70,7 +70,7 @@ namespace Manager.Helpers
 
                 if (product.Id != "")
                 {
-                    await FirestoreManager<Product>.Instance.Update(product, (product as Product).Id);
+                    await FirestoreManager<Product>.Instance.Update(product);
                     fileExcel.Write("", 7, row);
                 }
                 else

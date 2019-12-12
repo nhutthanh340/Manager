@@ -16,68 +16,43 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Paid : UserControl, INotifyPropertyChanged
     {
+
+        private static readonly Paid instance = new Paid();
+        public static Paid Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                isBusy = value;
+                this.NotifyChanged(PropertyChanged);
+            }
+        }
         public Paid()
         {
             InitializeComponent();
             DataContext = this;
-            //Thread thread = new Thread(() =>
-            //{
-                Inititalize();
-            //});
-            //thread.Start();
+            Inititalize();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public async void Inititalize()
+        public void Inititalize()
         {
-
-            ListBills = await FirestoreManager<Bill>.Instance.ReadAll();
-            //ListBills.CommitNew();
-            //ListBills.NotifyChanged(PropertyChanged);
-
-
-            //ListBills = new QueryableCollectionView(new List<Bill>());
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    //QueryableCollectionView ListProducts = new QueryableCollectionView(new List<Product>());
-            //    //for (int j = 0; j < 10; j++)
-            //    //{
-            //    //    ListProducts.AddNew(new Product()
-            //    //    {
-            //    //        Name = "Thanh" + (j * i).ToString(),
-            //    //        Count = 1,
-            //    //        Id = (j * i).ToString(),
-            //    //        IsRetailing = false,
-            //    //        unit = new Unit()
-            //    //        {
-            //    //            Wholesale = "Cây",
-            //    //            Retail = "M"
-            //    //        },
-            //    //        price = new Price()
-            //    //        {
-            //    //            Origin = 500,
-            //    //            Display = 1000 * (ulong)(j + 1 + i),
-            //    //            Retail = 200
-            //    //        },
-            //    //        UpdateDate = DateTime.Now,
-            //    //    });
-            //    //}
-
-            //    ListBills.AddNew(
-            //        new Bill()
-            //        {
-            //            Address = "Đồng tháp",
-            //            CustomeName = "Bill Thanh " + i.ToString(),
-            //            CustomePay = 2000,
-            //            Id = i.ToString(),
-            //            Note = true,
-            //            Phone = "0944956891",
-            //            SaleDate = DateTime.Now,
-            //            ListProducts = null
-            //        });
-            //}
-            ListBills.CommitNew();
+            Thread thread = new Thread(async () =>
+            {
+                ListBills = await FirestoreManager<Bill>.Instance.ReadAll("IsDept", false);
+                ListBills.CommitNew();
+            });
+            thread.Start();
         }
 
         private QueryableCollectionView listBills;

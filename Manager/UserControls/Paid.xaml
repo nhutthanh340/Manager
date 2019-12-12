@@ -22,10 +22,10 @@
 
         <telerik:RadWatermarkTextBox Margin="0,0,0,5" x:Name="SearchWatermarkTextBoxBill" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
 
-        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1">
+        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy}">
             <telerik:RadGridView x:Name="gridViewBill"
-                                                     ItemsSource="{Binding ListBills, IsAsync=True,FallbackValue=Loading}"
-                                                     SelectedItem="{Binding SelectedBill}"
+                                                     ItemsSource="{Binding Instance.ListBills, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+                                                     SelectedItem="{Binding Instance.SelectedBill, UpdateSourceTrigger=PropertyChanged}"
                                                      IsSynchronizedWithCurrentItem="True"                
                                                      AutoGenerateColumns="False"
                                                      helpers:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBoxBill}"                                                   

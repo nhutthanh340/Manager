@@ -4,7 +4,6 @@ using Manager.Helpers;
 using Manager.UserControls;
 using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
@@ -93,9 +92,7 @@ namespace Manager
         {
             InitializeComponent();
             this.InitializeCommand();
-            DataContext = this;
-
-            
+            DataContext = this;        
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)

@@ -75,7 +75,7 @@ namespace Manager.UserControls
             this.RemoveProductCommand = new DelegateCommand(RemoveProduct);
             this.PayCommand = new DelegateCommand(Pay);
         }
-  
+
         public async void Pay(object bill)
         {
             if ((bill as Bill).ListProducts == null || (bill as Bill).ListProducts.IsEmpty)
@@ -125,20 +125,24 @@ namespace Manager.UserControls
             }
 
             bool status = false;
-            string message = "", method="";
+            string message = "", method = "";
             var Id = (bill as Bill).Id;
-            if(Id == null)
+            if (Id == null)
             {
                 status = await FirestoreManager<Bill>.Instance.Add(bill);
                 method = "Thêm";
-            }else{
-                status = await FirestoreManager<Bill>.Instance.Update(bill, Id);
+            }
+            else
+            {
+                status = await FirestoreManager<Bill>.Instance.Update(bill);
                 method = "Cập nhật";
             }
-            
+
             if (status)
             {
                 message = method + " hoá đơn thành công";
+                Initialize();
+                Paid.Instance.Inititalize();
             }
             else
             {
@@ -155,27 +159,29 @@ namespace Manager.UserControls
         {
             InitializeComponent();
             this.InitializeCommand();
+            Initialize();
             DataContext = this;
-            ListBills = new QueryableCollectionView(new List<Bill>());
-            for (int i = 0; i < 10; i++)
-            {
-                ListBills.AddNew(
-                    new Bill()
-                    {
-                        Address = "Đồng tháp",
-                        CustomeName = "Bill Thanh " + i.ToString(),
-                        CustomePay = 2000,
-                        Id = i.ToString(),
-                        Note = true,
-                        Phone = "0944956891",
-                        SaleDate = DateTime.Now,
+        }
 
-                    });
+        private async void Initialize()
+        {
+            ListBills = await FirestoreManager<Bill>.Instance.ReadAll("IsDept", true);
+            if (ListBills.QueryableSourceCollection.Count() > 0)
+            {
+                SelectedBill = ListBills.QueryableSourceCollection.First() as Bill;
+            }else
+            {
+                SelectedBill = null;
             }
         }
         public void AddProduct(object product)
         {
+            if (SelectedBill == null)
+            {
+                NewReceipt(null);
+            }
             Product item = GetProduct(product as Product);
+            
             if (item == null)
             {
                 SelectedBill.ListProducts.AddNew(product/*(product as Product).Clone()*/);

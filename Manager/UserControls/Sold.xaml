@@ -68,6 +68,7 @@
                     </TextBlock>
                     <ToggleButton 
                 VerticalAlignment="Center"
+                Click="Change_Status"
                 Style="{StaticResource MaterialDesignActionToggleButton}"
                 Width="40"
                 Height="40"              
@@ -99,7 +100,7 @@
                     Height="40"
                     Width="40"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}" 
-                    Command="{Binding SaveCommand}">
+                    Command="{Binding Instance.SaveCommand}">
                         <materialDesign:PackIcon 
                     Width="25" 
                     Height="25"

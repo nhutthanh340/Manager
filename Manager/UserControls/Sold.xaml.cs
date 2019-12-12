@@ -2,20 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Manager.Helpers;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
+using System.Threading;
 
 namespace Manager.UserControls
 {
@@ -34,19 +26,31 @@ namespace Manager.UserControls
             }
         }
         public DelegateCommand SaveCommand { get; private set; }
-        public void Initialize()
+        public void InitializeCommand()
         {
             SaveCommand = new DelegateCommand(Save);
         }
 
         public void Save(object obj)
         {
-            //FirestoreManager<Bill>.Instance.Update();
+            Paid.Instance.IsBusy = true;
+            new Thread(async () =>
+            {
+                foreach (var item in Instance.ListChanges)
+                {
+
+                    await FirestoreManager<Bill>.Instance.Update(item);
+
+                }
+                Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+                Paid.Instance.IsBusy = false;
+            }).Start();
         }
 
         public Sold()
         {
             InitializeComponent();
+            InitializeCommand();
             DataContext = this;
         }
         private Bill selectedBill;
@@ -61,6 +65,33 @@ namespace Manager.UserControls
                 if (selectedBill != value)
                 {
                     selectedBill = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private void Change_Status(object sender, RoutedEventArgs e)
+        {
+            if (Instance.ListChanges.Contains(Instance.SelectedBill))
+            {
+                Instance.ListChanges.Remove(Instance.SelectedBill);
+            }
+            else
+            {
+                Instance.ListChanges.AddNew(Instance.SelectedBill);
+            }
+        }
+
+
+        private QueryableCollectionView listChanges = new QueryableCollectionView(new List<Bill>());
+        public QueryableCollectionView ListChanges
+        {
+            get => listChanges;
+            set
+            {
+                if (listChanges != value)
+                {
+                    listChanges = value;
                     this.NotifyChanged(PropertyChanged);
                 }
             }

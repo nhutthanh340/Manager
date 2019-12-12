@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <telerik:RadGridView Grid.Row="0" 
-                                     ItemsSource="{Binding Instance.SelectedBill.ListProducts, UpdateSourceTrigger=PropertyChanged}"                    
+                                     ItemsSource="{Binding Instance.SelectedBill.ListProducts,IsAsync=True, UpdateSourceTrigger=PropertyChanged}"                    
                                      IsSynchronizedWithCurrentItem="True"                
                                      AutoGenerateColumns="False"                                
                                      RowIndicatorVisibility="Collapsed"
@@ -110,7 +110,7 @@
                         telerik:ScreenTip.Description="Ấn vào đây để đánh dấu hoá đơn đã giao hàng chưa ?"
                         Width="40" 
                         Height="40"
-                        IsChecked="False"
+                        IsChecked="{Binding Instance.SelectedBill.Note}"
                         Style="{StaticResource MaterialDesignActionToggleButton}"
                         Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
 
@@ -131,13 +131,13 @@
                 </StackPanel>
                 <ComboBox 
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                    ItemsSource="{Binding Instance.ListBills}"        
+                    ItemsSource="{Binding Instance.ListBills, IsAsync=True}"        
                     materialDesign:HintAssist.Hint="Hoá đơn chưa thanh toán"
                     materialDesign:HintAssist.HintOpacity=".26"
                     SelectionChanged="SelectBillChanged"
                     Text="Hoá đơn chưa thanh toán" 
                     Width="auto" Height="auto" FontSize="20"
-                    HorizontalContentAlignment="Center"
+                    HorizontalContentAlignment="Right"
                     VerticalContentAlignment="Bottom"
                     VerticalAlignment="Center"
                     BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
