@@ -76,7 +76,7 @@ namespace Manager.UserControls
             this.PayCommand = new DelegateCommand(Pay);
         }
 
-        public async void Pay(object bill)
+        public void Pay(object bill)
         {
             if ((bill as Bill).ListProducts == null || (bill as Bill).ListProducts.IsEmpty)
             {
@@ -98,7 +98,14 @@ namespace Manager.UserControls
                         });
                 return;
             }
+            
+            Save(bill);
 
+            Print(bill);
+        }
+
+        public void Print(object bill)
+        {
             Printer.PrintMethod printMethod = Printer.PrintMethod.None;
             if (MainWindow.Instance.IsPrinter)
             {
@@ -123,7 +130,10 @@ namespace Manager.UserControls
             {
                 Printer.Print(bill as Bill, printMethod);
             }
+        }
 
+        public async void Save(object bill)
+        {
             bool status = false;
             string message = "", method = "";
             var Id = (bill as Bill).Id;
@@ -217,12 +227,16 @@ namespace Manager.UserControls
         {
             RadWindow.Confirm(
                 string.Format("Bạn có chắc muốn xoá hoá đơn này không ?"),
-                delegate (object sender, WindowClosedEventArgs e)
+                async delegate (object sender, WindowClosedEventArgs e)
                 {
                     var result = e.DialogResult;
                     if (result == true)
                     {
-                        ListBills.Remove(SelectedBill);
+                        if(SelectedBill.Id !=null)
+                        {
+                            await FirestoreManager<Bill>.Instance.Delete(SelectedBill);
+                        }
+                        Initialize();
                     }
 
                 });

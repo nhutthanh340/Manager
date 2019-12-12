@@ -51,6 +51,7 @@ namespace Manager
                 {
                     isPdf = value;
                     this.NotifyChanged(PropertyChanged);
+                    Sold.Instance.NotifyChanged(PropertyChanged, "IsPrint");
                 }
             }
         }
@@ -64,6 +65,7 @@ namespace Manager
                 {
                     isPrinter = value;
                     this.NotifyChanged(PropertyChanged);
+                    Sold.Instance.NotifyChanged(PropertyChanged, "IsPrint");
                 }
             }
         }

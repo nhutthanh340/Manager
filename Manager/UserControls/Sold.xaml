@@ -89,6 +89,29 @@
                         </materialDesign:ToggleButtonAssist.OnContent>
                     </ToggleButton>
                 </StackPanel>
+
+                <StackPanel >
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        In hoá đơn
+                    </TextBlock>
+                    <Button 
+                    VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Height="40"
+                    Width="40"
+                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}" 
+                   IsEnabled="{Binding Instance.IsPrint}"
+                        Command="{Binding Instance.PrintCommand}"
+                        CommandParameter="{Binding Instance.SelectedBill}"
+                        >
+                        <materialDesign:PackIcon 
+                    Width="25" 
+                    Height="25"
+                    Kind="Printer"/>
+                    </Button>
+                </StackPanel>
+
                 <StackPanel >
                     <TextBlock VerticalAlignment="Center"
                                HorizontalAlignment="Center">
@@ -107,6 +130,7 @@
                     Kind="ContentSave"/>
                     </Button>
                 </StackPanel>
+                
             </StackPanel>
         </Grid>
     </Grid>

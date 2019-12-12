@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telerik.Windows.Data;
-using System.Dynamic;
-using System.Reflection;
 using Newtonsoft.Json;
 
 namespace Manager.Data
@@ -25,7 +23,7 @@ namespace Manager.Data
                 return instance;
             }
         }
-        private readonly static string filepath = "G:\\Visual Studio 2019\\Manager\\Manager\\Data\\apiKey.json";
+        private readonly static string filepath = "apiKey.json";
         private readonly static string projectId = "manager-bc2b6";
         private static FirestoreDb db = null;
 

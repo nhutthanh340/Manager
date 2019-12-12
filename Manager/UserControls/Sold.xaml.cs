@@ -26,11 +26,13 @@ namespace Manager.UserControls
             }
         }
         public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand PrintCommand { get; private set; }
         public void InitializeCommand()
         {
             SaveCommand = new DelegateCommand(Save);
+            PrintCommand = new DelegateCommand(Receipt.Instance.Print);
         }
-
+        public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
         public void Save(object obj)
         {
             Paid.Instance.IsBusy = true;

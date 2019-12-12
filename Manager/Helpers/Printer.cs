@@ -30,7 +30,7 @@ namespace Manager.Helpers
             #region Load Template file
             PrintDialog pd = new PrintDialog();
 
-            string file = $"{Directory.GetCurrentDirectory().ToString()}\\PrintPreview.xaml";
+            string file = "PrintPreview.xaml";
 
             FileStream fileStream = null;
 
@@ -78,35 +78,39 @@ namespace Manager.Helpers
 
             #region Notify total page and print document if user accept
 
-            int numPage = 1 + bill.ListProducts.Count / 11;
-            string str = numPage > 1 ? string.Format("Cần {0} tờ A4", numPage / 2) : string.Format("Cần {0} tờ A5", numPage);
+            if (printMethod == PrintMethod.Pdf || printMethod == PrintMethod.All)
+            {
 
-            RadWindow.Confirm(
-                string.Format(str),
-                delegate (object sender, WindowClosedEventArgs e)
-                {
-                    var result = e.DialogResult;
-                    if (result == true)
+                pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print To PDF");
+                pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");
+                //XpsDocument xpsDocument = new XpsDocument(file, FileAccess.Write);
+                //XpsDocumentWriter documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                //documentWriter.Write(doc);
+                //xpsDocument.Close();
+            }
+
+
+            if (printMethod == PrintMethod.Printer || printMethod == PrintMethod.All)
+            {
+                int numPage = 1 + bill.ListProducts.Count / 11;
+                string str = numPage > 1 ? string.Format("Cần {0} tờ A4", numPage / 2) : string.Format("Cần {0} tờ A5", numPage);
+
+                RadWindow.Confirm(
+                    string.Format(str),
+                    delegate (object sender, WindowClosedEventArgs e)
                     {
-                        if (printMethod == PrintMethod.Pdf || printMethod == PrintMethod.All)
+                        var result = e.DialogResult;
+                        if (result == true)
                         {
-                            
-                            pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print To PDF");
-                            pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");
-                            //XpsDocument xpsDocument = new XpsDocument(file, FileAccess.Write);
-                            //XpsDocumentWriter documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-                            //documentWriter.Write(doc);
-                            //xpsDocument.Close();
 
-                        }
 
-                        if (printMethod == PrintMethod.Printer || printMethod == PrintMethod.All)
-                        {
+
                             pd.PrintQueue = new PrintQueue(new PrintServer(), "HP LaserJet P1006");
                             pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");
+
                         }
-                    }
-                });
+                    });
+            }
             #endregion
 
             GC.Collect();

@@ -41,6 +41,7 @@
                                                              >
 
                 <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding Id}"/>
                     <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding CustomeName}"  Header="Tên khách hàng"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="Số điện thoại"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
