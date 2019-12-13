@@ -4,6 +4,8 @@ using Microsoft.Office.Interop.Excel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -16,23 +18,35 @@ namespace Manager.Helpers
 {
     public class FileExcel
     {
-        string FilePath;
-        public Range xlRange { get; set; }
-        _Worksheet xlWorksheet;
+        private static FileExcel instance;
+
+        public static FileExcel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FileExcel();
+                }
+                return instance;
+            }                    
+        }
+        Range RangeInput;
+        _Worksheet SheetInput;
         Workbook xlWorkbook;
         Application xlApp;
 
-        public FileExcel(string filePath)
+        public void Open(string filePath)
         {
-            this.FilePath = filePath;
-            this.xlApp = new Application();
-            this.xlWorkbook = xlApp.Workbooks.Open(this.FilePath);
-            this.xlWorksheet = xlWorkbook.Sheets[1];
-            this.xlRange = xlWorksheet.UsedRange;
+            Instance.xlApp = new Application();
+            Instance.xlWorkbook = Instance.xlApp.Workbooks.Open(filePath);
+            Instance.SheetInput = Instance.xlWorkbook.Sheets[1];
+            Instance.RangeInput = Instance.SheetInput.UsedRange;
         }
+
         public string Read(int column, int row)
         {
-            var result = xlRange.Cells[row, column].Value2;
+            var result = Instance.RangeInput.Cells[row, column].Value2;
             if (result != null)
             {
                 return result.ToString();
@@ -43,62 +57,101 @@ namespace Manager.Helpers
             }
         }
 
-        public static async void Import(string filePath)
+        public async void Import(string filePath)
         {
-            FileExcel fileExcel = new FileExcel(filePath);
+
+            instance.Open(filePath);
+            Instance.ListError = new QueryableCollectionView(new List<Product>());
             int row = 2;
+
             do
             {
                 Product product = new Product();
-                product.Id = fileExcel.Read(1, row);
-                product.Name = fileExcel.Read(2, row);
+                product.Id = Instance.Read(1, row);
+                product.Name = Instance.Read(2, row);
 
                 ulong PriceOrigin = 0;
-                ulong.TryParse(fileExcel.Read(3, row), out PriceOrigin);
+                ulong.TryParse(Instance.Read(3, row), out PriceOrigin);
                 product.PriceOrigin = PriceOrigin;
 
                 bool IsRetailing = false;
-                bool.TryParse(fileExcel.Read(4, row), out IsRetailing);
+                bool.TryParse(Instance.Read(4, row), out IsRetailing);
                 product.IsRetailing = IsRetailing;
 
                 ulong PriceDisplay = 0;
-                ulong.TryParse(fileExcel.Read(5, row), out PriceDisplay);
+                ulong.TryParse(Instance.Read(5, row), out PriceDisplay);
                 product.PriceDisplay = PriceDisplay;
 
-                product.UnitDisplay = fileExcel.Read(6, row);
+                product.UnitDisplay = Instance.Read(6, row);
                 product.UpdateDate = DateTime.Now;
                 product.Count = 1;
 
-                if (product.Id != "")
+                product.Method = Instance.Read(7, row);
+
+                try
                 {
-                    await FirestoreManager<Product>.Instance.Update(product);
-                    fileExcel.Write("", 7, row);
-                }
-                else
-                {
-                    fileExcel.Write("Lỗi", 7, row);
-                    if(product.IsEmpty())
+                    if (product.Id != "")
+                    {
+
+                        if (product.Method.ToUpper().Contains("XOÁ"))
+                        {
+                            await FirestoreManager<Product>.Instance.Delete(product);
+                            // Instance.Write("ĐÃ XOÁ", 7, row, ColorTranslator.ToOle(Color.Red));
+                        }
+                        else if (product.Method.ToUpper().Contains("CẬP NHẬT"))
+                        {
+                            await FirestoreManager<Product>.Instance.Update(product);
+                            // Instance.Write("ĐÃ CẬP NHẬT", 7, row);
+                        }
+                    }
+
+                    if (product.IsEmpty())
                     {
                         break;
                     }
+
+                    if (product.IsReady())
+                    {
+                        if (product.Method.ToUpper().Contains("THÊM"))
+                        {
+                            await FirestoreManager<Product>.Instance.Add(product);
+                            //Instance.Write(product.Id, 1, row);
+                            //Instance.Write("ĐÃ THÊM", 7, row);
+                        }
+                    }
                     else
                     {
-                        await FirestoreManager<Product>.Instance.Add(product);
-                        fileExcel.Write(product.Id, 1, row);
+                        Instance.ListError.AddNew(product);
+                        //Instance.Write("Lỗi", 7, row, ColorTranslator.ToOle(Color.Red));
                     }
                 }
-
+                catch
+                {
+                    //Instance.Write("Lỗi", 7, row, ColorTranslator.ToOle(Color.Red));
+                    Instance.ListError.AddNew(product);
+                }
                 row++;
             } while (true);
-            fileExcel.Close();
+
+            Instance.Close();
+
+            if (Instance.ListError.Count > 0)
+            {
+                Instance.Export(Instance.ListError);
+            }
+            Store.Instance.Initialize();
         }
 
-        public void Write(object value, int column, int row)
+        public QueryableCollectionView ListError
         {
-            xlRange.Cells[row, column].Value2 = value;
-            xlWorkbook.Save();
+            get; set;
         }
-        public static void Export(QueryableCollectionView obj)
+        //public void Write(object value, int column, int row, int color = 32768)
+        //{
+        //    Instance.RangeInput.Cells[row, column].Value2 = value;
+        //    Instance.RangeInput.Cells[row, column].Font.Color = color;
+        //}
+        public void Export(QueryableCollectionView obj)
         {
             // khởi tạo wb rỗng
             XSSFWorkbook wb = new XSSFWorkbook();
@@ -116,7 +169,6 @@ namespace Manager.Helpers
             row1.CreateCell(3).SetCellValue("Có bán lẻ");
             row1.CreateCell(4).SetCellValue("Giá bán");
             row1.CreateCell(5).SetCellValue("Đơn vị");
-
             // bắt đầu duyệt mảng và ghi tiếp tục
             int rowIndex = 1;
             foreach (var item in obj)
@@ -131,29 +183,22 @@ namespace Manager.Helpers
                 newRow.CreateCell(3).SetCellValue((item as Product).IsRetailing);
                 newRow.CreateCell(4).SetCellValue((item as Product).PriceDisplay);
                 newRow.CreateCell(5).SetCellValue((item as Product).UnitDisplay);
-
+                newRow.CreateCell(6).SetCellValue((item as Product).Method);
                 // tăng index
                 rowIndex++;
             }
 
-            // xong hết thì save file lại
-            SaveFileDialog savefile = new SaveFileDialog();
-            // set a default file name
-            savefile.FileName = "data.xlsx";
-            // set filters - this can be done in properties as well
-            savefile.Filter = "Text files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            string FileName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + DateTime.Now.ToString("HH-mm-ss dd-MM-yyyy") + ".xlsx";
 
-            if (savefile.ShowDialog() == DialogResult.OK)
+            Store.Instance.IsBusy = true;
+            Thread download = new Thread(() =>
             {
-                Store.Instance.IsBusy = true;
-                Thread download = new Thread(() =>
-                {
-                    FileStream fs = new FileStream(savefile.FileName, FileMode.Create);
-                    wb.Write(fs);
-                    Store.Instance.IsBusy = false; 
-                });
-                download.Start();
-            }
+                FileStream fs = new FileStream(FileName, FileMode.Create);
+                wb.Write(fs);
+                Store.Instance.IsBusy = false;
+            });
+            download.Start();
+
         }
         public void Close()
         {
@@ -166,8 +211,9 @@ namespace Manager.Helpers
             //  ex: [somthing].[something].[something] is bad
 
             //release com objects to fully kill excel process from running in the background
-            Marshal.ReleaseComObject(xlRange);
-            Marshal.ReleaseComObject(xlWorksheet);
+            Marshal.ReleaseComObject(RangeInput);
+            Marshal.ReleaseComObject(SheetInput);
+
 
             //close and release
             xlWorkbook.Close();

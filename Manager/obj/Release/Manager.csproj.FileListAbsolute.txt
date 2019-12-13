@@ -138,3 +138,11 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.dll
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.Wpf.dll
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.pdb
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.xml
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.Wpf.pdb
+G:\Visual Studio 2019\Manager\Manager\bin\Release\LiveCharts.Wpf.xml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Report.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Report.g.cs

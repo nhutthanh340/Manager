@@ -62,52 +62,7 @@
                         </telerik:RadRibbonButton>
                     </telerik:RadCollapsiblePanel>
                 </telerik:RadRibbonGroup>
-
-                <telerik:RadRibbonGroup Header="Thao tác">
-                    <telerik:RadCollapsiblePanel>
-
-
-                        <telerik:RadRibbonButton Text="Thêm mới"
-                                             AllowDrop="True"
-                                             Size="Large"
-                                             telerik:ScreenTip.Title="Thêm mặt hàng mới"
-                                             telerik:ScreenTip.Description="Ấn vào đây để thêm loại mặt hàng mới để bán"
-                                             telerik:KeyTipService.AccessText="N"
-                                             Command="{Binding NewCommand}">
-                            <materialDesign:PackIcon
-                                                Kind="CreateNewFolder" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                                                Height="32"
-                                                Width="32" />
-                        </telerik:RadRibbonButton>
-
-                        <telerik:RadRibbonButton Text="Chỉnh sửa"
-                                             AllowDrop="True"
-                                             Size="Large"
-                                             telerik:ScreenTip.Title="Thay đổi thông tin nếu nhập sai"
-                                             telerik:ScreenTip.Description="Chọn mặt hàng và ấn vào đây để chỉnh sửa mặt hàng đó"
-                                             telerik:KeyTipService.AccessText="N"
-                                             Command="{Binding EditCommand}" 
-                                                 >
-                            <materialDesign:PackIcon
-                                                Kind="Edit" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                                                Height="32"
-                                                Width="32" />
-                        </telerik:RadRibbonButton>
-
-                        <telerik:RadRibbonButton Text="Xoá"
-                                             Command="{Binding DeleteCommand}"
-                                             Size="Large"
-                                             CollapseToSmall="WhenGroupIsMedium"
-                                             telerik:ScreenTip.Title="Xoá sản phẩm"
-                                             telerik:ScreenTip.Description="Chọn sản phẩm và ấn vào đây để xoá"
-                                             telerik:KeyTipService.AccessText="Q">
-                            <materialDesign:PackIcon
-                                                Kind="Delete" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                                                Height="32"
-                                                Width="32" />
-                        </telerik:RadRibbonButton>
-                    </telerik:RadCollapsiblePanel>
-                </telerik:RadRibbonGroup>
+                
 
                 <telerik:RadRibbonGroup Header="Ẩn / Hiện">
                     <telerik:RadCollapsiblePanel>
@@ -227,6 +182,10 @@
 
             <telerik:RadTabItem Visibility="Collapsed">
                 <store:History/>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Visibility="Collapsed">
+                <store:Report/>
             </telerik:RadTabItem>
 
         </telerik:RadTabControl>

@@ -371,6 +371,8 @@ namespace Manager.Data
                 this.updateDate = DateTime.Parse(value);
             }
         }
+
+        public string Method { get; set; }
         public object Clone()
         {
             //step : 1 Get the type of source object and create a new instance of that type
@@ -441,9 +443,21 @@ namespace Manager.Data
 
             return objTarget;
         }
+        public bool IsReady()
+        {
+            if (Name != "" && PriceOrigin != 0 && PriceDisplay != 0 && UnitDisplay != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool IsEmpty()
         {
-            if (Name == "" || PriceOrigin == 0 || PriceDisplay == 0 || UnitDisplay == "")
+            if (Id == "" && Name == "" && PriceOrigin == 0 && PriceDisplay == 0 && UnitDisplay == "")
             {
                 return true;
             }

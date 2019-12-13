@@ -88,12 +88,21 @@ namespace Manager.UserControls
             DataContext = this;
             Initialize();
         }
-        private void Initialize()
+        public void Initialize()
         {
+            
             Thread thread = new Thread(async () =>
             {
                 Instance.IsBusy = true;
-                ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                Instance.ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
+                {
+                    Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;
+                }
+                else
+                {
+                    Instance.SelectedProduct = null;
+                }
                 Instance.IsBusy = false;
             });
             thread.Start();

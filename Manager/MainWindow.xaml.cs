@@ -71,7 +71,7 @@ namespace Manager
         }
         public void ExportExcel(object file)
         {
-            FileExcel.Export(Store.Instance.ListProducts);
+            FileExcel.Instance.Export(Store.Instance.ListProducts);
         }
         public void ImportExcel(object file)
         {
@@ -81,11 +81,10 @@ namespace Manager
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Store.Instance.IsBusy = true;
-                Thread thread = new Thread(async () =>
+                Thread thread = new Thread(() =>
                 {
-                    FileExcel.Import(ofd.FileName);
-                    Store.Instance.IsBusy = false;
-                    Store.Instance.ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                    FileExcel.Instance.Import(ofd.FileName);                   
+                    Store.Instance.IsBusy = false;                    
                 });
                 thread.Start();
             }
