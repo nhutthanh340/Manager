@@ -4,6 +4,7 @@ using Manager.Helpers;
 using Manager.UserControls;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
@@ -98,8 +99,65 @@ namespace Manager
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            CloseApp();
+        }
+
+        private void CloseApp()
+        {
             GC.Collect();
             System.Windows.Application.Current.Shutdown();
+        }
+
+        NotifyIcon NotifyIcon = new NotifyIcon();
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContextMenu context = new ContextMenu();
+            MenuItem open = new MenuItem();
+            MenuItem exit = new MenuItem();
+
+            open.Index = 0;
+            open.Text = "Mở";
+            open.Click += Open_Click;
+
+            exit.Index = 1;
+            exit.Text = "Thoát";
+            exit.Click += Exit_Click;
+
+            context.MenuItems.AddRange(new MenuItem[] { open, exit });
+
+            NotifyIcon.ContextMenu = context;
+
+            this.NotifyIcon.Icon = new Icon("favicon.ico");            
+            this.NotifyIcon.DoubleClick += NotifyIcon_DoubleClick;
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            CloseApp();
+        }
+
+        private void Open_Click(object sender, EventArgs e)
+        {
+            NotifyIcon_DoubleClick(sender, e);
+        }
+
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            NotifyIcon.Visible = false;
+            this.WindowState = WindowState.Normal;
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Minimized)
+            {
+                this.Hide();
+                NotifyIcon.Visible = true;
+                this.NotifyIcon.ShowBalloonTip(5000, "Thông báo", "Ứng dụng đã được ẩn vào đây", ToolTipIcon.Info);
+            }
         }
     }
 }

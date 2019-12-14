@@ -8,6 +8,7 @@ using System.Globalization;
 using System.ComponentModel;
 using Manager.Helpers;
 using System.Threading;
+using Google.Cloud.Firestore;
 
 namespace Manager.UserControls
 {
@@ -49,7 +50,9 @@ namespace Manager.UserControls
         {
             Thread thread = new Thread(async () =>
             {
-                ListBills = await FirestoreManager<Bill>.Instance.ReadAll("IsDept", false);
+                Query allQuery = FirestoreManager<Bill>.Instance.Query.WhereEqualTo("IsDept", false);
+                //allQuery = allQuery.OrderByDescending("")
+                ListBills = await FirestoreManager<Bill>.Instance.ReadAll(allQuery);
                 ListBills.CommitNew();
             });
             thread.Start();

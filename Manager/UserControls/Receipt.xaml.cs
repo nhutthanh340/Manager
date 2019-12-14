@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using Manager.Helpers;
+using Google.Cloud.Firestore;
 
 namespace Manager.UserControls
 {
@@ -175,7 +176,8 @@ namespace Manager.UserControls
 
         private async void Initialize()
         {
-            ListBills = await FirestoreManager<Bill>.Instance.ReadAll("IsDept", true);
+            Query allQuery = FirestoreManager<Bill>.Instance.Query.WhereEqualTo("IsDept", true);
+            ListBills = await FirestoreManager<Bill>.Instance.ReadAll(allQuery);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
                 SelectedBill = ListBills.QueryableSourceCollection.First() as Bill;

@@ -363,9 +363,15 @@ namespace Manager.Data
         }
 
         [FirestoreProperty]
-        public string Date
+        public Timestamp Date
         {
-            get => UpdateDate.ToString();
+            get => Timestamp.FromDateTime(updateDate.ToUniversalTime());
+        }
+
+        [FirestoreProperty]
+        public string DateStringFormat
+        {
+            get => updateDate.ToString();
             set
             {
                 this.updateDate = DateTime.Parse(value);

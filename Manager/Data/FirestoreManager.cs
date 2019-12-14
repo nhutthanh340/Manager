@@ -18,20 +18,22 @@ namespace Manager.Data
                 {
                     instance = new FirestoreManager<T>();
                     Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-                    db = FirestoreDb.Create(projectId);
+                    instance.db = FirestoreDb.Create(projectId);
+                    query = instance.db.Collection(typeof(T).Name);
                 }
                 return instance;
             }
         }
         private readonly static string filepath = "apiKey.json";
         private readonly static string projectId = "manager-bc2b6";
-        private static FirestoreDb db = null;
-
+        public FirestoreDb db = null;
+        private static CollectionReference query;
+        public CollectionReference Query { get => query; }
         public async Task<bool> Add(object obj)
         {
             try
             {
-                DocumentReference docRef = db.Collection(obj.GetType().Name).Document();
+                DocumentReference docRef = instance.Query.Document();
                 (obj as dynamic).Id = docRef.Id;
                 await docRef.CreateAsync(obj);
                 return true;
@@ -46,7 +48,7 @@ namespace Manager.Data
         {
             try
             {
-                DocumentReference docRef = db.Collection(obj.GetType().Name).Document((obj as dynamic).Id);
+                DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
                 await docRef.DeleteAsync();
                 return true;
             }
@@ -60,7 +62,7 @@ namespace Manager.Data
         {
             try
             {
-                DocumentReference docRef = db.Collection(obj.GetType().Name).Document((obj as dynamic).Id);
+                DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
                 await docRef.SetAsync(obj);
                 return true;
             }
@@ -71,21 +73,20 @@ namespace Manager.Data
         }
 
 
-        public async Task<QueryableCollectionView> ReadAll(string key = null, object value = null, object limit = null)
-        {
-            Type type = typeof(T);
-            Query allQuery = db.Collection(type.Name);
 
-            if (key != null)
+        public async Task<QueryableCollectionView> ReadAll(Query allQuery = null, int limit = 0)
+        {
+
+            if (allQuery == null)
             {
-                allQuery = allQuery.WhereEqualTo(key, value);
+                allQuery = Query;
             }
 
 
 
-            if(limit != null)
+            if (limit != 0)
             {
-                allQuery.Limit((int)limit);
+                allQuery.Limit(limit);
             }
 
             QuerySnapshot allQuerySnapshot = await allQuery.GetSnapshotAsync();

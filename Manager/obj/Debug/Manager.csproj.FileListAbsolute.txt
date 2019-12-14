@@ -145,3 +145,4 @@ G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csproj.GenerateResource.
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.pdb
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csprojAssemblyReference.cache

@@ -83,7 +83,7 @@ namespace Manager.Helpers
                 product.PriceDisplay = PriceDisplay;
 
                 product.UnitDisplay = Instance.Read(6, row);
-                product.UpdateDate = DateTime.Now;
+                product.UpdateDate = DateTime.UtcNow;
                 product.Count = 1;
 
                 product.Method = Instance.Read(7, row);

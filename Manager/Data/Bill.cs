@@ -198,7 +198,7 @@ namespace Manager.Data
         }
 
         [FirestoreProperty]
-        public string Date
+        public string DateStringFormat
         {
             get => saleDate.ToString();
             set
@@ -207,6 +207,11 @@ namespace Manager.Data
             }
         }
 
+        [FirestoreProperty]
+        public Timestamp Date
+        {
+            get => Timestamp.FromDateTime(saleDate.ToUniversalTime());
+        }
         [FirestoreProperty]
         public bool IsDept
         {
