@@ -199,7 +199,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\Bill.cs" />
     <Compile Include="Data\ChartModel.cs" />
-    <Compile Include="Data\FirestoreManager.cs" />
+    <Compile Include="Data\Database.cs" />
     <Compile Include="Data\Product.cs" />
     <Compile Include="Helpers\Comparer.cs" />
     <Compile Include="Helpers\CustomFilterBehavior.cs" />
