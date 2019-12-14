@@ -41,7 +41,7 @@ namespace Manager.UserControls
                 foreach (var item in Instance.ListChanges)
                 {
 
-                    await FirestoreManager<Bill>.Instance.Update(item);
+                    await Database<Bill>.Instance.Update(item);
 
                 }
                 Instance.ListChanges = new QueryableCollectionView(new List<Bill>());

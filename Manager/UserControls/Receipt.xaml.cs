@@ -140,12 +140,12 @@ namespace Manager.UserControls
             var Id = (bill as Bill).Id;
             if (Id == null)
             {
-                status = await FirestoreManager<Bill>.Instance.Add(bill);
+                status = await Database<Bill>.Instance.Add(bill);
                 method = "Thêm";
             }
             else
             {
-                status = await FirestoreManager<Bill>.Instance.Update(bill);
+                status = await Database<Bill>.Instance.Update(bill);
                 method = "Cập nhật";
             }
 
@@ -176,8 +176,8 @@ namespace Manager.UserControls
 
         private async void Initialize()
         {
-            Query allQuery = FirestoreManager<Bill>.Instance.Query.WhereEqualTo("IsDept", true);
-            ListBills = await FirestoreManager<Bill>.Instance.ReadAll(allQuery);
+            Query allQuery = Database<Bill>.Instance.Query.WhereEqualTo("IsDept", true);
+            ListBills = await Database<Bill>.Instance.ReadAll(allQuery);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
                 SelectedBill = ListBills.QueryableSourceCollection.First() as Bill;
@@ -236,7 +236,7 @@ namespace Manager.UserControls
                     {
                         if(SelectedBill.Id !=null)
                         {
-                            await FirestoreManager<Bill>.Instance.Delete(SelectedBill);
+                            await Database<Bill>.Instance.Delete(SelectedBill);
                         }
                         Initialize();
                     }

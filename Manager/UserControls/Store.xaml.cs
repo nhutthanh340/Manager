@@ -94,7 +94,7 @@ namespace Manager.UserControls
             Thread thread = new Thread(async () =>
             {
                 Instance.IsBusy = true;
-                Instance.ListProducts = await FirestoreManager<Product>.Instance.ReadAll();
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll();
                 if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
                 {
                     Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;

@@ -85,7 +85,7 @@ namespace Manager
                 Thread thread = new Thread(() =>
                 {
                     FileExcel.Instance.Import(ofd.FileName);                   
-                    Store.Instance.IsBusy = false;                    
+                    //Store.Instance.IsBusy = false;                    
                 });
                 thread.Start();
             }
@@ -105,8 +105,8 @@ namespace Manager
         private void CloseApp()
         {
             GC.Collect();
-            FirestoreManager<Bill>.CloseServer();
-            FirestoreManager<Product>.CloseServer();
+            //Database<Bill>.CloseServer();
+            //Database<Product>.CloseServer();
             System.Windows.Application.Current.Shutdown();
         }
 

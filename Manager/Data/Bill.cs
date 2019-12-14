@@ -33,10 +33,11 @@ namespace Manager.Data
         private bool note;
         private string id;
 
+        private string textSearch;
         [FirestoreProperty]
         public string TextSearch
         {
-            get => ContentService.ConvertToUnsigned($"{customeName},{address}");
+            get => textSearch;
         }
         [FirestoreProperty]
         public bool Note
@@ -152,6 +153,7 @@ namespace Manager.Data
                 if (this.customeName != value)
                 {
                     this.customeName = value;
+                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName},{address}");
                     this.OnPropertyChanged(() => this.CustomeName);
                     this.OnPropertyChanged(() => this.TextSearch);
                 }
@@ -167,7 +169,6 @@ namespace Manager.Data
                 {
                     this.phone = value;
                     this.OnPropertyChanged(() => this.Phone);
-                    this.OnPropertyChanged(() => this.TextSearch);
                 }
             }
         }
@@ -180,6 +181,7 @@ namespace Manager.Data
                 if (this.address != value)
                 {
                     this.address = value;
+                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName},{address}");
                     this.OnPropertyChanged(() => this.Address);
                     this.OnPropertyChanged(() => this.TextSearch);
                 }

@@ -61,7 +61,7 @@ namespace Manager.UserControls
                     {
                         if (Instance.SelectedBill.Id != null)
                         {
-                            await FirestoreManager<Bill>.Instance.Delete(Instance.SelectedBill);
+                            await Database<Bill>.Instance.Delete(Instance.SelectedBill);
                         }
                         Instance.Initialize();
                     }
@@ -83,9 +83,9 @@ namespace Manager.UserControls
         {
             Thread thread = new Thread(async () =>
             {
-                Query allQuery = FirestoreManager<Bill>.Instance.Query.WhereEqualTo("IsDept", false);
+                Query allQuery = Database<Bill>.Instance.Query.WhereEqualTo("IsDept", false);
                 //allQuery = allQuery.OrderByDescending("")
-                ListBills = await FirestoreManager<Bill>.Instance.ReadAll(allQuery);
+                ListBills = await Database<Bill>.Instance.ReadAll(allQuery);
                 ListBills.CommitNew();
             });
             thread.Start();

@@ -95,12 +95,12 @@ namespace Manager.Helpers
 
                         if (product.Method.ToUpper().Contains("XOÁ"))
                         {
-                            await FirestoreManager<Product>.Instance.Delete(product);
+                            await Database<Product>.Instance.Delete(product);
                             // Instance.Write("ĐÃ XOÁ", 7, row, ColorTranslator.ToOle(Color.Red));
                         }
                         else if (product.Method.ToUpper().Contains("CẬP NHẬT"))
                         {
-                            await FirestoreManager<Product>.Instance.Update(product);
+                            await Database<Product>.Instance.Update(product);
                             // Instance.Write("ĐÃ CẬP NHẬT", 7, row);
                         }
                     }
@@ -114,7 +114,7 @@ namespace Manager.Helpers
                     {
                         if (product.Method.ToUpper().Contains("THÊM"))
                         {
-                            await FirestoreManager<Product>.Instance.Add(product);
+                            await Database<Product>.Instance.Add(product);
                             //Instance.Write(product.Id, 1, row);
                             //Instance.Write("ĐÃ THÊM", 7, row);
                         }
