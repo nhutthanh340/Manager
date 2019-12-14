@@ -26,8 +26,8 @@ namespace Manager.UserControls
             }
         }
         public DelegateCommand RemoveProductCommand { get; private set; }
-        private bool isHidenPrice = true;
-        private bool isHidenDate = true;
+        private bool isHidenPrice = false;
+        private bool isHidenDate = false;
         public bool IsHidenPrice
         {
             get => isHidenPrice;

@@ -18,9 +18,9 @@
         </Grid>
         <UniformGrid Columns="2">
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">☎ : 0913 956 891 - 0945 956 891</TextBlock>
                 <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">Địa Chỉ : Chợ Đường Thét , Ấp Mỹ Tây 2 , Xã Mỹ Quí ,</TextBlock>
                 <TextBlock Margin="100,0,0,0" FontSize="12" FontStyle="Italic">Huyện Tháp Mười , Đồng Tháp</TextBlock>
+                <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic">☎ : 0913 956 891 - 0945 956 891</TextBlock>
             </StackPanel>
             <StackPanel Margin="0,0,20,0" VerticalAlignment="Top">
                 <TextBlock HorizontalAlignment="Center" FontSize="12" FontStyle="Italic">CHUYÊN BÁN CÁC LOẠI</TextBlock>
