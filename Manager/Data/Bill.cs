@@ -105,6 +105,7 @@ namespace Manager.Data
                         total += (this.listProducts[i] as Product).Total;
                     }
                 }
+                this.total = ContentService.RoundMoney(this.total);
                 return this.total;
             }
             set
