@@ -39,7 +39,7 @@
                     ColumnWidth="*">
 
                     <telerik:RadGridView.Columns>
-
+                        <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
                         <telerik:GridViewDataColumn IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>

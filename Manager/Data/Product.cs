@@ -170,12 +170,10 @@ namespace Manager.Data
             }
         }
 
+        [FirestoreProperty]
         public string TextSearch
         {
-            get
-            {
-                return ContentService.ConvertToUnsigned($"{name}");
-            }
+            get => ContentService.ConvertToUnsigned($"{name}");
         }
 
         public Product()

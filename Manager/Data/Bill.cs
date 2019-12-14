@@ -33,12 +33,10 @@ namespace Manager.Data
         private bool note;
         private string id;
 
+        [FirestoreProperty]
         public string TextSearch
         {
-            get
-            {
-                return ContentService.ConvertToUnsigned($"{customeName},{address}");
-            }
+            get => ContentService.ConvertToUnsigned($"{customeName},{address}");
         }
         [FirestoreProperty]
         public bool Note
