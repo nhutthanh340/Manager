@@ -153,7 +153,7 @@ namespace Manager.UserControls
             {
                 message = method + " hoá đơn thành công";
                 Initialize();
-                Paid.Instance.Inititalize();
+                Paid.Instance.Initialize();
             }
             else
             {

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using Manager.Helpers;
 using System.Threading;
 using Google.Cloud.Firestore;
+using Telerik.Windows.Controls;
 
 namespace Manager.UserControls
 {
@@ -37,16 +38,48 @@ namespace Manager.UserControls
                 this.NotifyChanged(PropertyChanged);
             }
         }
+
+        public DelegateCommand RemoveBillCommand
+        {
+            get; private set;
+        }
+
+        private void InititalizeCommand()
+        {
+            this.RemoveBillCommand = new DelegateCommand(DeleteReceipt);
+        }
+
+
+        public void DeleteReceipt(object receipt)
+        {
+            RadWindow.Confirm(
+                string.Format("Bạn có chắc muốn xoá hoá đơn này không ?"),
+                async delegate (object sender, WindowClosedEventArgs e)
+                {
+                    var result = e.DialogResult;
+                    if (result == true)
+                    {
+                        if (Instance.SelectedBill.Id != null)
+                        {
+                            await FirestoreManager<Bill>.Instance.Delete(Instance.SelectedBill);
+                        }
+                        Instance.Initialize();
+                    }
+
+                });
+        }
+
         public Paid()
         {
             InitializeComponent();
+            InititalizeCommand();
             DataContext = this;
-            Inititalize();
+            Initialize();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Inititalize()
+        public void Initialize()
         {
             Thread thread = new Thread(async () =>
             {
@@ -74,11 +107,17 @@ namespace Manager.UserControls
 
         public Bill SelectedBill
         {
+            get => Sold.Instance.SelectedBill;
             set
             {
                 Sold.Instance.SelectedBill = value;
 
             }
+        }
+
+        private void RemoveBill(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
         }
     }
     public class NoteConverter : IValueConverter

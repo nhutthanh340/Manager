@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telerik.Windows.Data;
 using Newtonsoft.Json;
+using Grpc.Core;
+using Google.Api.Gax.Grpc;
+using System.Diagnostics;
 
 namespace Manager.Data
 {
@@ -16,15 +19,25 @@ namespace Manager.Data
             {
                 if (instance == null)
                 {
+                    StartServer();
                     instance = new FirestoreManager<T>();
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-                    instance.db = FirestoreDb.Create(projectId);
+                    //Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+                    Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8080");
+                    //instance.db = FirestoreDb.Create(projectId);
+
+                    instance.db = new FirestoreDbBuilder
+                    {
+                        ProjectId = projectId,
+                        EmulatorDetection = EmulatorDetection.EmulatorOnly,
+
+                    }.Build();
+
                     query = instance.db.Collection(typeof(T).Name);
                 }
                 return instance;
             }
         }
-        private readonly static string filepath = "apiKey.json";
+        //private readonly static string filepath = "apiKey.json";
         private readonly static string projectId = "manager-bc2b6";
         public FirestoreDb db = null;
         private static CollectionReference query;
@@ -100,6 +113,30 @@ namespace Manager.Data
                 results.AddNew(item);
             }
             return results;
+        }
+
+        private static Process Server = null;
+        public static void StartServer()
+        {
+            try
+            {
+                string batDir = string.Format("");
+                Server = new Process();
+                Server.StartInfo.WorkingDirectory = batDir;
+                Server.StartInfo.FileName = "server.bat";
+                Server.StartInfo.CreateNoWindow = true;
+                Server.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                Server.Start();
+                Server.WaitForExit();              
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace.ToString());
+            }
+        }
+        public static void CloseServer()
+        {
+            Server.Close();
         }
     }
 }

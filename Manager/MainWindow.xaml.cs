@@ -105,6 +105,8 @@ namespace Manager
         private void CloseApp()
         {
             GC.Collect();
+            FirestoreManager<Bill>.CloseServer();
+            FirestoreManager<Product>.CloseServer();
             System.Windows.Application.Current.Shutdown();
         }
 
