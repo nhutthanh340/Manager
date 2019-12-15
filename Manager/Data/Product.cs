@@ -16,7 +16,7 @@ namespace Manager.Data
     public class Price : ViewModelBase
     {
         private ulong origin = 0, display = 0, retail = 0;
-        [FirestoreProperty]
+        
         public ulong Origin
         {
             get => origin;
@@ -29,7 +29,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public ulong Display
         {
             get => display;
@@ -42,7 +42,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+
         public ulong Retail
         {
             get => retail;
@@ -58,8 +58,7 @@ namespace Manager.Data
     }
     public class Unit : ViewModelBase
     {
-        private string wholesale = "123", retail = "456";
-        [FirestoreProperty]
+        private string wholesale = "", retail = "";
         public string Retail
         {
             get => retail;
@@ -72,7 +71,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+
         public string Wholesale
         {
             get => wholesale;
@@ -86,21 +85,20 @@ namespace Manager.Data
             }
         }
     }
-    [FirestoreData]
-    //[BsonIgnoreExtraElements]
+
     public class Product : ViewModelBase, ICloneable
     {
-        private string id = "";
+        private ObjectId id;
         private string name = string.Empty;
-        public Price price = new Price();
-        public Unit unit = new Unit();
+        private Price price = new Price();
+        private Unit unit = new Unit();
         private DateTime updateDate;
         private float count = 0;
         private bool isRetailing = false;
         private List<Unit> listUnit = new List<Unit>();
         private ulong total;
 
-        [FirestoreProperty]
+        
         public string RetailUnit
         {
             get => unit.Retail;
@@ -112,7 +110,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public string Wholesale
         {
             get => unit.Wholesale;
@@ -124,7 +122,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public ulong Origin
         {
             get => price.Origin;
@@ -136,7 +134,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public ulong Display
         {
             get => price.Display;
@@ -148,7 +146,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public ulong RetailPrice
         {
             get => price.Retail;
@@ -160,7 +158,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public bool IsRetailing
         {
             get => this.isRetailing;
@@ -175,7 +173,7 @@ namespace Manager.Data
         }
 
         private string textSearch;
-        [FirestoreProperty]
+        
         public string TextSearch
         {
             get => textSearch;
@@ -184,7 +182,7 @@ namespace Manager.Data
         public Product()
         { }
         public ushort STT { get; set; }
-        [FirestoreProperty]
+        
         public ulong Total
         {
             get
@@ -198,17 +196,16 @@ namespace Manager.Data
                     this.total = (ulong)Count * price.Display;
                 }
 
-                //Bill.Instance.NotifyChanged();
+                
                 return this.total;
             }
             set
             {
-                OnPropertyChanged(() => this.Total);
-                
+                OnPropertyChanged(() => this.Total);            
             }
         }
 
-        [FirestoreProperty]
+        
         public ulong PriceOrigin
         {
             get => this.price.Origin;
@@ -221,7 +218,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public ulong PriceDisplay
         {
             get
@@ -260,10 +257,7 @@ namespace Manager.Data
         }
 
         [BsonId]
-        public ObjectId ID { get; set; }
-
-        [FirestoreProperty]
-        public string Id
+        public ObjectId Id
         {
             get
             {
@@ -278,7 +272,9 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+
+
+        
         public string Name
         {
             get
@@ -296,7 +292,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public string UnitDisplay
         {
             get
@@ -353,7 +349,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public float Count
         {
             get
@@ -368,26 +364,12 @@ namespace Manager.Data
                     this.count = value;
                     this.OnPropertyChanged(() => this.Count);
                     this.OnPropertyChanged(() => this.Total);
+                    Bill.Instance.NotifyChanged();
                 }
             }
         }
 
-        [FirestoreProperty]
-        public Timestamp Date
-        {
-            get => Timestamp.FromDateTime(updateDate.ToUniversalTime());
-        }
-
-        [FirestoreProperty]
-        public string DateStringFormat
-        {
-            get => updateDate.ToString();
-            set
-            {
-                this.updateDate = DateTime.Parse(value);
-            }
-        }
-
+        [BsonIgnore]
         public string Method { get; set; }
         public object Clone()
         {
@@ -473,7 +455,7 @@ namespace Manager.Data
 
         public bool IsEmpty()
         {
-            if (Id == "" && Name == "" && PriceOrigin == 0 && PriceDisplay == 0 && UnitDisplay == "")
+            if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId) && Name == "" && PriceOrigin == 0 && PriceDisplay == 0 && UnitDisplay == "")
             {
                 return true;
             }

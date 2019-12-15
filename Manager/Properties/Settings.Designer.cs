@@ -22,5 +22,17 @@ namespace Manager.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("000000000000000000000000")]
+        public string EmptyId {
+            get {
+                return ((string)(this["EmptyId"]));
+            }
+            set {
+                this["EmptyId"] = value;
+            }
+        }
     }
 }

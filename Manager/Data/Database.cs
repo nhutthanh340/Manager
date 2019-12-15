@@ -22,13 +22,12 @@ namespace Manager.Data
             {
                 if (instance == null)
                 {
-                    
-                    //StartServer();
+
                     instance = new Database<T>();
 
 
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);
-                    instance.db = FirestoreDb.Create(instance.projectId);
+                    //Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);
+                    //instance.db = FirestoreDb.Create(instance.projectId);
 
                     //Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8080");
                     //instance.db = new FirestoreDbBuilder
@@ -38,41 +37,39 @@ namespace Manager.Data
 
                     //}.Build();
 
-                    query = instance.db.Collection(typeof(T).Name);
+                    //query = instance.db.Collection(typeof(T).Name);
 
 
-                    //MongoClient client = new MongoClient(instance.hostName);
-                    //IMongoDatabase database = client.GetDatabase(instance.databaseName);
-                    //instance.collection = database.GetCollection<T>(typeof(T).Name);
-                    //instance.collectionQuery = database.GetCollection<T>(typeof(T).Name);
+                    MongoClient client = new MongoClient(instance.hostName);
+                    IMongoDatabase database = client.GetDatabase(instance.databaseName);
+                    instance.collection = database.GetCollection<T>(typeof(T).Name);
                 }
                 return instance;
             }
         }
+
         private readonly string filepath = "apiKey.json";
         private readonly string projectId = "manager-bc2b6";
         private readonly string databaseName = "manager";
         private readonly string hostName = "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
-        public IMongoCollection<T> collectionQuery;
         public FirestoreDb db = null;
 
 
         private static CollectionReference query;
         public CollectionReference Query { get => query; }
-        
-        
+
+
         public async Task<bool> Add(T obj)
         {
             try
             {
-                DocumentReference docRef = instance.Query.Document();
-                (obj as dynamic).Id = docRef.Id;
-                await docRef.CreateAsync(obj);
-                //string json = JsonConvert.SerializeObject(obj);
-                //T item = JsonConvert.DeserializeObject<T>(json);
-                //await instance.collection.InsertOneAsync(obj);
+                //DocumentReference docRef = instance.Query.Document();
+                //(obj as dynamic).Id = docRef.Id;
+                //await docRef.CreateAsync(obj);
+
+                await instance.collection.InsertOneAsync(obj);
                 return true;
             }
             catch
@@ -85,10 +82,10 @@ namespace Manager.Data
         {
             try
             {
-                DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
-                await docRef.DeleteAsync();
-                //var filter = Builders<T>.Filter.Eq("ID", (obj as dynamic).ID);
-                //await instance.collection.DeleteOneAsync(filter);
+                //DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
+                //await docRef.DeleteAsync();
+                var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
+                await instance.collection.DeleteOneAsync(filter);
                 return true;
             }
             catch
@@ -97,73 +94,42 @@ namespace Manager.Data
             }
         }
 
-        public async Task<bool> Update(object obj)
+        public async Task<bool> Update(T obj)
         {
             try
             {
-                DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
-                await docRef.SetAsync(obj);
-                //var filter = Builders<T>.Filter.Eq("ID", (obj as dynamic).ID);
-                //await instance.collection.UpdateOneAsync(filter, obj.ToBsonDocument());
+                //DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
+                //await docRef.SetAsync(obj);
+                var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
+
+                await instance.collection.ReplaceOneAsync(filter, obj);
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
         }
 
-        public async Task<QueryableCollectionView> ReadAll(Query allQuery = null, int limit = 0)
+        public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int skip = 0, int? limit = null)
         {
-            if (allQuery == null)
-            {
-                allQuery = Query;
-            }
+            List<T> results = null;
 
-            if (limit != 0)
+            if (filter == null)
             {
-                allQuery.Limit(limit);
+                results = await instance.collection.Find(x => true).Skip(skip).Limit(limit).ToListAsync();
             }
-
-            QuerySnapshot allQuerySnapshot = await allQuery.GetSnapshotAsync();
-            QueryableCollectionView results = new QueryableCollectionView(new List<T>());
-            foreach (DocumentSnapshot documentSnapshot in allQuerySnapshot.Documents)
+            else
             {
-                Dictionary<string, object> list = documentSnapshot.ToDictionary();
-
-                string json = JsonConvert.SerializeObject(list);
-                T item = JsonConvert.DeserializeObject<T>(json);
-                results.AddNew(item);
+                results = await instance.collection.Find(filter).Skip(skip).Limit(limit).ToListAsync();
             }
-            return results;
-            //QueryableCollectionView results = new QueryableCollectionView(instance.collectionQuery.Find(x => true).ToList());
-            //return results;
-            
+            if (results == null)
+            {
+                results = new List<T>();
+            }
+            return new QueryableCollectionView(results);
+
         }
-
-        //private static Process Server = null;
-        //public static void StartServer()
-        //{
-        //    try
-        //    {
-        //        string batDir = string.Format("");
-        //        Server = new Process();
-        //        Server.StartInfo.WorkingDirectory = batDir;
-        //        Server.StartInfo.FileName = "server.bat";
-        //        Server.StartInfo.CreateNoWindow = true;
-        //        Server.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        //        Server.Start();
-        //        Server.WaitForExit();              
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.StackTrace.ToString());
-        //    }
-        //}
-        //public static void CloseServer()
-        //{
-        //    Server.Close();
-        //}
 
     }
 

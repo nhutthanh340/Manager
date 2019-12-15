@@ -10,8 +10,7 @@ using Telerik.Windows.Data;
 
 namespace Manager.Data
 {
-    //[BsonIgnoreExtraElements]
-    [FirestoreData]
+    [BsonIgnoreExtraElements]
     public class Bill : ViewModelBase
     {
         private static readonly Bill instance = new Bill();
@@ -42,15 +41,15 @@ namespace Manager.Data
         private ulong total;
         private ulong customePay;
         private bool note;
-        private string id;
+        private ObjectId id;
         private string textSearch;
-        //[BsonRequired]
-        [FirestoreProperty]
+
+        
         public string TextSearch
         {
             get => textSearch;
         }
-        [FirestoreProperty]
+       
         public bool Note
         {
             get => this.note;
@@ -64,6 +63,7 @@ namespace Manager.Data
             }
         }
 
+
         public DateTime SaleDate
         {
             get => saleDate;
@@ -73,11 +73,8 @@ namespace Manager.Data
             }
         }
 
-        [BsonId]
-        public ObjectId ID { get; set; }
-
-        [FirestoreProperty]
-        public string Id
+        [BsonId]     
+        public ObjectId Id
         {
             get => this.id;
             set
@@ -90,7 +87,7 @@ namespace Manager.Data
             }
         }
 
-        [FirestoreProperty]
+        
         public long Remain
         {
             get
@@ -103,7 +100,7 @@ namespace Manager.Data
             }
         }
 
-        [FirestoreProperty]
+        
         public ulong Total
         {
             get
@@ -127,7 +124,7 @@ namespace Manager.Data
             }
         }
 
-        [FirestoreProperty]
+        
         public ulong CustomePay
         {
             get => this.customePay;
@@ -142,7 +139,7 @@ namespace Manager.Data
             }
 
         }
-
+        [BsonIgnore]
         public QueryableCollectionView ListProducts
         {
             get
@@ -159,7 +156,7 @@ namespace Manager.Data
             }
         }
 
-        [FirestoreProperty]
+        
         public string CustomeName
         {
             get => customeName;
@@ -174,7 +171,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public string Phone
         {
             get => this.phone;
@@ -187,7 +184,7 @@ namespace Manager.Data
                 }
             }
         }
-        [FirestoreProperty]
+        
         public string Address
         {
             get => this.address;
@@ -202,36 +199,32 @@ namespace Manager.Data
                 }
             }
         }
-
-        [FirestoreProperty]
-        public Product[] Products
+        
+        public List<Product> Products
         {
-            get => (listProducts.SourceCollection as List<Product>).ToArray();
+            get => (listProducts.SourceCollection as List<Product>);
             set
             {
-                listProducts = new QueryableCollectionView(value.OfType<Product>().ToList());
+                listProducts = new QueryableCollectionView(value);
             }
         }
 
-        [FirestoreProperty]
-        public string DateStringFormat
-        {
-            get => saleDate.ToString();
-            set
-            {
-                this.saleDate = DateTime.Parse(value);
-            }
-        }
-
-        [FirestoreProperty]
-        public Timestamp Date
-        {
-            get => Timestamp.FromDateTime(saleDate.ToUniversalTime());
-        }
-        [FirestoreProperty]
+        private bool isDept;
         public bool IsDept
         {
-            get => Remain > 0;
+            get
+            {
+                isDept = Remain > 0;
+                return isDept;
+            }
+            set
+            {
+                if(isDept !=value)
+                {
+                    isDept = value;
+                    this.OnPropertyChanged(() => IsDept);
+                }
+            }
         }
     }
 }

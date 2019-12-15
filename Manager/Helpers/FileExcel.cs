@@ -1,6 +1,7 @@
 ﻿using Manager.Data;
 using Manager.UserControls;
 using Microsoft.Office.Interop.Excel;
+using MongoDB.Bson;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -67,7 +68,11 @@ namespace Manager.Helpers
             do
             {
                 Product product = new Product();
-                product.Id = Instance.Read(1, row);
+                
+                ObjectId Id;
+                ObjectId.TryParse(Instance.Read(1, row), out Id);
+                product.Id = Id;
+
                 product.Name = Instance.Read(2, row);
 
                 ulong PriceOrigin = 0;
@@ -90,7 +95,7 @@ namespace Manager.Helpers
 
                 try
                 {
-                    if (product.Id != "")
+                    if (product.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                     {
 
                         if (product.Method.ToUpper().Contains("XOÁ"))
@@ -177,7 +182,7 @@ namespace Manager.Helpers
                 var newRow = sheet.CreateRow(rowIndex);
 
                 // set giá trị
-                newRow.CreateCell(0).SetCellValue((item as Product).Id);
+                newRow.CreateCell(0).SetCellValue((item as Product).Id.ToString());
                 newRow.CreateCell(1).SetCellValue((item as Product).Name);
                 newRow.CreateCell(2).SetCellValue((item as Product).PriceOrigin);
                 newRow.CreateCell(3).SetCellValue((item as Product).IsRetailing);

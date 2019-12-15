@@ -8,6 +8,8 @@ using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using Manager.Helpers;
 using Google.Cloud.Firestore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Manager.UserControls
 {
@@ -63,8 +65,7 @@ namespace Manager.UserControls
                 if (selectProduct != value)
                 {
                     selectProduct = value;
-                    this.NotifyChanged(PropertyChanged);
-                    SelectedBill.NotifyChanged();
+                    this.NotifyChanged(PropertyChanged);                   
                 }
             }
         }
@@ -100,7 +101,7 @@ namespace Manager.UserControls
                         });
                 return;
             }
-            
+
             Save(bill);
 
             Print(bill);
@@ -139,14 +140,14 @@ namespace Manager.UserControls
             bool status = false;
             string message = "", method = "";
             var Id = (bill as Bill).Id;
-            if (Id == null)
+            if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId))
             {
                 status = await Database<Bill>.Instance.Add(bill as Bill);
                 method = "Thêm";
             }
             else
             {
-                status = await Database<Bill>.Instance.Update(bill);
+                status = await Database<Bill>.Instance.Update(bill as Bill);
                 method = "Cập nhật";
             }
 
@@ -172,18 +173,20 @@ namespace Manager.UserControls
             InitializeComponent();
             this.InitializeCommand();
             Initialize();
-            DataContext = this;            
+            DataContext = this;
         }
 
 
         private async void Initialize()
         {
-            Query allQuery = Database<Bill>.Instance.Query.WhereEqualTo("IsDept", true);
-            ListBills = await Database<Bill>.Instance.ReadAll(allQuery);
+        
+            var filter = Builders<Bill>.Filter.Eq("IsDept",true);
+            ListBills = await Database<Bill>.Instance.ReadAll(filter);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
                 SelectedBill = ListBills.QueryableSourceCollection.First() as Bill;
-            }else
+            }
+            else
             {
                 SelectedBill = null;
             }
@@ -195,7 +198,7 @@ namespace Manager.UserControls
                 NewReceipt(null);
             }
             Product item = GetProduct(product as Product);
-            
+
             if (item == null)
             {
                 SelectedBill.ListProducts.AddNew(product/*(product as Product).Clone()*/);
@@ -237,7 +240,7 @@ namespace Manager.UserControls
                     var result = e.DialogResult;
                     if (result == true)
                     {
-                        if(SelectedBill.Id !=null)
+                        if (SelectedBill.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
                             await Database<Bill>.Instance.Delete(SelectedBill);
                         }

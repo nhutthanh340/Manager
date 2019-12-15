@@ -8,6 +8,7 @@ using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using Manager.Helpers;
 using System.Threading;
+using MongoDB.Driver;
 
 namespace Manager.UserControls
 {
@@ -94,7 +95,8 @@ namespace Manager.UserControls
             Thread thread = new Thread(async () =>
             {
                 Instance.IsBusy = true;
-                Instance.ListProducts = await Database<Product>.Instance.ReadAll();
+                //var filter = Builders<Product>.Filter.Text("1.7");
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll(/*filter*/);
                 if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
                 {
                     Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;

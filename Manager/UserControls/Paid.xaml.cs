@@ -10,6 +10,7 @@ using Manager.Helpers;
 using System.Threading;
 using Google.Cloud.Firestore;
 using Telerik.Windows.Controls;
+using MongoDB.Driver;
 
 namespace Manager.UserControls
 {
@@ -83,9 +84,8 @@ namespace Manager.UserControls
         {
             Thread thread = new Thread(async () =>
             {
-                Query allQuery = Database<Bill>.Instance.Query.WhereEqualTo("IsDept", false);
-                //allQuery = allQuery.OrderByDescending("")
-                ListBills = await Database<Bill>.Instance.ReadAll(allQuery);
+                var filter = Builders<Bill>.Filter.Eq("IsDept", false);
+                ListBills = await Database<Bill>.Instance.ReadAll(filter);
                 ListBills.CommitNew();
             });
             thread.Start();

@@ -166,3 +166,4 @@ G:\Visual Studio 2019\Manager\Manager\bin\Debug\MongoDB.Driver.GridFS.xml
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\MongoDB.Driver.Legacy.xml
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\Snappy.NET.xml
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\System.Buffers.xml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csprojAssemblyReference.cache
