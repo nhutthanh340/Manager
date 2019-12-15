@@ -64,6 +64,7 @@ namespace Manager.UserControls
                 {
                     selectProduct = value;
                     this.NotifyChanged(PropertyChanged);
+                    SelectedBill.NotifyChanged();
                 }
             }
         }
@@ -171,8 +172,9 @@ namespace Manager.UserControls
             InitializeComponent();
             this.InitializeCommand();
             Initialize();
-            DataContext = this;
+            DataContext = this;            
         }
+
 
         private async void Initialize()
         {
@@ -207,6 +209,7 @@ namespace Manager.UserControls
         private void RemoveProduct(object product)
         {
             SelectedBill.ListProducts.Remove(product);
+            SelectedBill.NotifyChanged();
         }
         public Product GetProduct(Product product)
         {
@@ -255,5 +258,6 @@ namespace Manager.UserControls
             }
             SelectedBill = e.AddedItems[0] as Bill;
         }
+
     }
 }

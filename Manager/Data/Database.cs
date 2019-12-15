@@ -25,13 +25,15 @@ namespace Manager.Data
                     
                     //StartServer();
                     instance = new Database<T>();
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);                  
+
+
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);
                     instance.db = FirestoreDb.Create(instance.projectId);
 
-                    //Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8297");
+                    //Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8080");
                     //instance.db = new FirestoreDbBuilder
                     //{
-                    //    ProjectId = projectId,
+                    //    ProjectId = instance.projectId,
                     //    EmulatorDetection = EmulatorDetection.EmulatorOnly,
 
                     //}.Build();
@@ -73,7 +75,7 @@ namespace Manager.Data
                 //await instance.collection.InsertOneAsync(obj);
                 return true;
             }
-            catch( Exception ex)
+            catch
             {
                 return false;
             }

@@ -29,6 +29,7 @@
 
             <telerik:RadGridView Grid.Row="0" 
                                      ItemsSource="{Binding Instance.SelectedBill.ListProducts,IsAsync=True, UpdateSourceTrigger=PropertyChanged}"                    
+                                     SelectedItem="{Binding Instance.SelectedProduct,UpdateSourceTrigger=PropertyChanged}"
                                      IsSynchronizedWithCurrentItem="True"                
                                      AutoGenerateColumns="False"                                
                                      RowIndicatorVisibility="Collapsed"

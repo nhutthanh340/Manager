@@ -145,7 +145,6 @@ G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csproj.GenerateResource.
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.pdb
-G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\mongocrypt.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\Crc32C.NET.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\DnsClient.dll

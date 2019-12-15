@@ -2,6 +2,7 @@
 
 using Google.Cloud.Firestore;
 using Manager.Helpers;
+using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -197,11 +198,13 @@ namespace Manager.Data
                     this.total = (ulong)Count * price.Display;
                 }
 
+                //Bill.Instance.NotifyChanged();
                 return this.total;
             }
             set
             {
                 OnPropertyChanged(() => this.Total);
+                
             }
         }
 

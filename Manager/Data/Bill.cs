@@ -14,6 +14,14 @@ namespace Manager.Data
     [FirestoreData]
     public class Bill : ViewModelBase
     {
+        private static readonly Bill instance = new Bill();
+        public static Bill Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;
@@ -146,6 +154,7 @@ namespace Manager.Data
                 if (listProducts != value)
                 {
                     listProducts = value;
+                    NotifyChanged();
                 }
             }
         }
