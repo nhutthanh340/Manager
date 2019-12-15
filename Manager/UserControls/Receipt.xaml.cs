@@ -140,7 +140,7 @@ namespace Manager.UserControls
             var Id = (bill as Bill).Id;
             if (Id == null)
             {
-                status = await Database<Bill>.Instance.Add(bill);
+                status = await Database<Bill>.Instance.Add(bill as Bill);
                 method = "Thêm";
             }
             else

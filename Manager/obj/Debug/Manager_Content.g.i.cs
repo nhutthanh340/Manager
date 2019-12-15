@@ -14,5 +14,6 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libgrpc_csharp_ext.x64.so")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libgrpc_csharp_ext.x86.dylib")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libgrpc_csharp_ext.x64.dylib")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("mongocrypt.dll")]
 
 

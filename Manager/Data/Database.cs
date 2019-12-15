@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 using Grpc.Core;
 using Google.Api.Gax.Grpc;
 using System.Diagnostics;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 
 namespace Manager.Data
 {
@@ -19,10 +22,11 @@ namespace Manager.Data
             {
                 if (instance == null)
                 {
+                    
                     //StartServer();
                     instance = new Database<T>();
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);                  
-                    instance.db = FirestoreDb.Create(projectId);
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);                  
+                    instance.db = FirestoreDb.Create(instance.projectId);
 
                     //Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8297");
                     //instance.db = new FirestoreDbBuilder
@@ -33,25 +37,43 @@ namespace Manager.Data
                     //}.Build();
 
                     query = instance.db.Collection(typeof(T).Name);
+
+
+                    //MongoClient client = new MongoClient(instance.hostName);
+                    //IMongoDatabase database = client.GetDatabase(instance.databaseName);
+                    //instance.collection = database.GetCollection<T>(typeof(T).Name);
+                    //instance.collectionQuery = database.GetCollection<T>(typeof(T).Name);
                 }
                 return instance;
             }
         }
-        private readonly static string filepath = "apiKey.json";
-        private readonly static string projectId = "manager-bc2b6";
+        private readonly string filepath = "apiKey.json";
+        private readonly string projectId = "manager-bc2b6";
+        private readonly string databaseName = "manager";
+        private readonly string hostName = "mongodb://localhost:27017";
+
+        public IMongoCollection<T> collection;
+        public IMongoCollection<T> collectionQuery;
         public FirestoreDb db = null;
+
+
         private static CollectionReference query;
         public CollectionReference Query { get => query; }
-        public async Task<bool> Add(object obj)
+        
+        
+        public async Task<bool> Add(T obj)
         {
             try
             {
                 DocumentReference docRef = instance.Query.Document();
                 (obj as dynamic).Id = docRef.Id;
                 await docRef.CreateAsync(obj);
+                //string json = JsonConvert.SerializeObject(obj);
+                //T item = JsonConvert.DeserializeObject<T>(json);
+                //await instance.collection.InsertOneAsync(obj);
                 return true;
             }
-            catch
+            catch( Exception ex)
             {
                 return false;
             }
@@ -63,6 +85,8 @@ namespace Manager.Data
             {
                 DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
                 await docRef.DeleteAsync();
+                //var filter = Builders<T>.Filter.Eq("ID", (obj as dynamic).ID);
+                //await instance.collection.DeleteOneAsync(filter);
                 return true;
             }
             catch
@@ -77,6 +101,8 @@ namespace Manager.Data
             {
                 DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
                 await docRef.SetAsync(obj);
+                //var filter = Builders<T>.Filter.Eq("ID", (obj as dynamic).ID);
+                //await instance.collection.UpdateOneAsync(filter, obj.ToBsonDocument());
                 return true;
             }
             catch
@@ -85,17 +111,12 @@ namespace Manager.Data
             }
         }
 
-
-
         public async Task<QueryableCollectionView> ReadAll(Query allQuery = null, int limit = 0)
         {
-
             if (allQuery == null)
             {
                 allQuery = Query;
             }
-
-
 
             if (limit != 0)
             {
@@ -113,6 +134,9 @@ namespace Manager.Data
                 results.AddNew(item);
             }
             return results;
+            //QueryableCollectionView results = new QueryableCollectionView(instance.collectionQuery.Find(x => true).ToList());
+            //return results;
+            
         }
 
         //private static Process Server = null;
@@ -138,5 +162,7 @@ namespace Manager.Data
         //{
         //    Server.Close();
         //}
+
     }
+
 }

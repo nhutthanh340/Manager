@@ -1,5 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using Manager.Helpers;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ using Telerik.Windows.Data;
 
 namespace Manager.Data
 {
+    //[BsonIgnoreExtraElements]
     [FirestoreData]
     public class Bill : ViewModelBase
     {
@@ -32,8 +35,8 @@ namespace Manager.Data
         private ulong customePay;
         private bool note;
         private string id;
-
         private string textSearch;
+        //[BsonRequired]
         [FirestoreProperty]
         public string TextSearch
         {
@@ -61,6 +64,9 @@ namespace Manager.Data
                 saleDate = value;
             }
         }
+
+        [BsonId]
+        public ObjectId ID { get; set; }
 
         [FirestoreProperty]
         public string Id

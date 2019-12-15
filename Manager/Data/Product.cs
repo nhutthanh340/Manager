@@ -2,6 +2,8 @@
 
 using Google.Cloud.Firestore;
 using Manager.Helpers;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -84,6 +86,7 @@ namespace Manager.Data
         }
     }
     [FirestoreData]
+    //[BsonIgnoreExtraElements]
     public class Product : ViewModelBase, ICloneable
     {
         private string id = "";
@@ -252,6 +255,10 @@ namespace Manager.Data
                 }
             }
         }
+
+        [BsonId]
+        public ObjectId ID { get; set; }
+
         [FirestoreProperty]
         public string Id
         {
