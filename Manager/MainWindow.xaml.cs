@@ -5,6 +5,7 @@ using Manager.UserControls;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
@@ -30,6 +31,10 @@ namespace Manager
         public DelegateCommand VisibilityCommand { get; private set; }
         public DelegateCommand NewReceiptCommand { get; private set; }
         public DelegateCommand DeleteReceiptCommand { get; private set; }
+        public DelegateCommand NoneRepeatCommand { get; private set; }
+        public DelegateCommand BackupCommand { get; private set; }
+        public DelegateCommand RestoreCommand { get; private set; }
+
         private void InitializeCommand()
         {
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
@@ -37,7 +42,29 @@ namespace Manager
             this.VisibilityCommand = new DelegateCommand(Store.Instance.VisibilityColumn);
             this.NewReceiptCommand = new DelegateCommand(Receipt.Instance.NewReceipt);
             this.DeleteReceiptCommand = new DelegateCommand(Receipt.Instance.DeleteReceipt);
+            this.NoneRepeatCommand = new DelegateCommand(Store.Instance.NoneRepeat);
+            this.BackupCommand = new DelegateCommand(Backup);
+            this.RestoreCommand = new DelegateCommand(Restore);
         }
+
+        private void Backup(object backup)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    CMD.Execute($"mongodump --out {fbd.SelectedPath}");
+                }
+            }
+        }
+
+        private void Restore(object restore)
+        {
+
+        }
+
         private bool isPdf;
         private bool isPrinter;
 
@@ -84,7 +111,7 @@ namespace Manager
                 Store.Instance.IsBusy = true;
                 Thread thread = new Thread(() =>
                 {
-                    FileExcel.Instance.Import(ofd.FileName);                   
+                    FileExcel.Instance.Import(ofd.FileName);
                     //Store.Instance.IsBusy = false;                    
                 });
                 thread.Start();
@@ -94,7 +121,7 @@ namespace Manager
         {
             InitializeComponent();
             this.InitializeCommand();
-            DataContext = this;        
+            DataContext = this;
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -131,7 +158,7 @@ namespace Manager
 
             NotifyIcon.ContextMenu = context;
 
-            this.NotifyIcon.Icon = new Icon("favicon.ico");            
+            this.NotifyIcon.Icon = new Icon("favicon.ico");
             this.NotifyIcon.DoubleClick += NotifyIcon_DoubleClick;
         }
 

@@ -60,7 +60,7 @@ namespace Manager.Data
         private static CollectionReference query;
         public CollectionReference Query { get => query; }
 
-
+        [Obsolete]
         public async Task<bool> Add(T obj)
         {
             try
@@ -68,7 +68,8 @@ namespace Manager.Data
                 //DocumentReference docRef = instance.Query.Document();
                 //(obj as dynamic).Id = docRef.Id;
                 //await docRef.CreateAsync(obj);
-
+                var keys = Builders<T>.IndexKeys.Text("Name");
+                await instance.collection.Indexes.CreateOneAsync(keys);
                 await instance.collection.InsertOneAsync(obj);
                 return true;
             }
@@ -93,6 +94,7 @@ namespace Manager.Data
                 return false;
             }
         }
+
 
         public async Task<bool> Update(T obj)
         {

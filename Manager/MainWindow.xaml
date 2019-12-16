@@ -62,8 +62,24 @@
                         </telerik:RadRibbonButton>
                     </telerik:RadCollapsiblePanel>
                 </telerik:RadRibbonGroup>
-                
 
+                <telerik:RadRibbonGroup Header="Danh sách sản phẩm">
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonButton Text="Xoá sản phẩm trùng lặp"
+                                             Command="{Binding NoneRepeatCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Xoá sản phẩm bị lặp lại nhiều lần"
+                                             telerik:ScreenTip.Description="Ấn vào đây để xoá những dòng dữ liệu dư thừa"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="DeleteForever" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                    </telerik:RadCollapsiblePanel>
+                </telerik:RadRibbonGroup>
                 <telerik:RadRibbonGroup Header="Ẩn / Hiện">
                     <telerik:RadCollapsiblePanel>
 
@@ -159,6 +175,38 @@
                                                 Height="32"
                                                 Width="32" />
                         </telerik:RadRibbonToggleButton>
+
+                    </telerik:RadCollapsiblePanel>
+
+                </telerik:RadRibbonGroup>
+
+                <telerik:RadRibbonGroup Header="Khôi phục dữ liệu">
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonButton Text="Tạo bản sao"
+                                             Command="{Binding BackupCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Tạo bản sao"
+                                             telerik:ScreenTip.Description="Ấn vào đây để tạo bản sao"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Backup" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
+                        <telerik:RadRibbonButton Text="Khôi phục"
+                                             Command="{Binding RestoreCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Khôi phục dữ liệu"
+                                             telerik:ScreenTip.Description="Ấn vào đây để khôi phục dữ liệu"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Restore" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
 
                     </telerik:RadCollapsiblePanel>
 

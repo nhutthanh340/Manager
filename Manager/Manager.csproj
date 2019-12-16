@@ -239,6 +239,7 @@
     <Compile Include="Data\ChartModel.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\Product.cs" />
+    <Compile Include="Helpers\CMD.cs" />
     <Compile Include="Helpers\Comparer.cs" />
     <Compile Include="Helpers\CustomFilterBehavior.cs" />
     <Compile Include="Helpers\CustomFilterDescriptor.cs" />

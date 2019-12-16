@@ -53,6 +53,21 @@ namespace Manager.UserControls
                 }
             }
         }
+        private string textSearch;
+        public string TextSearch
+        {
+            get => textSearch;
+            set
+            {
+                if (textSearch != value)
+                {
+                    textSearch = value;
+                    
+                    this.NotifyChanged(PropertyChanged);
+                    Search(textSearch);
+                }
+            }
+        }
 
         private bool isBusy = false;
         public bool IsBusy
@@ -91,12 +106,26 @@ namespace Manager.UserControls
         }
         public void Initialize()
         {
-            
+            Search();
+        }
+
+        public void Search(string text = "")
+        {
             Thread thread = new Thread(async () =>
             {
                 Instance.IsBusy = true;
-                //var filter = Builders<Product>.Filter.Text("1.7");
-                Instance.ListProducts = await Database<Product>.Instance.ReadAll(/*filter*/);
+                FilterDefinition<Product> filter;
+
+                if (text == "")
+                {
+                    filter = null;
+                }
+                else
+                {
+                    filter = Builders<Product>.Filter.Text(text);
+                }
+
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll(filter);
                 if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
                 {
                     Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;
@@ -143,5 +172,46 @@ namespace Manager.UserControls
         {
             this.SelectedProduct = ((e.OriginalSource as RadButton).DataContext as Product);
         }
+
+        public void NoneRepeat(object obj)
+        {
+            Thread thread = new Thread(async () =>
+            {
+                Instance.IsBusy = true;
+                QueryableCollectionView ListUnique = new QueryableCollectionView(new List<Product>());
+                foreach (var item in Instance.ListProducts)
+                {
+
+                    if (ListUnique.ContainsItem(item))
+                    {
+                        await Database<Product>.Instance.Delete(item);
+                    }
+                    else
+                    {
+                        ListUnique.AddNew(item);
+                    }
+                }
+
+                Initialize();
+                Instance.IsBusy = false;
+            });
+            thread.Start();
+        }
+    }
+
+    public static class MyExtensions
+    {
+        public static bool ContainsItem(this QueryableCollectionView list, object item)
+        {
+            foreach (var element in list)
+            {
+                if (element.Equals(item))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

@@ -464,5 +464,15 @@ namespace Manager.Data
                 return false;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            Product product = obj as Product;
+            if(product==null)
+            {
+                return false;
+            }
+            return this.Name == product.Name && this.UnitDisplay == product.UnitDisplay;
+        }
     }
 }

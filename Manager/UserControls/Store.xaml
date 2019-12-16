@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <telerik:RadWatermarkTextBox Margin="10,10,10,0" x:Name="SearchWatermarkTextBox" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
+        <telerik:RadWatermarkTextBox Margin="10,10,10,0" Text="{Binding TextSearch, UpdateSourceTrigger=PropertyChanged}" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
         <telerik:RadBusyIndicator Grid.Row="1" IsBusy="{Binding Instance.IsBusy}" BusyContent="Đang tải vui lòng chờ ...">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
