@@ -25,21 +25,6 @@ namespace Manager.Data
 
                     instance = new Database<T>();
 
-
-                    //Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", instance.filepath);
-                    //instance.db = FirestoreDb.Create(instance.projectId);
-
-                    //Environment.SetEnvironmentVariable("FIRESTORE_EMULATOR_HOST", "localhost:8080");
-                    //instance.db = new FirestoreDbBuilder
-                    //{
-                    //    ProjectId = instance.projectId,
-                    //    EmulatorDetection = EmulatorDetection.EmulatorOnly,
-
-                    //}.Build();
-
-                    //query = instance.db.Collection(typeof(T).Name);
-
-
                     MongoClient client = new MongoClient(instance.hostName);
                     IMongoDatabase database = client.GetDatabase(instance.databaseName);
                     instance.collection = database.GetCollection<T>(typeof(T).Name);
@@ -65,9 +50,6 @@ namespace Manager.Data
         {
             try
             {
-                //DocumentReference docRef = instance.Query.Document();
-                //(obj as dynamic).Id = docRef.Id;
-                //await docRef.CreateAsync(obj);
                 var keys = Builders<T>.IndexKeys.Text("Name");
                 await instance.collection.Indexes.CreateOneAsync(keys);
                 await instance.collection.InsertOneAsync(obj);
@@ -83,8 +65,6 @@ namespace Manager.Data
         {
             try
             {
-                //DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
-                //await docRef.DeleteAsync();
                 var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
                 await instance.collection.DeleteOneAsync(filter);
                 return true;
@@ -100,14 +80,12 @@ namespace Manager.Data
         {
             try
             {
-                //DocumentReference docRef = instance.Query.Document((obj as dynamic).Id);
-                //await docRef.SetAsync(obj);
                 var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
 
                 await instance.collection.ReplaceOneAsync(filter, obj);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -116,19 +94,27 @@ namespace Manager.Data
         public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int skip = 0, int? limit = null)
         {
             List<T> results = null;
-
-            if (filter == null)
+            
+            try
             {
-                results = await instance.collection.Find(x => true).Skip(skip).Limit(limit).ToListAsync();
+                if (filter == null)
+                {
+                    results = await instance.collection.Find(x => true).Skip(skip).Limit(limit).ToListAsync();
+                }
+                else
+                {
+                    results = await instance.collection.Find(filter).Skip(skip).Limit(limit).ToListAsync();
+                }
+                if (results == null)
+                {
+                    results = new List<T>();
+                }
             }
-            else
-            {
-                results = await instance.collection.Find(filter).Skip(skip).Limit(limit).ToListAsync();
-            }
-            if (results == null)
+            catch
             {
                 results = new List<T>();
             }
+
             return new QueryableCollectionView(results);
 
         }

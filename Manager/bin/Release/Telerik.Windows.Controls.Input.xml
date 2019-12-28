@@ -844,6 +844,11 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.RadAutoCompleteBox.DropDownItemTemplate"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadAutoCompleteBox.DropDownItemTemplateSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadAutoCompleteBox.DropDownItemTemplateSelector"/> dependency property.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.RadAutoCompleteBox.NoResultsContentProperty">
             <summary>
             Identifies the <see cref="P:Telerik.Windows.Controls.RadAutoCompleteBox.NoResultsContent"/> dependency property.
@@ -1191,6 +1196,12 @@
         <member name="P:Telerik.Windows.Controls.RadAutoCompleteBox.DropDownItemTemplate">
             <summary>
             Gets or sets the System.Windows.DataTemplate used to display each item into the DropDown part of the control. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadAutoCompleteBox.DropDownItemTemplateSelector">
+            <summary>
+            Gets or sets the System.Windows.Controls.DataTemplateSelector used to choose System.Windows.DataTemplate to display each DropDown item into the dropdown part of the control. 
+            This is a dependency property.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.RadAutoCompleteBox.NoResultsContent">
@@ -11189,6 +11200,12 @@
             <param name="args">The changed args.</param>
             <param name="processValueChanged">True is ProcessValueChanged should be called.</param>
         </member>
+        <member name="M:Telerik.Windows.Controls.RadMaskedInputBase.CoerceImeInputString(System.String)">
+            <summary>
+            Initial process of the text receives from the IME input.
+            </summary>
+            <param name="text">The initial text received from the IME.</param>
+        </member>
         <member name="M:Telerik.Windows.Controls.RadMaskedInputBase.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs)">
             <summary>
             Handles the MouseWheel.
@@ -12691,6 +12708,12 @@
             
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Controls.RadMaskedDateTimeInput.CoerceImeInputString(System.String)">
+            <summary>
+            Initial process of the text receives from the IME input.
+            </summary>
+            <param name="text">The initial text received from the IME.</param>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadMaskedDateTimeInput.Value">
             <summary>
             Gets or sets the Value property.
@@ -13218,6 +13241,12 @@
             </summary>
             <returns>Returns the display text.</returns>
         </member>
+        <member name="M:Telerik.Windows.Controls.RadMaskedTextInput.CoerceImeInputString(System.String)">
+            <summary>
+            Initial process of the text receives from the IME input.
+            </summary>
+            <param name="text">The initial text received from the IME.</param>
+        </member>
         <member name="M:Telerik.Windows.Controls.RadMaskedTextInput.CoerceStronglyTypeValueFromInternalValueOverride">
             <summary>
             Coerces the Value property from the ValueInternal property.
@@ -13260,6 +13289,14 @@
             Handle the spin of the value.
             </summary>
             <param name="position">Position of spin.</param>
+            <param name="forwardSpin">Direction of spin.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadMaskedTextInput.GetNextChar(Telerik.Windows.Controls.MaskedInput.Tokens.ITokenValidationRule,System.Char,System.Nullable{System.Boolean})">
+            <summary>
+            Retrieves the next char.
+            </summary>
+            <param name="rule">Currently used rule.</param>
+            <param name="spinValue">The char which is currently spin.</param>
             <param name="forwardSpin">Direction of spin.</param>
         </member>
         <member name="M:Telerik.Windows.Controls.RadMaskedTextInput.RefreshSectionPositions">

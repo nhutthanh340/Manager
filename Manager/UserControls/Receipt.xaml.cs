@@ -18,7 +18,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Receipt : UserControl, INotifyPropertyChanged
     {
+        [Obsolete]
         private static readonly Receipt instance = new Receipt();
+
+        [Obsolete]
         public static Receipt Instance
         {
             get
@@ -73,12 +76,14 @@ namespace Manager.UserControls
         public DelegateCommand RemoveProductCommand { get; private set; }
         public DelegateCommand PayCommand { get; private set; }
 
+        [Obsolete]
         private void InitializeCommand()
         {
             this.RemoveProductCommand = new DelegateCommand(RemoveProduct);
             this.PayCommand = new DelegateCommand(Pay);
         }
 
+        [Obsolete]
         public void Pay(object bill)
         {
             if ((bill as Bill).ListProducts == null || (bill as Bill).ListProducts.IsEmpty)
@@ -107,6 +112,7 @@ namespace Manager.UserControls
             Print(bill);
         }
 
+        [Obsolete]
         public void Print(object bill)
         {
             Printer.PrintMethod printMethod = Printer.PrintMethod.None;
@@ -135,6 +141,7 @@ namespace Manager.UserControls
             }
         }
 
+        [Obsolete]
         public async void Save(object bill)
         {
             bool status = false;
@@ -168,6 +175,8 @@ namespace Manager.UserControls
                 Header = "Thông báo"
             });
         }
+
+        [Obsolete]
         public Receipt()
         {
             InitializeComponent();
@@ -180,7 +189,8 @@ namespace Manager.UserControls
         private async void Initialize()
         {
         
-            var filter = Builders<Bill>.Filter.Eq("IsDept",true);
+            var filter = Builders<Bill>.Filter.Where(x => x.IsDept);
+            
             ListBills = await Database<Bill>.Instance.ReadAll(filter);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {

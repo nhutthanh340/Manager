@@ -4,10 +4,12 @@
              xmlns:local="clr-namespace:Manager"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
         <ResourceDictionary>
 
+            
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/GridViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/OutlookBarStyle.xaml" />
@@ -25,6 +27,21 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
+
+            
+            <Style x:Key="FlatProgressBar" TargetType="{x:Type ProgressBar}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <Border BorderBrush="{x:Null}" BorderThickness="0" Background="{x:Null}" CornerRadius="0" Padding="0">
+                                <Grid x:Name="PART_Track">
+                                    <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left" Fill="{Binding RelativeSource={RelativeSource AncestorType=ProgressBar},Path=Foreground}" />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             
             <Style x:Key="RowStyle" TargetType="telerik:GridViewHeaderRow">
                 <Setter Property="Background" Value="AntiqueWhite"/>

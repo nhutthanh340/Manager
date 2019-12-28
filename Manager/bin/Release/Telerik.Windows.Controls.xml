@@ -678,6 +678,11 @@
             Represents the CurrentSize attached property.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Controls.Animation.ResizeAnimation.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Animation.ResizeAnimation"/> class.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.Animation.ResizeAnimation.GetOldSize(System.Windows.DependencyObject)">
             <summary>
             Gets the OldSize for the given DependencyObject, normally a UIElement.
@@ -739,6 +744,11 @@
             the global <strong>AnimationSpeedRatio</strong> if the local SpeedRatio is null.
             If the local SpeedRatio value is set, it will be used.
             </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Animation.ResizeAnimation.ResizeMode">
+            <summary>
+            Gets or sets a value indicating the resizing mode (horizontal, vertical, both) of the animation.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Animation.ScaleAnimation">
             <summary>
@@ -968,6 +978,26 @@
             Gets or sets the end value of the animated property.
             </summary>
             <value>To.</value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Animation.ResizeAnimationResizeMode">
+            <summary>
+            ResizeMode determines how resizing is performed in <see cref="T:Telerik.Windows.Controls.Animation.ResizeAnimation"/>. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Animation.ResizeAnimationResizeMode.Horizontal">
+            <summary>
+            Resizing is performed horizontally only.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Animation.ResizeAnimationResizeMode.Vertical">
+            <summary>
+            Resizing is performed vertically only.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Animation.ResizeAnimationResizeMode.Both">
+            <summary>
+            Resizing is performed both horizontally and vertically.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Animation.ScaleMode">
             <summary>
@@ -1239,6 +1269,13 @@
             <value>
             The automation mode.
             </value>
+        </member>
+        <member name="P:Telerik.Windows.Automation.Peers.AutomationManager.UseDefaultHelpText">
+            <summary>
+            Gets or sets whether the automation peer of the control will return a predefined string (the class name) as HelpText.
+            The default value is true - the class name of the control will be returned as the HelpText if the GetHelpTextCore method is overridden in the respective automation peer class.
+            When set to false, the value set as the AutomationProperties.HelpText will be returned.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Automation.Peers.AutomationMode">
             <summary>
@@ -1587,9 +1624,9 @@
             Gets or sets the <see cref="P:Telerik.Windows.Controls.RadBusyIndicator.ProgressBarStyle"/> property. This is a dependency property.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Automation.Peers.RadPathButtonAutomationPeer">
+        <member name="T:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer">
             <summary>
-            
+            An AutomationPeer type for the RadHyperlinkButton type.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Automation.Peers.RadButtonAutomationPeer">
@@ -1659,6 +1696,42 @@
         </member>
         <member name="M:Telerik.Windows.Automation.Peers.RadButtonAutomationPeer.GetItemStatusCore">
             <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer.#ctor(Telerik.Windows.Controls.RadHyperlinkButton)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer.GetHelpTextCore">
+            <summary>
+            Returns the string that describes the functionality of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetHelpText"/>.
+            </summary>
+            <returns>
+            The help text, or <see cref="F:System.String.Empty"/> if there is no help text.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer.GetProperties">
+            <summary>
+            Gets the CUI properties.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadHyperlinkButtonAutomationPeer.GetItemStatusCore">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.Windows.Automation.Peers.RadPathButtonAutomationPeer">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Telerik.Windows.Automation.Peers.RadPathButtonAutomationPeer.#ctor(Telerik.Windows.Controls.RadPathButton)">
             <summary>
@@ -2024,6 +2097,80 @@
             </summary>
             <returns>The toggle state of the control, as a value of the enumeration. </returns>
         </member>
+        <member name="T:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer">
+            <summary>
+            An AutomationPeer type for the RadToggleSwitchButton type. 
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.#ctor(Telerik.Windows.Controls.RadToggleSwitchButton)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.Toggle">
+            <summary>
+            Cycles through the toggle states of a control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetPattern(System.Windows.Automation.Peers.PatternInterface)">
+            <summary>
+            Returns the control pattern for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>.
+            </summary>
+            <param name="patternInterface">One of the enumeration values.</param>
+            <returns>
+            See Remarks.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetClassNameCore">
+            <summary>
+            Returns the name of the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetClassName"/>.
+            </summary>
+            <returns>
+            The name of the owner type that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. See Remarks.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetAutomationControlTypeCore">
+            <summary>
+            Returns the control type for the <see cref="T:System.Windows.UIElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationControlType"/>.
+            </summary>
+            <returns>
+            A value of the enumeration.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetAutomationIdCore">
+            <summary>
+            Returns the string that uniquely identifies the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetAutomationId"/>.
+            </summary>
+            <returns>
+            The automation identifier for the element associated with the <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>, or <see cref="F:System.String.Empty"/> if there is no automation identifier.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetNameCore">
+            <summary>
+            Returns the text label of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetName"/>.
+            </summary>
+            <returns>
+            The text label of the element that is associated with this automation peer.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetHelpTextCore">
+            <summary>
+            Returns the string that describes the functionality of the <see cref="T:System.Windows.FrameworkElement"/> that is associated with this <see cref="T:System.Windows.Automation.Peers.FrameworkElementAutomationPeer"/>. This method is called by <see cref="M:System.Windows.Automation.Peers.AutomationPeer.GetHelpText"/>.
+            </summary>
+            <returns>
+            The help text, or <see cref="F:System.String.Empty"/> if there is no help text.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.GetItemStatusCore">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Windows.Automation.Peers.RadToggleSwitchButtonAutomationPeer.ToggleState">
+            <summary>
+            Gets the toggle state of the control.
+            </summary>
+            <returns>The toggle state of the control, as a value of the enumeration. </returns>
+        </member>
         <member name="T:Telerik.Windows.Controls.Buttons.ButtonBehaviors">
             <summary>
             
@@ -2285,6 +2432,16 @@
         <member name="F:Telerik.Windows.Controls.RadDropDownButton.DropDownHeightProperty">
             <summary>
             Identifies the PopupHeight property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadDropDownButton.DropDownMinWidthProperty">
+            <summary>
+            Identifies the DropDownMinWidth property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadDropDownButton.DropDownMinHeightProperty">
+            <summary>
+            Identifies the DropDownMinHeight property.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Controls.RadDropDownButton.DropDownMaxWidthProperty">
@@ -2579,6 +2736,18 @@
             This is a dependency property.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadDropDownButton.DropDownMinWidth">
+            <summary>
+            Gets or sets the MinWidth of the drop-down area.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDropDownButton.DropDownMinHeight">
+            <summary>
+            Gets or sets the MinHeight of the drop-down area.
+            This is a dependency property.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadDropDownButton.DropDownMaxWidth">
             <summary>
             Gets or sets the MaxWidth of the drop-down area.
@@ -2606,6 +2775,65 @@
         <member name="P:Telerik.Windows.Controls.RadDropDownButton.PopupAnimation">
             <summary>
             Gets or sets the animation that will be used for the popup element.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadHyperlinkButton">
+            <summary>
+            A HyperlinkButton control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadHyperlinkButton.NavigateUriProperty">
+            <summary>
+            Identifies the NavigateUri property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadHyperlinkButton.TargetNameProperty">
+            <summary>
+            Identifies the TargetName property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadHyperlinkButton.IsVisitedProperty">
+            <summary>
+            Identifies the IsVisited property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadHyperlinkButton.VisitedForegroundProperty">
+            <summary>
+            Identifies the VisitedForeground property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadHyperlinkButton.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadHyperlinkButton.OnCreateAutomationPeer">
+            <inheritdoc /> 
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadHyperlinkButton.OnInitialized(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.FrameworkElement.Initialized"/> event. This method is invoked whenever <see cref="P:System.Windows.FrameworkElement.IsInitialized"/> is set to true internally.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadHyperlinkButton.NavigateUri">
+            <summary>
+            Gets or sets the URI to navigate to when the HyperlinkButton is clicked.		
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadHyperlinkButton.TargetName">
+            <summary>
+            Gets or sets the name of the target window or frame that the Web page should open in.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadHyperlinkButton.IsVisited">
+            <summary>
+            Gets or sets a value that indicates whether the hyperlink has been clicked.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadHyperlinkButton.VisitedForeground">
+            <summary>
+            Gets or sets the foreground of the hyperlink after it has been clicked. 
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.RadPathButton">
@@ -3442,6 +3670,144 @@
         <member name="P:Telerik.Windows.Controls.RadToggleButton.IsBackgroundVisible">
             <summary>
             Sets the visual appearance of the chrome not to render in Normal mode.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadToggleSwitchButton">
+            <summary>
+            A ToggleSwitch button control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.CheckedContentProperty">
+            <summary>
+            Identifies the CheckedContent property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.CheckedContentTemplateProperty">
+            <summary>
+            Identifies the CheckedContentTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.UncheckedContentProperty">
+            <summary>
+            Identifies the UncheckedContent property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.UncheckedContentTemplateProperty">
+            <summary>
+            Identifies the UncheckedContentTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.ContentPositionProperty">
+            <summary>
+            Identifies the ContentPosition property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.TrackWidthProperty">
+            <summary>
+            Identifies the TrackWidth property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.TrackHeightProperty">
+            <summary>
+            Identifies the TrackHeight property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.ThumbWidthProperty">
+            <summary>
+            Identifies the ThumbWidth property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadToggleSwitchButton.ThumbHeightProperty">
+            <summary>
+            Identifies the ThumbHeight property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadToggleSwitchButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadToggleSwitchButton"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadToggleSwitchButton.OnInitialized(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.FrameworkElement.Initialized"/> event. This method is invoked whenever <see cref="P:System.Windows.FrameworkElement.IsInitialized"/> is set to true internally.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadToggleSwitchButton.OnCreateAutomationPeer">
+            <summary>
+            Creates a RadToggleButtonAutomationPeer.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadToggleSwitchButton.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes
+            (such as a rebuilding layout pass) call.
+            <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.CheckedContent">
+            <summary>
+            Gets or sets the content that is displayed when the toggle switch is in the checked state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.CheckedContentTemplate">
+            <summary>
+            Gets or sets the template that defines the appearance of the control's checked state content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.UncheckedContent">
+            <summary>
+            Gets or sets the content that is displayed when the toggle switch is in the unchecked state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.UncheckedContentTemplate">
+            <summary>
+            Gets or sets the template that defines the appearance of the control's unchecked state content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.ContentPosition">
+            <summary>
+            Gets or sets the position of the content area of the toggle switch button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.TrackWidth">
+            <summary>
+            Gets or sets the width of the switch button track.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.TrackHeight">
+            <summary>
+            Gets or sets the height of the switch button track.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.ThumbWidth">
+            <summary>
+            Gets or sets the width of the switch button thumb.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadToggleSwitchButton.ThumbHeight">
+            <summary>
+            Gets or sets the height of the switch button thumb.
+            </summary>  
+        </member>
+        <member name="T:Telerik.Windows.Controls.SwitchButtonContentPosition">
+            <summary>
+            Determines possible positions of the toggle switch button checked and unchecked contents.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SwitchButtonContentPosition.Left">
+            <summary>
+            Both checked and unchecked contents are displayed at the left side of the toggle switch button.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SwitchButtonContentPosition.Right">
+            <summary>
+            Both checked and unchecked contents are displayed at the right side of the toggle switch button.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SwitchButtonContentPosition.Both">
+            <summary>
+            The checked content is displayed at the right side of the toggle switch button, while the unchecked content is displayed at the left side of the control.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Chromes.ButtonChrome">
@@ -6227,6 +6593,18 @@
             <param name="logicalRectangle">A rectangle in the physical coordinate system.</param>
             <returns>Returns the parameter converted to the device independent coordinate system.</returns>
         </member>
+        <member name="M:Telerik.Windows.Controls.InternalWindow.Standard.DpiHelper.ScaledDevicePixelsToLogical(System.Windows.Point,System.Double)">
+            <summary>
+            This method applies scale factor to the <seealso cref="T:System.Windows.Point"/> before calling DevicePixelsToLogical.
+            This is needed when PerMonitorDpiAwareness is enabled.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.InternalWindow.Standard.DpiHelper.ScaledDeviceRectToLogical(System.Windows.Rect,System.Double)">
+            <summary>
+            This method applies scale factor to the <seealso cref="T:System.Windows.Rect"/> before calling DevicePixelsToLogical.
+            This is needed when PerMonitorDpiAwareness is enabled.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.InternalWindow.Standard.Win32Error">
             <summary>
             Wrapper for common Win32 status codes.
@@ -6837,6 +7215,35 @@
             </summary>
             <returns>The value.</returns>
         </member>
+        <member name="T:Telerik.Windows.Controls.ObjectToTypeConverter">
+            <summary>
+            An IValueConverter that converts an object to a Type based on the parameter.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ObjectToTypeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an object value to Type.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ObjectToTypeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Not implemented.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
         <member name="T:Telerik.Windows.Controls.UppercaseConverter">
             <summary>
             Represents converter, which converts string value to Uppercase.
@@ -7215,6 +7622,31 @@
             <returns>
             The Visibility value.
             </returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.StringToGlyphConverter">
+            <summary>
+            Represents converter that converts a glyph string value to a glyph number that can be data bound.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToGlyphConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a glyph string value to a glyph number that can be data bound.
+            </summary>
+            <param name="value">The glyph string value that will be used for conversion.</param>
+            <param name="targetType">This parameter is not used.</param>
+            <param name="parameter">This parameter is not used.</param>
+            <param name="culture">This parameter is not used.</param>
+            <returns> A glyph number presentation of the object. </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToGlyphConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A null value. The method is not implemented.</returns>        
         </member>
         <member name="T:Telerik.Windows.Controls.VisualToVisualBrushConverter">
             <summary>
@@ -9322,6 +9754,11 @@
             Gets or sets the AllowedEffect for a drag-and-drop operation if such are not specified in DragInitialize event arguments.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.DragDrop.DragDropManager.UseAdornerLayer">
+            <summary>
+            Gets or sets a value that indicates whether drag visual will be displayed in the adorner layer or in separate window.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.DragDrop.DragDropManager.LastQueryContinueAction">
             <summary>
             Gets or sets the last query continue action.
@@ -10261,6 +10698,12 @@
             Gets or sets the icon relative path.
             </summary>
             <value>The icon relative path.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IconResourceExtension.IconRelativePathStringFormat">
+            <summary>
+            Gets or sets the string format for constructing the path. The bound control's DataContext is used as a parameter value.
+            </summary>
+            <value>The string format.</value>
         </member>
         <member name="T:Telerik.Windows.Controls.IconSources">
             <summary>
@@ -12003,6 +12446,9 @@
             <param name="oldItemsPanel">Old value of the <see cref="P:System.Windows.Controls.ItemsControl.ItemsPanel"/> property.</param>
             <param name="newItemsPanel">New value of the <see cref="P:System.Windows.Controls.ItemsControl.ItemsPanel"/> property.</param>
         </member>
+        <member name="M:Telerik.Windows.Controls.Primitives.ListControl.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <inheritdoc />
+        </member>
         <member name="M:Telerik.Windows.Controls.Primitives.ListControl.ClearContainerStates(System.Windows.FrameworkElement)">
             <summary>
             Clears the properties that effect the visual states for the given container. This method is called in <see cref="M:Telerik.Windows.Controls.Primitives.ListControl.ClearContainerForItemOverride(System.Windows.DependencyObject,System.Object)"/>
@@ -12143,6 +12589,12 @@
         <member name="P:Telerik.Windows.Controls.Primitives.ListControl.CommandTarget">
             <summary>
             Gets or sets the CommandTarget. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Primitives.ListControl.DisableMouseOverVisualState">
+            <summary>
+            For internal usage - disables the MouseOver state of the ListBoxItems in the themes that use VisualStates.
+            This is used in RadSyntaxEditor.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Primitives.ListControl.IsItemsHostVisible">
@@ -12346,6 +12798,15 @@
         </member>
         <member name="M:Telerik.Windows.Controls.MarkupExtensions.DynamicResourceProxy.CreateInstanceCore">
             <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkupExtensions.DynamicResourceProxy.FreezeCore(System.Boolean)">
+            <summary>
+            Makes the <see cref="T:System.Windows.Freezable"/> object unmodifiable or tests whether it can be made unmodifiable.
+            </summary>
+            <param name="isChecking">True to return an indication of whether the object can be frozen (without actually freezing it); false to actually freeze the object.</param>
+            <returns>
+            If <paramref name="isChecking"/> is true, this method returns true if the <see cref="T:System.Windows.Freezable"/> can be made unmodifiable, or false if it cannot be made unmodifiable. If <paramref name="isChecking"/> is false, this method returns true if the if the specified <see cref="T:System.Windows.Freezable"/> is now unmodifiable, or false if it cannot be made unmodifiable.
+            </returns>
         </member>
         <member name="P:Telerik.Windows.Controls.MarkupExtensions.DynamicResourceProxy.ProxyValue">
             <summary>
@@ -12698,6 +13159,26 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.MaterialControls.FluentControl.EffectMode"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.MaterialControls.FluentControl.ScrollBarModeResourceKeyProperty">
+            <summary>
+            Identifies the ScrollBarModeResourceKey attached property.
+            </summary>
+            <remarks>
+            	<para>
+            		This property is used for internal purposes only.
+            	</para>
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MaterialControls.FluentControl.GetScrollBarModeResourceKey(System.Windows.DependencyObject)">
+            <summary>
+            Gets the scrollbar mode resource key. 
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MaterialControls.FluentControl.SetScrollBarModeResourceKey(System.Windows.DependencyObject,System.String)">
+            <summary>
+            Sets the scrollbar mode resource key. 
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.MaterialControls.FluentControl.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.MaterialControls.FluentControl"/> class.
@@ -12796,70 +13277,127 @@
             Defines a set of attached properties that affect the visual appearance and coloring of elements in the Material theme.
             </summary>
         </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.MouseOverBrushProperty">
+        <member name="T:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper">
             <summary>
-            Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.MouseOverBrushProperty"/> for the element. This is an attached property.
+            Defines a set of attached properties that affect the visual appearance and coloring of elements in the Telerik themes.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetMouseOverBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.MouseOverBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.MouseOverBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.PressedBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.PressedBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.FocusBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.FocusBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.CheckedBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.CheckedBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.ReadOnlyBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.ReadOnlyBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.DisabledBrushProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.DisabledBrushProperty"/> for the element. This is an attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.CornerRadiusProperty">
+            <summary>
+            Identifies attached <see cref="T:System.Windows.CornerRadius"/> for controls which do not own one. This is an attached property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetMouseOverBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             Sets a Brush for the mouse over state of the specified element.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetMouseOverBrush(System.Windows.DependencyObject)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetMouseOverBrush(System.Windows.DependencyObject)">
             <summary>
             Gets the Brush for the mouse over state of the specified element.
             </summary>
         </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.PressedBrushProperty">
-            <summary>
-            Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.PressedBrushProperty"/> for the element. This is an attached property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetPressedBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetPressedBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             Sets a Brush for the pressed state of the specified element.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetPressedBrush(System.Windows.DependencyObject)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetPressedBrush(System.Windows.DependencyObject)">
             <summary>
             Gets the Brush for the pressed state of the specified element.
             </summary>
         </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.FocusBrushProperty">
-            <summary>
-            Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.FocusBrushProperty"/> for the element. This is an attached property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetFocusBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetFocusBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             Sets a Brush for the focused state of the specified element.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetFocusBrush(System.Windows.DependencyObject)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetFocusBrush(System.Windows.DependencyObject)">
             <summary>
             Gets the Brush for the focused state of the specified element.
             </summary>
         </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.CheckedBrushProperty">
-            <summary>
-            Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.CheckedBrushProperty"/> for the element. This is an attached property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetCheckedBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetCheckedBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             Sets a Brush for the checked/selected state of the specified element.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetCheckedBrush(System.Windows.DependencyObject)">
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetCheckedBrush(System.Windows.DependencyObject)">
             <summary>
             Gets the Brush for the checked/selected state of the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetReadOnlyBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            Sets a Brush for the read only state of the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetReadOnlyBrush(System.Windows.DependencyObject)">
+            <summary>
+            Gets the Brush for the read only state of the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetDisabledBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            Sets a Brush for the disabled state of the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetDisabledBrush(System.Windows.DependencyObject)">
+            <summary>
+            Gets the Brush for the disabled state of the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.SetCornerRadius(System.Windows.DependencyObject,System.Windows.CornerRadius)">
+            <summary>
+            Sets the <see cref="T:System.Windows.CornerRadius"/> for the specified element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Theming.Helpers.ThemeHelper.GetCornerRadius(System.Windows.DependencyObject)">
+            <summary>
+            Gets the <see cref="T:System.Windows.CornerRadius"/> for the specified element.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.ShadowDepthProperty">
             <summary>
             Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.ShadowDepthProperty"/> for the element. This is an attached property.
             </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.IsShadowDisabledProperty">
+            <summary>
+              Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.IsShadowDisabledProperty"/> for the element. This is an attached property.
+              <para>It determines whether the <see cref="T:Telerik.Windows.Controls.MaterialControls.Shadow"/> has its <see cref="T:System.Windows.Media.Effects.DropShadowEffect"/> applied.</para>
+              Default Value: false.
+            </summary> 
         </member>
         <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetShadowDepth(System.Windows.DependencyObject,Telerik.Windows.Controls.MaterialControls.MaterialShadowDepth)">
             <summary>
@@ -12870,28 +13408,6 @@
             <summary>
             Gets the value for the <see cref="P:Telerik.Windows.Controls.MaterialControls.Shadow.ShadowDepth"/> of the <see cref="T:Telerik.Windows.Controls.MaterialControls.Shadow"/>, if one is present in the template of the specified element.
             </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.CornerRadiusProperty">
-            <summary>
-            Identifies attached <see cref="T:System.Windows.CornerRadius"/> for controls which do not own one. This is an attached property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.SetCornerRadius(System.Windows.DependencyObject,System.Windows.CornerRadius)">
-            <summary>
-            Sets the <see cref="T:System.Windows.CornerRadius"/> for the specified element.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetCornerRadius(System.Windows.DependencyObject)">
-            <summary>
-            Gets the <see cref="T:System.Windows.CornerRadius"/> for the specified element.
-            </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.IsShadowDisabledProperty">
-            <summary>
-              Identifies the <see cref="F:Telerik.Windows.Controls.MaterialControls.MaterialAssist.IsShadowDisabledProperty"/> for the element. This is an attached property.
-              <para>It determines whether the <see cref="T:Telerik.Windows.Controls.MaterialControls.Shadow"/> has its <see cref="T:System.Windows.Media.Effects.DropShadowEffect"/> applied.</para>
-              Default Value: false.
-            </summary> 
         </member>
         <member name="M:Telerik.Windows.Controls.MaterialControls.MaterialAssist.GetIsShadowDisabled(System.Windows.DependencyObject)">
             <summary>
@@ -13077,6 +13593,242 @@
             Gets or sets whether the Acrylic effect should be globally enabled.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Controls.VirtualizingWrapPanel">
+            <summary>
+            Positions child elements in sequential position from left to right, breaking content 
+            to the next line at the edge of the containing box. Subsequent ordering happens 
+            sequentially from top to bottom or from right to left, depending on the value of 
+            the Orientation property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemHeightProperty">
+            <summary>
+            Identifies the ItemHeight dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.OrientationProperty">
+            <summary>
+            Identifies the Orientation dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemWidthProperty">
+            <summary>
+            Identifies the ItemWidth dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollStepProperty">
+            <summary>
+            Identifies the ScrollStep dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.VirtualizingWrapPanel"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnInitialized(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineDown">
+            <summary>
+            Scrolls down within content by one logical unit.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineLeft">
+            <summary>
+            Scrolls left within content by one logical unit.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineRight">
+            <summary>
+            Scrolls right within content by one logical unit.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineUp">
+            <summary>
+            Scrolls up within content by one logical unit.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MakeVisible(System.Windows.Media.Visual,System.Windows.Rect)">
+            <summary>
+            Forces content to scroll until the coordinate space of a Visual object is visible.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelDown">
+            <summary>
+            Scrolls down within content after a user clicks the wheel button on a mouse.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelLeft">
+            <summary>
+            Scrolls left within content after a user clicks the wheel button on a mouse.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelRight">
+            <summary>
+            Scrolls right within content after a user clicks the wheel button on a mouse.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelUp">
+            <summary>
+            Scrolls up within content after a user clicks the wheel button on a mouse.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageUp">
+            <summary>
+            Scrolls up within content by one page.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageDown">
+            <summary>
+            Scrolls down within content by one page.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageLeft">
+            <summary>
+            Scrolls left within content by one page.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageRight">
+            <summary>
+            Scrolls right within content by one page.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.SetVerticalOffset(System.Double)">
+            <summary>
+            Sets the amount of vertical offset.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.SetHorizontalOffset(System.Double)">
+            <summary>
+            Sets the amount of horizontal offset.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageLast">
+            <summary>
+            Note: Works only for vertical.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageFirst">
+            <summary>
+            Note: Works only for vertical.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.BringIndexIntoView(System.Int32)">
+            <summary>
+            Generates the item at the specified index location and makes it visible.
+            </summary>
+            <param name="index">The index position of the item that is generated and made visible.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnItemsChanged(System.Object,System.Windows.Controls.Primitives.ItemsChangedEventArgs)">
+            <summary>
+            When items are removed, remove the corresponding UI if necessary.
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Measure the children.
+            </summary>
+            <param name="availableSize">The available size.</param>
+            <returns>The desired size.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Arranges the children.
+            </summary>
+            <param name="finalSize">The available size.</param>
+            <returns>The used size.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnGotKeyboardFocus(System.Windows.Input.KeyboardFocusChangedEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnLostKeyboardFocus(System.Windows.Input.KeyboardFocusChangedEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemHeight">
+            <summary>
+            Gets or sets a value that specifies the height of all items that are 
+            contained within a VirtualizingWrapPanel. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemWidth">
+            <summary>
+            Gets or sets a value that specifies the width of all items that are 
+            contained within a VirtualizingWrapPanel. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.Orientation">
+            <summary>
+            Gets or sets a value that specifies the dimension in which child 
+            content is arranged. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.CanHorizontallyScroll">
+            <summary>
+            Gets or sets a value that indicates whether scrolling on the horizontal axis is possible.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.CanVerticallyScroll">
+            <summary>
+            Gets or sets a value that indicates whether scrolling on the vertical axis is possible.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollOwner">
+            <summary>
+            Gets or sets a ScrollViewer element that controls scrolling behavior.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.HorizontalOffset">
+            <summary>
+            Gets the horizontal offset of the scrolled content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.VerticalOffset">
+            <summary>
+            Gets the vertical offset of the scrolled content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ViewportWidth">
+            <summary>
+            Gets the horizontal size of the viewport for this content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ViewportHeight">
+            <summary>
+            Gets the vertical size of the viewport for this content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ExtentWidth">
+            <summary>
+            Gets the horizontal size of the extent.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ExtentHeight">
+            <summary>
+            Gets the vertical size of the extent.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollStep">
+            <summary>
+            Gets or sets a value for mouse wheel scroll step.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.CanHierarchicallyScrollAndVirtualizeCore">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.HasLogicalOrientation">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.LogicalOrientation">
+            <summary>
+            Note: When Wrap is horizontal it grows vertically. Otherwise nested grouping virtualization won't work.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Automation.Peers.RadPasswordBoxAutomationPeer">
             <summary>
             Represents automation peer for the <see cref="T:Telerik.Windows.Controls.RadPasswordBox"/> class.
@@ -13107,6 +13859,9 @@
             Initializes a new instance of the <see cref="T:Telerik.Windows.Automation.Peers.RadWatermarkTextBoxAutomationPeer"/> class.
             </summary>
             <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Automation.Peers.RadWatermarkTextBoxAutomationPeer.GetChildrenCore">
+            <inheritdoc />
         </member>
         <member name="M:Telerik.Windows.Automation.Peers.RadWatermarkTextBoxAutomationPeer.SetValue(System.String)">
             <summary>Sets the value of a control.</summary>
@@ -13480,6 +14235,9 @@
         <member name="M:Telerik.Windows.Controls.RadTileList.OnItemContainerStyleSelectorChanged(System.Windows.Controls.StyleSelector,System.Windows.Controls.StyleSelector)">
             <inheritdoc />
         </member>
+        <member name="M:Telerik.Windows.Controls.RadTileList.OnItemContainerStyleChanged(System.Windows.Style,System.Windows.Style)">
+            <inheritdoc />
+        </member>
         <member name="M:Telerik.Windows.Controls.RadTileList.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <inheritdoc />
         </member>
@@ -13718,6 +14476,15 @@
             Gets or sets the command target of the Tile when using routed command.
             </summary>
             <value>The command target.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Tile.IsEnabledCore">
+            <summary>
+                Fetches the value of the IsEnabled property.
+            </summary>
+            <remarks>
+                The reason this property is overridden is so that the Tile
+                can infuse the value for CanExecute into it.
+            </remarks>
         </member>
         <member name="P:Telerik.Windows.Controls.Tile.DisplayIndex">
             <summary>
@@ -18716,213 +19483,6 @@
             content is arranged. This is a dependency property.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Controls.VirtualizingWrapPanel">
-            <summary>
-            Positions child elements in sequential position from left to right, breaking content 
-            to the next line at the edge of the containing box. Subsequent ordering happens 
-            sequentially from top to bottom or from right to left, depending on the value of 
-            the Orientation property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.VirtualizingWrapPanel"/> class.
-            </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemHeightProperty">
-            <summary>
-            Identifies the ItemHeight dependency property.
-            </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.OrientationProperty">
-            <summary>
-            Identifies the Orientation dependency property.
-            </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemWidthProperty">
-            <summary>
-            Identifies the ItemWidth dependency property.
-            </summary>
-        </member>
-        <member name="F:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollStepProperty">
-            <summary>
-            Identifies the ScrollStep dependency property.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineDown">
-            <summary>
-            Scrolls down within content by one logical unit.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineLeft">
-            <summary>
-            Scrolls left within content by one logical unit.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineRight">
-            <summary>
-            Scrolls right within content by one logical unit.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.LineUp">
-            <summary>
-            Scrolls up within content by one logical unit.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MakeVisible(System.Windows.Media.Visual,System.Windows.Rect)">
-            <summary>
-            Forces content to scroll until the coordinate space of a Visual object is visible.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelDown">
-            <summary>
-            Scrolls down within content after a user clicks the wheel button on a mouse.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelLeft">
-            <summary>
-            Scrolls left within content after a user clicks the wheel button on a mouse.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelRight">
-            <summary>
-            Scrolls right within content after a user clicks the wheel button on a mouse.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MouseWheelUp">
-            <summary>
-            Scrolls up within content after a user clicks the wheel button on a mouse.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageDown">
-            <summary>
-            Scrolls down within content by one page.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageLeft">
-            <summary>
-            Scrolls left within content by one page.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageRight">
-            <summary>
-            Scrolls right within content by one page.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageUp">
-            <summary>
-            Scrolls up within content by one page.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.SetVerticalOffset(System.Double)">
-            <summary>
-            Sets the amount of vertical offset.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.SetHorizontalOffset(System.Double)">
-            <summary>
-            Sets the amount of horizontal offset.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageLast">
-            <summary>
-            Note: Works only for vertical.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.PageFirst">
-            <summary>
-            Note: Works only for vertical.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.OnItemsChanged(System.Object,System.Windows.Controls.Primitives.ItemsChangedEventArgs)">
-            <summary>
-            When items are removed, remove the corresponding UI if necessary.
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.MeasureOverride(System.Windows.Size)">
-            <summary>
-            Measure the children.
-            </summary>
-            <param name="availableSize">The available size.</param>
-            <returns>The desired size.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizingWrapPanel.ArrangeOverride(System.Windows.Size)">
-            <summary>
-            Arranges the children.
-            </summary>
-            <param name="finalSize">The available size.</param>
-            <returns>The used size.</returns>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemHeight">
-            <summary>
-            Gets or sets a value that specifies the height of all items that are 
-            contained within a VirtualizingWrapPanel. This is a dependency property.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ItemWidth">
-            <summary>
-            Gets or sets a value that specifies the width of all items that are 
-            contained within a VirtualizingWrapPanel. This is a dependency property.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.Orientation">
-            <summary>
-            Gets or sets a value that specifies the dimension in which child 
-            content is arranged. This is a dependency property.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.CanHorizontallyScroll">
-            <summary>
-            Gets or sets a value that indicates whether scrolling on the horizontal axis is possible.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.CanVerticallyScroll">
-            <summary>
-            Gets or sets a value that indicates whether scrolling on the vertical axis is possible.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollOwner">
-            <summary>
-            Gets or sets a ScrollViewer element that controls scrolling behavior.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.VerticalOffset">
-            <summary>
-            Gets the vertical offset of the scrolled content.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ViewportHeight">
-            <summary>
-            Gets the vertical size of the viewport for this content.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ViewportWidth">
-            <summary>
-            Gets the horizontal size of the viewport for this content.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ScrollStep">
-            <summary>
-            Gets or sets a value for mouse wheel scroll step.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ExtentHeight">
-            <summary>
-            Gets the vertical size of the extent.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.ExtentWidth">
-            <summary>
-            Gets the horizontal size of the extent.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizingWrapPanel.HorizontalOffset">
-            <summary>
-            Gets the horizontal offset of the scrolled content.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Persistence.Services.CustomPropertyInfo">
             <summary>
             Represents information about a custom property.
@@ -22195,6 +22755,16 @@
             Matches items, containing the search text. Case sensitive.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019Theme">
+            <summary>
+            VisualStudio2019Theme class represents the key to the VisualStudio2019 theme.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019Theme.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Theme"/> class.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.FluentTheme">
             <summary>
             FluentTheme class represents the key to the Fluent theme.
@@ -22550,6 +23120,11 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.FluentPalette.FocusThickness"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.FluentPalette.ScrollBarModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.FluentPalette.ScrollBarMode"/> dependency property.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.FluentPalette.Palette">
             <summary>
             Holds the Palette singleton instance.
@@ -22730,6 +23305,12 @@
             Gets or sets the <see cref="P:Telerik.Windows.Controls.FluentPalette.FocusThickness"/> used in focused states.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.FluentPalette.ScrollBarMode">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.FluentPalette.ScrollBarMode"/> used for the ScrollViewer's ScrollBars default appearance within the Fluent theme.
+            The default value is Auto - the ScrollBars appear as a narrow sliver and expand to their normal size on MouseOver.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.FluentPalette.ColorVariation">
             <summary>
             Represents theme color variations.
@@ -22743,6 +23324,26 @@
         <member name="F:Telerik.Windows.Controls.FluentPalette.ColorVariation.Light">
             <summary>
             Represents the Light Fluent theme palette variation.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.FluentPalette.ScrollViewerScrollBarsMode">
+            <summary>
+            Defines constants that specify the dimensions and appearance of ScrollViewer's ScrollBars.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.FluentPalette.ScrollViewerScrollBarsMode.Auto">
+            <summary>
+            The ScrollBars appear as a narrow sliver and expand to normal size on MouseOver.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.FluentPalette.ScrollViewerScrollBarsMode.Compact">
+            <summary>
+            The ScrollBars appear always as a narrow sliver.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.FluentPalette.ScrollViewerScrollBarsMode.Normal">
+            <summary>
+            The ScrollBars appear always with their normal size.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.FluentResourceDictionary">
@@ -22955,9 +23556,19 @@
             The key for the <see cref="T:Telerik.Windows.Controls.FluentPalette"/>'s FocusThickness.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.FluentResourceKeyID.ScrollBarMode">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.FluentPalette"/>'s ScrollBarMode.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.FluentResourceKey">
             <summary>
             Keys for the <see cref="T:Telerik.Windows.Controls.FluentPalette"/> resources.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.FluentResourceKey.ScrollBarMode">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.FluentPalette"/>'s AccentBrush.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Controls.FluentResourceKey.AccentBrush">
@@ -23214,6 +23825,12 @@
             Prevents a default instance of the <see cref="T:Telerik.Windows.Controls.CrystalPalette"/> class from being created.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Controls.CrystalPalette.LoadPreset(Telerik.Windows.Controls.CrystalPalette.ColorVariation)">
+            <summary>
+            Loads a preset.
+            </summary>
+            <param name="preset">The color preset.</param>
+        </member>
         <member name="F:Telerik.Windows.Controls.CrystalPalette.AccentHighColorProperty">
             <summary>
             Identifies the <see cref="P:Telerik.Windows.Controls.CrystalPalette.AccentHighColor"/> dependency property.
@@ -23246,7 +23863,7 @@
         </member>
         <member name="F:Telerik.Windows.Controls.CrystalPalette.AccentSelectedColorProperty">
             <summary>
-            Identifies the <see cref="P:Telerik.Windows.Controls.CrystalPalette.AccentFocusedColor"/> dependency property.
+            Identifies the <see cref="P:Telerik.Windows.Controls.CrystalPalette.AccentSelectedColor"/> dependency property.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Controls.CrystalPalette.BasicHighColorProperty">
@@ -23687,6 +24304,21 @@
         <member name="P:Telerik.Windows.Controls.CrystalPalette.WindowButtonsAlignment">
             <summary>
             Gets or sets the <see cref="P:Telerik.Windows.Controls.CrystalPalette.WindowButtonsAlignment"/> of the header buttons in windows and dialogs.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CrystalPalette.ColorVariation">
+            <summary>
+            Represents theme color variations.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CrystalPalette.ColorVariation.Dark">
+            <summary>
+            Represents the Dark Crystal theme palette variation.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CrystalPalette.ColorVariation.Light">
+            <summary>
+            Represents the Light Crystal theme palette variation.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.CrystalResourceDictionary">
@@ -26476,6 +27108,11 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.Office2013Palette.FontFamily"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Office2013Palette.DisabledOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Office2013Palette.DisabledOpacity"/> dependency property.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Office2013Palette.Palette">
             <summary>
             Holds the Palette singleton instance.
@@ -26604,6 +27241,11 @@
         <member name="P:Telerik.Windows.Controls.Office2013Palette.FontFamily">
             <summary>
             Gets or sets the <see cref="P:Telerik.Windows.Controls.Office2013Palette.FontFamily"/> used in normal texts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Office2013Palette.DisabledOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.Office2013Palette.DisabledOpacity"/> used in disabled states.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Office2013Palette.ColorVariation">
@@ -26776,6 +27418,11 @@
             The key for the <see cref="T:Telerik.Windows.Controls.Office2013Palette"/>'s FontSizeXL.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Office2013ResourceKeyID.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Office2013Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.Office2013ResourceKey">
             <summary>
             Keys for the <see cref="T:Telerik.Windows.Controls.Office2013Palette"/> resources.
@@ -26904,6 +27551,11 @@
         <member name="F:Telerik.Windows.Controls.Office2013ResourceKey.FontFamily">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.Office2013Palette"/>'s FontFamily.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Office2013ResourceKey.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Office2013Palette"/>'s DisabledOpacity.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.Office2013ResourceKey.ToString">
@@ -27729,6 +28381,16 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.HeaderColor"/> dependency property. 
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBackgroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBackgroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBorderColor"/> dependency property.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.FontSizeXXXSProperty">
             <summary>
             Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.FontSizeXXXS"/> dependency property.
@@ -27772,6 +28434,16 @@
         <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.FontFamilyProperty">
             <summary>
             Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.FontFamily"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.DisabledOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.DisabledOpacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyOpacity"/> dependency property.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.Palette">
@@ -27859,6 +28531,16 @@
             Gets or sets the color of the VisualStudio2013Theme's header elements.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBackgroundColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2013Theme's read only background elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyBorderColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2013Theme's read only border elements.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.FontSizeXXXS">
             <summary>
             Gets or sets the font size for extra extra extra small text.
@@ -27902,6 +28584,16 @@
         <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.FontFamily">
             <summary>
             Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.FontFamily"/> used in normal texts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.DisabledOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.DisabledOpacity"/> used in disabled states.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2013Palette.ReadOnlyOpacity"/> used in readonly states.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.VisualStudio2013Palette.ColorVariation">
@@ -28049,6 +28741,16 @@
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s SemiSelectedBrush.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.ReadOnlyBackgroundBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyBackgroundBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.ReadOnlyBorderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyBorderBrush.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.FontSizeXXXS">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s FontSizeXXXS.
@@ -28092,6 +28794,16 @@
         <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.FontFamily">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s FontFamily.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKeyID.ReadOnlyOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyOpacity.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.VisualStudio2013ResourceKey">
@@ -28199,6 +28911,16 @@
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s SemiSelectedBrush.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKey.ReadOnlyBackgroundBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyBackgroundBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKey.ReadOnlyBorderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyBorderBrush.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKey.FontSizeXXXS">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s FontSizeXXXS.
@@ -28244,6 +28966,16 @@
             The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s FontFamily.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKey.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2013ResourceKey.ReadOnlyOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2013Palette"/>'s ReadOnlyOpacity.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.VisualStudio2013ResourceKey.ToString">
             <inheritdoc />
         </member>
@@ -28259,6 +28991,733 @@
             <inheritdoc />
         </member>
         <member name="M:Telerik.Windows.Controls.VisualStudio2013ResourceKeyTypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019Palette">
+            <summary>
+            Hold resources used in the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Theme"/> theme.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.IsFreezableProperty">
+            <summary>
+            Identifies the IsFreezable DependencyProperty.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019Palette.GetIsFreezable(System.Windows.DependencyObject)">
+            <summary>
+            Gets the IsFreezable value from a DependencyObject.
+            </summary>
+            <param name="dependencyObject">The dependencyObject.</param>
+            <returns>The IsFreezable value.</returns>+
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019Palette.SetIsFreezable(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the IsFreezable value from a DependencyObject.
+            </summary>
+            <param name="dependencyObject">The dependencyObject.</param>
+            <param name="value">The IsFreezable value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019Palette.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019Palette.LoadPreset(Telerik.Windows.Controls.VisualStudio2019Palette.ColorVariation)">
+            <summary>
+            Loads a preset.
+            </summary>
+            <param name="preset">The color preset.</param>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMainColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMainColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentDarkColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentDarkColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentSecondaryDarkColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentSecondaryDarkColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMouseOverColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMouseOverColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AccentFocusedColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentFocusedColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ValidationColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ValidationColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.BasicColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.BasicColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.SemiBasicColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.SemiBasicColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.PrimaryColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.PrimaryColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerInvertedColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerInvertedColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.IconColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.IconColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.AlternativeColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.AlternativeColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.SecondaryColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.SecondaryColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.MouseOverColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.MouseOverColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ComplementaryColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ComplementaryColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.MainColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.MainColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.HeaderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.HeaderColor"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBackgroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBackgroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBorderColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBorderColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXXSProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXXS"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXSProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXS"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeSProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeS"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSize"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeLProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeL"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXLProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXL"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.FontFamilyProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontFamily"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.DisabledOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.DisabledOpacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyOpacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.Palette">
+            <summary>
+            Holds the Palette singleton instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's elements in their MouseOver, Active, Toggled and Focused visual states.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMainColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's accent main elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentDarkColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's accent dark elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentSecondaryDarkColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's accent dark elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentMouseOverColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's mouse over accent elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AccentFocusedColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's focused elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.ValidationColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's elements which support validation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.BasicColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's basic elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.SemiBasicColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's elements that are in MouseOver state. It is BasicColor with 40% opacity.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.PrimaryColor">
+            <summary>
+            Gets or sets the background color of the VisualStudio2019Theme's elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerColor">
+            <summary>
+            Gets or sets the foreground of text/glyphs of the VisualStudio2019Theme's elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.MarkerInvertedColor">
+            <summary>
+            Gets or sets the foreground of text/glyphs of the VisualStudio2019Theme's elements when their background changes to accent.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.IconColor">
+            <summary>
+            Gets or sets the path fill of the VisualStudio2019Theme's elements that are in Normal State. Also used for RadWatermark content and RadGridView filters.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.AlternativeColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's elements that have alternative background.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.SecondaryColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's Focus/Open effects.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.MouseOverColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's MouseOver/Hover effects.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.ComplementaryColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's Slider control and elements in Disabled visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.MainColor">
+            <summary>
+            Gets or sets the background color of the VisualStudio2019Theme's elements with direct input.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.HeaderColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's header elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBackgroundColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's read only background elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyBorderColor">
+            <summary>
+            Gets or sets the color of the VisualStudio2019Theme's read only border elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXXS">
+            <summary>
+            Gets or sets the font size for extra extra small text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXS">
+            <summary>
+            Gets or sets the font size for extra small text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeS">
+            <summary>
+            Gets or sets the font size for small text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSize">
+            <summary>
+            Gets or sets the font size for normal text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeL">
+            <summary>
+            Gets or sets the font size for large text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontSizeXL">
+            <summary>
+            Gets or sets the font size for extra large text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontFamily">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.FontFamily"/> used in normal texts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.DisabledOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.DisabledOpacity"/> used in disabled states.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.VisualStudio2019Palette.ReadOnlyOpacity"/> used in readonly states.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019Palette.ColorVariation">
+            <summary>
+            Represents theme color variations.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019Palette.ColorVariation.Blue">
+            <summary>
+            Represents the default Blue VisualStudio2019 theme palette.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019ResourceKeyTypeConverter">
+            <summary>
+            Used to convert <see cref="T:System.Windows.ResourceKey"/> types used in <see cref="T:Telerik.Windows.Controls.VisualStudio2019ResourceKey"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019ResourceKeyTypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019ResourceKeyTypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019ResourceDictionary">
+            <summary>
+            A <see cref="T:System.Windows.ResourceDictionary"/> that merges the resources from the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019ResourceDictionary.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.VisualStudio2019ResourceDictionary"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019ResourceExtension">
+            <summary>
+            A <see cref="T:System.Windows.Markup.MarkupExtension"/> that allows access to the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/> resources from XAML.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019ResourceExtension.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.VisualStudio2019ResourceExtension"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID">
+            <summary>
+            A key for a <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/> resource.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentMainBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentMainBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentDarkBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentDarkBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentSecondaryDarkBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentSecondaryDarkBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentMouseOverBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentMouseOverBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AccentFocusedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentFocusedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.ValidationBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ValidationBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.BasicBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s BasicBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.SemiBasicBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SemiBasicBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.PrimaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s PrimaryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.SecondaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SecondaryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.MarkerBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MarkerBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.MarkerInvertedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MarkerInvertedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.IconBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s IconBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.AlternativeBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AlternativeBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.MouseOverBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MouseOverBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.ComplementaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ComplementaryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.MainBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MainBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.HeaderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s HeaderBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.QualityPoorBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualityPoorBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.QualitySatisfactoryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualitySatisfactoryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.QualityGoodBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualityGoodBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.SemiSelectedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SemiSelectedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.ReadOnlyBackgroundBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyBackgroundBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.ReadOnlyBorderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyBorderBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontSizeXS">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeXS.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontSizeS">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeS.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontSize">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSize.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontSizeL">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeL.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontSizeXL">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeXL.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.FontFamily">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontFamily.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKeyID.ReadOnlyOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyOpacity.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VisualStudio2019ResourceKey">
+            <summary>
+            Keys for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/> resources.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentMainBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentMainBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentDarkBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentDarkBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentSecondaryDarkBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentSecondaryDarkBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentMouseOverBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentMouseOverBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AccentFocusedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AccentFocusedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ValidationBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ValidationBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.BasicBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s BasicBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.SemiBasicBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SemiBasicBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.PrimaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s PrimaryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.MarkerBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MarkerBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.MarkerInvertedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MarkerInvertedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.IconBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s IconBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.AlternativeBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s AlternativeBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.SecondaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SelectedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.MouseOverBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MouseOverBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ComplementaryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ComplementaryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.MainBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s MainBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.HeaderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s HeaderBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.QualityPoorBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualityPoorBrush. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.QualitySatisfactoryBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualitySatisfactoryBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.QualityGoodBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s QualityGoodBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.SemiSelectedBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s SemiSelectedBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ReadOnlyBackgroundBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyBackgroundBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ReadOnlyBorderBrush">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyBorderBrush.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontSizeXS">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeXS.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontSizeS">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeS.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontSize">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSize.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontSizeL">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeL.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontSizeXL">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontSizeXL.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.FontFamily">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s FontFamily.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ReadOnlyOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.VisualStudio2019Palette"/>'s ReadOnlyOpacity.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VisualStudio2019ResourceKey.ToString">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Windows.Controls.VisualStudio2019ResourceKey.Assembly">
             <inheritdoc />
         </member>
         <member name="T:Telerik.Windows.Controls.TransparentTheme">
@@ -28449,6 +29908,11 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.Windows8TouchPalette.FontFamilyStrong"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Windows8TouchPalette.DisabledOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Windows8TouchPalette.DisabledOpacity"/> dependency property.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Windows8TouchPalette.Palette">
             <summary>
             Holds the Palette singleton instance.
@@ -28547,6 +30011,11 @@
         <member name="P:Telerik.Windows.Controls.Windows8TouchPalette.FontFamilyStrong">
             <summary>
             Gets or sets the <see cref="P:Telerik.Windows.Controls.Windows8TouchPalette.FontFamily"/> used in important texts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Windows8TouchPalette.DisabledOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.Windows8TouchPalette.DisabledOpacity"/> used in disabled states.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Windows8TouchResourceExtension">
@@ -28684,6 +30153,11 @@
             The key for the <see cref="T:Telerik.Windows.Controls.Windows8TouchPalette"/>'s FontFamilyStrong.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Windows8TouchResourceKeyID.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Windows8TouchPalette"/>'s DisabledOpacity.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.Windows8TouchResourceKey">
             <summary>
             Keys for the <see cref="T:Telerik.Windows.Controls.Windows8TouchPalette"/> resources.
@@ -28807,6 +30281,11 @@
         <member name="F:Telerik.Windows.Controls.Windows8TouchResourceKey.FontFamilyStrong">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.Windows8TouchPalette"/>'s FontFamilyStrong.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Windows8TouchResourceKey.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Windows8TouchPalette"/>'s DisabledOpacity.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.Windows8TouchResourceKey.ToString">
@@ -29039,6 +30518,11 @@
             Identifies the <see cref="P:Telerik.Windows.Controls.Windows8Palette.FontFamilyStrong"/> dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Windows8Palette.DisabledOpacityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Windows8Palette.DisabledOpacity"/> dependency property.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Windows8Palette.Palette">
             <summary>
             Holds the Palette singleton instance.
@@ -29122,6 +30606,11 @@
         <member name="P:Telerik.Windows.Controls.Windows8Palette.FontFamilyStrong">
             <summary>
             Gets or sets the <see cref="P:Telerik.Windows.Controls.Windows8Palette.FontFamily"/> used in important texts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Windows8Palette.DisabledOpacity">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.Windows8Palette.DisabledOpacity"/> used in disabled states.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Windows8ResourceExtension">
@@ -29234,6 +30723,11 @@
             The key for the <see cref="T:Telerik.Windows.Controls.Windows8Palette"/>'s FontFamilyStrong.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Windows8ResourceKeyID.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Windows8Palette"/>'s DisabledOpacity.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.Windows8ResourceKey">
             <summary>
             Keys for the <see cref="T:Telerik.Windows.Controls.Windows8Palette"/> resources.
@@ -29332,6 +30826,11 @@
         <member name="F:Telerik.Windows.Controls.Windows8ResourceKey.FontFamilyStrong">
             <summary>
             The key for the <see cref="T:Telerik.Windows.Controls.Windows8Palette"/>'s FontFamilyStrong.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Windows8ResourceKey.DisabledOpacity">
+            <summary>
+            The key for the <see cref="T:Telerik.Windows.Controls.Windows8Palette"/>'s DisabledOpacity.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.Windows8ResourceKey.ToString">
@@ -31573,6 +33072,26 @@
             Identifies the WatermarkBehavior property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadWatermarkTextBox.ReadOnlyBackgroundProperty">
+            <summary>
+            Identifies the ReadOnlyBackground property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadWatermarkTextBox.DisabledBackgroundProperty">
+            <summary>
+            Identifies the DisabledBackground property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadWatermarkTextBox.AdditionalContentProperty">
+            <summary>
+            Identifies the AdditionalContent property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadWatermarkTextBox.AdditionalContentTemplateProperty">
+            <summary>
+            Identifies the AdditionalContentTemplate property.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.RadWatermarkTextBox.IsWatermarkVisibleProperty">
             <summary>
             Identifies the IsWatermarkVisible dependency property.
@@ -31594,6 +33113,11 @@
             or internal processes (such as a rebuilding layout pass) call System.Windows.Controls.Control.ApplyTemplate().
             In simplest terms, this means the method is called just before a UI element
             displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadWatermarkTextBox.HandleClear">
+            <summary>
+            Called, when the Clear command is invoked.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.RadWatermarkTextBox.OnCreateAutomationPeer">
@@ -31639,9 +33163,29 @@
             Gets a value that specifies when the watermark content of control will be hidden.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadWatermarkTextBox.ReadOnlyBackground">
+            <summary>
+            Gets a value that specifies the background of the control when in readonly state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadWatermarkTextBox.DisabledBackground">
+            <summary>
+            Gets a value that specifies the background of the control when in disabled state.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadWatermarkTextBox.SelectionOnFocus">
             <summary>
             Specifies the modification over the selection when the control receives focus.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadWatermarkTextBox.AdditionalContent">
+            <summary>
+            Gets or sets an object which is rendered in ContentPresenter in the right part of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadWatermarkTextBox.AdditionalContentTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> used for the AdditionalContent object.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Controls.RadPasswordBox.PasswordCharProperty">
@@ -31682,6 +33226,11 @@
         <member name="M:Telerik.Windows.Controls.RadPasswordBox.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadPasswordBox"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadPasswordBox.HandleClear">
+            <summary>
+            Called when the Clear command is invoked.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.RadPasswordBox.Clear">
@@ -31851,6 +33400,21 @@
         <member name="F:Telerik.Windows.Controls.WatermarkBehavior.HideOnTextEntered">
             <summary>
             The watermark will be hidden when the the user writes text into the RadWatermarkTextBox.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadWatermarkTextBoxCommands">
+            <summary>
+            Static class listing all public <see cref="T:Telerik.Windows.Controls.RadWatermarkTextBox"/> commands.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadWatermarkTextBoxCommands.Clear">
+            <summary>
+            Gets the Clear command.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadWatermarkTextBoxCommands.CommandId.Clear">
+            <summary>
+            Clears the text of the watermark text box.
             </summary>
         </member>
         <member name="T:System.Windows.CanExecuteChangedEventManager">
@@ -32579,6 +34143,11 @@
               Looks up a localized string similar to Upload.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.CloudUpload_UploadedFiles">
+            <summary>
+              Looks up a localized string similar to uploaded files.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.CloudUploadItem_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -32847,6 +34416,601 @@
         <member name="P:Telerik.Windows.Controls.Strings.Diagram_Rotate">
             <summary>
               Looks up a localized string similar to Rotate.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Align">
+            <summary>
+              Looks up a localized string similar to Align.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignBottom">
+            <summary>
+              Looks up a localized string similar to Align Bottom.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignCenter">
+            <summary>
+              Looks up a localized string similar to Align Center.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignLeft">
+            <summary>
+              Looks up a localized string similar to Align Left.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignMiddle">
+            <summary>
+              Looks up a localized string similar to Align Middle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignRight">
+            <summary>
+              Looks up a localized string similar to Align Right.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AlignTop">
+            <summary>
+              Looks up a localized string similar to Align Top.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Arrange">
+            <summary>
+              Looks up a localized string similar to Arrange.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AStarRouter">
+            <summary>
+              Looks up a localized string similar to AStarRouter.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AvoidConnectionOverlap">
+            <summary>
+              Looks up a localized string similar to Avoid Connection Overlap.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_AvoidShapes">
+            <summary>
+              Looks up a localized string similar to Avoid Shapes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_BackgroundColor">
+            <summary>
+              Looks up a localized string similar to Background Color.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Bridges">
+            <summary>
+              Looks up a localized string similar to Bridges:.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_BringForward">
+            <summary>
+              Looks up a localized string similar to Bring Forward.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_BringToFront">
+            <summary>
+              Looks up a localized string similar to Bring to Front.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_CellHeight">
+            <summary>
+              Looks up a localized string similar to Cell Height.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_CellWidth">
+            <summary>
+              Looks up a localized string similar to Cell Width.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Clipboard">
+            <summary>
+              Looks up a localized string similar to Clipboard.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ClipboardDescription">
+            <summary>
+              Looks up a localized string similar to Show the Clipboard Task options..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Connections">
+            <summary>
+              Looks up a localized string similar to Connections.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionType">
+            <summary>
+              Looks up a localized string similar to Type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypeBezier">
+            <summary>
+              Looks up a localized string similar to Bezier.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypeDescription">
+            <summary>
+              Looks up a localized string similar to Automatically organizes the diagram..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypePolyline">
+            <summary>
+              Looks up a localized string similar to Polyline.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypeSpline">
+            <summary>
+              Looks up a localized string similar to Spline.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypeStraight">
+            <summary>
+              Looks up a localized string similar to Straight.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectionTypeTitle">
+            <summary>
+              Looks up a localized string similar to Connection Type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectorTool">
+            <summary>
+              Looks up a localized string similar to Connector.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectorToolDescription">
+            <summary>
+              Looks up a localized string similar to Changes the main tool to Connector Tool..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ConnectorToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Connector Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Copy">
+            <summary>
+              Looks up a localized string similar to Copy.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_CopyDescription">
+            <summary>
+              Looks up a localized string similar to Copy the selection and put it on the Clipboard..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Cut">
+            <summary>
+              Looks up a localized string similar to Cut.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_CutDescription">
+            <summary>
+              Looks up a localized string similar to Cut the selection from the document and put it on the Clipboard..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Delete">
+            <summary>
+              Looks up a localized string similar to Delete.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_DeleteDescription">
+            <summary>
+              Looks up a localized string similar to Deletes the selected items..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Design">
+            <summary>
+              Looks up a localized string similar to Design.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Dragging">
+            <summary>
+              Looks up a localized string similar to Dragging.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_EllipseShape">
+            <summary>
+              Looks up a localized string similar to Ellipse.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_EnableRouting">
+            <summary>
+              Looks up a localized string similar to Enable Routing.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Export">
+            <summary>
+              Looks up a localized string similar to Export.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ExportToHtml">
+            <summary>
+              Looks up a localized string similar to Export to Html.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ExportToImage">
+            <summary>
+              Looks up a localized string similar to Export to Image.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_FitToWindow">
+            <summary>
+              Looks up a localized string similar to Fit to Window.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_General">
+            <summary>
+              Looks up a localized string similar to General.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_GeneralDescription">
+            <summary>
+              Looks up a localized string similar to Generic actions..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Grid">
+            <summary>
+              Looks up a localized string similar to Grid.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_GridColor">
+            <summary>
+              Looks up a localized string similar to Grid Color.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Group">
+            <summary>
+              Looks up a localized string similar to Group.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_GroupDescription">
+            <summary>
+              Looks up a localized string similar to Groups the selected items..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_HomeTab">
+            <summary>
+              Looks up a localized string similar to Home.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_HorizontalRuler">
+            <summary>
+              Looks up a localized string similar to Horizontal Ruler.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_IgnoreContainers">
+            <summary>
+              Looks up a localized string similar to Ignore Containers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Layout">
+            <summary>
+              Looks up a localized string similar to Layout.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_LayoutContainerChildren">
+            <summary>
+              Looks up a localized string similar to Layout Container Children.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_LayoutDescription">
+            <summary>
+              Looks up a localized string similar to Automatically organizes the diagram..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_MainPaletteHeaderText">
+            <summary>
+              Looks up a localized string similar to Metro Palette.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_MindMap">
+            <summary>
+              Looks up a localized string similar to Mind Map.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_MindMapHorizontal">
+            <summary>
+              Looks up a localized string similar to Mind Map Horizontal.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_MindMapVertical">
+            <summary>
+              Looks up a localized string similar to Mind Map Vertical.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_NavigationPane">
+            <summary>
+              Looks up a localized string similar to Navigation Pane.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_New">
+            <summary>
+              Looks up a localized string similar to New.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Open">
+            <summary>
+              Looks up a localized string similar to Open.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Page">
+            <summary>
+              Looks up a localized string similar to Page.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Paste">
+            <summary>
+              Looks up a localized string similar to Paste.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PasteDescription">
+            <summary>
+              Looks up a localized string similar to Paste the contents of the Clipboard..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PathTool">
+            <summary>
+              Looks up a localized string similar to Path.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PathToolDescription">
+            <summary>
+              Looks up a localized string similar to Changes the main tool to Path Tool..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PathToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Path Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PencilTool">
+            <summary>
+              Looks up a localized string similar to Pencil.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PencilToolDescription">
+            <summary>
+              Looks up a localized string similar to Changes the main tool to Pencil Tool..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PencilToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Pencil Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PointerTool">
+            <summary>
+              Looks up a localized string similar to Pointer.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PointerToolDescription">
+            <summary>
+              Looks up a localized string similar to Changes the main tool to Pointer Tool..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_PointerToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Pointer Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Print">
+            <summary>
+              Looks up a localized string similar to Print.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Properties">
+            <summary>
+              Looks up a localized string similar to Properties.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Radial">
+            <summary>
+              Looks up a localized string similar to Radial.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_RadialTree">
+            <summary>
+              Looks up a localized string similar to Radial Tree.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_RectangleShape">
+            <summary>
+              Looks up a localized string similar to Rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Redo">
+            <summary>
+              Looks up a localized string similar to Redo.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ReLayout">
+            <summary>
+              Looks up a localized string similar to Re-Layout.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Resizing">
+            <summary>
+              Looks up a localized string similar to Resizing.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Rotation">
+            <summary>
+              Looks up a localized string similar to Rotation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_RouteAll">
+            <summary>
+              Looks up a localized string similar to Route All.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Save">
+            <summary>
+              Looks up a localized string similar to Save.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SelectionMode">
+            <summary>
+              Looks up a localized string similar to Selection Mode.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SendBackward">
+            <summary>
+              Looks up a localized string similar to Send Backward.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SendToBack">
+            <summary>
+              Looks up a localized string similar to Send to Back.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SettingsTab">
+            <summary>
+              Looks up a localized string similar to Settings.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ShapeToolDescription">
+            <summary>
+              Looks up a localized string similar to Can be used to create rectangle, ellipse or triangle shape..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ShapeToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Shape Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ShowGrid">
+            <summary>
+              Looks up a localized string similar to Show Grid.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SnapToGrid">
+            <summary>
+              Looks up a localized string similar to Snap to Grid.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SnapToItems">
+            <summary>
+              Looks up a localized string similar to Snap to Items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SnapX">
+            <summary>
+              Looks up a localized string similar to Snap X.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_SnapY">
+            <summary>
+              Looks up a localized string similar to Snap Y.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Sugiyama">
+            <summary>
+              Looks up a localized string similar to Sugiyama.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TextTool">
+            <summary>
+              Looks up a localized string similar to Text.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TextToolDescription">
+            <summary>
+              Looks up a localized string similar to Changes the main tool to Text Tool..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TextToolScreenTip">
+            <summary>
+              Looks up a localized string similar to Text Tool.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TipOver">
+            <summary>
+              Looks up a localized string similar to Tip Over.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TipOverTree">
+            <summary>
+              Looks up a localized string similar to Tip Over Tree.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Toolbox">
+            <summary>
+              Looks up a localized string similar to Toolbox.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Tools">
+            <summary>
+              Looks up a localized string similar to Tools.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_ToolsDescription">
+            <summary>
+              Looks up a localized string similar to Show the Tools options..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Tree">
+            <summary>
+              Looks up a localized string similar to Tree.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TreeDown">
+            <summary>
+              Looks up a localized string similar to Tree Down.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TreeLeft">
+            <summary>
+              Looks up a localized string similar to Tree Left.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TreeRight">
+            <summary>
+              Looks up a localized string similar to Tree Right.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TreeUp">
+            <summary>
+              Looks up a localized string similar to Tree Up.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_TriangleShape">
+            <summary>
+              Looks up a localized string similar to Triangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Undo">
+            <summary>
+              Looks up a localized string similar to Undo.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Ungroup">
+            <summary>
+              Looks up a localized string similar to Ungroup.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_UngroupDescription">
+            <summary>
+              Looks up a localized string similar to Ungroups the selected groups..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_UseFreeConnectors">
+            <summary>
+              Looks up a localized string similar to Use Free Connectors.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_VerticalRuler">
+            <summary>
+              Looks up a localized string similar to Vertical Ruler.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_View">
+            <summary>
+              Looks up a localized string similar to View.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.DiagramRibbon_Zoom">
+            <summary>
+              Looks up a localized string similar to Zoom.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Strings.Dockable">
@@ -35865,6 +38029,31 @@
               Looks up a localized string similar to Right.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Documents_PasteOptions_KeepSourceFormatting">
+            <summary>
+              Looks up a localized string similar to Keep Source Formatting.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Documents_PasteOptions_KeepTextOnly">
+            <summary>
+              Looks up a localized string similar to Keep Text Only.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Documents_PasteOptions_MergeFormatting">
+            <summary>
+              Looks up a localized string similar to Merge Formatting.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Documents_PasteOptions_Name">
+            <summary>
+              Looks up a localized string similar to Paste Options.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Documents_PasteOptions_UseDestinationStyles">
+            <summary>
+              Looks up a localized string similar to Use Destination Styles.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.Documents_PermissionType_Everyone">
             <summary>
               Looks up a localized string similar to Everyone.
@@ -37426,6 +39615,11 @@
               Looks up a localized string similar to Other.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.ExpressionEditor_Text">
+            <summary>
+              Looks up a localized string similar to Text.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.ExtendSelectionToCurrentUnit">
             <summary>
               Looks up a localized string similar to Extends selection to current unit.
@@ -37714,6 +39908,16 @@
         <member name="P:Telerik.Windows.Controls.Strings.FileDialogs_Yes">
             <summary>
               Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.FilePathPicker_SelectFile">
+            <summary>
+              Looks up a localized string similar to Select a file.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.FilePathPicker_SelectFolder">
+            <summary>
+              Looks up a localized string similar to Select a folder.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Strings.FilterAnd">
@@ -38396,9 +40600,19 @@
               Looks up a localized string similar to Flip Vertical.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.ImageEditor_FontFamily">
+            <summary>
+              Looks up a localized string similar to Font Family.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.ImageEditor_FontSize">
             <summary>
               Looks up a localized string similar to Font Size.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.ImageEditor_FontStyle">
+            <summary>
+              Looks up a localized string similar to Font Style.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Strings.ImageEditor_Height">
@@ -40029,6 +42243,11 @@
         <member name="P:Telerik.Windows.Controls.Strings.RibbonViewHelp">
             <summary>
               Looks up a localized string similar to Help.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.RibbonViewLayoutModeButtonContent">
+            <summary>
+              Looks up a localized string similar to Simplified Ribbon.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Strings.RibbonViewMinimizeRibbon">
@@ -46204,6 +48423,201 @@
               Looks up a localized string similar to Shift cells right.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_100StackedLineWithMarkers_SubType">
+            <summary>
+              Looks up a localized string similar to 100% Stacked Line with Markers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Area_SubType">
+            <summary>
+              Looks up a localized string similar to Area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Area_Type">
+            <summary>
+              Looks up a localized string similar to Area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Bar_Type">
+            <summary>
+              Looks up a localized string similar to Bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Bubble">
+            <summary>
+              Looks up a localized string similar to Bubble.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_CategoryChart">
+            <summary>
+              Looks up a localized string similar to Category Chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ClusteredBar_SubType">
+            <summary>
+              Looks up a localized string similar to Clustered Bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ClusteredColumn_SubType">
+            <summary>
+              Looks up a localized string similar to Clustered Column.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Column_Type">
+            <summary>
+              Looks up a localized string similar to Column.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Doughnut_SubType">
+            <summary>
+              Looks up a localized string similar to Doughnut.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_DoughnutChart">
+            <summary>
+              Looks up a localized string similar to Doughnut Chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_DoughnutSeries">
+            <summary>
+              Looks up a localized string similar to Doughnut Series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Header">
+            <summary>
+              Looks up a localized string similar to Insert Chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Line_SubType">
+            <summary>
+              Looks up a localized string similar to Line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Line_Type">
+            <summary>
+              Looks up a localized string similar to Line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_LineWithMarkers_SubType">
+            <summary>
+              Looks up a localized string similar to Line with Markers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Pie_SubType">
+            <summary>
+              Looks up a localized string similar to Pie.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Pie_Type">
+            <summary>
+              Looks up a localized string similar to Pie.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_PieChart">
+            <summary>
+              Looks up a localized string similar to Pie Chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_PieSeries">
+            <summary>
+              Looks up a localized string similar to Pie Series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Scatter_SubType">
+            <summary>
+              Looks up a localized string similar to Scatter.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterBarType">
+            <summary>
+              Looks up a localized string similar to X Y (Scatter).
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterChart">
+            <summary>
+              Looks up a localized string similar to Scatter Chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterSmooth_SubType">
+            <summary>
+              Looks up a localized string similar to Scatter with Smooth Lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterSmoothMarker_SubType">
+            <summary>
+              Looks up a localized string similar to Scatter with Smooth Lines and Markers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterStraight_SubType">
+            <summary>
+              Looks up a localized string similar to Scatter with Straight Lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_ScatterStraightMarker_SubType">
+            <summary>
+              Looks up a localized string similar to Scatter with Straight Lines and Markers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_SelectionNotEnough">
+            <summary>
+              Looks up a localized string similar to To create chart, please select at least a 2 consecutive cells..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Series">
+            <summary>
+              Looks up a localized string similar to Series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Stacked100Area_SubType">
+            <summary>
+              Looks up a localized string similar to 100% Stacked Area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Stacked100Bar_SubType">
+            <summary>
+              Looks up a localized string similar to 100% Stacked Bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Stacked100Column_SubType">
+            <summary>
+              Looks up a localized string similar to 100% Stacked Column.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_Stacked100Line_SubType">
+            <summary>
+              Looks up a localized string similar to 100% Stacked Line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_StackedArea_SubType">
+            <summary>
+              Looks up a localized string similar to Stacked Area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_StackedBar_SubType">
+            <summary>
+              Looks up a localized string similar to Stacked Bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_StackedColumn_SubType">
+            <summary>
+              Looks up a localized string similar to Stacked Column.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_StackedLine_SubType">
+            <summary>
+              Looks up a localized string similar to Stacked Line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_StackedLineWithMarkers_SubType">
+            <summary>
+              Looks up a localized string similar to Stacked Line with Markers.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertChartDialog_SubHeader">
+            <summary>
+              Looks up a localized string similar to All Charts.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.Spreadsheet_InsertFunctionDialog_All">
             <summary>
               Looks up a localized string similar to All.
@@ -47695,6 +50109,41 @@
               Looks up a localized string similar to Subject.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_Find">
+            <summary>
+              Looks up a localized string similar to Find….
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_FindAll">
+            <summary>
+              Looks up a localized string similar to Find All.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_FindNext">
+            <summary>
+              Looks up a localized string similar to Find Next (F3).
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_FindPrevious">
+            <summary>
+              Looks up a localized string similar to Find Previous (Shift + F3).
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_Replace">
+            <summary>
+              Looks up a localized string similar to Replace.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_ReplaceAll">
+            <summary>
+              Looks up a localized string similar to Replace All.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.SyntaxEditor_ReplaceWith">
+            <summary>
+              Looks up a localized string similar to Replace….
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.Strings.Tabbed_document">
             <summary>
               Looks up a localized string similar to Tabbed document.
@@ -48193,6 +50642,136 @@
         <member name="P:Telerik.Windows.Controls.Strings.VirtualGridFilterStartsWith">
             <summary>
               Looks up a localized string similar to Starts with.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_DiscardSnapshot">
+            <summary>
+              Looks up a localized string similar to Discard snapshot.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_SaveSnapshot">
+            <summary>
+              Looks up a localized string similar to Save snapshot.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Auto">
+            <summary>
+              Looks up a localized string similar to Auto.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_BacklightCompensation">
+            <summary>
+              Looks up a localized string similar to Backlight Comp.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Brightness">
+            <summary>
+              Looks up a localized string similar to Brightness.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_CameraControl">
+            <summary>
+              Looks up a localized string similar to Camera Control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Contrast">
+            <summary>
+              Looks up a localized string similar to Contrast.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Default">
+            <summary>
+              Looks up a localized string similar to Default.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Exposure">
+            <summary>
+              Looks up a localized string similar to Exposure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Focus">
+            <summary>
+              Looks up a localized string similar to Focus.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Gain">
+            <summary>
+              Looks up a localized string similar to Gain.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Gamma">
+            <summary>
+              Looks up a localized string similar to Gamma.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Hue">
+            <summary>
+              Looks up a localized string similar to Hue.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Iris">
+            <summary>
+              Looks up a localized string similar to Aperture.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Pan">
+            <summary>
+              Looks up a localized string similar to Pan.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Roll">
+            <summary>
+              Looks up a localized string similar to Roll.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Saturation">
+            <summary>
+              Looks up a localized string similar to Saturation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Sharpness">
+            <summary>
+              Looks up a localized string similar to Sharpness.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Tilt">
+            <summary>
+              Looks up a localized string similar to Tilt.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_VideoProcAmp">
+            <summary>
+              Looks up a localized string similar to Video Processing Amplifier.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_WhiteBalance">
+            <summary>
+              Looks up a localized string similar to White Balance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_Settings_Zoom">
+            <summary>
+              Looks up a localized string similar to Zoom.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_SettingsDialogTitle">
+            <summary>
+              Looks up a localized string similar to Settings.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_StartRecording">
+            <summary>
+              Looks up a localized string similar to Start recording.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_StopRecording">
+            <summary>
+              Looks up a localized string similar to Stop recording.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Strings.WebCam_TakeSnapshot">
+            <summary>
+              Looks up a localized string similar to Take Snapshot.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.Strings.Week">

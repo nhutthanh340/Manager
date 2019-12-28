@@ -1,0 +1,45 @@
+﻿<Window x:Class="Manager.StartUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Manager"
+        mc:Ignorable="d"
+        Title="StartUp" Height="350" Width="600"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Window.Background>
+
+        <ImageBrush ImageSource="Images\intro.png"/>
+
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"  Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60">
+            Cửa hàng
+            </TextBlock>
+
+            <TextBlock Grid.Row="1" Foreground="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60">
+            THANH HẢI
+            </TextBlock>
+        </Grid>
+
+        <ProgressBar Grid.Row="2" Height="3" Foreground="White" Background="Black"    
+                                  IsIndeterminate="True"/>
+
+    </Grid>
+</Window>

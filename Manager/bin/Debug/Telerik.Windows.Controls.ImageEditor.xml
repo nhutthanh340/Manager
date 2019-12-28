@@ -130,6 +130,25 @@
             Gets the angle, in degrees, of clockwise rotation.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Media.Imaging.Extensions.FontFamilyExtension">
+            <summary>
+            FontFamily MarkupExtension.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Media.Imaging.Extensions.FontFamilyExtension.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Media.Imaging.Extensions.FontFamilyExtension"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Media.Imaging.Extensions.FontFamilyExtension.ProvideValue(System.IServiceProvider)">
+            <summary>
+            When implemented in a derived class, returns an object that is set as the value of the target property for this markup extension.
+            </summary>
+            <param name="serviceProvider">Object that can provide services for the markup extension.</param>
+            <returns>
+            The object value to set on the property where the extension is applied.
+            </returns>
+        </member>
         <member name="P:Telerik.Windows.Media.Imaging.ImageEditorCommands.ImageEditorCommandBase.CanExecuteInReadOnlyMode">
             <summary>
             Gets a value indicating whether this command can be executed when RadImageEditor is read-only. The default implementation returns false. 
@@ -204,11 +223,6 @@
         <member name="P:Telerik.Windows.Media.Imaging.History.ImageHistory.MaximumMemoryBufferSize">
             <summary>
             Gets or sets the maximum amount of memory in bytes the history manager can use to optimize the undo and redo operations.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Media.Imaging.History.ImageHistory.MaxmimumMemoryBufferSize">
-            <summary>
-            Obsoleted.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Media.Imaging.History.ImageHistory.CurrentImage">

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 G:\Visual Studio 2019\Manager\Manager\App.xaml
-131773572011
+14901091506
 7-621301216
-261384094561
-741683043164
-MainWindow.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\History.xaml;UserControls\Home.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
+27-610226575
+74172724373
+MainWindow.xaml;StartUp.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\History.xaml;UserControls\Home.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
 
 True
 

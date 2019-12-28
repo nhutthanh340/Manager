@@ -58,6 +58,7 @@ namespace Manager.Helpers
             }
         }
 
+        [Obsolete]
         public async void Import(string filePath)
         {
 
@@ -101,12 +102,10 @@ namespace Manager.Helpers
                         if (product.Method.ToUpper().Contains("XOÁ"))
                         {
                             await Database<Product>.Instance.Delete(product);
-                            // Instance.Write("ĐÃ XOÁ", 7, row, ColorTranslator.ToOle(Color.Red));
                         }
                         else if (product.Method.ToUpper().Contains("CẬP NHẬT"))
                         {
                             await Database<Product>.Instance.Update(product);
-                            // Instance.Write("ĐÃ CẬP NHẬT", 7, row);
                         }
                     }
 
@@ -120,19 +119,15 @@ namespace Manager.Helpers
                         if (product.Method.ToUpper().Contains("THÊM"))
                         {
                             await Database<Product>.Instance.Add(product);
-                            //Instance.Write(product.Id, 1, row);
-                            //Instance.Write("ĐÃ THÊM", 7, row);
                         }
                     }
                     else
                     {
                         Instance.ListError.AddNew(product);
-                        //Instance.Write("Lỗi", 7, row, ColorTranslator.ToOle(Color.Red));
                     }
                 }
                 catch
                 {
-                    //Instance.Write("Lỗi", 7, row, ColorTranslator.ToOle(Color.Red));
                     Instance.ListError.AddNew(product);
                 }
                 row++;
@@ -151,11 +146,6 @@ namespace Manager.Helpers
         {
             get; set;
         }
-        //public void Write(object value, int column, int row, int color = 32768)
-        //{
-        //    Instance.RangeInput.Cells[row, column].Value2 = value;
-        //    Instance.RangeInput.Cells[row, column].Font.Color = color;
-        //}
         public void Export(QueryableCollectionView obj)
         {
             // khởi tạo wb rỗng

@@ -3,6 +3,7 @@ using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using Manager.Data;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +34,7 @@ namespace Manager.UserControls
         private Func<double, string> _FormatterLine;
         private long _total;
         private long _totalImport;
-        private int _top=5;
+        private int _top = 5;
 
         public int Top { get { return _top; } set { _top = value; SetChartTop(_top); NotifyPropertyChanged(); } }
         public long TotalImport { get { return _totalImport; } set { _totalImport = value; NotifyPropertyChanged(); } }
@@ -67,20 +68,20 @@ namespace Manager.UserControls
             return GetFirstDayOfWeek(dayInWeek, defaultCultureInfo);
         }
 
-        public DateTime _startDate=DateTime.Now, _endDate= DateTime.Now;     
-        public DateTime startDate { get { return _startDate; } set { _startDate = value;DrawChart(); NotifyPropertyChanged(); } }
+        public DateTime _startDate = DateTime.Now, _endDate = DateTime.Now;
+        public DateTime startDate { get { return _startDate; } set { _startDate = value; DrawChart(); NotifyPropertyChanged(); } }
         public DateTime endDate { get { return _endDate; } set { _endDate = value; DrawChart(); NotifyPropertyChanged(); } }
-        
+
         public Report()
         {
             InitializeComponent();
-            this.DataContext = this;       
-            startDate = GetFirstDayOfWeek(startDate);  
+            this.DataContext = this;
+            startDate = GetFirstDayOfWeek(startDate);
             DrawChart();
         }
 
 
-        
+
         private void SetChartTotalBill()
         {
             ChartValues<ChartModelLine> chartModelLine = new ChartValues<ChartModelLine>();
@@ -98,7 +99,8 @@ namespace Manager.UserControls
                         chartModelLine.Add(modelLine[i]);
                         _total += (long)modelLine[i].Value;
                     }
-                }else if(length==1)
+                }
+                else if (length == 1)
                 {
                     _total += (long)modelLine[0].Value;
                 }
@@ -115,7 +117,7 @@ namespace Manager.UserControls
             new LineSeries()
             {
                 Values = chartModelLine,
-                Title="Doanh thu", 
+                Title="Doanh thu",
                 LabelPoint=labelPointTotalBill
             }
         };
@@ -127,6 +129,9 @@ namespace Manager.UserControls
         private void SetChartTop(int x)
         {
             SeriesCollection seriesTop = new SeriesCollection();
+
+            //var filter = Builders<Bill>.Filter.Where(date => date.SaleDate >= startDate && date.SaleDate <= endDate);
+            //ListBills = await Database<Bill>.Instance.ReadAll(filter);
             List<ChartModelColumn> chartModelColumns = null;// SampleContentService.TopBill(x, startDate.ToString("MM/dd/yyyy"), endDate.ToString("MM/dd/yyyy"));
 
             ChartValues<double> chartTop = new ChartValues<double>();
@@ -174,7 +179,7 @@ namespace Manager.UserControls
             textDate = (sender as TextBox).Text;
             int start = 0;
 
-            if(int.TryParse(textDate, out start))
+            if (int.TryParse(textDate, out start))
             {
                 DateTime now = DateTime.Now;
                 now = GetFirstDayOfWeek(now);
@@ -214,9 +219,9 @@ namespace Manager.UserControls
         }
         void DrawChart()
         {
-            SetChartTotalBill();           
+            SetChartTotalBill();
             SetChartTop(Top);
-            TotalImport = 0;// SampleContentService.TotalProductImport(startDate.ToString("MM/dd/yyyy"), endDate.ToString("MM/dd/yyyy"));
+            TotalImport = 100;// SampleContentService.TotalProductImport(startDate.ToString("MM/dd/yyyy"), endDate.ToString("MM/dd/yyyy"));
         }
 
         public static DateTime GetFirstDayOfMonth(DateTime dtInput)

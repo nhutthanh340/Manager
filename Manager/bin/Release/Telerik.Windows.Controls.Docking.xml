@@ -2125,6 +2125,11 @@
             Gets the visibility of the PinButton of this instance.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadPane.CloseButtonVisibility">
+            <summary>
+            This property does not apply to RadPane.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadPane.IsActive">
             <summary>
             Gets or sets a value indicating whether this pane is active.

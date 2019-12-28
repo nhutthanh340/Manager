@@ -3539,9 +3539,7 @@
         </member>
         <member name="T:Telerik.Windows.Controls.DataFormDateField">
             <summary>
-            <summary>
             A field  used to display and edit dates in RadDataForm.
-            </summary>
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.DataFormDateField.GetControl">
@@ -3565,6 +3563,31 @@
         <member name="P:Telerik.Windows.Controls.DataFormDateField.CachedAutomationId">
             <summary>
             Get or sets the manually set AutomationId value (in case there is such one).
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataFormDateField.EditorMode">
+            <summary>
+            Gets or sets the type of the default editor that will be created for the field.        
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Data.DataForm.DateFieldEditorMode">
+            <summary>
+            Defines the type of the control used as the default editor for the <see cref="T:Telerik.Windows.Controls.DataFormDateField"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Data.DataForm.DateFieldEditorMode.DateTime">
+            <summary>
+            RadDateTimePicker control will be used as the editor.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Data.DataForm.DateFieldEditorMode.Date">
+            <summary>
+            RadDatePicker control will be used as the editor.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Data.DataForm.DateFieldEditorMode.Time">
+            <summary>
+            RadTimePicker control will be used as the editor.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Data.DataForm.DataFormCommandButtonsVisibility">
@@ -6207,6 +6230,11 @@
             Represents the IsGrouped dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadPropertyGrid.AutoExpandGroupsProperty">
+            <summary>
+            Represents the AutoExpandGroups dependency property.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.RadPropertyGrid.GroupedEvent">
             <summary>
             Occurs after grouping was performed.
@@ -6525,6 +6553,11 @@
         <member name="P:Telerik.Windows.Controls.RadPropertyGrid.IsGrouped">
             <summary>
             Gets or sets a value indicating whether this instance is grouped.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPropertyGrid.AutoExpandGroups">
+            <summary>
+            Gets or sets a value indicating whether groups should be automatically expanded.
             </summary>
         </member>
         <member name="E:Telerik.Windows.Controls.RadPropertyGrid.Grouped">
@@ -7927,6 +7960,14 @@
             <param name="key">The key.</param>
             <param name="elements">The elements.</param>
         </member>
+        <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.GroupDefinition.#ctor(System.Object,System.Boolean,System.Collections.Generic.IEnumerable{Telerik.Windows.Controls.Data.PropertyGrid.PropertyDefinition})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Data.PropertyGrid.GroupDefinition"/> class.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="isExpanded">The group's expanded state.</param>
+            <param name="elements">The elements.</param>
+        </member>
         <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.GroupDefinition.OnPropertyChanged(System.String)">
             <summary>
             Raises the PropertyChanged event.
@@ -8043,6 +8084,21 @@
             Gets a value that represents the command executed for displaying the Window with the custom editor as a content.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowStartupLocationProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowStartupLocation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowLeftProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowLeft"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowTopProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowTop"/> dependency property.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.OnInitialized(System.EventArgs)">
             <summary>
             Raises the <see cref="E:System.Windows.FrameworkElement.Initialized"/> event. This method is invoked whenever <see cref="P:System.Windows.FrameworkElement.IsInitialized"/> is set to true internally.
@@ -8052,6 +8108,21 @@
         <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowTop">
+            <summary>
+            Gets or sets the position of the window's top edge, in relation to the desktop.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowLeft">
+            <summary>
+            Gets or sets the position of the window's left edge, in relation to the desktop.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Data.PropertyGrid.ModalEditor.WindowStartupLocation">
+            <summary>
+            Gets or sets the position of the window when first shown.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.Data.PropertyGrid.PropertyGridFilteringEventArgs">
@@ -8500,6 +8571,11 @@
         <member name="T:Telerik.Windows.Controls.Data.PropertyGrid.PropertySetPropertyInfo">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.PropertySetPropertyInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Data.PropertyGrid.PropertySetPropertyInfo"/> class.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.Data.PropertyGrid.PropertySetPropertyInfo.Equals(System.Object)">

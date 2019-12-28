@@ -84,7 +84,7 @@ namespace Manager.UserControls
         {
             Thread thread = new Thread(async () =>
             {
-                var filter = Builders<Bill>.Filter.Eq("IsDept", false);
+                var filter = Builders<Bill>.Filter.Where(x=>!x.IsDept);
                 ListBills = await Database<Bill>.Instance.ReadAll(filter);
                 ListBills.CommitNew();
             });

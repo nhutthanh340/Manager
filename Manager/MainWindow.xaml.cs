@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Forms;
 using Telerik.Windows.Controls;
 
+
 namespace Manager
 {
     /// <summary>
@@ -18,7 +19,10 @@ namespace Manager
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        [Obsolete]
         private static readonly MainWindow instance = new MainWindow();
+
+        [Obsolete]
         public static MainWindow Instance
         {
             get
@@ -26,6 +30,7 @@ namespace Manager
                 return instance;
             }
         }
+
         public DelegateCommand ExportExcelCommand { get; private set; }
         public DelegateCommand ImportExcelCommand { get; private set; }
         public DelegateCommand VisibilityCommand { get; private set; }
@@ -35,6 +40,7 @@ namespace Manager
         public DelegateCommand BackupCommand { get; private set; }
         public DelegateCommand RestoreCommand { get; private set; }
 
+        [Obsolete]
         private void InitializeCommand()
         {
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
@@ -84,6 +90,7 @@ namespace Manager
             }
         }
 
+        private StartUp startUp = new StartUp();
         public bool IsPrinter
         {
             get => isPrinter;
@@ -101,6 +108,8 @@ namespace Manager
         {
             FileExcel.Instance.Export(Store.Instance.ListProducts);
         }
+
+        [Obsolete]
         public void ImportExcel(object file)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -112,16 +121,25 @@ namespace Manager
                 Thread thread = new Thread(() =>
                 {
                     FileExcel.Instance.Import(ofd.FileName);
-                    //Store.Instance.IsBusy = false;                    
                 });
                 thread.Start();
             }
         }
+
+        [Obsolete]
         public MainWindow()
         {
+            Initialize();
+            DataContext = this;
+        }
+
+        [Obsolete]
+        public void Initialize()
+        {
+
             InitializeComponent();
             this.InitializeCommand();
-            DataContext = this;
+
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -132,8 +150,6 @@ namespace Manager
         private void CloseApp()
         {
             GC.Collect();
-            //Database<Bill>.CloseServer();
-            //Database<Product>.CloseServer();
             System.Windows.Application.Current.Shutdown();
         }
 
@@ -142,6 +158,7 @@ namespace Manager
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             ContextMenu context = new ContextMenu();
             MenuItem open = new MenuItem();
             MenuItem exit = new MenuItem();
@@ -188,5 +205,6 @@ namespace Manager
                 this.NotifyIcon.ShowBalloonTip(5000, "Thông báo", "Ứng dụng đã được ẩn vào đây", ToolTipIcon.Info);
             }
         }
+
     }
 }

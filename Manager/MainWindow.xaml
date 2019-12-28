@@ -7,8 +7,10 @@
         mc:Ignorable="d" xmlns:store="clr-namespace:Manager.UserControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        Closing="Window_Closing" Loaded="Window_Loaded" StateChanged="Window_StateChanged"
-        Height="450" Width="800">
+        Closing="Window_Closing" 
+        Loaded="Window_Loaded" 
+        StateChanged="Window_StateChanged"
+        WindowState="Maximized">
 
     <Grid>
         <Grid.RowDefinitions>

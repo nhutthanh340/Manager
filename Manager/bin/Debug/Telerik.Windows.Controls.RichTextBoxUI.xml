@@ -346,7 +346,7 @@
         </member>
         <member name="T:Telerik.Windows.Controls.RichTextBoxUI.Dialogs.SectionColumns.SectionColumnsRadioButton">
             <summary>
-            Represetns SectionColumnsRadioButton
+            Represents SectionColumnsRadioButton
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.RichTextBoxUI.Dialogs.SectionColumns.SectionColumnsRadioButton.OnInitialized(System.EventArgs)">
@@ -382,6 +382,57 @@
             <summary>
             InitializeComponent
             </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPicker">
+            <summary>
+            UI Control that provides interface for choosing a paste option from the list of available ones.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPicker.OwnerProperty">
+            <summary>
+            Represents the Owner dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPicker.PasteCommand">
+            <summary>
+            Gets the command that is executed when a paste option is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPicker.Owner">
+            <summary>
+            The RadRichTextBox instance that is associated with this control.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsDropDownPicker">
+            <summary>
+            DropDown UI Control with that provides interface for choosing a paste option from the list of available ones.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsDropDownPicker.OwnerProperty">
+            <summary>
+            Represents the Owner dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsDropDownPicker.Owner">
+            <summary>
+            The RadRichTextBox instance that is associated with this control.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPopup">
+            <summary>
+            Represets a popup control with special placement rules that is used for hosting the PasteOptions UI.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPopup.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPopup"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RichTextBoxUI.PasteOptionsPopup.Show(Telerik.Windows.Controls.RadRichTextBox)">
+            <summary>
+            Attaches the Popup to the given RichTextBox and initializes its content.
+            </summary>
+            <param name="richTextBox"></param>
         </member>
         <member name="T:Telerik.Windows.Controls.RichTextBoxUI.FormatPainterButton">
             <summary>
@@ -1454,7 +1505,7 @@
             <summary>
             Shows the dialog.
             </summary>
-            <param name="spellCheckingUIManager">The spellchecking UI manager.</param>
+            <param name="spellCheckingUIManager">The spell checking UI manager.</param>
             <param name="owner">The owner of the dialog.</param>
         </member>
         <member name="M:Telerik.Windows.Controls.RichTextBoxUI.Dialogs.SpellCheckingDialog.InitializeComponent">

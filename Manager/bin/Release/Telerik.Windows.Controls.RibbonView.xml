@@ -658,7 +658,7 @@
         <member name="T:Telerik.Windows.Automation.Peers.RibbonViewAutomationPeer">
             <summary>
             Automation peer for the <see cref="T:Telerik.Windows.Controls.RadRibbonView"/> class.
-            </summary>
+            </summary> 
         </member>
         <member name="M:Telerik.Windows.Automation.Peers.RibbonViewAutomationPeer.#ctor(Telerik.Windows.Controls.RadRibbonView)">
             <summary>
@@ -2088,10 +2088,15 @@
             Gets the Minimize ribbon routed command.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RibbonCommands.ToggleLayoutModeCommand">
+            <summary>
+            Gets the Toggle ribbon layout routed command.
+            </summary>		
+        </member>
         <member name="P:Telerik.Windows.Controls.RibbonCommands.ToggleQATPositionCommand">
             <summary>
             Gets the Toggle ribbon's QAT position routed command.
-            </summary>		
+            </summary>	
         </member>
         <member name="T:Telerik.Windows.Controls.IconConverter">
             <summary>
@@ -2846,6 +2851,16 @@
             	<c>True</c> if this instance is selected; otherwise, <c>false</c>.
             </value>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonTab.SimplifiedResources">
+            <summary>
+            Gets or sets the resource dictionary used in RibbonView's Simplified state.
+            </summary>        
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonTab.SimplifiedItems">
+            <summary>
+            Gets or sets the collection used to display items in RibbonView's Simplified state.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadRibbonTab.TabStripPlacement">
             <summary>
             Gets the tab strip placement.
@@ -2925,6 +2940,12 @@
         <member name="M:Telerik.Windows.Controls.RadRibbonView.OnMinimizedPopupStateChanged(Telerik.Windows.RadRoutedEventArgs)">
             <summary>
             Raises the <see cref="E:MinimizedPopupStateChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:Telerik.Windows.RadRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadRibbonView.OnLayoutModeChanged(Telerik.Windows.RadRoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:LayoutModeChanged"/> event.
             </summary>
             <param name="e">The <see cref="T:Telerik.Windows.RadRoutedEventArgs"/> instance containing the event data.</param>
         </member>
@@ -3224,6 +3245,11 @@
             Identifies the PopupOpened routed event.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.LayoutModeChangedEvent">
+            <summary>
+            Identifies the LayoutModeChanged routed event.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Controls.RadRibbonView.ContentHeightProperty">
             <summary>
             Identifies the ContentHeight property.
@@ -3247,6 +3273,31 @@
         <member name="F:Telerik.Windows.Controls.RadRibbonView.IsHostedInRibbonWindowPropertyKey">
             <summary>
             Identifies the IsHostedInRibbonWindow property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.LayoutModeProperty">
+            <summary>
+            Identifies the LayoutMode property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.ShowLayoutModeButtonProperty">
+            <summary>
+            Identifies the ShowLayoutModeButton property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.LayoutModeButtonContentProperty">
+            <summary>
+            Identifies the LayoutModeButtonContent property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.SimplifiedContentHeightProperty">
+            <summary>
+            Identifies the SimplifiedContentHeight property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonView.SimplifiedItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadRibbonView.SimplifiedItemTemplate"/> property.
             </summary>
         </member>
         <member name="E:Telerik.Windows.Controls.RadRibbonView.ToolBarPositionChanged">
@@ -3307,6 +3358,11 @@
         <member name="E:Telerik.Windows.Controls.RadRibbonView.DropDownClosed">
             <summary>
             This property does not apply to RibbonView. 
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadRibbonView.LayoutModeChanged">
+            <summary>
+            Occurs when ribbon view layout mode has changed.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.RadRibbonView.ContextualGroupsItemsSource">
@@ -3671,6 +3727,31 @@
             <value>
             	<c>True</c> if this instance is hosted in ribbon window; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonView.LayoutMode">
+            <summary>
+            Gets or sets a value indicating the layout render mode of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonView.ShowLayoutModeButton">
+            <summary>
+            Gets or sets a value indicating whether the button which controls the ribbon layout is visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonView.LayoutModeButtonContent">
+            <summary>
+            Gets or sets the ribbon layout button content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonView.SimplifiedContentHeight">
+            <summary>
+            Gets or sets the SimplifiedContentHeight property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonView.SimplifiedItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate used to display an item in Simplified layout.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.GroupVariant">
             <summary>
@@ -5174,6 +5255,11 @@
             Identifies the IsOpenChangedEvent routed event.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadRibbonGallery.LayoutModeProperty">
+            <summary>
+            Identifies the LayoutMode property.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.RadRibbonGallery.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadRibbonGallery"/> class.
@@ -5297,6 +5383,11 @@
             Gets or sets the height of the popup viewport.
             </summary>
             <value>The height of the popup viewport.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadRibbonGallery.LayoutMode">
+            <summary>
+            Gets or sets a value indicating the layout render mode of the control.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.RadRibbonGroup">
             <summary>
@@ -5686,6 +5777,79 @@
             <summary>
             Collapsed variant.
             </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RibbonLayout">
+            <summary>
+            Defines the list of values a LayoutMode can be.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RibbonLayout.Default">
+            <summary>
+            Default ribbon layout.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RibbonLayout.Simplified">
+            <summary>
+            Simplified ribbon layout.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RibbonView.BooleanToRibbonLayoutConverter">
+            <summary>
+            Represents the converter that converts Boolean values to and from ribbon layout states.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RibbonView.BooleanToRibbonLayoutConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RibbonView.BooleanToRibbonLayoutConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RibbonView.VisibilityToRibbonLayoutConverter">
+            <summary>
+            Represents the converter that converts Visibility values to and from ribbon layout states.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RibbonView.VisibilityToRibbonLayoutConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RibbonView.VisibilityToRibbonLayoutConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
         </member>
         <member name="T:Telerik.Windows.Controls.ScreenTipState">
             <summary>

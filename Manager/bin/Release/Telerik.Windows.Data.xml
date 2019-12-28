@@ -2232,6 +2232,11 @@
             ShouldProcessCollectionChanged.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Data.HierarchicalCollectionViewBase.GetItemAt(System.Int32)">
+            <summary>
+            Retrieves the item at the specified zero-based index in the view.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Data.HierarchicalCollectionViewBase.CreateView">
             <inheritdoc />
             <remarks>
@@ -4516,7 +4521,7 @@
             Filters the collection.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Data.IHierarchyFilter.Initialize(System.Collections.IEnumerable,System.ComponentModel.PropertyDescriptorCollection,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{Telerik.Windows.Data.FieldDescriptorNamePair})">
+        <member name="M:Telerik.Windows.Data.IHierarchyFilter.Initialize(System.Collections.IEnumerable,System.ComponentModel.PropertyDescriptorCollection,System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{Telerik.Windows.Data.FieldDescriptorNamePair},System.Boolean)">
             <summary>
             Initializes the specified data.
             </summary>
@@ -4524,6 +4529,7 @@
             <param name="properties">The properties.</param>
             <param name="masterRecordValues">The master record values.</param>
             <param name="relationFieldNames">The relation field names.</param>
+            <param name="isSelfReference">Identifies whether this is a self reference hierarchy.</param>
         </member>
         <member name="T:Telerik.Windows.Data.HierarchyDescriptor`2">
             <summary>
@@ -5707,6 +5713,218 @@
             A converted value. If the method returns null, the valid null value is used.
             </returns>
         </member>
+        <member name="T:Telerik.Expressions.ExpressionFunctionContext">
+            <summary>
+            Provides the context for custom functions in the ExpressionParser.
+            </summary>
+        </member>
+        <member name="P:Telerik.Expressions.ExpressionFunctionContext.Context">
+            <summary>
+            Gets or sets the default expression context class, which will be used for determining the expression functions.
+            </summary>
+        </member>
+        <member name="T:Telerik.Expressions.ExpressionParser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.OperandType.None">
+            <summary>
+            No operation.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.OperandType.Scalar">
+            <summary>
+            Scalar.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.OperandType.Expression">
+            <summary>
+            Expression.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.NodeType.NoOp">
+            <summary>
+            No operation node.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.NodeType.UnaryOp">
+            <summary>
+            Unary operation node.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.NodeType.BinaryOp">
+            <summary>
+            Binary operation node.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionParser.NodeType.Parentheses">
+            <summary>
+            A node with an expression in parentheses.
+            </summary>
+        </member>
+        <member name="T:Telerik.Expressions.ClrExpressionStringMethods">
+            <summary>
+            Contains all the string operations available in RadExpressionEditor.
+            </summary>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.ConvertToString(System.Object)">
+            <summary>
+            Returns a string representation of an object.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Substring(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieves a value from a string. The value starts at a specified character position and has a specified length.
+            </summary>
+            <param name="text"></param>
+            <param name="startIndex"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Concat(System.String,System.String)">
+            <summary>
+            Concatenates two specified instances of System.String.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Format(System.String,System.Object)">
+            <summary>
+            Replaces the format item in a specified System.String with the text equivalent of the value of a specified System.Object instance.
+            </summary>
+            <param name="formatValue"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Trim(System.String)">
+            <summary>
+            Removes all occurrences of white space characters from the beginning and end of the string.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Len(System.String)">
+            <summary>
+            Gets the number of characters in a string.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.IndexOf(System.String,System.String)">
+            <summary>
+            Reports the index of the first occurrence of the specified string in this instance.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.LastIndexOf(System.String,System.String)">
+            <summary>
+            Reports the index position of the last occurrence of a specified string within this instance.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Insert(System.String,System.Int32,System.String)">
+            <summary>
+            Inserts String2 into String1 at the position specified by StartPosition.
+            </summary>
+            <param name="text"></param>
+            <param name="startPosition"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Lower(System.String)">
+            <summary>
+            Returns the String in lowercase.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Upper(System.String)">
+            <summary>
+            Returns String in uppercase.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.LowerInvariant(System.String)">
+            <summary>
+            Returns a copy of this System.String object converted to lowercase using the casing rules of the invariant culture.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.UpperInvariant(System.String)">
+            <summary>
+            Returns a copy of this System.String object converted to uppercase using the casing rules of the invariant culture.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.PadLeft(System.String,System.Int32)">
+            <summary>
+            Left-aligns characters in the defined string, padding its left side with white space characters up to a specified total length.
+            </summary>
+            <param name="text"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.PadRight(System.String,System.Int32)">
+            <summary>
+            Right-aligns characters in the defined string, padding its left side with white space characters up to a specified total length.
+            </summary>
+            <param name="text"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Remove(System.String,System.Int32,System.Int32)">
+            <summary>
+            Deletes a specified number of characters from this instance, beginning at a specified position.
+            </summary>
+            <param name="text"></param>
+            <param name="startPosition"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Replace(System.String,System.String,System.String)">
+            <summary>
+            Returns a copy of String1, in which value2 has been replaced with String3.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <param name="newValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.StartsWith(System.String,System.String)">
+            <summary>
+            Determines whether the beginning of this string instance matches the specified string.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.EndsWith(System.String,System.String)">
+            <summary>
+            Determines whether the end of this string instance matches the specified string.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Expressions.ClrExpressionStringMethods.Contains(System.String,System.String)">
+            <summary>
+            Returns a value indicating whether the specified System.String object occurs within this string.
+            </summary>
+            <param name="text"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="F:Telerik.Expressions.ExpressionNodeOperator.Add">
             <summary>
             Add.
@@ -5782,6 +6000,21 @@
             Subtract.
             </summary>
         </member>
+        <member name="F:Telerik.Expressions.ExpressionNodeOperator.Procedure">
+            <summary>
+            Procedure.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionNodeOperator.None">
+            <summary>
+            No operation.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionNodeOperator.UnaryPlus">
+            <summary>
+            Unary plus.
+            </summary>
+        </member>
         <member name="F:Telerik.Expressions.ExpressionNodeOperatorCategory.Additive">
             <summary>
             Additive.
@@ -5810,6 +6043,16 @@
         <member name="F:Telerik.Expressions.ExpressionNodeOperatorCategory.Unary">
             <summary>
             Unary.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionNodeOperatorCategory.Procedure">
+            <summary>
+            Procedure.
+            </summary>
+        </member>
+        <member name="F:Telerik.Expressions.ExpressionNodeOperatorCategory.None">
+            <summary>
+            None.
             </summary>
         </member>
         <member name="F:Telerik.Expressions.ExpressionNodeType.Binary">
