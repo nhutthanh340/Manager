@@ -67,7 +67,7 @@
                         <GridViewColumn Width="200" Header="Tên hàng">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" Width="auto" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" Width="auto"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

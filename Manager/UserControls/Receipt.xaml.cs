@@ -186,7 +186,7 @@ namespace Manager.UserControls
         }
 
 
-        private async void Initialize()
+        public async void Initialize()
         {
         
             var filter = Builders<Bill>.Filter.Where(x => x.IsDept);

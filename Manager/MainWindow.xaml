@@ -210,6 +210,19 @@
                                                 Width="32" />
                         </telerik:RadRibbonButton>
 
+                        <telerik:RadRibbonButton Text="Tải lại"
+                                             Command="{Binding RefreshCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Làm mới dữ liệu"
+                                             telerik:ScreenTip.Description="Ấn vào đây để làm mới dữ liệu"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Refresh" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
                     </telerik:RadCollapsiblePanel>
 
                 </telerik:RadRibbonGroup>

@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using Telerik.Windows.Controls;
@@ -36,8 +37,9 @@ namespace Manager
         public DelegateCommand NoneRepeatCommand { get; private set; }
         public DelegateCommand BackupCommand { get; private set; }
         public DelegateCommand RestoreCommand { get; private set; }
+        public DelegateCommand RefreshCommand{ get; private set; }
 
-        [Obsolete]
+    [Obsolete]
         private void InitializeCommand()
         {
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
@@ -48,8 +50,16 @@ namespace Manager
             this.NoneRepeatCommand = new DelegateCommand(Store.Instance.NoneRepeat);
             this.BackupCommand = new DelegateCommand(Backup);
             this.RestoreCommand = new DelegateCommand(Restore);
+            this.RefreshCommand = new DelegateCommand(Refresh);
         }
 
+        [Obsolete]
+        private void Refresh(object refresh)
+        {
+            Store.Instance.Initialize();
+            Receipt.Instance.Initialize();
+            Paid.Instance.Initialize();
+        }
         private void Backup(object backup)
         {
             using (var fbd = new FolderBrowserDialog())
@@ -63,9 +73,17 @@ namespace Manager
             }
         }
 
-        private void Restore(object restore)
+        private async void Restore(object restore)
         {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
 
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    CMD.Execute($"mongorestore {fbd.SelectedPath}");
+                }
+            }
         }
 
         private bool isPdf;
