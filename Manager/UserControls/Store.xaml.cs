@@ -9,6 +9,7 @@ using Telerik.Windows.Data;
 using Manager.Helpers;
 using System.Threading;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace Manager.UserControls
 {
@@ -62,7 +63,7 @@ namespace Manager.UserControls
                 if (textSearch != value)
                 {
                     textSearch = value;
-                    
+
                     this.NotifyChanged(PropertyChanged);
                     Search(textSearch);
                 }
@@ -114,18 +115,18 @@ namespace Manager.UserControls
             Thread thread = new Thread(async () =>
             {
                 Instance.IsBusy = true;
-                FilterDefinition<Product> filter;
+                List<FilterDefinition<Product>> filters = new List<FilterDefinition<Product>>();
 
-                if (text == "")
+                string[] textSearch = text.ToLower().Split(' ');
+
+                foreach (var item in textSearch)
                 {
-                    filter = null;
-                }
-                else
-                {
-                    filter = Builders<Product>.Filter.Text(text);
+                    filters.Add(Builders<Product>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
                 }
 
-                Instance.ListProducts = await Database<Product>.Instance.ReadAll(filter);
+
+
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters));
                 if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
                 {
                     Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;

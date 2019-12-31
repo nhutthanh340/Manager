@@ -1,13 +1,10 @@
 ﻿
-
-using Google.Cloud.Firestore;
 using Manager.Helpers;
-using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq.Expressions;
 using System.Reflection;
 using Telerik.Windows.Controls;
 
@@ -16,7 +13,7 @@ namespace Manager.Data
     public class Price : ViewModelBase
     {
         private ulong origin = 0, display = 0, retail = 0;
-        
+
         public ulong Origin
         {
             get => origin;
@@ -29,7 +26,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public ulong Display
         {
             get => display;
@@ -98,7 +95,7 @@ namespace Manager.Data
         private List<Unit> listUnit = new List<Unit>();
         private ulong total;
 
-        
+
         public string RetailUnit
         {
             get => unit.Retail;
@@ -110,7 +107,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public string Wholesale
         {
             get => unit.Wholesale;
@@ -122,7 +119,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public ulong Origin
         {
             get => price.Origin;
@@ -134,7 +131,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public ulong Display
         {
             get => price.Display;
@@ -146,7 +143,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public ulong RetailPrice
         {
             get => price.Retail;
@@ -158,7 +155,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public bool IsRetailing
         {
             get => this.isRetailing;
@@ -173,16 +170,20 @@ namespace Manager.Data
         }
 
         private string textSearch;
-        
+
         public string TextSearch
         {
             get => textSearch;
+            set
+            {
+                this.textSearch = value;
+            }
         }
 
         public Product()
         { }
         public ushort STT { get; set; }
-        
+
         public ulong Total
         {
             get
@@ -196,16 +197,16 @@ namespace Manager.Data
                     this.total = (ulong)Count * price.Display;
                 }
 
-                
+
                 return this.total;
             }
             set
             {
-                OnPropertyChanged(() => this.Total);            
+                OnPropertyChanged(() => this.Total);
             }
         }
 
-        
+
         public ulong PriceOrigin
         {
             get => this.price.Origin;
@@ -218,7 +219,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public ulong PriceDisplay
         {
             get
@@ -274,7 +275,7 @@ namespace Manager.Data
         }
 
 
-        
+
         public string Name
         {
             get
@@ -286,13 +287,12 @@ namespace Manager.Data
                 if (this.name != value)
                 {
                     this.name = value;
-                    this.textSearch = ContentService.ConvertToUnsigned($"{name}");
+                    this.textSearch = ContentService.ConvertToUnsigned($"{name}").ToLower();
                     this.OnPropertyChanged(() => this.Name);
-                    this.OnPropertyChanged(() => this.TextSearch);
                 }
             }
         }
-        
+
         public string UnitDisplay
         {
             get
@@ -349,7 +349,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public float Count
         {
             get
@@ -468,11 +468,12 @@ namespace Manager.Data
         public override bool Equals(object obj)
         {
             Product product = obj as Product;
-            if(product==null)
+            if (product == null)
             {
                 return false;
             }
-            return this.Name == product.Name && this.UnitDisplay == product.UnitDisplay;
+            return ContentService.ConvertToUnsigned( this.Name.ToLower()) == ContentService.ConvertToUnsigned(product.Name.ToLower()) &&
+                ContentService.ConvertToUnsigned(this.UnitDisplay.ToLower()) == ContentService.ConvertToUnsigned(product.UnitDisplay.ToLower());
         }
     }
 }

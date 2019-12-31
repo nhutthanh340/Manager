@@ -1,11 +1,8 @@
-﻿
-using Manager.Data;
-using Manager.Helpers;
+﻿using Manager.Helpers;
 using Manager.UserControls;
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;

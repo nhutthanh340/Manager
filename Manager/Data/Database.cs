@@ -3,13 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telerik.Windows.Data;
-using Newtonsoft.Json;
-using Grpc.Core;
-using Google.Api.Gax.Grpc;
-using System.Diagnostics;
 using MongoDB.Driver;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 
 namespace Manager.Data
 {
@@ -33,25 +27,17 @@ namespace Manager.Data
             }
         }
 
-        private readonly string filepath = "apiKey.json";
-        private readonly string projectId = "manager-bc2b6";
         private readonly string databaseName = "manager";
         private readonly string hostName = "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
         public FirestoreDb db = null;
 
-
-        private static CollectionReference query;
-        public CollectionReference Query { get => query; }
-
         [Obsolete]
         public async Task<bool> Add(T obj)
         {
             try
             {
-                var keys = Builders<T>.IndexKeys.Text("Name");
-                await instance.collection.Indexes.CreateOneAsync(keys);
                 await instance.collection.InsertOneAsync(obj);
                 return true;
             }
