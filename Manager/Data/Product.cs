@@ -190,11 +190,11 @@ namespace Manager.Data
             {
                 if (IsRetailing)
                 {
-                    this.total = (ulong)Count * price.Retail;
+                    this.total = (ulong)(Count * price.Retail);
                 }
                 else
                 {
-                    this.total = (ulong)Count * price.Display;
+                    this.total = (ulong)(Count * price.Display);
                 }
 
 
