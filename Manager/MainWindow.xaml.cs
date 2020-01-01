@@ -68,7 +68,7 @@ namespace Manager
 
                 if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    CMD.Execute($"mongodump --out {fbd.SelectedPath}");
+                    CMD.Execute($"mongodump --out \"{fbd.SelectedPath}\"");
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace Manager
 
                 if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    CMD.Execute($"mongorestore {fbd.SelectedPath}");
+                    CMD.Execute($"mongorestore \"{fbd.SelectedPath}\"");
                 }
             }
         }
