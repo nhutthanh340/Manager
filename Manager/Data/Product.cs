@@ -1,5 +1,6 @@
 ﻿
 using Manager.Helpers;
+using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -359,6 +360,10 @@ namespace Manager.Data
 
             set
             {
+                if (this.Count != 0)
+                {
+                    Receipt.Instance.IsSaved = false;
+                }
                 if (this.count != value)
                 {
                     this.count = value;
@@ -366,6 +371,7 @@ namespace Manager.Data
                     this.OnPropertyChanged(() => this.Total);
                     Bill.Instance.NotifyChanged();
                 }
+                
             }
         }
 

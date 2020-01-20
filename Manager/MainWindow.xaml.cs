@@ -42,6 +42,7 @@ namespace Manager
     [Obsolete]
         private void InitializeCommand()
         {
+            
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
             this.ImportExcelCommand = new DelegateCommand(ImportExcel);
             this.VisibilityCommand = new DelegateCommand(Store.Instance.VisibilityColumn);
@@ -164,6 +165,10 @@ namespace Manager
 
         private void CloseApp()
         {
+            if(!Receipt.Instance.IsSaved)
+            {
+                Receipt.Instance.ConfirmSave();
+            }
             GC.Collect();
             System.Windows.Application.Current.Shutdown();
         }

@@ -1,10 +1,12 @@
 ﻿using Google.Cloud.Firestore;
 using Manager.Helpers;
+using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
@@ -13,6 +15,7 @@ namespace Manager.Data
     [BsonIgnoreExtraElements]
     public class Bill : ViewModelBase
     {
+        [Obsolete]
         private static readonly Bill instance = new Bill();
         public static Bill Instance
         {
@@ -21,17 +24,23 @@ namespace Manager.Data
                 return instance;
             }
         }
+
+        [Obsolete]
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;
         }
 
+        [Obsolete]
         private void ListProducts_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             NotifyChanged();
         }
+
+        [Obsolete]
         public void NotifyChanged()
         {
+            //Receipt.Instance.IsSaved = false;
             OnPropertyChanged(() => this.Total);
             OnPropertyChanged(() => this.Remain);
         }
@@ -44,12 +53,12 @@ namespace Manager.Data
         private ObjectId id;
         private string textSearch;
 
-        
+
         public string TextSearch
         {
             get => textSearch;
         }
-       
+
         public bool Note
         {
             get => this.note;
@@ -73,7 +82,7 @@ namespace Manager.Data
             }
         }
 
-        [BsonId]     
+        [BsonId]
         public ObjectId Id
         {
             get => this.id;
@@ -87,7 +96,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public long Remain
         {
             get
@@ -100,7 +109,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public ulong Total
         {
             get
@@ -124,7 +133,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public ulong CustomePay
         {
             get => this.customePay;
@@ -140,6 +149,7 @@ namespace Manager.Data
 
         }
         [BsonIgnore]
+        [Obsolete]
         public QueryableCollectionView ListProducts
         {
             get
@@ -156,7 +166,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public string CustomeName
         {
             get => customeName;
@@ -171,7 +181,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public string Phone
         {
             get => this.phone;
@@ -184,7 +194,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public string Address
         {
             get => this.address;
@@ -199,7 +209,7 @@ namespace Manager.Data
                 }
             }
         }
-        
+
         public List<Product> Products
         {
             get => (listProducts.SourceCollection as List<Product>);
@@ -219,7 +229,7 @@ namespace Manager.Data
             }
             set
             {
-                if(isDept !=value)
+                if (isDept != value)
                 {
                     isDept = value;
                     this.OnPropertyChanged(() => IsDept);

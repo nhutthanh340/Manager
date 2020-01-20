@@ -29,7 +29,12 @@ namespace Manager.UserControls
                 return instance;
             }
         }
-
+        private bool isSaved = true;
+        public bool IsSaved
+        {
+            get => isSaved;
+            set { isSaved = value; }
+        }
         private Bill selectedBill;
         public Bill SelectedBill
         {
@@ -68,7 +73,7 @@ namespace Manager.UserControls
                 if (selectProduct != value)
                 {
                     selectProduct = value;
-                    this.NotifyChanged(PropertyChanged);                   
+                    this.NotifyChanged(PropertyChanged);
                 }
             }
         }
@@ -188,9 +193,8 @@ namespace Manager.UserControls
 
         public async void Initialize()
         {
-        
             var filter = Builders<Bill>.Filter.Where(x => x.IsDept);
-            
+
             ListBills = await Database<Bill>.Instance.ReadAll(filter);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
@@ -201,6 +205,8 @@ namespace Manager.UserControls
                 SelectedBill = null;
             }
         }
+
+        [Obsolete]
         public void AddProduct(object product)
         {
             if (SelectedBill == null)
@@ -217,13 +223,19 @@ namespace Manager.UserControls
             {
                 item.Count += 1;
             }
+            Receipt.Instance.IsSaved = false;
             SelectedBill.NotifyChanged();
         }
+
+        [Obsolete]
         private void RemoveProduct(object product)
         {
+            Receipt.Instance.IsSaved = false;
             SelectedBill.ListProducts.Remove(product);
             SelectedBill.NotifyChanged();
         }
+
+        [Obsolete]
         public Product GetProduct(Product product)
         {
             QueryableCollectionView ListProducts = SelectedBill.ListProducts;
@@ -236,10 +248,36 @@ namespace Manager.UserControls
             }
             return null;
         }
+
+        [Obsolete]
+        public void ConfirmSave()
+        {
+            RadWindow.Confirm(
+                string.Format("Hoá đơn hiện tại chưa được lưu, bạn có muốn lưu không ?"),
+                delegate (object sender, WindowClosedEventArgs e)
+                {
+                    var result = e.DialogResult;
+                    if (result == true)
+                    {
+                        Save(SelectedBill);
+                        IsSaved = true;
+                    }
+
+                });
+        }
+
+        [Obsolete]
         public void NewReceipt(object receipt)
         {
-            ListBills.AddNew(new Bill());
-            SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
+            if (!Instance.IsSaved)
+            {
+                ConfirmSave();
+            }
+            else
+            {
+                ListBills.AddNew(new Bill());
+                SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
+            }
         }
         public void DeleteReceipt(object receipt)
         {
@@ -252,7 +290,21 @@ namespace Manager.UserControls
                     {
                         if (SelectedBill.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
-                            await Database<Bill>.Instance.Delete(SelectedBill);
+                            bool status = await Database<Bill>.Instance.Delete(SelectedBill);
+                            string message = "Xoá hoá đơn ";
+                            if (status)
+                            {
+                                message += "thành công";
+                            }
+                            else
+                            {
+                                message += "thất bại";
+                            }
+                            RadWindow.Confirm(new DialogParameters()
+                            {
+                                Content = message,
+                                Header = "Thông báo"
+                            });
                         }
                         Initialize();
                     }
@@ -263,13 +315,27 @@ namespace Manager.UserControls
         {
             this.SelectedProduct = ((e.OriginalSource as RadButton).DataContext as Product);
         }
+
+        [Obsolete]
         private void SelectBillChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
+            //if (!IsLoaded && !Instance.IsSaved)
+            //{
+            //    Instance.IsSaved = true;
+            //}
+
+            if (!Instance.IsSaved)
             {
-                return;
+                ConfirmSave();
             }
-            SelectedBill = e.AddedItems[0] as Bill;
+            else
+            {
+                if (e.AddedItems.Count == 0)
+                {
+                    return;
+                }
+                SelectedBill = e.AddedItems[0] as Bill;
+            }
         }
 
     }
