@@ -60,7 +60,7 @@
                     <GridView.Columns>
                         <GridViewColumn Width="40">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="STT" BorderThickness="1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="STT" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -72,9 +72,9 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="200">
+                        <GridViewColumn Width="250">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="Tên hàng" BorderThickness="1 1 1 1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="Tên hàng" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -87,9 +87,9 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="100">
+                        <GridViewColumn Width="70">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="Số lượng" BorderThickness="1 1 1 1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="Số lượng" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -102,9 +102,9 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
-                        <GridViewColumn Width="100">
+                        <GridViewColumn Width="50">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="Đơn vị" BorderThickness="1 1 1 1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="Đơn vị" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -117,9 +117,9 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="100">
+                        <GridViewColumn Width="120">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="Đơn giá" BorderThickness="1 1 1 1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="Đơn giá" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -136,7 +136,7 @@
 
                         <GridViewColumn Width="200">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader BorderBrush="#FF000000" Content="Thành tiền" BorderThickness="1 1 1 1"></GridViewColumnHeader>
+                                <GridViewColumnHeader Content="Thành tiền" Background="Aqua"></GridViewColumnHeader>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
