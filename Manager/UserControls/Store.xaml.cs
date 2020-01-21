@@ -18,8 +18,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Store : UserControl, INotifyPropertyChanged
     {
+        [Obsolete]
         private static readonly Store instance = new Store();
 
+        [Obsolete]
         public static Store Instance
         {
             get
@@ -55,6 +57,8 @@ namespace Manager.UserControls
             }
         }
         private string textSearch;
+
+        [Obsolete]
         public string TextSearch
         {
             get => textSearch;
@@ -92,12 +96,14 @@ namespace Manager.UserControls
                 IsHidenDate = !IsHidenDate;
             }
         }
+
+        [Obsolete]
         private void InititalizeCommand()
         {
             this.RemoveProductCommand = new DelegateCommand(Receipt.Instance.AddProduct);
         }
 
-
+        [Obsolete]
         public Store()
         {
             InitializeComponent();
@@ -105,11 +111,14 @@ namespace Manager.UserControls
             DataContext = this;
             Initialize();
         }
+
+        [Obsolete]
         public void Initialize()
         {
             Search();
         }
 
+        [Obsolete]
         public void Search(string text = "")
         {
             Thread thread = new Thread(async () =>
@@ -174,6 +183,7 @@ namespace Manager.UserControls
             this.SelectedProduct = ((e.OriginalSource as RadButton).DataContext as Product);
         }
 
+        [Obsolete]
         public void NoneRepeat(object obj)
         {
             Thread thread = new Thread(async () =>

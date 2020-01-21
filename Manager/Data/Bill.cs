@@ -17,6 +17,8 @@ namespace Manager.Data
     {
         [Obsolete]
         private static readonly Bill instance = new Bill();
+
+        [Obsolete]
         public static Bill Instance
         {
             get
@@ -46,7 +48,7 @@ namespace Manager.Data
         }
         private QueryableCollectionView listProducts = new QueryableCollectionView(new List<Product>());
         private DateTime saleDate = DateTime.Now;
-        private string customeName = "", phone = "", address = "";
+        private string customeName = "Khách lẻ", phone = "", address = "";
         private ulong total;
         private ulong customePay;
         private bool note;
@@ -96,7 +98,7 @@ namespace Manager.Data
             }
         }
 
-
+        [Obsolete]
         public long Remain
         {
             get
@@ -109,7 +111,7 @@ namespace Manager.Data
             }
         }
 
-
+        [Obsolete]
         public ulong Total
         {
             get
@@ -133,7 +135,7 @@ namespace Manager.Data
             }
         }
 
-
+        [Obsolete]
         public ulong CustomePay
         {
             get => this.customePay;
@@ -220,6 +222,8 @@ namespace Manager.Data
         }
 
         private bool isDept;
+
+        [Obsolete]
         public bool IsDept
         {
             get

@@ -58,55 +58,75 @@
             <ListView.View>
                 <GridView TextBlock.TextAlignment="Center">
                     <GridView.Columns>
-                        <GridViewColumn Width="40" Header="STT">
+                        <GridViewColumn Width="40">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="STT" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding STT}" Width="auto" TextAlignment="Center"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding STT}" Width="auto" TextAlignment="Center"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="200" Header="Tên hàng">
+                        <GridViewColumn Width="250">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Tên hàng" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding Name}" Width="auto"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding Name}" Width="auto"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="100" Header="Số lượng">
+                        <GridViewColumn Width="70">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Số lượng" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding Count}" Width="auto" TextAlignment="Center"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding Count}" Width="auto" TextAlignment="Center"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
-                        <GridViewColumn Width="100" Header="Đơn vị">
+                        <GridViewColumn Width="50">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Đơn vị" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding UnitDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding UnitDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="100" Header="Đơn giá">
+                        <GridViewColumn Width="120">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Đơn giá" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding PriceDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding PriceDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -114,12 +134,16 @@
 
                         
 
-                        <GridViewColumn Width="200" Header="Thành tiền">
+                        <GridViewColumn Width="200">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Thành tiền" Background="Aqua"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Border BorderBrush="Black"
-                                            BorderThickness="0,0,0,1"  >
-                                        <TextBlock Text="{Binding Total, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                    <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
+                                        <StackPanel Margin="7,3,7,3">
+                                            <TextBlock Text="{Binding Total, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                        </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

@@ -74,7 +74,7 @@ namespace Manager
             }
         }
 
-        private async void Restore(object restore)
+        private void Restore(object restore)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -92,6 +92,7 @@ namespace Manager
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [Obsolete]
         public bool IsPdf
         {
             get => isPdf;
@@ -107,6 +108,8 @@ namespace Manager
         }
 
         private StartUp startUp = new StartUp();
+
+        [Obsolete]
         public bool IsPrinter
         {
             get => isPrinter;
@@ -120,6 +123,8 @@ namespace Manager
                 }
             }
         }
+
+        [Obsolete]
         public void ExportExcel(object file)
         {
             FileExcel.Instance.Export(Store.Instance.ListProducts);
@@ -165,10 +170,10 @@ namespace Manager
 
         private void CloseApp()
         {
-            if(!Receipt.Instance.IsSaved)
-            {
-                Receipt.Instance.ConfirmSave();
-            }
+            //if(!Receipt.Instance.IsSaved)
+            //{
+            //    Receipt.Instance.ConfirmSave();
+            //}
             GC.Collect();
             System.Windows.Application.Current.Shutdown();
         }

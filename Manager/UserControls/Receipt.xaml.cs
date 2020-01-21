@@ -190,7 +190,7 @@ namespace Manager.UserControls
             DataContext = this;
         }
 
-
+        [Obsolete]
         public async void Initialize()
         {
             var filter = Builders<Bill>.Filter.Where(x => x.IsDept);
@@ -213,17 +213,18 @@ namespace Manager.UserControls
             {
                 NewReceipt(null);
             }
-            Product item = GetProduct(product as Product);
+            //Product item = GetProduct(product as Product);
 
-            if (item == null)
-            {
-                SelectedBill.ListProducts.AddNew(product/*(product as Product).Clone()*/);
-            }
-            else
-            {
-                item.Count += 1;
-            }
-            Receipt.Instance.IsSaved = false;
+            SelectedBill.ListProducts.AddNew((product as Product).Clone());
+            //if (item == null)
+            //{
+            //    SelectedBill.ListProducts.AddNew(product/*(product as Product).Clone()*/);
+            //}
+            //else
+            //{
+            //    item.Count += 1;
+            //}
+            //Receipt.Instance.IsSaved = false;
             SelectedBill.NotifyChanged();
         }
 
@@ -235,50 +236,52 @@ namespace Manager.UserControls
             SelectedBill.NotifyChanged();
         }
 
-        [Obsolete]
-        public Product GetProduct(Product product)
-        {
-            QueryableCollectionView ListProducts = SelectedBill.ListProducts;
-            foreach (Product item in ListProducts)
-            {
-                if (item.Id == product.Id)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
+        //[Obsolete]
+        //public Product GetProduct(Product product)
+        //{
+        //    QueryableCollectionView ListProducts = SelectedBill.ListProducts;
+        //    foreach (Product item in ListProducts)
+        //    {
+        //        if (item.Id == product.Id)
+        //        {
+        //            return item;
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        [Obsolete]
-        public void ConfirmSave()
-        {
-            RadWindow.Confirm(
-                string.Format("Hoá đơn hiện tại chưa được lưu, bạn có muốn lưu không ?"),
-                delegate (object sender, WindowClosedEventArgs e)
-                {
-                    var result = e.DialogResult;
-                    if (result == true)
-                    {
-                        Save(SelectedBill);
-                        IsSaved = true;
-                    }
+        //[Obsolete]
+        //public void ConfirmSave()
+        //{
+        //    RadWindow.Confirm(
+        //        string.Format("Hoá đơn hiện tại chưa được lưu, bạn có muốn lưu không ?"),
+        //        delegate (object sender, WindowClosedEventArgs e)
+        //        {
+        //            var result = e.DialogResult;
+        //            if (result == true)
+        //            {
+        //                Save(SelectedBill);
+        //                IsSaved = true;
+        //            }
 
-                });
-        }
+        //        });
+        //}
 
         [Obsolete]
         public void NewReceipt(object receipt)
         {
-            if (!Instance.IsSaved)
-            {
-                ConfirmSave();
-            }
-            else
-            {
-                ListBills.AddNew(new Bill());
-                SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
-            }
+            //if (!Instance.IsSaved)
+            //{
+            //    ConfirmSave();
+            //}
+            //else
+            //{
+            ListBills.AddNew(new Bill());
+            SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
+            //}
         }
+
+        [Obsolete]
         public void DeleteReceipt(object receipt)
         {
             RadWindow.Confirm(
@@ -324,19 +327,18 @@ namespace Manager.UserControls
             //    Instance.IsSaved = true;
             //}
 
-            if (!Instance.IsSaved)
+            //if (!Instance.IsSaved)
+            //{
+            //    ConfirmSave();
+            //}
+            //else
+            //{
+            if (e.AddedItems.Count == 0)
             {
-                ConfirmSave();
+                return;
             }
-            else
-            {
-                if (e.AddedItems.Count == 0)
-                {
-                    return;
-                }
-                SelectedBill = e.AddedItems[0] as Bill;
-            }
+            SelectedBill = e.AddedItems[0] as Bill;
+            //}
         }
-
     }
 }
