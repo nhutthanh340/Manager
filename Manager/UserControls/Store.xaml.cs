@@ -30,6 +30,7 @@ namespace Manager.UserControls
             }
         }
         public DelegateCommand RemoveProductCommand { get; private set; }
+        public DelegateCommand DeleteAllCommand { get; private set; }
         private bool isHidenPrice = false;
         private bool isHidenDate = false;
         public bool IsHidenPrice
@@ -101,6 +102,7 @@ namespace Manager.UserControls
         private void InititalizeCommand()
         {
             this.RemoveProductCommand = new DelegateCommand(Receipt.Instance.AddProduct);
+            this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
         [Obsolete]
@@ -195,7 +197,7 @@ namespace Manager.UserControls
 
                     if (ListUnique.ContainsItem(item))
                     {
-                        await Database<Product>.Instance.Delete(item);
+                        await Database<Product>.Instance.Delete(null, item);
                     }
                     else
                     {
@@ -207,6 +209,11 @@ namespace Manager.UserControls
                 Instance.IsBusy = false;
             });
             thread.Start();
+        }
+
+        public void DeleteAll(object obj)
+        {
+
         }
     }
 

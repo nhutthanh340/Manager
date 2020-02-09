@@ -81,11 +81,13 @@ namespace Manager.UserControls
         public DelegateCommand RemoveProductCommand { get; private set; }
         public DelegateCommand PayCommand { get; private set; }
 
+
         [Obsolete]
         private void InitializeCommand()
         {
             this.RemoveProductCommand = new DelegateCommand(RemoveProduct);
             this.PayCommand = new DelegateCommand(Pay);
+            
         }
 
         [Obsolete]
@@ -166,7 +168,7 @@ namespace Manager.UserControls
             if (status)
             {
                 message = method + " hoá đơn thành công";
-                Initialize();
+                //Initialize();
                 Paid.Instance.Initialize();
             }
             else
@@ -293,7 +295,7 @@ namespace Manager.UserControls
                     {
                         if (SelectedBill.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
-                            bool status = await Database<Bill>.Instance.Delete(SelectedBill);
+                            bool status = await Database<Bill>.Instance.Delete(ListBills, SelectedBill);
                             string message = "Xoá hoá đơn ";
                             if (status)
                             {
@@ -309,7 +311,7 @@ namespace Manager.UserControls
                                 Header = "Thông báo"
                             });
                         }
-                        Initialize();
+                        //Initialize();
                     }
 
                 });

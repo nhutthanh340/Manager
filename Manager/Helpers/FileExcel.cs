@@ -101,7 +101,7 @@ namespace Manager.Helpers
 
                         if (product.Method.ToUpper().Contains("XOÁ"))
                         {
-                            await Database<Product>.Instance.Delete(product);
+                            await Database<Product>.Instance.Delete(null,product);
                         }
                         else if (product.Method.ToUpper().Contains("CẬP NHẬT"))
                         {

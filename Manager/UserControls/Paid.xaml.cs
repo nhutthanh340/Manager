@@ -44,10 +44,11 @@ namespace Manager.UserControls
         {
             get; private set;
         }
-
+        public DelegateCommand DeleteAllCommand { get; private set; }
         private void InititalizeCommand()
         {
             this.RemoveBillCommand = new DelegateCommand(DeleteReceipt);
+            this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
 
@@ -62,7 +63,7 @@ namespace Manager.UserControls
                     {
                         if (Instance.SelectedBill.Id != null)
                         {
-                            await Database<Bill>.Instance.Delete(Instance.SelectedBill);
+                            await Database<Bill>.Instance.Delete(Instance.ListBills, Instance.SelectedBill);
                         }
                         Instance.Initialize();
                     }
@@ -118,6 +119,11 @@ namespace Manager.UserControls
         private void RemoveBill(object sender, System.Windows.RoutedEventArgs e)
         {
             this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
+        }
+
+        public void DeleteAll(object obj)
+        {
+
         }
     }
     public class NoteConverter : IValueConverter

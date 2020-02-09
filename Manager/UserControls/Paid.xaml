@@ -21,8 +21,29 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <telerik:RadWatermarkTextBox Margin="0,0,0,5" x:Name="SearchWatermarkTextBoxBill" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
+        <Grid Margin="0,0,0,5" >
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <telerik:RadWatermarkTextBox Grid.Column="0"
+                Margin="0,0,10,0" 
+                x:Name="SearchWatermarkTextBoxBill" 
+                WatermarkContent="Tìm kiếm"/>
+
+            <telerik:RadButton Grid.Column="1"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Content="Xoá danh sách hoá đơn" 
+                    telerik:RadDockPanel.Dock="Right"
+                    telerik:ScreenTip.Title="Xoá danh sách hoá đơn"
+                    telerik:ScreenTip.Description="Ấn vào đây để xoá danh sách các hoá đơn đang hiển thị bên dưới"
+                    Command="{Binding Instance.DeleteAllCommand}"
+                    CommandParameter="{Binding Instance.SelectedBill}"
+                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                    Width="Auto"/>
+            
+        </Grid>
         <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy}">
             <telerik:RadGridView x:Name="gridViewBill"
                                                      ItemsSource="{Binding Instance.ListBills, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"

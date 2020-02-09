@@ -47,12 +47,16 @@ namespace Manager.Data
             }
         }
 
-        public async Task<bool> Delete(object obj)
+        public async Task<bool> Delete(QueryableCollectionView List, object obj)
         {
             try
             {
                 var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
                 await instance.collection.DeleteOneAsync(filter);
+                if (List != null)
+                {
+                    List.Remove(obj);
+                }
                 return true;
             }
             catch
@@ -80,7 +84,7 @@ namespace Manager.Data
         public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int skip = 0, int? limit = null)
         {
             List<T> results = null;
-            
+
             try
             {
                 if (filter == null)

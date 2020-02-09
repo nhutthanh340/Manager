@@ -374,7 +374,7 @@ namespace Manager.Data
                     this.OnPropertyChanged(() => this.Total);
                     Bill.Instance.NotifyChanged();
                 }
-                
+
             }
         }
 
@@ -484,8 +484,19 @@ namespace Manager.Data
             {
                 return false;
             }
-            return ContentService.ConvertToUnsigned( this.Name.ToLower()) == ContentService.ConvertToUnsigned(product.Name.ToLower()) &&
+            return ContentService.ConvertToUnsigned(this.Name.ToLower()) == ContentService.ConvertToUnsigned(product.Name.ToLower()) &&
                 ContentService.ConvertToUnsigned(this.UnitDisplay.ToLower()) == ContentService.ConvertToUnsigned(product.UnitDisplay.ToLower());
+        }
+
+        private bool isDeleted;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                isDeleted = value;
+                this.OnPropertyChanged(() => this.IsDeleted);
+            }
         }
     }
 }

@@ -240,5 +240,16 @@ namespace Manager.Data
                 }
             }
         }
+
+        private bool isDeleted;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                isDeleted = value;
+                this.OnPropertyChanged(() => this.IsDeleted);
+            }
+        }
     }
 }

@@ -8,12 +8,32 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="0,10,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <telerik:RadWatermarkTextBox Margin="10,10,10,0" Text="{Binding TextSearch, UpdateSourceTrigger=PropertyChanged}" WatermarkContent="Tìm kiếm"></telerik:RadWatermarkTextBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <telerik:RadWatermarkTextBox 
+                Margin="10,0,10,0" 
+                Text="{Binding TextSearch, UpdateSourceTrigger=PropertyChanged}" 
+                WatermarkContent="Tìm kiếm"/>
+            <telerik:RadButton Grid.Column="1"
+                               Margin="0,0,10,0" 
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Content="Xoá danh sách mặt hàng" 
+                    telerik:RadDockPanel.Dock="Right"
+                    telerik:ScreenTip.Title="Xoá danh sách mặt hàng"
+                    telerik:ScreenTip.Description="Ấn vào đây để xoá danh sách các mặt hàng đang hiển thị bên dưới"
+                    Command="{Binding Instance.DeleteAllCommand}"
+                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                    Width="Auto"/>
+        </Grid>
         <telerik:RadBusyIndicator Grid.Row="1" IsBusy="{Binding Instance.IsBusy}" BusyContent="Đang tải vui lòng chờ ...">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
