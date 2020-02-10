@@ -121,9 +121,14 @@ namespace Manager.UserControls
             this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
         }
 
-        public void DeleteAll(object obj)
+        public async void DeleteAll(object obj)
         {
 
+            foreach (var item in obj as QueryableCollectionView)
+            {
+                await Database<Bill>.Instance.Delete(null, item);
+            }
+            Initialize();
         }
     }
     public class NoteConverter : IValueConverter

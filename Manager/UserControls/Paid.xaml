@@ -39,7 +39,7 @@
                     telerik:ScreenTip.Title="Xoá danh sách hoá đơn"
                     telerik:ScreenTip.Description="Ấn vào đây để xoá danh sách các hoá đơn đang hiển thị bên dưới"
                     Command="{Binding Instance.DeleteAllCommand}"
-                    CommandParameter="{Binding Instance.SelectedBill}"
+                    CommandParameter="{Binding Instance.ListBills}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
                     Width="Auto"/>
             

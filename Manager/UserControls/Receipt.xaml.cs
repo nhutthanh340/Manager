@@ -87,7 +87,7 @@ namespace Manager.UserControls
         {
             this.RemoveProductCommand = new DelegateCommand(RemoveProduct);
             this.PayCommand = new DelegateCommand(Pay);
-            
+
         }
 
         [Obsolete]
@@ -153,15 +153,17 @@ namespace Manager.UserControls
         {
             bool status = false;
             string message = "", method = "";
-            var Id = (bill as Bill).Id;
+            var billSelected = bill as Bill;
+            var Id = billSelected.Id;
+            billSelected.SaleDate = DateTime.Now;
             if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId))
             {
-                status = await Database<Bill>.Instance.Add(bill as Bill);
+                status = await Database<Bill>.Instance.Add(billSelected);
                 method = "Thêm";
             }
             else
             {
-                status = await Database<Bill>.Instance.Update(bill as Bill);
+                status = await Database<Bill>.Instance.Update(billSelected);
                 method = "Cập nhật";
             }
 
@@ -169,6 +171,11 @@ namespace Manager.UserControls
             {
                 message = method + " hoá đơn thành công";
                 //Initialize();
+                
+                if (billSelected.Remain <= 0)
+                {
+                    Initialize();
+                }
                 Paid.Instance.Initialize();
             }
             else

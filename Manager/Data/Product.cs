@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 using Telerik.Windows.Controls;
@@ -199,12 +200,13 @@ namespace Manager.Data
                     this.total = (ulong)(Count * price.Display);
                 }
 
-
                 return this.total;
             }
             set
             {
                 OnPropertyChanged(() => this.Total);
+
+
             }
         }
 
@@ -372,7 +374,14 @@ namespace Manager.Data
                     this.count = value;
                     this.OnPropertyChanged(() => this.Count);
                     this.OnPropertyChanged(() => this.Total);
-                    Bill.Instance.NotifyChanged();
+                    if (Receipt.Instance != null)
+                    {
+                        if (Receipt.Instance.SelectedBill != null)
+                        {
+                            Receipt.Instance.SelectedBill.NotifyChanged();
+                        }
+                    }
+
                 }
 
             }

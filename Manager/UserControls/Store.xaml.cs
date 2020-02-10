@@ -211,9 +211,15 @@ namespace Manager.UserControls
             thread.Start();
         }
 
-        public void DeleteAll(object obj)
+        [Obsolete]
+        public async void DeleteAll(object obj)
         {
 
+            foreach(var item in obj as QueryableCollectionView)
+            {
+                await Database<Product>.Instance.Delete(null, item);
+            }
+            Initialize();
         }
     }
 
