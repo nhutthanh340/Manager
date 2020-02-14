@@ -28,6 +28,7 @@
             </Grid.RowDefinitions>
 
             <telerik:RadGridView Grid.Row="0" 
+                                 Name="radGridView"
                                      ItemsSource="{Binding Instance.SelectedBill.ListProducts,IsAsync=True, UpdateSourceTrigger=PropertyChanged}"                    
                                      SelectedItem="{Binding Instance.SelectedProduct,UpdateSourceTrigger=PropertyChanged}"
                                      IsSynchronizedWithCurrentItem="True"                
@@ -38,8 +39,38 @@
                                      IsReadOnly="False"
                                      ColumnWidth="*" Width="auto"
                                      GridLinesVisibility="Horizontal" 
-                                     GroupRenderMode="Flat">
+                                     GroupRenderMode="Flat"
+                                    AllowDrop="True"
+                                 >
 
+                <telerik:RadGridView.Resources>
+                    <DataTemplate x:Key="DraggedItemTemplate">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Kéo:" />
+                                <TextBlock Text="{Binding CurrentDraggedItem.Name}" 
+                               FontWeight="Bold" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding CurrentDropPosition}" 
+                               FontWeight="Bold" 
+                               MinWidth="45" />
+                                <TextBlock Text="{Binding CurrentDraggedOverItem.Name}" />
+
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </telerik:RadGridView.Resources>
+
+                <telerik:RadGridView.RowStyle>
+                    <Style TargetType="telerik:GridViewRow">
+                        <Setter Property="telerik:DragDropManager.AllowDrag" 
+                    Value="True" />
+                        <Setter Property="telerik:DragDropManager.TouchDragTrigger" 
+                    Value="TapAndHold"/>
+                    </Style>
+                </telerik:RadGridView.RowStyle>
+                
                 <telerik:RadGridView.Columns>
 
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Header="Tên hàng" />

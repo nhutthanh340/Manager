@@ -248,6 +248,7 @@
     <Compile Include="Helpers\NotifyPropertyChanged.cs" />
     <Compile Include="Helpers\NumberToText.cs" />
     <Compile Include="Helpers\Printer.cs" />
+    <Compile Include="Helpers\RowReorderBehavior.cs" />
     <Compile Include="StartUp.xaml.cs">
       <DependentUpon>StartUp.xaml</DependentUpon>
     </Compile>

@@ -1,13 +1,11 @@
 ﻿using Manager.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 using Manager.Helpers;
-using Google.Cloud.Firestore;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -194,6 +192,7 @@ namespace Manager.UserControls
         public Receipt()
         {
             InitializeComponent();
+            RowReorderBehavior.SetIsEnabled(this.radGridView, true);
             this.InitializeCommand();
             Initialize();
             DataContext = this;

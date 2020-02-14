@@ -341,3 +341,4 @@ C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.csproj.GenerateResour
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.exe
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.pdb
+C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
