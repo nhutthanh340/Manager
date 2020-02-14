@@ -31,7 +31,7 @@ namespace Manager.Data
         private readonly string hostName = "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
-        public FirestoreDb db = null;
+        //public FirestoreDb db = null;
 
         [Obsolete]
         public async Task<bool> Add(T obj)

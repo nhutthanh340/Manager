@@ -1,0 +1,23 @@
+﻿<StackPanel
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    Margin="20,0,20,0" Width="21cm" Background="White">
+
+    <StackPanel HorizontalAlignment="Left" Margin="50,0,100,0" Grid.Column="0">
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Total"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="CustomePay"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Remain"></TextBlock>
+    </StackPanel>
+
+
+    <Grid Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
+">Khách hàng</TextBlock>
+        <TextBlock Grid.Column="1" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
+">Người bán</TextBlock>
+    </Grid>
+</StackPanel>

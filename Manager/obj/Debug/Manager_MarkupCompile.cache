@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\Visual Studio 2019\Manager\Manager\obj\Debug\
+C:\Users\Thanh\Desktop\Manager\Manager\obj\Debug\
 Manager
 none
 false
 DEBUG;TRACE
-G:\Visual Studio 2019\Manager\Manager\App.xaml
-14901091506
-7-621301216
+C:\Users\Thanh\Desktop\Manager\Manager\App.xaml
+165687051
+7-1638807749
 26-866357377
-74172724373
-MainWindow.xaml;StartUp.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\History.xaml;UserControls\Home.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
+74-1973076153
+MainWindow.xaml;StartUp.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\History.xaml;UserControls\Home.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\PrintPreview_1.xaml;UserControls\PrintPreview_2.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
 
 False
 
