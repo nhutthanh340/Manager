@@ -121,14 +121,22 @@ namespace Manager.UserControls
             this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
         }
 
-        public async void DeleteAll(object obj)
+        public void DeleteAll(object obj)
         {
-
-            foreach (var item in obj as QueryableCollectionView)
-            {
-                await Database<Bill>.Instance.Delete(null, item);
-            }
-            Initialize();
+            RadWindow.Confirm(
+                string.Format("Bạn có chắc muốn xoá danh sách hoá đơn này không?"),
+                async delegate (object sender, WindowClosedEventArgs e)
+                {
+                    var result = e.DialogResult;
+                    if (result == true)
+                    {
+                        foreach (var item in obj as QueryableCollectionView)
+                        {
+                            await Database<Bill>.Instance.Delete(null, item);
+                        }
+                        Initialize();
+                    }
+                });
         }
     }
     public class NoteConverter : IValueConverter
