@@ -81,32 +81,46 @@ namespace Manager.Data
             }
         }
 
-        public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int skip = 0, int? limit = null)
+        public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int? skip = null, int? limit = null, SortDefinition<T> order = null)
         {
-            List<T> results = null;
+            IFindFluent<T, T> results = null;
 
             try
             {
                 if (filter == null)
                 {
-                    results = await instance.collection.Find(x => true).Skip(skip).Limit(limit).ToListAsync();
+                    results = instance.collection.Find(x => true);
                 }
                 else
                 {
-                    results = await instance.collection.Find(filter).Skip(skip).Limit(limit).ToListAsync();
+                    results = instance.collection.Find(filter);
                 }
+
+                if (skip != null)
+                {
+                    results.Skip(skip);
+                }
+
+                if (limit != null)
+                {
+                    results.Limit(limit);
+                }
+
+                if (order != null)
+                {
+                    results.Sort(order);
+                }
+
                 if (results == null)
                 {
-                    results = new List<T>();
+                    return new QueryableCollectionView(new List<T>());
                 }
+                return new QueryableCollectionView(await results.ToListAsync());
             }
             catch
             {
-                results = new List<T>();
-            }
-
-            return new QueryableCollectionView(results);
-
+                return new QueryableCollectionView(new List<T>());
+            }          
         }
 
     }

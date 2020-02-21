@@ -228,7 +228,7 @@ namespace Manager.Data
         {
             get
             {
-                isDept = Remain > 0;
+                // isDept = Remain > 0;
                 return isDept;
             }
             set

@@ -28,6 +28,24 @@
 
             </ResourceDictionary.MergedDictionaries>
 
+
+            <!--<Style x:Name="StyleCheckedIsDept" TargetType="telerik:GridViewCell">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsDept}" Value="True">
+                        <Setter Property="Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+            <Style x:Name="StyleCheckedNote" TargetType="telerik:GridViewCell">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Note}" Value="False">
+                        <Setter Property="Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>-->
             
             <Style x:Key="FlatProgressBar" TargetType="{x:Type ProgressBar}">
                 <Setter Property="Template">

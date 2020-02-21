@@ -140,27 +140,53 @@
                         FontSize="13"
                         telerik:ScreenTip.Title="Trạng thái"
                         telerik:ScreenTip.Description="Ấn vào đây để đánh dấu hoá đơn đã giao hàng chưa ?"
-                        Width="40" 
-                        Height="40"
+                        Width="30" 
+                        Height="30"
                         IsChecked="{Binding Instance.SelectedBill.Note}"
                         Style="{StaticResource MaterialDesignActionToggleButton}"
                         Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
 
                         <ToggleButton.Content>
                             <materialDesign:PackIcon 
-                                Width="25" 
-                                Height="25"
+                                Width="20" 
+                                Height="20"
                                 Kind="Cancel"/>
                         </ToggleButton.Content>
 
                         <materialDesign:ToggleButtonAssist.OnContent>
                             <materialDesign:PackIcon 
-                                Width="25" 
-                                Height="25"
+                                Width="20" 
+                                Height="20"
                                 Kind="Tick"/>
                         </materialDesign:ToggleButtonAssist.OnContent>
                     </telerik:RadToggleButton>
+                    <TextBlock>Thanh toán</TextBlock>
+                    <telerik:RadToggleButton  
+                        FontSize="13"
+                        telerik:ScreenTip.Title="Thanh toán"
+                        telerik:ScreenTip.Description="Ấn vào đây để đánh dấu hoá đơn đã thanh toán chưa ?"
+                        Width="30" 
+                        Height="30"
+                        IsChecked="{Binding Instance.SelectedBill.IsDept}"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
+
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon 
+                                Width="20" 
+                                Height="20"
+                                Kind="Tick"/>
+                        </ToggleButton.Content>
+
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon 
+                                Width="20" 
+                                Height="20"
+                                Kind="Cancel"/>
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                    </telerik:RadToggleButton>
                 </StackPanel>
+                
                 <ComboBox 
                     Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                     ItemsSource="{Binding Instance.ListBills, IsAsync=True}"        

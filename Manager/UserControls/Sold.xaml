@@ -9,6 +9,12 @@
              mc:Ignorable="d" 
              Name="sold" FontSize="16"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <!--<telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />-->
+        <local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -55,40 +61,36 @@
                     VerticalAlignment="Center"/>
 
             </StackPanel>
-            
+
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Right" 
+                Grid.Column="1">
+
+                <TextBlock 
+                        FontSize="20"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Text="{Binding Instance.SelectedBill.Note,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource NoteConverter}}"
+                        >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Instance.SelectedBill.Note}" Value="False">
+                                    <Setter Property="Foreground" Value="Red"></Setter>
+                                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+
+
             <StackPanel 
                 Orientation="Horizontal"
                 HorizontalAlignment="Right" 
                 Grid.Column="2">
-                <StackPanel Margin="0 0 20 0">
-                    <TextBlock 
-                        VerticalAlignment="Center" 
-                        HorizontalAlignment="Center">
-                        Giao hàng
-                    </TextBlock>
-                    <ToggleButton 
-                VerticalAlignment="Center"
-                Click="Change_Status"
-                Style="{StaticResource MaterialDesignActionToggleButton}"
-                Width="40"
-                Height="40"              
-                IsChecked="{Binding Instance.SelectedBill.Note}"
-                Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}">
-
-                        <ToggleButton.Content>
-                            <materialDesign:PackIcon 
-                        Width="25" 
-                        Height="25"
-                        Kind="Cancel" />
-                        </ToggleButton.Content>
-                        <materialDesign:ToggleButtonAssist.OnContent>
-                            <materialDesign:PackIcon 
-                        Width="25" 
-                        Height="25"
-                        Kind="Tick" />
-                        </materialDesign:ToggleButtonAssist.OnContent>
-                    </ToggleButton>
-                </StackPanel>
 
                 <StackPanel >
                     <TextBlock VerticalAlignment="Center"

@@ -342,3 +342,5 @@ C:\Users\Thanh\Desktop\Manager\Manager\obj\Debug\Manager.exe
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Debug\Manager.pdb
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Debug\UserControls\PrintPreview_1.baml
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Debug\UserControls\PrintPreview_2.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\PrintPreview_1.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\PrintPreview_2.baml

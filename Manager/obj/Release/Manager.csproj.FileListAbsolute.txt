@@ -342,3 +342,5 @@ C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.exe
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.pdb
 C:\Users\Thanh\Desktop\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview_1.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview_2.baml

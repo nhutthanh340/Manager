@@ -40,18 +40,19 @@ namespace Manager.UserControls
             }
         }
 
-        public DelegateCommand RemoveBillCommand
-        {
-            get; private set;
-        }
+        public DelegateCommand RemoveBillCommand { get; private set; }
+
         public DelegateCommand DeleteAllCommand { get; private set; }
+
+
+        [Obsolete]
         private void InititalizeCommand()
         {
             this.RemoveBillCommand = new DelegateCommand(DeleteReceipt);
             this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
-
+        [Obsolete]
         public void DeleteReceipt(object receipt)
         {
             RadWindow.Confirm(
@@ -71,6 +72,7 @@ namespace Manager.UserControls
                 });
         }
 
+        [Obsolete]
         public Paid()
         {
             InitializeComponent();
@@ -81,12 +83,14 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [Obsolete]
         public void Initialize()
         {
             Thread thread = new Thread(async () =>
             {
-                var filter = Builders<Bill>.Filter.Where(x=>!x.IsDept);
-                ListBills = await Database<Bill>.Instance.ReadAll(filter);
+                var filter = Builders<Bill>.Filter.Where(x => !x.IsDept);
+                var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+                ListBills = await Database<Bill>.Instance.ReadAll(filter,order:order);
                 ListBills.CommitNew();
             });
             thread.Start();
@@ -106,6 +110,7 @@ namespace Manager.UserControls
             }
         }
 
+        [Obsolete]
         public Bill SelectedBill
         {
             get => Sold.Instance.SelectedBill;
@@ -116,11 +121,13 @@ namespace Manager.UserControls
             }
         }
 
+        [Obsolete]
         private void RemoveBill(object sender, System.Windows.RoutedEventArgs e)
         {
             this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
         }
 
+        [Obsolete]
         public void DeleteAll(object obj)
         {
             RadWindow.Confirm(
@@ -137,6 +144,12 @@ namespace Manager.UserControls
                         Initialize();
                     }
                 });
+        }
+
+        [Obsolete]
+        private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Sold.Instance.Change_Status(sender, e);
         }
     }
     public class NoteConverter : IValueConverter

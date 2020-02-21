@@ -170,7 +170,7 @@ namespace Manager.UserControls
                 message = method + " hoá đơn thành công";
                 //Initialize();
                 
-                if (billSelected.Remain <= 0)
+                if (!billSelected.IsDept)
                 {
                     Initialize();
                 }

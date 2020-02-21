@@ -12,7 +12,16 @@
     <UserControl.Resources>
         <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
         <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
-        <local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>
+        <!--<local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>-->
+
+        <!--<Style x:Name="RowStyleNoteChecked" TargetType="telerik:GridViewRow">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Note}" Value="False">
+                    <Setter Property="Background" Value="DarkSeaGreen"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
     </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -42,35 +51,89 @@
                     CommandParameter="{Binding Instance.ListBills}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
                     Width="Auto"/>
-            
+
         </Grid>
         <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy}">
             <telerik:RadGridView x:Name="gridViewBill"
-                                                     ItemsSource="{Binding Instance.ListBills, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
-                                                     SelectedItem="{Binding Instance.SelectedBill, UpdateSourceTrigger=PropertyChanged}"
-                                                     IsSynchronizedWithCurrentItem="True"                
-                                                     AutoGenerateColumns="False"
-                                                     helpers:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBoxBill}"                                                   
-                                                     RowIndicatorVisibility="Collapsed"
-                                                     CanUserFreezeColumns="False"
-                                                     ShowGroupPanel="False"
-                                                     SelectionMode="Single"
-                                                     IsReadOnly="True"
-                                                     AlternateRowBackground="Azure"
-                                                     GridLinesVisibility="Horizontal"
-                                                     AlternationCount="2" 
-                                                     ColumnWidth="*"
-                                                             >
+               ItemsSource="{Binding Instance.ListBills, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+               SelectedItem="{Binding Instance.SelectedBill, UpdateSourceTrigger=PropertyChanged}"
+               IsSynchronizedWithCurrentItem="True"                
+               AutoGenerateColumns="False"
+               helpers:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBoxBill}"                                                   
+               RowIndicatorVisibility="Collapsed"
+               CanUserFreezeColumns="False"
+               ShowGroupPanel="False"     
+               AlternateRowBackground="Azure"
+               GridLinesVisibility="Horizontal"
+               AlternationCount="2" 
+               ColumnWidth="*"
+               SelectionMode="Single"
+                              
+                                 >
+
 
                 <telerik:RadGridView.Columns>
+
+
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding Id}"/>
-                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding CustomeName}"  Header="Tên khách hàng"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="Số điện thoại"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
+
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding CustomeName}"  Header="Tên">
+
+                    </telerik:GridViewDataColumn>
+
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
+                    <!--<telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>-->
+                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
+
+                    <telerik:GridViewDataColumn Width="auto" Header="Giao hàng">
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsChecked="{Binding Note, UpdateSourceTrigger=PropertyChanged}"
+                                    Checked="CheckBox_Checked"></CheckBox>
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Note}" Value="False">
+                                        <Setter Property="Background" Value="DarkSeaGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+
+
+                    <telerik:GridViewDataColumn Width="auto" Header="Thanh toán">
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsChecked="{Binding IsDept, UpdateSourceTrigger=PropertyChanged}"
+                                    Checked="CheckBox_Checked"
+                                          ></CheckBox>
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+
+                        <telerik:GridViewColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDept}" Value="True">
+                                        <Setter Property="Background" Value="DarkSeaGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </telerik:GridViewColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+
 
                     <telerik:GridViewDataColumn Width="auto">
                         <telerik:GridViewColumn.CellTemplate>
@@ -95,7 +158,7 @@
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewDataColumn>
-                    
+
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </telerik:RadBusyIndicator>

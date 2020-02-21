@@ -50,7 +50,8 @@ namespace Manager.UserControls
                 {
 
                     await Database<Bill>.Instance.Update(item as Bill);
-
+                    Paid.Instance.Initialize();
+                    Receipt.Instance.Initialize();
                 }
                 Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
                 Paid.Instance.IsBusy = false;
@@ -82,15 +83,12 @@ namespace Manager.UserControls
         }
 
         [Obsolete]
-        private void Change_Status(object sender, RoutedEventArgs e)
+        public void Change_Status(object sender, RoutedEventArgs e)
         {
-            if (Instance.ListChanges.Contains(Instance.SelectedBill))
+            var SelectedBill = (e.Source as CheckBox).DataContext as Bill;
+            if (!Instance.ListChanges.Contains(SelectedBill))
             {
-                Instance.ListChanges.Remove(Instance.SelectedBill);
-            }
-            else
-            {
-                Instance.ListChanges.AddNew(Instance.SelectedBill);
+                Instance.ListChanges.AddNew(SelectedBill);
             }
         }
 
