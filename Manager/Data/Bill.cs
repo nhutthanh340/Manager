@@ -221,7 +221,7 @@ namespace Manager.Data
             }
         }
 
-        private bool isDept;
+        private bool isDept = true;
 
         [Obsolete]
         public bool IsDept
