@@ -14,14 +14,16 @@
         <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
         <!--<local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>-->
 
-        <!--<Style x:Name="RowStyleNoteChecked" TargetType="telerik:GridViewRow">
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Style x:Name="RowStyleNoteChecked" TargetType="telerik:GridViewRow">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Note}" Value="False">
-                    <Setter Property="Background" Value="DarkSeaGreen"/>
+                    <Setter Property="Background" Value="PaleVioletRed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsDept}" Value="True">
+                    <Setter Property="Background" Value="PaleVioletRed"/>
                 </DataTrigger>
             </Style.Triggers>
-        </Style>-->
+        </Style>
     </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -62,14 +64,10 @@
                helpers:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBoxBill}"                                                   
                RowIndicatorVisibility="Collapsed"
                CanUserFreezeColumns="False"
-               ShowGroupPanel="False"     
-               AlternateRowBackground="Azure"
-               GridLinesVisibility="Horizontal"
-               AlternationCount="2" 
+               ShowGroupPanel="False"                   
+               GridLinesVisibility="Horizontal"              
                ColumnWidth="*"
-               SelectionMode="Single"
-                              
-                                 >
+               SelectionMode="Single">
 
 
                 <telerik:RadGridView.Columns>
@@ -88,47 +86,46 @@
                     <!--<telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>-->
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
 
-                    <telerik:GridViewDataColumn Width="auto" Header="Giao hàng">
+                    <telerik:GridViewDataColumn Width="auto" Header="Giao hàng" >
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding Note, UpdateSourceTrigger=PropertyChanged}"
-                                    Checked="CheckBox_Checked"></CheckBox>
+                                    IsChecked="{Binding Note}"
+                                    Checked="CheckBox_Checked">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
 
                         <telerik:GridViewDataColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
                                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Note}" Value="False">
-                                        <Setter Property="Background" Value="DarkSeaGreen"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
 
 
 
-                    <telerik:GridViewDataColumn Width="auto" Header="Thanh toán">
+                    <telerik:GridViewDataColumn Width="auto">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding IsDept, UpdateSourceTrigger=PropertyChanged}"
+                                    IsChecked="{Binding IsDept}"
                                     Checked="CheckBox_Checked"
-                                          ></CheckBox>
+                                          >
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
 
                         <telerik:GridViewColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
                                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsDept}" Value="True">
-                                        <Setter Property="Background" Value="DarkSeaGreen"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
+                               
                             </Style>
                         </telerik:GridViewColumn.CellStyle>
                     </telerik:GridViewDataColumn>
