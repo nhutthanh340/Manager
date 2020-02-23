@@ -1,10 +1,6 @@
-﻿using System.Threading.Tasks;
-using Manager;
+﻿
 using System.Windows;
 using System.Threading;
-using System.Diagnostics;
-using Manager.UserControls;
-using System.Windows.Navigation;
 using System;
 
 namespace Manager

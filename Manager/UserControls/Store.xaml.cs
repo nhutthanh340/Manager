@@ -9,7 +9,6 @@ using Telerik.Windows.Data;
 using Manager.Helpers;
 using System.Threading;
 using MongoDB.Driver;
-using System.Linq.Expressions;
 
 namespace Manager.UserControls
 {

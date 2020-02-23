@@ -2,8 +2,6 @@
 using System.Windows.Controls;
 using Manager.Helpers;
 using Manager.Data;
-using Telerik.Windows.Data;
-using System.Collections.Generic;
 using MongoDB.Driver;
 using System;
 
