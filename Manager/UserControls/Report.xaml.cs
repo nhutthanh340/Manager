@@ -15,7 +15,38 @@ namespace Manager.UserControls
     public partial class Report : UserControl, INotifyPropertyChanged
     {
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
+        private int selectedFormat = 0;
 
+        private string[] format = new string[]
+        {
+            "dd/MM/yyyy",
+            "MM/yyyy",
+            "dd/MM"
+        };
+
+        [Obsolete]
+        public int SelectedFormat
+        {
+            get => selectedFormat;
+            set
+            {
+                selectedFormat = value;
+                PlotChart();
+                this.NotifyChanged(PropertyChanged);
+            }
+        }
+
+        [Obsolete]
+        public string[] Format
+        {
+            get => format;
+            set
+            {
+                format = value;
+                PlotChart();
+                this.NotifyChanged(PropertyChanged);
+            }
+        }
         [Obsolete]
         public DateTime StartDate
         {
@@ -54,7 +85,7 @@ namespace Manager.UserControls
                             x.SaleDate >= StartDate
                             && x.SaleDate <= EndDate
                             );
-            ChartResult = await Database<Bill>.Instance.DataChartsAsync(filter);
+            ChartResult = await Database<Bill>.Instance.DataChartsAsync(filter, Format[SelectedFormat]);
         }
 
         private ChartResult chartResult;
