@@ -1,9 +1,9 @@
-﻿using Google.Cloud.Firestore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Telerik.Windows.Data;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace Manager.Data
 {
@@ -120,9 +120,31 @@ namespace Manager.Data
             catch
             {
                 return new QueryableCollectionView(new List<T>());
-            }          
+            }
         }
 
-    }
+        [Obsolete]
+        public async Task<ChartResult> DataChartsAsync(FilterDefinition<T> filter = null, string format = "dd/MM/yyyy")
+        {
+            var query = await ReadAll(filter);
+            var data = query.Cast<Bill>().ToArray();
+            ulong oneMilion = 1000000;
+            var list = data.GroupBy(x => x.SaleDate.ToString(format))
+                .Select(
+                    r => new PlotInfo
+                    {
+                        Category = r.First().SaleDate.ToString(format),
+                        Value = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
+                        Type = r.First().IsDept
+                    }
+                ).OrderBy(x => x.Category);
 
+            var result = new ChartResult();
+            result.Chart = list.ToList();
+            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value));
+            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value));
+            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value));
+            return result;
+        }
+    }
 }

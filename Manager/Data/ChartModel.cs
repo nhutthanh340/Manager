@@ -1,39 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 
 namespace Manager.Data
 {
-    public class ChartModelLine
+    public class PlotInfo
     {
-        public DateTime DateTime { get; set; }
+        public string Category { get; set; }
         public double Value { get; set; }
 
-        public ChartModelLine(DateTime dateTime, double value)
-        {
-            this.DateTime = dateTime;
-            this.Value = value;
-        }
+        public bool Type { get; set; }
     }
 
-    public class ChartModelPie
+    public class ChartResult : ViewModelBase
     {
-        public string Label { get; set; }
-        public double Value { get; set; }
 
-        public ChartModelPie(string label, double value)
-        {
-            this.Label = label;
-            this.Value = value;
-        }
-    }
+        private List<PlotInfo> chart;
+        private ulong total = 0, dept = 0, paid = 0;
 
-    public class ChartModelColumn :ChartModelPie
-    {
-        public ChartModelColumn(string label, double value) : base(label, value)
+        public ulong Total
         {
+            get => total;
+            set
+            {
+                total = value;
+                OnPropertyChanged(() => Total);
+            }
         }
+
+        public ulong Paid
+        {
+            get => paid;
+            set
+            {
+                paid = value;
+                OnPropertyChanged(() => Paid);
+            }
+        }
+        public ulong Dept
+        {
+            get => dept;
+            set
+            {
+                dept = value;
+                OnPropertyChanged(() => Dept);
+            }
+        }
+
+        public List<PlotInfo> Chart
+        {
+            get => chart;
+            set
+            {
+                chart = value;
+                OnPropertyChanged(() => Chart);
+            }
+        }
+
     }
 }

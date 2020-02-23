@@ -1,5 +1,4 @@
-﻿using Google.Cloud.Firestore;
-using Manager.Helpers;
+﻿using Manager.Helpers;
 using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;

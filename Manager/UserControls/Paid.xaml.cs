@@ -1,14 +1,12 @@
 ﻿using Manager.Data;
 using System.Windows.Controls;
 using Telerik.Windows.Data;
-using System.Collections.Generic;
 using System;
 using System.Windows.Data;
 using System.Globalization;
 using System.ComponentModel;
 using Manager.Helpers;
 using System.Threading;
-using Google.Cloud.Firestore;
 using Telerik.Windows.Controls;
 using MongoDB.Driver;
 

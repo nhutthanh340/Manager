@@ -3,75 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"          
-             xmlns:chart="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              x:Class="Manager.UserControls.Report"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Name="row0" Height="auto"></RowDefinition>
-            <RowDefinition Height="2" />
-            <RowDefinition Name="row1" Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Name="col00" Width="auto"></ColumnDefinition>
-                <ColumnDefinition Name="col10" Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+    <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="col00" Width="auto"></ColumnDefinition>
+            <ColumnDefinition Name="col10" Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
 
-            <StackPanel Height="auto"
+        <StackPanel Height="auto"
                             Margin="24,24,24,24">
 
-                <TextBox Margin="0,10,0,10" Width="auto" Name="txtWeek" TextChanged="TxtWeek_TextChanged" materialDesign:HintAssist.Hint="Số tuần cách đây" Style="{StaticResource MaterialDesignFloatingHintTextBox}"    BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
-                <TextBox Margin="0,10,0,10" Width="auto" Name="txtMonth" TextChanged="TxtMonth_TextChanged" materialDesign:HintAssist.Hint="Số tháng cách đây" Style="{StaticResource MaterialDesignFloatingHintTextBox}" BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
-                <TextBox Margin="0,10,0,10" Width="auto" Name="txtYear" TextChanged="TxtYear_TextChanged" materialDesign:HintAssist.Hint="Số năm cách đây" Style="{StaticResource MaterialDesignFloatingHintTextBox}"     BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
+            <StackPanel Orientation="Horizontal">
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                            Margin="10,0,10,0" 
+                            SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"  
+                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-
-                    <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="10,0,10,0" SelectedDate="{Binding Path=startDate, UpdateSourceTrigger=PropertyChanged}"  BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
-                    <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="10,0,10,0" SelectedDate="{Binding Path=endDate, UpdateSourceTrigger=PropertyChanged}" BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                    <Label Content="{Binding Total}" ContentStringFormat="Doanh thu: {0:0,0} đ"></Label>
-                    <Label Content="{Binding TotalImport}" ContentStringFormat="Tổng tiền vốn: {0:0,0} đ"></Label>
-                </StackPanel>
-
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                            Margin="10,0,10,0" 
+                            SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" 
+                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" Text="{Binding ChartResult.Total, StringFormat='Doanh thu: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{Binding ChartResult.Dept, StringFormat='Tiền chưa thanh toán: 0,0 đ'}"></TextBlock>
+            </StackPanel>
 
-            <Grid Grid.Column="1" Height="auto" >
-                <TextBox Text="{Binding Top,UpdateSourceTrigger=PropertyChanged}" Width="auto" Height="auto" Margin="20,0,0,0" MinWidth="50" VerticalAlignment="Top" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Top" Style="{StaticResource MaterialDesignFloatingHintTextBox}"    BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
-                <chart:CartesianChart Series="{Binding SeriesCollectionColumn}" LegendLocation="Left">
-                    <chart:CartesianChart.AxisX >
-                        <chart:Axis BarUnit="1" Title="Sản phẩm" Labels="{Binding LabelsColumn}"></chart:Axis>
-                    </chart:CartesianChart.AxisX>
-                    <chart:CartesianChart.AxisY>
-                        <chart:Axis Title="Doanh thu" LabelFormatter="{Binding FormatterColumn}"></chart:Axis>
-                    </chart:CartesianChart.AxisY>
-                </chart:CartesianChart>
-            </Grid>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{Binding ChartResult.Paid, StringFormat='Tiền đã thanh toán: 0,0 đ'}"></TextBlock>
+            </StackPanel>
 
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="2"></GridSplitter>
+        </StackPanel>
+
+
+        <Grid Grid.Column="1" Height="auto" >
+            <telerik:RadCartesianChart Palette="Windows8">
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:CategoricalAxis/>
+                </telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:LinearAxis />
+                </telerik:RadCartesianChart.VerticalAxis>
+                <telerik:RadCartesianChart.Series>
+                    <telerik:SplineSeries ItemsSource="{Binding ChartResult.Chart}" CategoryBinding="Category" ValueBinding="Value" />
+                </telerik:RadCartesianChart.Series>
+            </telerik:RadCartesianChart>
+
         </Grid>
 
-        <Grid Grid.Row="2">
-
-            <chart:CartesianChart Series="{Binding SeriesCollectionLine}" LegendLocation="Left">
-                <chart:CartesianChart.AxisX>
-                    <chart:Axis LabelFormatter="{Binding FormatterLine}"
-                                    MinValue="{Binding InitialDateTime.Ticks}">
-                    </chart:Axis>
-                </chart:CartesianChart.AxisX>
-            </chart:CartesianChart>
-        </Grid>
-
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2"/>
-
-
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="2"></GridSplitter>
     </Grid>
+
 
 </UserControl>
