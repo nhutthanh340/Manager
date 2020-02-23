@@ -124,12 +124,12 @@ namespace Manager.Data
         }
 
         [Obsolete]
-        public async Task<ChartResult> DataChartsAsync(FilterDefinition<T> filter = null, string format = "dd/MM/yyyy")
+        public async Task<ChartResult> DataChartsAsync(FilterDefinition<T> filter = null, string format = "dd/MM")
         {
             var query = await ReadAll(filter);
             var data = query.Cast<Bill>().ToArray();
             ulong oneMilion = 1000000;
-            var list = data.GroupBy(x => x.SaleDate.ToString(format))
+            var list = data.GroupBy(x => new { V = x.SaleDate.ToString(format), x.IsDept })
                 .Select(
                     r => new PlotInfo
                     {
