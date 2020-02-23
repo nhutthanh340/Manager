@@ -140,7 +140,7 @@ namespace Manager.Data
                 ).OrderBy(x => x.Category);
 
             var result = new ChartResult();
-            result.Chart = list.ToList();
+            result.Chart = list.Where(x => !x.Type).ToList();
             result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value));
             result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value));
             result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value));

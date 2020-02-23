@@ -43,7 +43,7 @@
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
-                <TextBlock FontSize="16" Text="{Binding ChartResult.Total, StringFormat='Doanh thu: 0,0 đ'}"></TextBlock>
+                <TextBlock FontSize="16" Text="{Binding ChartResult.Total, StringFormat='Tổng: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
@@ -58,7 +58,8 @@
 
 
         <Grid Grid.Column="1" Height="auto" >
-            <telerik:RadCartesianChart Palette="Windows8">
+
+            <telerik:RadCartesianChart Palette="Fluent" HoverMode="FadeOtherSeries" >
                 <telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:CategoricalAxis/>
                 </telerik:RadCartesianChart.HorizontalAxis>
@@ -66,7 +67,18 @@
                     <telerik:LinearAxis />
                 </telerik:RadCartesianChart.VerticalAxis>
                 <telerik:RadCartesianChart.Series>
-                    <telerik:SplineSeries ItemsSource="{Binding ChartResult.Chart}" CategoryBinding="Category" ValueBinding="Value" />
+
+                    <telerik:BarSeries 
+                        PaletteMode="DataPoint"
+                        ItemsSource="{Binding ChartResult.Chart}" 
+                        ShowLabels="True"
+                        CategoryBinding="Category" 
+                        ValueBinding="Value">
+                        <telerik:BarSeries.LegendSettings>
+                            <telerik:DataPointLegendSettings/>
+                        </telerik:BarSeries.LegendSettings>
+                       
+                    </telerik:BarSeries>
                 </telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart>
 
