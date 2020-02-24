@@ -134,16 +134,26 @@ namespace Manager.Data
                     r => new PlotInfo
                     {
                         Category = r.First().SaleDate.ToString(format),
-                        Value = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
+                        Value1 = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
+                        Value = 1.0 * r.Sum(a => (long)a.CustomePay) / oneMilion,
                         Type = r.First().IsDept
                     }
                 ).OrderBy(x => x.Category);
 
             var result = new ChartResult();
-            result.Chart = list.Where(x => !x.Type).ToList();
-            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value));
-            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value));
-            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value));
+
+            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value1));
+            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value1));
+            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value1));
+
+            result.Chart = list.GroupBy(x => x.Category).Select(
+                r => new PlotInfo{
+                Category = r.First().Category,
+                Value = r.Sum(x=>x.Value)
+            }).ToList();
+
+            result.Cash = Convert.ToUInt64(oneMilion * result.Chart.Sum(x => x.Value));
+
             return result;
         }
     }

@@ -9,6 +9,7 @@ namespace Manager.Data
     {
         public string Category { get; set; }
         public double Value { get; set; }
+        public double Value1 { get; set; }
 
         public bool Type { get; set; }
     }
@@ -17,7 +18,17 @@ namespace Manager.Data
     {
 
         private List<PlotInfo> chart;
-        private ulong total = 0, dept = 0, paid = 0;
+        private ulong total = 0, dept = 0, paid = 0, cash = 0;
+
+        public ulong Cash
+        {
+            get => cash;
+            set
+            {
+                cash = value;
+                OnPropertyChanged(() => Cash);
+            }
+        }
 
         public ulong Total
         {

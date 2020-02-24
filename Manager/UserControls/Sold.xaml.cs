@@ -50,9 +50,11 @@ namespace Manager.UserControls
                 {
 
                     await Database<Bill>.Instance.Update(item as Bill);
-                    Paid.Instance.Initialize();
-                    Receipt.Instance.Initialize();
+                    
                 }
+                Paid.Instance.Initialize();
+                Receipt.Instance.Initialize();
+                Report.Instance.PlotChart();
                 Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
                 Paid.Instance.IsBusy = false;
             }).Start();

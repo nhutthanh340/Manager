@@ -175,6 +175,7 @@ namespace Manager.UserControls
                     Initialize();
                 }
                 Paid.Instance.Initialize();
+                Report.Instance.PlotChart();
             }
             else
             {
@@ -306,6 +307,7 @@ namespace Manager.UserControls
                             if (status)
                             {
                                 message += "thành công";
+                                Report.Instance.PlotChart();
                             }
                             else
                             {
@@ -318,6 +320,7 @@ namespace Manager.UserControls
                             });
                         }
                         //Initialize();
+                        Report.Instance.PlotChart();
                     }
 
                 });

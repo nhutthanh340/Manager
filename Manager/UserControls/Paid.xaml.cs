@@ -65,6 +65,7 @@ namespace Manager.UserControls
                             await Database<Bill>.Instance.Delete(Instance.ListBills, Instance.SelectedBill);
                         }
                         Instance.Initialize();
+                        Report.Instance.PlotChart();
                     }
 
                 });
@@ -140,6 +141,7 @@ namespace Manager.UserControls
                             await Database<Bill>.Instance.Delete(null, item);
                         }
                         Initialize();
+                        Report.Instance.PlotChart();
                     }
                 });
         }

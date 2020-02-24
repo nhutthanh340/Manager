@@ -12,8 +12,19 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Report : UserControl, INotifyPropertyChanged
     {
+        [Obsolete]
+        private static readonly Report instance = new Report();
+
+        [Obsolete]
+        public static Report Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
-        private int selectedFormat = 0;
+        private int selectedFormat = 2;
 
         private string[] format = new string[]
         {
@@ -77,7 +88,7 @@ namespace Manager.UserControls
         }
 
         [System.Obsolete]
-        private async void PlotChart()
+        public async void PlotChart()
         {
             var filter = Builders<Bill>.Filter.Where(x =>
                             x.SaleDate >= StartDate
