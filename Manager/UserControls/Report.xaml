@@ -21,20 +21,20 @@
             <StackPanel Orientation="Horizontal">
                 <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             Margin="10,0,10,0" 
-                            SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"  
+                            SelectedDate="{Binding Instance.StartDate, UpdateSourceTrigger=PropertyChanged}"  
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
 
                 <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             Margin="10,0,10,0" 
-                            SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" 
+                            SelectedDate="{Binding Instance.EndDate, UpdateSourceTrigger=PropertyChanged}" 
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
-                <ComboBox ItemsSource="{Binding Format}" 
+                <ComboBox ItemsSource="{Binding Instance.Format}" 
                           FontSize="16"
                           Margin="10,0,10,0" 
-                          SelectedIndex="{Binding SelectedFormat, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedIndex="{Binding Instance.SelectedFormat, UpdateSourceTrigger=PropertyChanged}"
                           materialDesign:HintAssist.Hint="Định dạng"
                           materialDesign:HintAssist.HintOpacity=".26"
                           BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
