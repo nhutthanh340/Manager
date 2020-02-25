@@ -62,12 +62,14 @@
 
         <Grid Grid.Column="1" Height="auto" >
 
-            <telerik:RadCartesianChart Palette="Fluent" HoverMode="FadeOtherSeries" FontSize="16">
+            <telerik:RadCartesianChart Palette="Natural" HoverMode="FadeOtherSeries" FontSize="16">
+                
                 <telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:CategoricalAxis/>
                 </telerik:RadCartesianChart.HorizontalAxis>
+                
                 <telerik:RadCartesianChart.VerticalAxis>
-                    <telerik:LinearAxis/>
+                    <telerik:LinearAxis Minimum="0"/>
                 </telerik:RadCartesianChart.VerticalAxis>
                 <telerik:RadCartesianChart.Series>
 

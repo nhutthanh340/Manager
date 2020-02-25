@@ -89,7 +89,7 @@ namespace Manager.UserControls
             {
                 var filter = Builders<Bill>.Filter.Where(x => !x.IsDept);
                 var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
-                ListBills = await Database<Bill>.Instance.ReadAll(filter,order:order);
+                ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
                 ListBills.CommitNew();
             });
             thread.Start();

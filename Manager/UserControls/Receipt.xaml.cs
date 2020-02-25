@@ -8,6 +8,8 @@ using Telerik.Windows.Data;
 using Manager.Helpers;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace Manager.UserControls
 {
@@ -169,7 +171,7 @@ namespace Manager.UserControls
             {
                 message = method + " hoá đơn thành công";
                 //Initialize();
-                
+
                 if (!billSelected.IsDept)
                 {
                     Initialize();
@@ -203,8 +205,8 @@ namespace Manager.UserControls
         public async void Initialize()
         {
             var filter = Builders<Bill>.Filter.Where(x => x.IsDept);
-
-            ListBills = await Database<Bill>.Instance.ReadAll(filter);
+            var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+            ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
                 SelectedBill = ListBills.QueryableSourceCollection.First() as Bill;
@@ -350,6 +352,24 @@ namespace Manager.UserControls
             }
             SelectedBill = e.AddedItems[0] as Bill;
             //}
+        }
+
+    }
+
+    public class StringFormatter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] as string == null)
+            {
+                return "";
+            }
+            return $"{values[0]}: {((DateTime)values[1]).ToString("dd/MM/yyyy")}";
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }
