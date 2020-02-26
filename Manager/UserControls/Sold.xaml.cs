@@ -1,12 +1,9 @@
 ﻿using Manager.Data;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
 using Manager.Helpers;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
-using System.Threading;
 
 namespace Manager.UserControls
 {
@@ -46,7 +43,7 @@ namespace Manager.UserControls
 
             foreach (var item in Paid.Instance.ListChanges)
             {
-                (item as Bill).SaleDate = DateTime.Now;
+                //(item as Bill).SaleDate = DateTime.Now;
                 await Database<Bill>.Instance.Update(item as Bill);
                 ListManipulations.Instance.Save(item);
             }
@@ -97,6 +94,6 @@ namespace Manager.UserControls
             }
         }
 
-        
+
     }
 }
