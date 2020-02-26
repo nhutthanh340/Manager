@@ -43,7 +43,7 @@ namespace Manager.UserControls
 
             foreach (var item in Paid.Instance.ListChanges)
             {
-                //(item as Bill).SaleDate = DateTime.Now;
+                (item as Bill).SaleDate = DateTime.Now;
                 await Database<Bill>.Instance.Update(item as Bill);
                 ListManipulations.Instance.Save(item);
             }
@@ -94,6 +94,6 @@ namespace Manager.UserControls
             }
         }
 
-
+        
     }
 }

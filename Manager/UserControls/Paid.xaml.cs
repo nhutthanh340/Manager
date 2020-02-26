@@ -64,25 +64,12 @@ namespace Manager.UserControls
         [Obsolete]
         public void Initialize()
         {
-
-            //var filter = Builders<Bill>.Filter.Where(x =>
-            //!x.IsDept &&
-            //!x.IsDeleted &&
-            //x.SaleDate >= StartDate &&
-            //x.SaleDate < EndDate);
-
-            //var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
-            //ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
-            //ListBills.CommitNew();
-
             Search();
-
-
         }
 
 
 
-        private QueryableCollectionView listBills;
+        private QueryableCollectionView listBills = new QueryableCollectionView(new List<Bill>());
 
         [Obsolete]
         public QueryableCollectionView ListBills
@@ -90,17 +77,22 @@ namespace Manager.UserControls
             get => listBills;
             set
             {
-                if (listBills != value && value != null)
+                if (listBills != value)
                 {
-                    listBills = value;
-                    foreach (var item in listBills)
+                    Thread thread = new Thread(() =>
                     {
-                        if (item as Bill != null)
+                        listBills = value;
+                        foreach (var item in listBills)
                         {
-                            (item as Bill).Changed += Sold.Instance.BillChanged;
+                            if (item as Bill != null)
+                            {
+                                (item as Bill).Changed += Sold.Instance.BillChanged;
+                            }
                         }
-                    }
-                    Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+                        Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+                    });
+                    thread.SetApartmentState(ApartmentState.STA);
+                    thread.Start();
                     this.NotifyChanged(PropertyChanged);
                 }
             }
@@ -126,8 +118,12 @@ namespace Manager.UserControls
             get => Sold.Instance.SelectedBill;
             set
             {
-                Sold.Instance.SelectedBill = value;
-
+                Thread thread = new Thread(() =>
+                {
+                    Sold.Instance.SelectedBill = value;
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
             }
         }
 
@@ -199,13 +195,9 @@ namespace Manager.UserControls
 
 
                 Instance.ListBills = await Database<Bill>.Instance.ReadAll(Builders<Bill>.Filter.And(filters), order: order);
-                if (Instance.ListBills.QueryableSourceCollection.Count() > 0)
+                if (Instance.ListBills.Count > 0)
                 {
                     Instance.SelectedBill = Instance.ListBills.QueryableSourceCollection.First() as Bill;
-                }
-                else
-                {
-                    Instance.ListBills = null;
                 }
                 Instance.IsBusy = false;
             });

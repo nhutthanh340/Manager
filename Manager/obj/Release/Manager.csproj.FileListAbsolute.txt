@@ -255,6 +255,7 @@ G:\Visual Studio 2019\Manager\Manager\bin\Release\fr\Telerik.Windows.Controls.re
 G:\Visual Studio 2019\Manager\Manager\bin\Release\it\Telerik.Windows.Controls.resources.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Release\nl\Telerik.Windows.Controls.resources.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Release\tr\Telerik.Windows.Controls.resources.dll
+G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\GridViewStyle.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\OutlookBarStyle.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\RichTextBoxRibbonUIStyle.baml
@@ -262,12 +263,14 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\TreeViewStyle.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview_1.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview_2.baml
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Receipt.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Report.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\MainWindow.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\StartUp.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\History.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Home.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Paid.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Receipt.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Report.g.cs
@@ -282,8 +285,12 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\App.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\MainWindow.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\StartUp.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\History.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Home.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Paid.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Receipt.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Sold.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Store.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.g.resources
@@ -292,10 +299,3 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.GenerateResourc
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
-G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.g.cs
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.baml
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.g.cs
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.g.cs
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.baml
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.baml

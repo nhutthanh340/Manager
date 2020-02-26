@@ -100,7 +100,9 @@
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding Note, UpdateSourceTrigger=PropertyChanged}">
+                                    IsChecked="{Binding Note, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                    >
 
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
@@ -123,7 +125,7 @@
                             <DataTemplate>
                                 <CheckBox
                                     IsChecked="{Binding IsDept, UpdateSourceTrigger=PropertyChanged}"
-                                    
+                                    Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
                                     >
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
@@ -145,7 +147,9 @@
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding IsDeleted, UpdateSourceTrigger=PropertyChanged}">
+                                    IsChecked="{Binding IsDeleted, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                    >
 
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
