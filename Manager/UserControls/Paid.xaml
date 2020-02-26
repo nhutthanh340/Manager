@@ -46,7 +46,7 @@
 
             <telerik:RadWatermarkTextBox Grid.Column="0"
                 Margin="0,0,10,0"
-                x:Name="SearchWatermarkTextBoxBill" 
+                Text="{Binding TextSearch, UpdateSourceTrigger=PropertyChanged}"
                 WatermarkContent="Tìm kiếm"/>
 
 

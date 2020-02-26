@@ -61,6 +61,7 @@ namespace Manager
             Store.Instance.Initialize();
             Receipt.Instance.Initialize();
             Paid.Instance.Initialize();
+            Report.Instance.Initialize();
             ListManipulations.Instance.Initialize();
         }
         private void Backup(object backup)
@@ -122,6 +123,7 @@ namespace Manager
                     isPrinter = value;
                     this.NotifyChanged(PropertyChanged);
                     Sold.Instance.NotifyChanged(PropertyChanged, "IsPrint");
+                    ListProductsHistory.Instance.NotifyChanged(PropertyChanged, "IsPrint");
                 }
             }
         }

@@ -74,52 +74,38 @@ namespace Manager.UserControls
             }
         }
 
-        private QueryableCollectionView listChanges;
-        public QueryableCollectionView ListChanges
-        {
-            get => listChanges;
-            set
-            {
-                if (listChanges != value)
-                {
-                    listChanges = value;
-                    this.NotifyChanged(PropertyChanged);
-                }
-            }
-        }
+        
 
         [Obsolete]
         public void Restore(object bill)
         {
-            if (Instance.ListChanges != null)
+            if (ListManipulations.Instance.ListChanges != null)
             {
-                if (!Instance.ListChanges.Contains(bill))
+                if (!ListManipulations.Instance.ListChanges.Contains(bill))
                 {
-                    Instance.ListChanges.AddNew(bill);
+                    ListManipulations.Instance.ListChanges.AddNew(bill);
                 }
                 else
                 {
-                    Instance.ListChanges.Remove(bill);
+                    ListManipulations.Instance.ListChanges.Remove(bill);
                 }
             }
         }
 
         [Obsolete]
-        public void Save(object obj)
+        public async void Save(object obj)
         {
             ListManipulations.Instance.IsBusy = true;
-            new Thread(async () =>
+
+            foreach (var item in ListManipulations.Instance.ListChanges)
             {
-                foreach (var item in Instance.ListChanges)
-                {
-                    await Database<Bill>.Instance.Update((item as HistoryBill).Bill);
-                }
-                ListManipulations.Instance.Initialize();
-                Paid.Instance.Initialize();
-                Receipt.Instance.Initialize();
-                Report.Instance.Initialize();
-                ListManipulations.Instance.IsBusy = false;
-            }).Start();
+                await Database<Bill>.Instance.Update((item as HistoryBill).Bill);
+            }
+            ListManipulations.Instance.Initialize();
+            Paid.Instance.Initialize();
+            Receipt.Instance.Initialize();
+            Report.Instance.Initialize();
+            ListManipulations.Instance.IsBusy = false;
         }
     }
 }

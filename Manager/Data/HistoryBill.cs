@@ -16,8 +16,11 @@ namespace Manager.Data
             get => bill;
             set
             {
-                bill = value;
-                OnPropertyChanged(() => this.Bill);
+                if (bill != value)
+                {
+                    bill = value;
+                    OnPropertyChanged(() => this.Bill);
+                }
             }
         }
 
@@ -27,8 +30,11 @@ namespace Manager.Data
             get => updateTime;
             set
             {
-                updateTime = value;
-                OnPropertyChanged(() => this.UpdateTime);
+                if (updateTime != value)
+                {
+                    updateTime = value;
+                    OnPropertyChanged(() => this.UpdateTime);
+                }
             }
         }
 
@@ -39,9 +45,12 @@ namespace Manager.Data
             get => isRestore;
             set
             {
-                isRestore = value;
-                OnPropertyChanged(() => this.IsRestore);
-                OnChanged();
+                if (isRestore != value)
+                {
+                    isRestore = value;
+                    OnPropertyChanged(() => this.IsRestore);
+                    OnChanged();
+                }
             }
         }
         private ObjectId id;
@@ -75,13 +84,6 @@ namespace Manager.Data
         [Obsolete]
         public HistoryBill()
         {
-            Thread t = new Thread(() =>
-            {
-                this.Changed += ListProductsHistory.Instance.Restore;
-            });
-            t.SetApartmentState(ApartmentState.STA);
-
-            t.Start();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Manager.UserControls
         {
             Paid.Instance.IsBusy = true;
 
-            foreach (var item in Instance.ListChanges)
+            foreach (var item in Paid.Instance.ListChanges)
             {
                 (item as Bill).SaleDate = DateTime.Now;
                 await Database<Bill>.Instance.Update(item as Bill);
@@ -88,27 +88,15 @@ namespace Manager.UserControls
         [Obsolete]
         public void BillChanged(object bill)
         {
-            if (Instance.ListChanges != null)
+            if (Paid.Instance.ListChanges != null)
             {
-                if (!Instance.ListChanges.Contains(bill))
+                if (!Paid.Instance.ListChanges.Contains(bill))
                 {
-                    Instance.ListChanges.AddNew(bill);
+                    Paid.Instance.ListChanges.AddNew(bill);
                 }
             }
         }
 
-        private QueryableCollectionView listChanges;
-        public QueryableCollectionView ListChanges
-        {
-            get => listChanges;
-            set
-            {
-                if (listChanges != value)
-                {
-                    listChanges = value;
-                    this.NotifyChanged(PropertyChanged);
-                }
-            }
-        }
+        
     }
 }

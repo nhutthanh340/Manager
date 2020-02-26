@@ -103,7 +103,7 @@
                     Height="40"
                     Width="40"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}" 
-                   IsEnabled="{Binding Instance.IsPrint}"
+                    IsEnabled="{Binding Instance.IsPrint}"
                         Command="{Binding Instance.PrintCommand}"
                         CommandParameter="{Binding Instance.SelectedBill}"
                         >

@@ -35,13 +35,14 @@ namespace Manager.UserControls
             Initialize();
         }
         [Obsolete]
-        public async void Initialize()
+        public void Initialize()
         {
-            var filter = Builders<HistoryBill>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
-            var order = Builders<HistoryBill>.Sort.Descending(x => x.UpdateTime);
-            ListBills = await Database<HistoryBill>.Instance.ReadAll(filter, order: order);
-            ListBills.CommitNew();
-            ListProductsHistory.Instance.ListChanges = new QueryableCollectionView(new List<HistoryBill>());
+            //var filter = Builders<HistoryBill>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
+            //var order = Builders<HistoryBill>.Sort.Descending(x => x.UpdateTime);
+            //ListBills = await Database<HistoryBill>.Instance.ReadAll(filter, order: order);
+            //ListBills.CommitNew();
+            Search();
+
         }
 
         [Obsolete]
@@ -53,14 +54,37 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [Obsolete]
         public QueryableCollectionView ListBills
         {
             get => listBills;
             set
             {
-                if (listBills != value)
+                if (listBills != value && value != null)
                 {
                     listBills = value;
+                    foreach (var item in listBills)
+                    {
+                        if (item as HistoryBill != null)
+                        {
+                            (item as HistoryBill).Changed += ListProductsHistory.Instance.Restore;
+                        }
+                    }
+                    Instance.ListChanges = new QueryableCollectionView(new List<HistoryBill>());
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private QueryableCollectionView listChanges;
+        public QueryableCollectionView ListChanges
+        {
+            get => listChanges;
+            set
+            {
+                if (listChanges != value)
+                {
+                    listChanges = value;
                     this.NotifyChanged(PropertyChanged);
                 }
             }
@@ -115,6 +139,56 @@ namespace Manager.UserControls
                 isBusy = value;
                 this.NotifyChanged(PropertyChanged);
             }
+        }
+
+        private string textSearch;
+
+        [Obsolete]
+        public string TextSearch
+        {
+            get => textSearch;
+            set
+            {
+                if (textSearch != value)
+                {
+                    textSearch = value;
+
+                    this.NotifyChanged(PropertyChanged);
+                    Search(textSearch);
+                }
+            }
+        }
+
+        [Obsolete]
+        public void Search(string text = "")
+        {
+            Thread thread = new Thread(async () =>
+            {
+                Instance.IsBusy = true;
+                List<FilterDefinition<HistoryBill>> filters = new List<FilterDefinition<HistoryBill>>();
+                var order = Builders<HistoryBill>.Sort.Descending(x => x.UpdateTime);
+                string[] textSearch = text.ToLower().Split(' ');
+
+                foreach (var item in textSearch)
+                {
+                    // filters.Add(Builders<HistoryBill>.Filter.Where(x => x.Bill.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                }
+                var filter = Builders<HistoryBill>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
+                filters.Add(filter);
+
+
+                Instance.ListBills = await Database<HistoryBill>.Instance.ReadAll(Builders<HistoryBill>.Filter.And(filters), order: order);
+                if (Instance.ListBills.QueryableSourceCollection.Count() > 0)
+                {
+                    Instance.SelectedBill = Instance.ListBills.QueryableSourceCollection.First() as HistoryBill;
+                }
+                else
+                {
+                    Instance.ListBills = null;
+                }
+                Instance.IsBusy = false;
+            });
+            thread.Start();
         }
 
     }

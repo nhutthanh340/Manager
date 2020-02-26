@@ -41,7 +41,7 @@ namespace Manager.Data
             OnPropertyChanged(() => this.Remain);
         }
         private QueryableCollectionView listProducts = new QueryableCollectionView(new List<Product>());
-        private DateTime saleDate;
+        private DateTime saleDate = DateTime.Now;
         private string customeName = "Khách lẻ", phone = "", address = "";
         private ulong total;
         private ulong customePay;
@@ -53,6 +53,11 @@ namespace Manager.Data
         public string TextSearch
         {
             get => textSearch;
+            set
+            {
+                this.textSearch = value;
+                OnPropertyChanged(() => this.TextSearch);
+            }
         }
 
         public bool Note
@@ -89,7 +94,7 @@ namespace Manager.Data
                 {
                     this.id = value;
                     this.OnPropertyChanged(() => this.Id);
-
+                    this.TextSearch = ContentService.ConvertToUnsigned($"{customeName}{Id}").ToLower();
                 }
             }
         }
@@ -174,9 +179,8 @@ namespace Manager.Data
                 if (this.customeName != value)
                 {
                     this.customeName = value;
-                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName}{Id}").ToLower();
+                    this.TextSearch = ContentService.ConvertToUnsigned($"{customeName}{Id}").ToLower();
                     this.OnPropertyChanged(() => this.CustomeName);
-                    this.OnPropertyChanged(() => this.TextSearch);
                     this.OnChanged();
                 }
             }
@@ -245,9 +249,12 @@ namespace Manager.Data
             get => isDeleted;
             set
             {
-                isDeleted = value;
-                this.OnPropertyChanged(() => this.IsDeleted);
-                OnChanged();
+                if (isDeleted != value)
+                {
+                    isDeleted = value;
+                    this.OnPropertyChanged(() => this.IsDeleted);
+                    OnChanged();
+                }
             }
         }
 
@@ -255,14 +262,6 @@ namespace Manager.Data
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;
-            Thread t = new Thread(() =>
-            {
-                this.Changed += Sold.Instance.BillChanged;
-            });
-            t.SetApartmentState(ApartmentState.STA);
-
-            t.Start();
-
         }
         public delegate void changed(object bill);
         public event changed Changed;

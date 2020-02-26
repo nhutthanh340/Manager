@@ -29,6 +29,9 @@
                         <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="2">
                             <Setter Property="Height" Value="53"></Setter>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="3">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </telerik:RadRichTextBoxRibbonUI.Style>
@@ -231,10 +234,11 @@
 
             <telerik:RadRibbonTab Header="Đã thanh toán" telerik:KeyTipService.AccessText="Đ">
             </telerik:RadRibbonTab>
-            <telerik:RadRibbonTab Header="Lịch sử thao tác hoá đơn" telerik:KeyTipService.AccessText="B">
-            </telerik:RadRibbonTab>
+            
 
             <telerik:RadRibbonTab Header="Báo cáo" telerik:KeyTipService.AccessText="B">
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Lịch sử thao tác hoá đơn" telerik:KeyTipService.AccessText="B">
             </telerik:RadRibbonTab>
 
         </telerik:RadRichTextBoxRibbonUI>
@@ -250,12 +254,14 @@
                 <store:History/>
             </telerik:RadTabItem>
 
-            <telerik:RadTabItem Visibility="Collapsed">
-                <store:HistoryManipulation/>
-            </telerik:RadTabItem>
+            
             
             <telerik:RadTabItem Visibility="Collapsed">
                 <store:Report/>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Visibility="Collapsed">
+                <store:HistoryManipulation/>
             </telerik:RadTabItem>
 
         </telerik:RadTabControl>

@@ -9,6 +9,7 @@ using Manager.Helpers;
 using Telerik.Windows.Controls;
 using MongoDB.Driver;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Manager.UserControls
 {
@@ -61,34 +62,59 @@ namespace Manager.UserControls
         public event PropertyChangedEventHandler PropertyChanged;
 
         [Obsolete]
-        public async void Initialize()
+        public void Initialize()
         {
 
-            var filter = Builders<Bill>.Filter.Where(x => 
-            !x.IsDept && 
-            !x.IsDeleted && 
-            x.SaleDate >= StartDate && 
-            x.SaleDate < EndDate);
+            //var filter = Builders<Bill>.Filter.Where(x =>
+            //!x.IsDept &&
+            //!x.IsDeleted &&
+            //x.SaleDate >= StartDate &&
+            //x.SaleDate < EndDate);
 
-            var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
-            ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
-            ListBills.CommitNew();
+            //var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+            //ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
+            //ListBills.CommitNew();
 
-            Sold.Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+            Search();
+
 
         }
 
 
 
         private QueryableCollectionView listBills;
+
+        [Obsolete]
         public QueryableCollectionView ListBills
         {
             get => listBills;
             set
             {
-                if (listBills != value)
+                if (listBills != value && value != null)
                 {
                     listBills = value;
+                    foreach (var item in listBills)
+                    {
+                        if (item as Bill != null)
+                        {
+                            (item as Bill).Changed += Sold.Instance.BillChanged;
+                        }
+                    }
+                    Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private QueryableCollectionView listChanges;
+        public QueryableCollectionView ListChanges
+        {
+            get => listChanges;
+            set
+            {
+                if (listChanges != value)
+                {
+                    listChanges = value;
                     this.NotifyChanged(PropertyChanged);
                 }
             }
@@ -130,6 +156,62 @@ namespace Manager.UserControls
                 this.NotifyChanged(PropertyChanged);
             }
         }
+
+        private string textSearch;
+
+        [Obsolete]
+        public string TextSearch
+        {
+            get => textSearch;
+            set
+            {
+                if (textSearch != value)
+                {
+                    textSearch = value;
+
+                    this.NotifyChanged(PropertyChanged);
+                    Search(textSearch);
+                }
+            }
+        }
+
+        [Obsolete]
+        public void Search(string text = "")
+        {
+            Thread thread = new Thread(async () =>
+            {
+                Instance.IsBusy = true;
+                List<FilterDefinition<Bill>> filters = new List<FilterDefinition<Bill>>();
+                var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+                string[] textSearch = text.ToLower().Split(' ');
+
+                foreach (var item in textSearch)
+                {
+                    //filters.Add(Builders<Bill>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                }
+                var filter = Builders<Bill>.Filter.Where(x =>
+                        !x.IsDept &&
+                        !x.IsDeleted &&
+                        x.SaleDate >= StartDate &&
+                        x.SaleDate < EndDate);
+
+                filters.Add(filter);
+
+
+                Instance.ListBills = await Database<Bill>.Instance.ReadAll(Builders<Bill>.Filter.And(filters), order: order);
+                if (Instance.ListBills.QueryableSourceCollection.Count() > 0)
+                {
+                    Instance.SelectedBill = Instance.ListBills.QueryableSourceCollection.First() as Bill;
+                }
+                else
+                {
+                    Instance.ListBills = null;
+                }
+                Instance.IsBusy = false;
+            });
+            thread.Start();
+        }
+
     }
     public class NoteConverter : IValueConverter
     {
