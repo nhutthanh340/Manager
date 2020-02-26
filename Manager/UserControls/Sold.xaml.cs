@@ -53,7 +53,7 @@ namespace Manager.UserControls
 
             Paid.Instance.Initialize();
             Receipt.Instance.Initialize();
-            Report.Instance.PlotChart();
+            Report.Instance.Initialize();
             ListManipulations.Instance.Initialize();
 
             Paid.Instance.IsBusy = false;

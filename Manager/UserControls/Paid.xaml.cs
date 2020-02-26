@@ -119,11 +119,6 @@ namespace Manager.UserControls
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
 
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
         [Obsolete]
         public DateTime EndDate
         {

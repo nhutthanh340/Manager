@@ -117,7 +117,7 @@ namespace Manager.UserControls
                 ListManipulations.Instance.Initialize();
                 Paid.Instance.Initialize();
                 Receipt.Instance.Initialize();
-                Report.Instance.PlotChart();
+                Report.Instance.Initialize();
                 ListManipulations.Instance.IsBusy = false;
             }).Start();
         }

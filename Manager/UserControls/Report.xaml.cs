@@ -40,7 +40,7 @@ namespace Manager.UserControls
             set
             {
                 selectedFormat = value;
-                PlotChart();
+                Initialize();
                 this.NotifyChanged(PropertyChanged);
             }
         }
@@ -52,7 +52,7 @@ namespace Manager.UserControls
             set
             {
                 format = value;
-                PlotChart();
+                Initialize();
                 this.NotifyChanged(PropertyChanged);
             }
         }
@@ -63,7 +63,7 @@ namespace Manager.UserControls
             set
             {
                 startDate = value;
-                PlotChart();
+                Initialize();
                 this.NotifyChanged(PropertyChanged);
             }
         }
@@ -75,7 +75,7 @@ namespace Manager.UserControls
             set
             {
                 endDate = value;
-                PlotChart();
+                Initialize();
                 this.NotifyChanged(PropertyChanged);
             }
         }
@@ -84,11 +84,11 @@ namespace Manager.UserControls
         {
             InitializeComponent();
             this.DataContext = this;
-            PlotChart();
+            Initialize();
         }
 
         [System.Obsolete]
-        public async void PlotChart()
+        public async void Initialize()
         {
             var filter = Builders<Bill>.Filter.Where(x =>
                             !x.IsDeleted

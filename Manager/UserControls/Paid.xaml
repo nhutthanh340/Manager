@@ -7,12 +7,11 @@
              xmlns:local="clr-namespace:Manager.UserControls"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" FontSize="16" Initialized="UserControl_Initialized"
+             mc:Ignorable="d" FontSize="16"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
         <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
-        <!--<local:NoteConverter x:Key="NoteConverter"></local:NoteConverter>-->
 
         <Style x:Name="RowStyleNoteChecked" TargetType="telerik:GridViewRow">
             <Style.Triggers>
@@ -63,15 +62,6 @@
                             SelectedDate="{Binding Instance.EndDate, UpdateSourceTrigger=PropertyChanged}" 
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
 
-                <!--<telerik:RadButton 
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Content="Xoá danh sách hoá đơn" 
-                    telerik:RadDockPanel.Dock="Right"
-                    telerik:ScreenTip.Title="Xoá danh sách hoá đơn"
-                    telerik:ScreenTip.Description="Ấn vào đây để xoá danh sách các hoá đơn đang hiển thị bên dưới"
-                    Command="{Binding Instance.DeleteAllCommand}"
-                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                    Width="Auto"/>-->
             </StackPanel>
 
         </Grid>
@@ -104,7 +94,6 @@
                     <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
                     <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
-                    <!--<telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>-->
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
 
                     <telerik:GridViewDataColumn Width="auto" Header="Giao hàng" >
@@ -171,31 +160,6 @@
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
-
-                    <!--<telerik:GridViewDataColumn Width="auto">
-                        <telerik:GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <telerik:RadButton 
-                                    telerik:ScreenTip.Title="Xoá"
-                                    telerik:ScreenTip.Description="Ấn vào đây xoá hoá đơn này"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                    Height="30"
-                                    Width="30"
-                                    Click="RemoveBill"
-                                    Command="{Binding Path=DataContext.RemoveBillCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
-                                    CommandParameter="{Binding Path=DataContext.SelectedBill, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
-                                    Margin="10,10,10,10" 
-                                    Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                                                                               >
-                                    <materialDesign:PackIcon
-                                                   Kind="Delete"
-                                                   Height="20"
-                                                   Width="20" />
-                                </telerik:RadButton>
-                            </DataTemplate>
-                        </telerik:GridViewColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>-->
-
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </telerik:RadBusyIndicator>

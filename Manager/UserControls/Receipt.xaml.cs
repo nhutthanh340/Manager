@@ -179,7 +179,7 @@ namespace Manager.UserControls
                     Initialize();
                 }
                 Paid.Instance.Initialize();
-                Report.Instance.PlotChart();
+                Report.Instance.Initialize();
             }
             else
             {
@@ -316,7 +316,7 @@ namespace Manager.UserControls
                                 message += "thành công";
                                 Initialize();
                                 ListManipulations.Instance.Initialize();
-                                Report.Instance.PlotChart();
+                                Report.Instance.Initialize();
                             }
                             else
                             {

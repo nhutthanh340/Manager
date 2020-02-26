@@ -18,7 +18,7 @@ using Telerik.Windows.DragDrop.Behaviors;
 
 namespace Manager.Helpers
 {
-    class RowReorderBehavior : INotifyPropertyChanged
+    class RowReorderBehavior
     {
         private const string DropPositionFeedbackElementName = "DragBetweenItemsFeedback";
         private ContentPresenter dropPositionFeedbackPresenter;
@@ -53,6 +53,7 @@ namespace Manager.Helpers
             return (bool)obj.GetValue(IsEnabledProperty);
         }
 
+        [Obsolete]
         public static void SetIsEnabled(DependencyObject obj, bool value)
         {
             RowReorderBehavior behavior = GetAttachedBehavior(obj as RadGridView);
@@ -75,8 +76,7 @@ namespace Manager.Helpers
             DependencyProperty.RegisterAttached("IsEnabled", typeof(bool), typeof(RowReorderBehavior),
                 new PropertyMetadata(new PropertyChangedCallback(OnIsEnabledPropertyChanged)));
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        [Obsolete]
         public static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
             SetIsEnabled(dependencyObject, (bool)e.NewValue);
@@ -98,6 +98,7 @@ namespace Manager.Helpers
 
         }
 
+        [Obsolete]
         protected virtual void Initialize()
         {
             this.AssociatedObject.RowLoaded -= this.AssociatedObject_RowLoaded;
@@ -117,6 +118,7 @@ namespace Manager.Helpers
             }));
         }
 
+        [Obsolete]
         protected virtual void CleanUp()
         {
             this.AssociatedObject.RowLoaded -= this.AssociatedObject_RowLoaded;
@@ -143,6 +145,7 @@ namespace Manager.Helpers
             DragDropManager.AddDragOverHandler(row, OnRowDragOver);
         }
 
+        [Obsolete]
         private void SubscribeToDragDropEvents()
         {
             DragDropManager.AddDragInitializeHandler(this.AssociatedObject, OnDragInitialize);
@@ -151,6 +154,7 @@ namespace Manager.Helpers
             DragDropManager.AddDragDropCompletedHandler(this.AssociatedObject, OnDragDropCompleted);
         }
 
+        [Obsolete]
         private void UnsubscribeFromDragDropEvents()
         {
             DragDropManager.RemoveDragInitializeHandler(this.AssociatedObject, OnDragInitialize);
