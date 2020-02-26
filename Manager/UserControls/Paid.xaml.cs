@@ -6,9 +6,9 @@ using System.Windows.Data;
 using System.Globalization;
 using System.ComponentModel;
 using Manager.Helpers;
-using System.Threading;
 using Telerik.Windows.Controls;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace Manager.UserControls
 {
@@ -17,8 +17,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Paid : UserControl, INotifyPropertyChanged
     {
-
+        [Obsolete]
         private static readonly Paid instance = new Paid();
+
+        [Obsolete]
         public static Paid Instance
         {
             get
@@ -40,36 +42,12 @@ namespace Manager.UserControls
 
         public DelegateCommand RemoveBillCommand { get; private set; }
 
-        public DelegateCommand DeleteAllCommand { get; private set; }
-
-
         [Obsolete]
         private void InititalizeCommand()
         {
-            this.RemoveBillCommand = new DelegateCommand(DeleteReceipt);
-            this.DeleteAllCommand = new DelegateCommand(DeleteAll);
+
         }
 
-        [Obsolete]
-        public void DeleteReceipt(object receipt)
-        {
-            RadWindow.Confirm(
-                string.Format("Bạn có chắc muốn xoá hoá đơn này không ?"),
-                async delegate (object sender, WindowClosedEventArgs e)
-                {
-                    var result = e.DialogResult;
-                    if (result == true)
-                    {
-                        if (Instance.SelectedBill.Id != null)
-                        {
-                            await Database<Bill>.Instance.Delete(Instance.ListBills, Instance.SelectedBill);
-                        }
-                        Instance.Initialize();
-                        Report.Instance.PlotChart();
-                    }
-
-                });
-        }
 
         [Obsolete]
         public Paid()
@@ -83,17 +61,24 @@ namespace Manager.UserControls
         public event PropertyChangedEventHandler PropertyChanged;
 
         [Obsolete]
-        public void Initialize()
+        public async void Initialize()
         {
-            Thread thread = new Thread(async () =>
-            {
-                var filter = Builders<Bill>.Filter.Where(x => !x.IsDept);
-                var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
-                ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
-                ListBills.CommitNew();
-            });
-            thread.Start();
+
+            var filter = Builders<Bill>.Filter.Where(x => 
+            !x.IsDept && 
+            !x.IsDeleted && 
+            x.SaleDate >= StartDate && 
+            x.SaleDate < EndDate);
+
+            var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+            ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
+            ListBills.CommitNew();
+
+            Sold.Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+
         }
+
+
 
         private QueryableCollectionView listBills;
         public QueryableCollectionView ListBills
@@ -121,35 +106,34 @@ namespace Manager.UserControls
         }
 
         [Obsolete]
-        private void RemoveBill(object sender, System.Windows.RoutedEventArgs e)
+        public DateTime StartDate
         {
-            this.SelectedBill = ((e.OriginalSource as RadButton).DataContext as Bill);
+            get => startDate;
+            set
+            {
+                startDate = value;
+                Initialize();
+                this.NotifyChanged(PropertyChanged);
+            }
+        }
+
+        private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+
         }
 
         [Obsolete]
-        public void DeleteAll(object obj)
+        public DateTime EndDate
         {
-            RadWindow.Confirm(
-                string.Format("Bạn có chắc muốn xoá danh sách hoá đơn này không?"),
-                async delegate (object sender, WindowClosedEventArgs e)
-                {
-                    var result = e.DialogResult;
-                    if (result == true)
-                    {
-                        foreach (var item in obj as QueryableCollectionView)
-                        {
-                            await Database<Bill>.Instance.Delete(null, item);
-                        }
-                        Initialize();
-                        Report.Instance.PlotChart();
-                    }
-                });
-        }
-
-        [Obsolete]
-        private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Sold.Instance.Change_Status(sender, e);
+            get => endDate;
+            set
+            {
+                endDate = value;
+                Initialize();
+                this.NotifyChanged(PropertyChanged);
+            }
         }
     }
     public class NoteConverter : IValueConverter

@@ -178,6 +178,7 @@
     <Compile Include="Data\Bill.cs" />
     <Compile Include="Data\ChartModel.cs" />
     <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\HistoryBill.cs" />
     <Compile Include="Data\Product.cs" />
     <Compile Include="Helpers\CMD.cs" />
     <Compile Include="Helpers\Comparer.cs" />
@@ -195,8 +196,17 @@
     <Compile Include="UserControls\History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HistoryManipulation.xaml.cs">
+      <DependentUpon>HistoryManipulation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListManipulations.xaml.cs">
+      <DependentUpon>ListManipulations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListProductsHistory.xaml.cs">
+      <DependentUpon>ListProductsHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Paid.xaml.cs">
       <DependentUpon>Paid.xaml</DependentUpon>
@@ -249,7 +259,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\HistoryManipulation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListManipulations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListProductsHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

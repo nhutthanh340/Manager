@@ -10,6 +10,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Windows.Data;
 using System.Globalization;
+using System.Threading;
 
 namespace Manager.UserControls
 {
@@ -170,8 +171,9 @@ namespace Manager.UserControls
             if (status)
             {
                 message = method + " hoá đơn thành công";
-                //Initialize();
+                ListManipulations.Instance.Save(billSelected);
 
+                ListManipulations.Instance.Initialize();
                 if (!billSelected.IsDept)
                 {
                     Initialize();
@@ -204,8 +206,9 @@ namespace Manager.UserControls
         [Obsolete]
         public async void Initialize()
         {
-            var filter = Builders<Bill>.Filter.Where(x => x.IsDept);
-            var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+
+            var filter = Builders<Bill>.Filter.Where(x => x.IsDept && !x.IsDeleted);
+            var order = Builders<Bill>.Sort.Ascending(x => x.CustomeName);
             ListBills = await Database<Bill>.Instance.ReadAll(filter, order: order);
             if (ListBills.QueryableSourceCollection.Count() > 0)
             {
@@ -215,6 +218,7 @@ namespace Manager.UserControls
             {
                 SelectedBill = null;
             }
+
         }
 
         [Obsolete]
@@ -304,11 +308,14 @@ namespace Manager.UserControls
                     {
                         if (SelectedBill.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
-                            bool status = await Database<Bill>.Instance.Delete(ListBills, SelectedBill);
+                            SelectedBill.IsDeleted = true;
+                            bool status = await Database<Bill>.Instance.Update(SelectedBill);
                             string message = "Xoá hoá đơn ";
                             if (status)
                             {
                                 message += "thành công";
+                                Initialize();
+                                ListManipulations.Instance.Initialize();
                                 Report.Instance.PlotChart();
                             }
                             else
@@ -321,8 +328,7 @@ namespace Manager.UserControls
                                 Header = "Thông báo"
                             });
                         }
-                        //Initialize();
-                        Report.Instance.PlotChart();
+
                     }
 
                 });

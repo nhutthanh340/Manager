@@ -1,13 +1,15 @@
-﻿using Manager.Helpers;
+﻿using Manager.Data;
+using Manager.Helpers;
 using Manager.UserControls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using Telerik.Windows.Controls;
-
+using Telerik.Windows.Data;
 
 namespace Manager
 {
@@ -36,12 +38,12 @@ namespace Manager
         public DelegateCommand NoneRepeatCommand { get; private set; }
         public DelegateCommand BackupCommand { get; private set; }
         public DelegateCommand RestoreCommand { get; private set; }
-        public DelegateCommand RefreshCommand{ get; private set; }
+        public DelegateCommand RefreshCommand { get; private set; }
 
-    [Obsolete]
+        [Obsolete]
         private void InitializeCommand()
         {
-            
+
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
             this.ImportExcelCommand = new DelegateCommand(ImportExcel);
             this.VisibilityCommand = new DelegateCommand(Store.Instance.VisibilityColumn);
@@ -59,6 +61,7 @@ namespace Manager
             Store.Instance.Initialize();
             Receipt.Instance.Initialize();
             Paid.Instance.Initialize();
+            ListManipulations.Instance.Initialize();
         }
         private void Backup(object backup)
         {
@@ -179,7 +182,7 @@ namespace Manager
 
         NotifyIcon NotifyIcon = new NotifyIcon();
 
-
+        [Obsolete]
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -201,6 +204,7 @@ namespace Manager
 
             this.NotifyIcon.Icon = new Icon("favicon.ico");
             this.NotifyIcon.DoubleClick += NotifyIcon_DoubleClick;
+
         }
 
         private void Exit_Click(object sender, EventArgs e)

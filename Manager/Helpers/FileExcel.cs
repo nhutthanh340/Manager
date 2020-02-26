@@ -87,7 +87,7 @@ namespace Manager.Helpers
                 product.PriceDisplay = PriceDisplay;
 
                 product.UnitDisplay = Instance.Read(6, row);
-                product.UpdateDate = DateTime.UtcNow;
+                product.UpdateDate = DateTime.Today;
                 product.Count = 1;
 
                 product.Method = Instance.Read(7, row);
@@ -144,6 +144,8 @@ namespace Manager.Helpers
         {
             get; set;
         }
+
+        [Obsolete]
         public void Export(QueryableCollectionView obj)
         {
             // khởi tạo wb rỗng

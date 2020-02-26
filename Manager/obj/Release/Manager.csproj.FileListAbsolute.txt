@@ -293,3 +293,9 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListManipulations.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\ListProductsHistory.baml

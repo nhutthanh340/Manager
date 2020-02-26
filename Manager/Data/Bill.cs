@@ -1,8 +1,10 @@
 ﻿using Manager.Helpers;
+using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
@@ -23,11 +25,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
-        public Bill()
-        {
-            ListProducts.PropertyChanged += ListProducts_PropertyChanged;
-        }
+
 
         [Obsolete]
         private void ListProducts_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -43,7 +41,7 @@ namespace Manager.Data
             OnPropertyChanged(() => this.Remain);
         }
         private QueryableCollectionView listProducts = new QueryableCollectionView(new List<Product>());
-        private DateTime saleDate = DateTime.Now;
+        private DateTime saleDate;
         private string customeName = "Khách lẻ", phone = "", address = "";
         private ulong total;
         private ulong customePay;
@@ -66,6 +64,7 @@ namespace Manager.Data
                 {
                     this.note = value;
                     this.OnPropertyChanged(() => this.Note);
+                    this.OnChanged();
                 }
             }
         }
@@ -90,6 +89,7 @@ namespace Manager.Data
                 {
                     this.id = value;
                     this.OnPropertyChanged(() => this.Id);
+
                 }
             }
         }
@@ -142,6 +142,7 @@ namespace Manager.Data
                     this.customePay = value;
                     this.OnPropertyChanged(() => this.CustomePay);
                     this.OnPropertyChanged(() => this.Remain);
+                    this.OnChanged();
                 }
             }
 
@@ -173,9 +174,10 @@ namespace Manager.Data
                 if (this.customeName != value)
                 {
                     this.customeName = value;
-                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName},{address}");
+                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName}{Id}").ToLower();
                     this.OnPropertyChanged(() => this.CustomeName);
                     this.OnPropertyChanged(() => this.TextSearch);
+                    this.OnChanged();
                 }
             }
         }
@@ -189,6 +191,7 @@ namespace Manager.Data
                 {
                     this.phone = value;
                     this.OnPropertyChanged(() => this.Phone);
+                    this.OnChanged();
                 }
             }
         }
@@ -201,9 +204,8 @@ namespace Manager.Data
                 if (this.address != value)
                 {
                     this.address = value;
-                    this.textSearch = ContentService.ConvertToUnsigned($"{customeName},{address}");
                     this.OnPropertyChanged(() => this.Address);
-                    this.OnPropertyChanged(() => this.TextSearch);
+                    this.OnChanged();
                 }
             }
         }
@@ -224,7 +226,6 @@ namespace Manager.Data
         {
             get
             {
-                // isDept = Remain > 0;
                 return isDept;
             }
             set
@@ -233,11 +234,12 @@ namespace Manager.Data
                 {
                     isDept = value;
                     this.OnPropertyChanged(() => IsDept);
+                    OnChanged();
                 }
             }
         }
 
-        private bool isDeleted;
+        private bool isDeleted = false;
         public bool IsDeleted
         {
             get => isDeleted;
@@ -245,6 +247,31 @@ namespace Manager.Data
             {
                 isDeleted = value;
                 this.OnPropertyChanged(() => this.IsDeleted);
+                OnChanged();
+            }
+        }
+
+        [Obsolete]
+        public Bill()
+        {
+            ListProducts.PropertyChanged += ListProducts_PropertyChanged;
+            Thread t = new Thread(() =>
+            {
+                this.Changed += Sold.Instance.BillChanged;
+            });
+            t.SetApartmentState(ApartmentState.STA);
+
+            t.Start();
+
+        }
+        public delegate void changed(object bill);
+        public event changed Changed;
+
+        public void OnChanged()
+        {
+            if (Changed != null)
+            {
+                Changed(this);
             }
         }
     }

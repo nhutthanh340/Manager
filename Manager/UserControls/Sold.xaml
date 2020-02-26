@@ -33,11 +33,11 @@
                                                      ColumnWidth="*">
 
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
-                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Count}" Header="Số lượng" />
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Total, StringFormat='0,0'}" Header="Thành tiền"/>
+                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Count}" Header="Số lượng" />
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Total, StringFormat='0,0'}" Header="Thành tiền"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
 
@@ -77,7 +77,7 @@
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Instance.SelectedBill.Note}" Value="False">
-                                    <Setter Property="Foreground" Value="Red"></Setter>
+                                    <Setter Property="Foreground" Value="PaleVioletRed"></Setter>
                                     <Setter Property="FontWeight" Value="Bold"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>

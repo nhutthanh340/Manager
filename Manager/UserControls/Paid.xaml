@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Manager.UserControls"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" FontSize="16"
+             mc:Ignorable="d" FontSize="16" Initialized="UserControl_Initialized"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
@@ -20,7 +20,11 @@
                     <Setter Property="Background" Value="PaleVioletRed"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsDept}" Value="True">
-                    <Setter Property="Background" Value="PaleVioletRed"/>
+                    <Setter Property="Background" Value="YellowGreen"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                    <Setter Property="Background" Value="Red"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -38,24 +42,40 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+
+
             <telerik:RadWatermarkTextBox Grid.Column="0"
-                Margin="0,0,10,0" 
+                Margin="0,0,10,0"
                 x:Name="SearchWatermarkTextBoxBill" 
                 WatermarkContent="Tìm kiếm"/>
 
-            <telerik:RadButton Grid.Column="1"
+
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                            Margin="10,0,10,0" 
+                            SelectedDate="{Binding Instance.StartDate, UpdateSourceTrigger=PropertyChanged}"  
+                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
+
+                <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                            Margin="10,0,10,0" 
+                            SelectedDate="{Binding Instance.EndDate, UpdateSourceTrigger=PropertyChanged}" 
+                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
+
+                <!--<telerik:RadButton 
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     Content="Xoá danh sách hoá đơn" 
                     telerik:RadDockPanel.Dock="Right"
                     telerik:ScreenTip.Title="Xoá danh sách hoá đơn"
                     telerik:ScreenTip.Description="Ấn vào đây để xoá danh sách các hoá đơn đang hiển thị bên dưới"
                     Command="{Binding Instance.DeleteAllCommand}"
-                    CommandParameter="{Binding Instance.ListBills}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                    Width="Auto"/>
+                    Width="Auto"/>-->
+            </StackPanel>
 
         </Grid>
-        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy}">
+        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy, UpdateSourceTrigger=PropertyChanged}" BusyContent="Đang tải vui lòng chờ ...">
             <telerik:RadGridView x:Name="gridViewBill"
                ItemsSource="{Binding Instance.ListBills, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
                SelectedItem="{Binding Instance.SelectedBill, UpdateSourceTrigger=PropertyChanged}"
@@ -67,6 +87,7 @@
                ShowGroupPanel="False"                   
                GridLinesVisibility="Horizontal"              
                ColumnWidth="*"
+                                 
                SelectionMode="Single">
 
 
@@ -90,8 +111,8 @@
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding Note}"
-                                    Checked="CheckBox_Checked">
+                                    IsChecked="{Binding Note, UpdateSourceTrigger=PropertyChanged}">
+
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                                     </CheckBox.LayoutTransform>
@@ -108,13 +129,13 @@
 
 
 
-                    <telerik:GridViewDataColumn Width="auto">
+                    <telerik:GridViewDataColumn Width="auto" Header="Thanh toán">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding IsDept}"
-                                    Checked="CheckBox_Checked"
-                                          >
+                                    IsChecked="{Binding IsDept, UpdateSourceTrigger=PropertyChanged}"
+                                    
+                                    >
                                     <CheckBox.LayoutTransform>
                                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                                     </CheckBox.LayoutTransform>
@@ -125,14 +146,33 @@
                         <telerik:GridViewColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
                                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                               
+
                             </Style>
                         </telerik:GridViewColumn.CellStyle>
                     </telerik:GridViewDataColumn>
 
 
+                    <telerik:GridViewDataColumn Width="auto" Header="Xoá" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsChecked="{Binding IsDeleted, UpdateSourceTrigger=PropertyChanged}">
 
-                    <telerik:GridViewDataColumn Width="auto">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+                    <!--<telerik:GridViewDataColumn Width="auto">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <telerik:RadButton 
@@ -154,11 +194,12 @@
                                 </telerik:RadButton>
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                    </telerik:GridViewDataColumn>-->
 
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </telerik:RadBusyIndicator>
+
         <telerik:RadDataPager 
             Grid.Row="2" 
             PageSize="20" 

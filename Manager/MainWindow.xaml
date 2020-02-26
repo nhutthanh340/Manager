@@ -229,8 +229,11 @@
 
             </telerik:RadRibbonTab>
 
-            <telerik:RadRibbonTab Header="Lịch sử thanh toán" telerik:KeyTipService.AccessText="L">
+            <telerik:RadRibbonTab Header="Đã thanh toán" telerik:KeyTipService.AccessText="Đ">
             </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Lịch sử thao tác hoá đơn" telerik:KeyTipService.AccessText="B">
+            </telerik:RadRibbonTab>
+
             <telerik:RadRibbonTab Header="Báo cáo" telerik:KeyTipService.AccessText="B">
             </telerik:RadRibbonTab>
 
@@ -247,6 +250,10 @@
                 <store:History/>
             </telerik:RadTabItem>
 
+            <telerik:RadTabItem Visibility="Collapsed">
+                <store:HistoryManipulation/>
+            </telerik:RadTabItem>
+            
             <telerik:RadTabItem Visibility="Collapsed">
                 <store:Report/>
             </telerik:RadTabItem>

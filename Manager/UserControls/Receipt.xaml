@@ -199,7 +199,7 @@
                     SelectionChanged="SelectBillChanged"
                     Text="Hoá đơn chưa thanh toán" 
                     Width="auto" Height="auto" FontSize="20"
-                    HorizontalContentAlignment="Right"
+                    HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Bottom"
                     VerticalAlignment="Center"
                     BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"

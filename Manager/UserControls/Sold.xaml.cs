@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Controls;
 using Manager.Helpers;
 using Telerik.Windows.Controls;
@@ -41,23 +40,24 @@ namespace Manager.UserControls
         public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
 
         [Obsolete]
-        public void Save(object obj)
+        public async void Save(object obj)
         {
             Paid.Instance.IsBusy = true;
-            new Thread(async () =>
-            {
-                foreach (var item in Instance.ListChanges)
-                {
 
-                    await Database<Bill>.Instance.Update(item as Bill);
-                    
-                }
-                Paid.Instance.Initialize();
-                Receipt.Instance.Initialize();
-                Report.Instance.PlotChart();
-                Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
-                Paid.Instance.IsBusy = false;
-            }).Start();
+            foreach (var item in Instance.ListChanges)
+            {
+                (item as Bill).SaleDate = DateTime.Now;
+                await Database<Bill>.Instance.Update(item as Bill);
+                ListManipulations.Instance.Save(item);
+            }
+
+            Paid.Instance.Initialize();
+            Receipt.Instance.Initialize();
+            Report.Instance.PlotChart();
+            ListManipulations.Instance.Initialize();
+
+            Paid.Instance.IsBusy = false;
+
         }
 
         [Obsolete]
@@ -71,6 +71,7 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [Obsolete]
         public Bill SelectedBill
         {
             get => selectedBill;
@@ -85,17 +86,18 @@ namespace Manager.UserControls
         }
 
         [Obsolete]
-        public void Change_Status(object sender, RoutedEventArgs e)
+        public void BillChanged(object bill)
         {
-            var SelectedBill = (e.Source as CheckBox).DataContext as Bill;
-            if (!Instance.ListChanges.Contains(SelectedBill))
+            if (Instance.ListChanges != null)
             {
-                Instance.ListChanges.AddNew(SelectedBill);
+                if (!Instance.ListChanges.Contains(bill))
+                {
+                    Instance.ListChanges.AddNew(bill);
+                }
             }
         }
 
-
-        private QueryableCollectionView listChanges = new QueryableCollectionView(new List<Bill>());
+        private QueryableCollectionView listChanges;
         public QueryableCollectionView ListChanges
         {
             get => listChanges;

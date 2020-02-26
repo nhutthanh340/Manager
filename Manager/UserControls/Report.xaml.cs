@@ -91,8 +91,9 @@ namespace Manager.UserControls
         public async void PlotChart()
         {
             var filter = Builders<Bill>.Filter.Where(x =>
-                            x.SaleDate >= StartDate
-                            && x.SaleDate <= EndDate
+                            !x.IsDeleted
+                            && x.SaleDate >= StartDate
+                            && x.SaleDate < EndDate
                             );
             ChartResult = await Database<Bill>.Instance.DataChartsAsync(filter, Format[SelectedFormat]);
         }
