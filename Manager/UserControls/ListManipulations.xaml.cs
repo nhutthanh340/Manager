@@ -37,12 +37,7 @@ namespace Manager.UserControls
         [Obsolete]
         public void Initialize()
         {
-            //var filter = Builders<HistoryBill>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
-            //var order = Builders<HistoryBill>.Sort.Descending(x => x.UpdateTime);
-            //ListBills = await Database<HistoryBill>.Instance.ReadAll(filter, order: order);
-            //ListBills.CommitNew();
-            Search();
-
+            Search(TextSearch);
         }
 
         [Obsolete]
@@ -50,7 +45,7 @@ namespace Manager.UserControls
         {
             await Database<HistoryBill>.Instance.Add(new HistoryBill { Bill = billSelected as Bill });
         }
-        private QueryableCollectionView listBills;
+        private QueryableCollectionView listBills = new QueryableCollectionView(new List<HistoryBill>());
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -60,17 +55,23 @@ namespace Manager.UserControls
             get => listBills;
             set
             {
-                if (listBills != value && value != null)
+                if (listBills != value)
                 {
-                    listBills = value;
-                    foreach (var item in listBills)
+                    Thread thread = new Thread(() =>
                     {
-                        if (item as HistoryBill != null)
+                        listBills = value;
+                        foreach (var item in listBills)
                         {
-                            (item as HistoryBill).Changed += ListProductsHistory.Instance.Restore;
+                            if (item as HistoryBill != null)
+                            {
+                                (item as HistoryBill).Changed += ListProductsHistory.Instance.Restore;
+                            }
                         }
-                    }
-                    Instance.ListChanges = new QueryableCollectionView(new List<HistoryBill>());
+                        Instance.ListChanges = new QueryableCollectionView(new List<HistoryBill>());
+
+                    });
+                    thread.SetApartmentState(ApartmentState.STA);
+                    thread.Start();
                     this.NotifyChanged(PropertyChanged);
                 }
             }
@@ -96,8 +97,12 @@ namespace Manager.UserControls
             get => ListProductsHistory.Instance.SelectedBill;
             set
             {
-                ListProductsHistory.Instance.SelectedBill = value;
-
+                Thread thread = new Thread(() =>
+                {
+                    ListProductsHistory.Instance.SelectedBill = value;
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
             }
         }
 
@@ -107,11 +112,12 @@ namespace Manager.UserControls
             get => startDate;
             set
             {
-                startDate = value;
-                Instance.IsBusy = true;
-                Initialize();
-                this.NotifyChanged(PropertyChanged);
-                Instance.IsBusy = false;
+                if (startDate != value)
+                {
+                    startDate = value;
+                    Initialize();
+                    this.NotifyChanged(PropertyChanged);
+                }
             }
         }
 
@@ -122,11 +128,12 @@ namespace Manager.UserControls
             get => endDate;
             set
             {
-                Instance.IsBusy = true;
-                endDate = value;
-                Initialize();
-                this.NotifyChanged(PropertyChanged);
-                Instance.IsBusy = false;
+                if (endDate != value)
+                {
+                    endDate = value;
+                    Initialize();
+                    this.NotifyChanged(PropertyChanged);
+                }
             }
         }
 
@@ -141,7 +148,7 @@ namespace Manager.UserControls
             }
         }
 
-        private string textSearch;
+        private string textSearch = "";
 
         [Obsolete]
         public string TextSearch
@@ -152,9 +159,8 @@ namespace Manager.UserControls
                 if (textSearch != value)
                 {
                     textSearch = value;
-
+                    Initialize();
                     this.NotifyChanged(PropertyChanged);
-                    Search(textSearch);
                 }
             }
         }
@@ -171,20 +177,16 @@ namespace Manager.UserControls
 
                 foreach (var item in textSearch)
                 {
-                    // filters.Add(Builders<HistoryBill>.Filter.Where(x => x.Bill.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                    filters.Add(Builders<HistoryBill>.Filter.Where(x => x.Bill.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
                 }
                 var filter = Builders<HistoryBill>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
                 filters.Add(filter);
 
 
                 Instance.ListBills = await Database<HistoryBill>.Instance.ReadAll(Builders<HistoryBill>.Filter.And(filters), order: order);
-                if (Instance.ListBills.QueryableSourceCollection.Count() > 0)
+                if (Instance.ListBills.Count > 0)
                 {
                     Instance.SelectedBill = Instance.ListBills.QueryableSourceCollection.First() as HistoryBill;
-                }
-                else
-                {
-                    Instance.ListBills = null;
                 }
                 Instance.IsBusy = false;
             });

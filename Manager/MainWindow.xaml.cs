@@ -40,10 +40,14 @@ namespace Manager
         public DelegateCommand RestoreCommand { get; private set; }
         public DelegateCommand RefreshCommand { get; private set; }
 
+        public DelegateCommand UpdateModelCommand { get; private set; }
+        
+
         [Obsolete]
         private void InitializeCommand()
         {
 
+            this.UpdateModelCommand = new DelegateCommand(UpdateModel);
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
             this.ImportExcelCommand = new DelegateCommand(ImportExcel);
             this.VisibilityCommand = new DelegateCommand(Store.Instance.VisibilityColumn);
@@ -53,6 +57,29 @@ namespace Manager
             this.BackupCommand = new DelegateCommand(Backup);
             this.RestoreCommand = new DelegateCommand(Restore);
             this.RefreshCommand = new DelegateCommand(Refresh);
+        }
+
+        [Obsolete]
+        private async void UpdateModel(object refresh)
+        {
+            var ListProduct = await Database<Product>.Instance.ReadAll();
+            var ListBill = await Database<Bill>.Instance.ReadAll();
+            var ListHistoryBill = await Database<HistoryBill>.Instance.ReadAll();
+
+            foreach(var item in ListProduct)
+            {
+                await Database<Product>.Instance.Update(item as Product);
+            }
+
+            foreach (var item in ListBill)
+            {
+                await Database<Bill>.Instance.Update(item as Bill);
+            }
+
+            foreach (var item in ListHistoryBill)
+            {
+                await Database<HistoryBill>.Instance.Update(item as HistoryBill);
+            }
         }
 
         [Obsolete]

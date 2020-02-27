@@ -116,6 +116,20 @@
                                                 Width="32" />
                         </telerik:RadRibbonButton>
 
+                        <telerik:RadRibbonButton Text="Cập nhật cấu trúc dữ liệu"
+                                             Command="{Binding UpdateModelCommand}"
+                                                 CommandParameter="1"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Ẩn hiện Ngày cập nhật"
+                                             telerik:ScreenTip.Description="Ấn vào đây để ẩn hiện ngày cập nhật"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Architecture" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
                     </telerik:RadCollapsiblePanel>
 
 

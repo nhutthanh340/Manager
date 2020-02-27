@@ -64,7 +64,7 @@ namespace Manager.UserControls
         [Obsolete]
         public void Initialize()
         {
-            Search();
+            Search(TextSearch);
         }
 
 
@@ -133,9 +133,12 @@ namespace Manager.UserControls
             get => startDate;
             set
             {
-                startDate = value;
-                Initialize();
-                this.NotifyChanged(PropertyChanged);
+                if (startDate != value)
+                {
+                    startDate = value;
+                    Initialize();
+                    this.NotifyChanged(PropertyChanged);
+                }
             }
         }
 
@@ -147,13 +150,16 @@ namespace Manager.UserControls
             get => endDate;
             set
             {
-                endDate = value;
-                Initialize();
-                this.NotifyChanged(PropertyChanged);
+                if (endDate != value)
+                {
+                    endDate = value;
+                    Initialize();
+                    this.NotifyChanged(PropertyChanged);
+                }
             }
         }
 
-        private string textSearch;
+        private string textSearch = "";
 
         [Obsolete]
         public string TextSearch
@@ -164,9 +170,8 @@ namespace Manager.UserControls
                 if (textSearch != value)
                 {
                     textSearch = value;
-
+                    Initialize();
                     this.NotifyChanged(PropertyChanged);
-                    Search(textSearch);
                 }
             }
         }
@@ -178,13 +183,6 @@ namespace Manager.UserControls
             {
                 Instance.IsBusy = true;
                 List<FilterDefinition<Bill>> filters = new List<FilterDefinition<Bill>>();
-                var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
-                string[] textSearch = text.ToLower().Split(' ');
-
-                foreach (var item in textSearch)
-                {
-                    //filters.Add(Builders<Bill>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
-                }
                 var filter = Builders<Bill>.Filter.Where(x =>
                         !x.IsDept &&
                         !x.IsDeleted &&
@@ -192,6 +190,15 @@ namespace Manager.UserControls
                         x.SaleDate < EndDate);
 
                 filters.Add(filter);
+
+                var order = Builders<Bill>.Sort.Descending(x => x.SaleDate);
+                string[] textSearch = text.ToLower().Split(' ');
+
+                foreach (var item in textSearch)
+                {
+                    filters.Add(Builders<Bill>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                }
+
 
 
                 Instance.ListBills = await Database<Bill>.Instance.ReadAll(Builders<Bill>.Filter.And(filters), order: order);
