@@ -135,8 +135,8 @@ namespace Manager.UserControls
                 }
 
 
-
-                Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters));
+                var order = Builders<Product>.Sort.Descending(x => x.Name);
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters), order:order);
                 if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
                 {
                     Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;

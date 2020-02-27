@@ -298,3 +298,4 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.GenerateResourc
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
+G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
