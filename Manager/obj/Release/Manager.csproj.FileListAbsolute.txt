@@ -255,7 +255,6 @@ G:\Visual Studio 2019\Manager\Manager\bin\Release\fr\Telerik.Windows.Controls.re
 G:\Visual Studio 2019\Manager\Manager\bin\Release\it\Telerik.Windows.Controls.resources.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Release\nl\Telerik.Windows.Controls.resources.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Release\tr\Telerik.Windows.Controls.resources.dll
-G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\GridViewStyle.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\OutlookBarStyle.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\RichTextBoxRibbonUIStyle.baml
