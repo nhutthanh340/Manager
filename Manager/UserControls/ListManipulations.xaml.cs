@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Threading;
 using MongoDB.Driver;
 using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Manager.UserControls
 {
@@ -107,6 +108,7 @@ namespace Manager.UserControls
         }
 
         [Obsolete]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
             get => startDate;
@@ -123,6 +125,7 @@ namespace Manager.UserControls
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
         [Obsolete]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
             get => endDate;

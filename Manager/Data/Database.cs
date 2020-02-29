@@ -22,6 +22,7 @@ namespace Manager.Data
                     MongoClient client = new MongoClient(instance.hostName);
                     IMongoDatabase database = client.GetDatabase(instance.databaseName);
                     instance.collection = database.GetCollection<T>(typeof(T).Name);
+
                 }
                 return instance;
             }
@@ -159,7 +160,7 @@ namespace Manager.Data
                 r => new PlotInfo
                 {
                     Category = r.PayTime.ToString(format),
-                    Value = r.Amount / oneMilion,
+                    Value = 1.0 * r.Amount / oneMilion,
                 });
                 list_cash.AddRange(temp);
             }

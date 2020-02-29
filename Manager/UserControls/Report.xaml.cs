@@ -5,6 +5,7 @@ using Manager.Data;
 using MongoDB.Driver;
 using System;
 using System.Linq;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Manager.UserControls
 {
@@ -58,6 +59,7 @@ namespace Manager.UserControls
             }
         }
         [Obsolete]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
             get => startDate;
@@ -70,6 +72,7 @@ namespace Manager.UserControls
         }
 
         [Obsolete]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
             get => endDate;
@@ -98,7 +101,9 @@ namespace Manager.UserControls
                             );
             var filter_cash = Builders<Bill>.Filter.Where(x =>
                             !x.IsDeleted
-                            && x.CustomerPay.Exists(y => y.PayTime >= StartDate && y.PayTime < EndDate)
+                            //&& x.CustomerPay.Exists(y => 
+                            //    y.PayTime >= StartDate && 
+                            //    y.PayTime < EndDate)
                             );
             Func<CustomerPay, bool> condition = y => y.PayTime >= StartDate && y.PayTime < EndDate;
             ChartResult = await Database<Bill>.Instance.DataChartsAsync(filter, filter_cash, condition, Format[SelectedFormat]);

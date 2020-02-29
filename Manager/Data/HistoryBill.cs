@@ -25,6 +25,7 @@ namespace Manager.Data
         }
 
         private DateTime updateTime = DateTime.Now;
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime UpdateTime
         {
             get => updateTime;

@@ -336,6 +336,7 @@ namespace Manager.Data
                 listUnit.Add(this.unit);
             }
         }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime UpdateDate
         {
             get

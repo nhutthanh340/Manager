@@ -14,6 +14,7 @@ namespace Manager.Data
     {
         DateTime payTime = DateTime.Today;
         ulong amount = 0;
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime PayTime
         {
             get => payTime;
@@ -28,6 +29,16 @@ namespace Manager.Data
             }
         }
 
+        //BsonDateTime bsonDateTime;
+        //public BsonDateTime BsonDateTime
+        //{
+        //    get => bsonDateTime.Value;
+        //    set
+        //    {
+        //        bsonDateTime = new BsonDateTime(payTime.Date);
+        //        OnPropertyChanged(() => this.BsonDateTime);
+        //    }
+        //}
         public ulong Amount
         {
             get => amount;
@@ -118,7 +129,7 @@ namespace Manager.Data
             }
         }
 
-
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime SaleDate
         {
             get => saleDate;
@@ -235,7 +246,7 @@ namespace Manager.Data
         {
             get
             {
-                // customerPay[0].Amount = CustomePay;
+                customerPay[0].Amount = CustomePay;
                 return customerPay;
             }
             set
