@@ -10,6 +10,7 @@ using Manager.Data;
 using Telerik.Windows.Controls;
 using System.Linq;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace Manager.Helpers
 {
@@ -58,7 +59,7 @@ namespace Manager.Helpers
                 (bill.ListProducts[i - 1] as Product).STT = i;
             }
 
-            int NumItemInPages = 32, NumItemInPages_1 = 40, NumItemInPages_2 = 25, lengthPage = length + 15, j = 0;
+            int NumItemInPages = 30, NumItemInPages_1 = 38, NumItemInPages_2 = 22, lengthPage = length + 15, j = 0;
             decimal numPages = (decimal)Math.Ceiling(1.0 * lengthPage / NumItemInPages);
 
             FixedPage[] fixedPages = new FixedPage[2];
@@ -120,7 +121,33 @@ namespace Manager.Helpers
             }
 
             (stackPanels[2].FindName("Total") as TextBlock).Text = $"Tổng cộng:  {string.Format("{0:0,0}đ", bill.Total)} {new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
-            (stackPanels[2].FindName("CustomePay") as TextBlock).Text = $"Đưa trước: {string.Format("{0:0,0}đ", bill.CustomePay)} {new NumberToText(Convert.ToDouble(bill.CustomePay)).ReadThis()}";
+            //(stackPanels[2].FindName("CustomePay") as TextBlock).Text = $"Đưa trước: {string.Format("{0:0,0}đ", bill.CustomePay)} {new NumberToText(Convert.ToDouble(bill.CustomePay)).ReadThis()}";
+
+
+            foreach (var item in bill.CustomerPay)
+            {
+                TextBlock PayTime = new TextBlock()
+                {
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    FontWeight = FontWeights.Bold,
+                    Text = $"+ {item.PayTime.ToString("dd/MM/yyyy")} : "
+                };
+                TextBlock Amount = new TextBlock()
+                {
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    FontWeight = FontWeights.Bold,
+                    Text = $"{string.Format("{0:0,0}đ", item.Amount)} {new NumberToText(Convert.ToDouble(item.Amount)).ReadThis()}"
+                };
+
+                StackPanel CustomerPayItem = new StackPanel() { Orientation = Orientation.Horizontal };
+
+                CustomerPayItem.Children.Add(PayTime);
+                CustomerPayItem.Children.Add(Amount);
+
+                (stackPanels[2].FindName("CustomerPayList") as StackPanel).Children.Add(CustomerPayItem);
+            }
+
+
             string temp;
             if (bill.Remain > 0)
             {
@@ -150,7 +177,7 @@ namespace Manager.Helpers
                 //RadPrintPreviewDialog dialog = new RadPrintPreviewDialog();
                 //dialog.Document = this.radPrintDocument1;
                 //pd.ShowDialog();
-                
+
 
 
                 pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");

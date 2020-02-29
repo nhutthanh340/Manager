@@ -99,7 +99,7 @@ namespace Manager.Data
         private DateTime saleDate = DateTime.Now;
         private string customeName = "Khách lẻ", phone = "", address = "";
         private ulong total;
-        private ulong customePay;
+        //private ulong customePay;
         private bool note;
         private ObjectId id;
         private string textSearch;
@@ -191,22 +191,22 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
-        public ulong CustomePay
-        {
-            get => this.customePay;
-            set
-            {
-                if (this.customePay != value)
-                {
-                    this.customePay = value;
-                    this.OnPropertyChanged(() => this.CustomePay);
-                    this.OnPropertyChanged(() => this.Remain);
-                    this.OnChanged();
-                }
-            }
+        //[Obsolete]
+        //public ulong CustomePay
+        //{
+        //    get => this.customePay;
+        //    set
+        //    {
+        //        if (this.customePay != value)
+        //        {
+        //            this.customePay = value;
+        //            this.OnPropertyChanged(() => this.CustomePay);
+        //            this.OnPropertyChanged(() => this.Remain);
+        //            this.OnChanged();
+        //        }
+        //    }
 
-        }
+        //}
 
 
         private List<CustomerPay> customerPay = new List<CustomerPay>();
@@ -246,7 +246,7 @@ namespace Manager.Data
         {
             get
             {
-                customerPay[0].Amount = CustomePay;
+                //customerPay[0].Amount = CustomePay;
                 return customerPay;
             }
             set
