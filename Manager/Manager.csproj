@@ -193,6 +193,12 @@
     <Compile Include="StartUp.xaml.cs">
       <DependentUpon>StartUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomerPayControl.xaml.cs">
+      <DependentUpon>CustomerPayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GroupCustomerPayControl.xaml.cs">
+      <DependentUpon>GroupCustomerPayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
@@ -254,6 +260,14 @@
     <Page Include="Styles\TreeViewStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CustomerPayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GroupCustomerPayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\History.xaml">
       <SubType>Designer</SubType>

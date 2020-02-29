@@ -124,7 +124,11 @@ namespace Manager.Data
         }
 
         [Obsolete]
-        public async Task<ChartResult> DataChartsAsync(FilterDefinition<T> filter = null, string format = "dd/MM")
+        public async Task<ChartResult> DataChartsAsync(
+            FilterDefinition<T> filter = null,
+            FilterDefinition<T> filter_cash = null,
+            Func<CustomerPay, bool> condition = null,
+            string format = "dd/MM")
         {
             var query = await ReadAll(filter);
             var data = query.Cast<Bill>().ToArray();
@@ -134,23 +138,38 @@ namespace Manager.Data
                     r => new PlotInfo
                     {
                         Category = r.First().SaleDate.ToString(format),
-                        Value1 = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
-                        Value = 1.0 * r.Sum(a => (long)a.CustomePay) / oneMilion,
+                        Value = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
                         Type = r.First().IsDept
                     }
                 ).OrderBy(x => x.Category);
 
             var result = new ChartResult();
 
-            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value1));
-            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value1));
-            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value1));
+            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value));
+            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value));
+            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value));
 
-            result.Chart = list.GroupBy(x => x.Category).Select(
-                r => new PlotInfo{
-                Category = r.First().Category,
-                Value = r.Sum(x=>x.Value)
-            }).ToList();
+
+            var query_cash = await ReadAll(filter_cash);
+            var data_cash = query_cash.Cast<Bill>().ToArray();
+            var list_cash = new List<PlotInfo>();
+            foreach (var item in data_cash)
+            {
+                var temp = item.CustomerPay.Where(condition).Select(
+                r => new PlotInfo
+                {
+                    Category = r.PayTime.ToString(format),
+                    Value = r.Amount / oneMilion,
+                });
+                list_cash.AddRange(temp);
+            }
+
+            result.Chart = list_cash.GroupBy(x => x.Category).Select(
+                r => new PlotInfo
+                {
+                    Category = r.First().Category,
+                    Value = 1.0 * r.Sum(a => a.Value)
+                }).OrderBy(x => x.Category).ToList();
 
             result.Cash = Convert.ToUInt64(oneMilion * result.Chart.Sum(x => x.Value));
 

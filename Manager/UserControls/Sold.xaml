@@ -50,7 +50,7 @@
             <StackPanel 
                 Grid.Column="0" 
                 HorizontalAlignment="Left">
-                <TextBlock 
+                <!--<TextBlock 
                     Margin="0,10,0,0" 
                     Text="{Binding Instance.SelectedBill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
                     VerticalAlignment="Center"/>
@@ -58,12 +58,17 @@
                     Text="{Binding Instance.SelectedBill.CustomePay, StringFormat='ĐƯA TRƯỚC: {0:0,0}đ'}"/>
                 <TextBlock 
                     Text="{Binding Instance.SelectedBill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center"/>-->
+
+                <local:GroupCustomerPayControl
+                    HorizontalAlignment="Right" Grid.Column="1"
+                    
+                    ItemsSource="{Binding Instance.SelectedBill.CustomerPay, 
+                    Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}"/>
 
             </StackPanel>
 
             <StackPanel 
-                Orientation="Horizontal"
                 HorizontalAlignment="Right" 
                 Grid.Column="1">
 
@@ -84,6 +89,16 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+
+                <TextBlock 
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+
+                <TextBlock 
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
             </StackPanel>
 
 

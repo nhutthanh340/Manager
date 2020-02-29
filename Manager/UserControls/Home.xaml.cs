@@ -21,7 +21,9 @@ namespace Manager.UserControls
             bool isPrinter = e.Key == Key.P && isCtrlPressed,
                 isSave = e.Key == Key.S && isCtrlPressed,
                 isDept = e.Key == Key.T && isCtrlPressed,
-                isNote = e.Key == Key.G && isCtrlPressed;
+                isNote = e.Key == Key.G && isCtrlPressed,
+                isAdd = e.Key == Key.Add && isCtrlPressed,
+                isSub = e.Key == Key.Subtract && isCtrlPressed;
             if (isSave)
             {
                 Receipt.Instance.Save(Receipt.Instance.SelectedBill);
@@ -37,9 +39,20 @@ namespace Manager.UserControls
                 Receipt.Instance.SelectedBill.IsDept = !Receipt.Instance.SelectedBill.IsDept;
             }
 
-            if(isNote)
+            if (isNote)
             {
                 Receipt.Instance.SelectedBill.Note = !Receipt.Instance.SelectedBill.Note;
+            }
+
+            if (isAdd)
+            {
+                Receipt.Instance.SelectedBill.AddControl();
+
+            }
+            if (isSub)
+            {
+                Receipt.Instance.SelectedBill.SubControl();
+
             }
         }
     }

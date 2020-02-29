@@ -9,7 +9,6 @@ namespace Manager.Data
     {
         public string Category { get; set; }
         public double Value { get; set; }
-        public double Value1 { get; set; }
 
         public bool Type { get; set; }
     }

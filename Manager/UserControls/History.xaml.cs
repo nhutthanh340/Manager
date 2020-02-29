@@ -19,7 +19,9 @@ namespace Manager.UserControls
         {
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
             bool isPrinter = e.Key == Key.P && isCtrlPressed,
-                isSave = e.Key == Key.S && isCtrlPressed;
+                isSave = e.Key == Key.S && isCtrlPressed,
+                isAdd = e.Key == Key.Add && isCtrlPressed,
+                isSub = e.Key == Key.Subtract && isCtrlPressed;
             if (isSave)
             {
                 Sold.Instance.Save(null);
@@ -28,6 +30,17 @@ namespace Manager.UserControls
             if (isPrinter)
             {
                 Receipt.Instance.Print(Paid.Instance.SelectedBill);
+            }
+
+            if (isAdd)
+            {
+                Paid.Instance.SelectedBill.AddControl();
+
+            }
+            if (isSub)
+            {
+                Paid.Instance.SelectedBill.SubControl();
+
             }
         }
     }

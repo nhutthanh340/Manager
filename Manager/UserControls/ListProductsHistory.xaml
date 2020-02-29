@@ -48,20 +48,17 @@
             <StackPanel 
                 Grid.Column="0" 
                 HorizontalAlignment="Left">
-                <TextBlock 
-                    Margin="0,10,0,0" 
-                    Text="{Binding Instance.SelectedBill.Bill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
-                    VerticalAlignment="Center"/>
-                <TextBlock 
-                    Text="{Binding Instance.SelectedBill.Bill.CustomePay, StringFormat='ĐƯA TRƯỚC: {0:0,0}đ'}"/>
-                <TextBlock 
-                    Text="{Binding Instance.SelectedBill.Bill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
-                    VerticalAlignment="Center"/>
+
+                <local:GroupCustomerPayControl
+                    HorizontalAlignment="Right" Grid.Column="1"
+                    IsEnabled="False"
+                    ItemsSource="{Binding Instance.SelectedBill.Bill.CustomerPay, 
+                    Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}"/>
+
 
             </StackPanel>
 
             <StackPanel 
-                Orientation="Horizontal"
                 HorizontalAlignment="Right" 
                 Grid.Column="1">
 
@@ -82,6 +79,18 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+
+
+                <TextBlock 
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Bill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+
+                <TextBlock 
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Bill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+                
             </StackPanel>
 
 
@@ -93,7 +102,7 @@
                 <StackPanel >
                     <TextBlock VerticalAlignment="Center"
                                HorizontalAlignment="Center">
-                        In hoá đơn
+                        In
                     </TextBlock>
                     <Button 
                     VerticalAlignment="Center"

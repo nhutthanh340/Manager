@@ -299,3 +299,7 @@ G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ListProductsHistory
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\HistoryManipulation.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ListManipulations.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ListProductsHistory.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\CustomerPayControl.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\GroupCustomerPayControl.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\CustomerPayControl.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\GroupCustomerPayControl.baml

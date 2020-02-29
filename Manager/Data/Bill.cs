@@ -4,12 +4,56 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Linq;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
 namespace Manager.Data
 {
+    public class CustomerPay : ViewModelBase
+    {
+        DateTime payTime = DateTime.Today;
+        ulong amount = 0;
+        public DateTime PayTime
+        {
+            get => payTime;
+            set
+            {
+                if (payTime != value)
+                {
+                    payTime = value;
+                    OnPropertyChanged(() => this.PayTime);
+                    onChanged();
+                }
+            }
+        }
+
+        public ulong Amount
+        {
+            get => amount;
+            set
+            {
+                if (amount != value)
+                {
+                    amount = value;
+                    OnPropertyChanged(() => this.Amount);
+                    onChanged();
+                }
+            }
+        }
+
+        public delegate void change();
+        public event change Changed;
+
+        public void onChanged()
+        {
+            if (Changed != null)
+            {
+                Changed();
+            }
+        }
+
+    }
     [BsonIgnoreExtraElements]
     public class Bill : ViewModelBase
     {
@@ -104,7 +148,7 @@ namespace Manager.Data
         {
             get
             {
-                return (long)Total - (long)CustomePay;
+                return (long)Total - (long)CustomerPay.Sum(x => (long)x.Amount);
             }
             set
             {
@@ -152,6 +196,64 @@ namespace Manager.Data
             }
 
         }
+
+
+        private List<CustomerPay> customerPay = new List<CustomerPay>();
+
+        [Obsolete]
+        private void CustomerPayChanged()
+        {
+            OnPropertyChanged(() => this.CustomerPay);
+            OnPropertyChanged(() => this.Remain);
+            OnChanged();
+        }
+
+        [Obsolete]
+        public void AddControl()
+        {
+            customerPay = new List<CustomerPay>(customerPay);
+            var temp = new CustomerPay();
+            temp.Changed += CustomerPayChanged;
+            customerPay.Add(temp);
+            OnPropertyChanged(() => CustomerPay);
+            OnChanged();
+        }
+
+        [Obsolete]
+        public void SubControl()
+        {
+            if (customerPay.Count > 0)
+            {
+                customerPay.RemoveAt(customerPay.Count - 1);
+                customerPay = new List<CustomerPay>(customerPay);
+                OnPropertyChanged(() => CustomerPay);
+                OnChanged();
+            }
+        }
+        [Obsolete]
+        public List<CustomerPay> CustomerPay
+        {
+            get
+            {
+                // customerPay[0].Amount = CustomePay;
+                return customerPay;
+            }
+            set
+            {
+                if (customerPay != value)
+                {
+                    customerPay = value;
+                    foreach (var item in customerPay)
+                    {
+                        item.Changed += CustomerPayChanged;
+                    }
+                    OnPropertyChanged(() => CustomerPay);
+                    OnPropertyChanged(() => Remain);
+                    OnChanged();
+                }
+            }
+        }
+
         [BsonIgnore]
         [Obsolete]
         public QueryableCollectionView ListProducts
@@ -258,10 +360,12 @@ namespace Manager.Data
             }
         }
 
+
         [Obsolete]
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;
+            AddControl();
         }
         public delegate void changed(object bill);
         public event changed Changed;
