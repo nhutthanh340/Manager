@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using System;
 using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Windows.Input;
 
 namespace Manager.UserControls
 {
@@ -101,8 +102,8 @@ namespace Manager.UserControls
                             );
             var filter_cash = Builders<Bill>.Filter.Where(x =>
                             !x.IsDeleted
-                            //&& x.CustomerPay.Exists(y => 
-                            //    y.PayTime >= StartDate && 
+                            //&& x.CustomerPay.Exists(y =>
+                            //    y.PayTime >= StartDate &&
                             //    y.PayTime < EndDate)
                             );
             Func<CustomerPay, bool> condition = y => y.PayTime >= StartDate && y.PayTime < EndDate;
@@ -118,6 +119,17 @@ namespace Manager.UserControls
             {
                 chartResult = value;
                 this.NotifyChanged(PropertyChanged);
+            }
+        }
+
+        [Obsolete]
+        private void UserControl_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+            bool isRefresh = e.Key == Key.F5 && isCtrlPressed;
+            if (isRefresh)
+            {
+                Report.Instance.Initialize();
             }
         }
 

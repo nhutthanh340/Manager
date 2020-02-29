@@ -39,11 +39,11 @@
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <StackPanel 
                 Grid.Column="0" 
@@ -58,11 +58,23 @@
 
             </StackPanel>
 
-            <StackPanel 
+            <DockPanel Margin="10,0,10,0"
                 HorizontalAlignment="Right" 
                 Grid.Column="1">
 
-                <TextBlock 
+                <TextBlock DockPanel.Dock="Bottom"
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Bill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+
+                <TextBlock DockPanel.Dock="Bottom"
+                    FontWeight="Bold"
+                    Text="{Binding Instance.SelectedBill.Bill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
+                    VerticalAlignment="Center"/>
+
+                
+
+                <TextBlock DockPanel.Dock="Bottom"
                         FontSize="20"
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Center"
@@ -80,18 +92,7 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-
-                <TextBlock 
-                    FontWeight="Bold"
-                    Text="{Binding Instance.SelectedBill.Bill.Total, StringFormat='TỔNG CỘNG: {0:0,0}đ'}"
-                    VerticalAlignment="Center"/>
-
-                <TextBlock 
-                    FontWeight="Bold"
-                    Text="{Binding Instance.SelectedBill.Bill.Remain, StringFormat='CÒN LẠI: {0:0,0}đ'}"
-                    VerticalAlignment="Center"/>
-                
-            </StackPanel>
+            </DockPanel>
 
 
             <StackPanel 
@@ -99,8 +100,8 @@
                 HorizontalAlignment="Right" 
                 Grid.Column="2">
 
-                <StackPanel >
-                    <TextBlock VerticalAlignment="Center"
+                <StackPanel VerticalAlignment="Bottom" Margin="5,5,5,5">
+                    <TextBlock VerticalAlignment="Bottom"
                                HorizontalAlignment="Center">
                         In
                     </TextBlock>
@@ -121,10 +122,10 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel >
-                    <TextBlock VerticalAlignment="Center"
+                <StackPanel VerticalAlignment="Bottom" Margin="5,5,5,5">
+                    <TextBlock VerticalAlignment="Bottom"
                                HorizontalAlignment="Center">
-                        Khôi phục
+                        Quay lại
                     </TextBlock>
                     <Button 
                     VerticalAlignment="Center"
@@ -140,7 +141,7 @@
                     Kind="Restore"/>
                     </Button>
                 </StackPanel>
-                
+
             </StackPanel>
         </Grid>
     </Grid>

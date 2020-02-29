@@ -21,7 +21,8 @@ namespace Manager.UserControls
             bool isPrinter = e.Key == Key.P && isCtrlPressed,
                 isSave = e.Key == Key.S && isCtrlPressed,
                 isAdd = e.Key == Key.Add && isCtrlPressed,
-                isSub = e.Key == Key.Subtract && isCtrlPressed;
+                isSub = e.Key == Key.Subtract && isCtrlPressed,
+                isRefresh = e.Key == Key.F5 && isCtrlPressed;
             if (isSave)
             {
                 Sold.Instance.Save(null);
@@ -41,6 +42,11 @@ namespace Manager.UserControls
             {
                 Paid.Instance.SelectedBill.SubControl();
 
+            }
+
+            if (isRefresh)
+            {
+                Paid.Instance.Initialize();
             }
         }
     }

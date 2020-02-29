@@ -12,7 +12,7 @@ namespace Manager.Data
 {
     public class CustomerPay : ViewModelBase
     {
-        DateTime payTime = DateTime.Today;
+        DateTime payTime = DateTime.Now;
         ulong amount = 0;
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime PayTime
@@ -29,16 +29,6 @@ namespace Manager.Data
             }
         }
 
-        //BsonDateTime bsonDateTime;
-        //public BsonDateTime BsonDateTime
-        //{
-        //    get => bsonDateTime.Value;
-        //    set
-        //    {
-        //        bsonDateTime = new BsonDateTime(payTime.Date);
-        //        OnPropertyChanged(() => this.BsonDateTime);
-        //    }
-        //}
         public ulong Amount
         {
             get => amount;
@@ -190,24 +180,6 @@ namespace Manager.Data
                 OnPropertyChanged(() => this.Total);
             }
         }
-
-        //[Obsolete]
-        //public ulong CustomePay
-        //{
-        //    get => this.customePay;
-        //    set
-        //    {
-        //        if (this.customePay != value)
-        //        {
-        //            this.customePay = value;
-        //            this.OnPropertyChanged(() => this.CustomePay);
-        //            this.OnPropertyChanged(() => this.Remain);
-        //            this.OnChanged();
-        //        }
-        //    }
-
-        //}
-
 
         private List<CustomerPay> customerPay = new List<CustomerPay>();
 

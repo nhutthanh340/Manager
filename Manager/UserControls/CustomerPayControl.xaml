@@ -7,11 +7,12 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" >
-    <StackPanel Orientation="Horizontal">
-        <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
-                            Margin="10,0,10,0" 
-                            SelectedDate="{Binding PayTime, UpdateSourceTrigger=PropertyChanged}" 
-                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
+    <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+        <telerik:RadDateTimePicker Width="190" Height="30"
+                            Margin="10,0,10,0" StartTime="05:30" EndTime="18:00" TimeInterval="0:15"
+                            SelectedValue="{Binding PayTime, UpdateSourceTrigger=PropertyChanged}" 
+                            BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></telerik:RadDateTimePicker>
+
 
         <TextBox 
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"

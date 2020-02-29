@@ -23,7 +23,8 @@ namespace Manager.UserControls
                 isDept = e.Key == Key.T && isCtrlPressed,
                 isNote = e.Key == Key.G && isCtrlPressed,
                 isAdd = e.Key == Key.Add && isCtrlPressed,
-                isSub = e.Key == Key.Subtract && isCtrlPressed;
+                isSub = e.Key == Key.Subtract && isCtrlPressed,
+                isRefresh = e.Key == Key.F5 && isCtrlPressed;
             if (isSave)
             {
                 Receipt.Instance.Save(Receipt.Instance.SelectedBill);
@@ -53,6 +54,11 @@ namespace Manager.UserControls
             {
                 Receipt.Instance.SelectedBill.SubControl();
 
+            }
+
+            if (isRefresh)
+            {
+                Receipt.Instance.Initialize();
             }
         }
     }

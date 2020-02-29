@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="2"></ColumnDefinition>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3"></ColumnDefinition>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
 
@@ -18,7 +18,7 @@
             <local:Store/>
         </Grid>
 
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="2"></GridSplitter>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="3"></GridSplitter>
 
 
         <Grid Margin="10" Grid.Column="2">
