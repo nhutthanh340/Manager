@@ -51,21 +51,21 @@
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Total1,
                     UpdateSourceTrigger=PropertyChanged, 
-                    StringFormat='Tổng: 0,0 đ'}"></TextBlock>
+                    StringFormat='Tổng: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Cash1,
                     UpdateSourceTrigger=PropertyChanged, 
-                    StringFormat='Đưa trước: 0,0 đ'}"></TextBlock>
+                    StringFormat='Đưa trước: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Dept1,
                     UpdateSourceTrigger=PropertyChanged, 
-                    StringFormat='Còn lại: 0,0 đ'}"></TextBlock>
+                    StringFormat='Còn lại: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
 
@@ -77,21 +77,22 @@
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Total2,
-                    UpdateSourceTrigger=PropertyChanged, StringFormat='Tổng: 0,0 đ'}"></TextBlock>
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Tổng: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Cash2,
                     UpdateSourceTrigger=PropertyChanged, 
-                    StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
+                    StringFormat='Tiền mặt: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Dept2,
                     UpdateSourceTrigger=PropertyChanged, 
-                    StringFormat='Còn lại: 0,0 đ'}"></TextBlock>
+                    StringFormat='Còn lại: {0:0,0}đ'}"></TextBlock>
             </StackPanel>
 
 
