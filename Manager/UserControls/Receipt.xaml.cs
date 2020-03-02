@@ -314,6 +314,7 @@ namespace Manager.UserControls
                             if (status)
                             {
                                 message += "thành công";
+                                await Database<HistoryBill>.Instance.Add(new HistoryBill() { Bill = SelectedBill });
                                 Initialize();
                                 ListManipulations.Instance.Initialize();
                                 Report.Instance.Initialize();
@@ -327,6 +328,10 @@ namespace Manager.UserControls
                                 Content = message,
                                 Header = "Thông báo"
                             });
+                        }
+                        else
+                        {
+                            Initialize();
                         }
 
                     }
