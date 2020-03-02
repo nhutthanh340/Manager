@@ -265,6 +265,8 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\PrintPreview_2.ba
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Report.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\MainWindow.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\StartUp.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\CustomerPayControl.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\GroupCustomerPayControl.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\History.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Home.g.cs
@@ -283,6 +285,8 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager_MarkupCompile.lref
 G:\Visual Studio 2019\Manager\Manager\obj\Release\App.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\MainWindow.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\StartUp.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\CustomerPayControl.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\GroupCustomerPayControl.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\History.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\HistoryManipulation.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\Home.baml
@@ -298,8 +302,3 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.GenerateResourc
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
-G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csprojAssemblyReference.cache
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\CustomerPayControl.g.cs
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\GroupCustomerPayControl.g.cs
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\CustomerPayControl.baml
-G:\Visual Studio 2019\Manager\Manager\obj\Release\UserControls\GroupCustomerPayControl.baml
