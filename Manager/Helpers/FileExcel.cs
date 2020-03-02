@@ -74,16 +74,16 @@ namespace Manager.Helpers
 
                 product.Name = Instance.Read(2, row);
 
-                ulong PriceOrigin = 0;
-                ulong.TryParse(Instance.Read(3, row), out PriceOrigin);
+                long PriceOrigin = 0;
+                long.TryParse(Instance.Read(3, row), out PriceOrigin);
                 product.PriceOrigin = PriceOrigin;
 
                 bool IsRetailing = false;
                 bool.TryParse(Instance.Read(4, row), out IsRetailing);
                 product.IsRetailing = IsRetailing;
 
-                ulong PriceDisplay = 0;
-                ulong.TryParse(Instance.Read(5, row), out PriceDisplay);
+                long PriceDisplay = 0;
+                long.TryParse(Instance.Read(5, row), out PriceDisplay);
                 product.PriceDisplay = PriceDisplay;
 
                 product.UnitDisplay = Instance.Read(6, row);

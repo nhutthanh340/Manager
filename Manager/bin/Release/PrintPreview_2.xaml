@@ -6,7 +6,7 @@
     <StackPanel HorizontalAlignment="Left" Margin="50,0,100,0" Grid.Column="0">
         <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Total"/>
 
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold">Khách trả: </TextBlock>
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold">Đưa trước: </TextBlock>
         <StackPanel x:Name="CustomerPayList" Orientation="Vertical" Margin="20,0,0,0">
             <!--<StackPanel x:Name="CustomerPayItem" Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="PayTime"></TextBlock>

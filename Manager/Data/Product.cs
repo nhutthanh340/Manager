@@ -12,9 +12,9 @@ namespace Manager.Data
 {
     public class Price : ViewModelBase
     {
-        private ulong origin = 0, display = 0, retail = 0;
+        private long origin = 0, display = 0, retail = 0;
 
-        public ulong Origin
+        public long Origin
         {
             get => origin;
             set
@@ -27,7 +27,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong Display
+        public long Display
         {
             get => display;
             set
@@ -40,7 +40,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong Retail
+        public long Retail
         {
             get => retail;
             set
@@ -93,7 +93,7 @@ namespace Manager.Data
         private float count = 0;
         private bool isRetailing = false;
         private List<Unit> listUnit = new List<Unit>();
-        private ulong total;
+        private long total;
 
 
         public string RetailUnit
@@ -120,7 +120,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong Origin
+        public long Origin
         {
             get => price.Origin;
             set
@@ -132,7 +132,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong Display
+        public long Display
         {
             get => price.Display;
             set
@@ -144,7 +144,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong RetailPrice
+        public long RetailPrice
         {
             get => price.Retail;
             set
@@ -185,17 +185,17 @@ namespace Manager.Data
         public ushort STT { get; set; }
 
         [Obsolete]
-        public ulong Total
+        public long Total
         {
             get
             {
                 if (IsRetailing)
                 {
-                    this.total = (ulong)(Count * price.Retail);
+                    this.total = (long)(Count * price.Retail);
                 }
                 else
                 {
-                    this.total = (ulong)(Count * price.Display);
+                    this.total = (long)(Count * price.Display);
                 }
 
                 return this.total;
@@ -209,7 +209,7 @@ namespace Manager.Data
         }
 
 
-        public ulong PriceOrigin
+        public long PriceOrigin
         {
             get => this.price.Origin;
             set
@@ -223,7 +223,7 @@ namespace Manager.Data
         }
 
         [Obsolete]
-        public ulong PriceDisplay
+        public long PriceDisplay
         {
             get
             {

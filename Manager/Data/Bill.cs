@@ -1,5 +1,4 @@
 ﻿using Manager.Helpers;
-using Manager.UserControls;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -13,7 +12,7 @@ namespace Manager.Data
     public class CustomerPay : ViewModelBase
     {
         DateTime payTime = DateTime.Now;
-        ulong amount = 0;
+        long amount = 0;
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime PayTime
         {
@@ -29,7 +28,7 @@ namespace Manager.Data
             }
         }
 
-        public ulong Amount
+        public long Amount
         {
             get => amount;
             set
@@ -88,7 +87,7 @@ namespace Manager.Data
         private QueryableCollectionView listProducts = new QueryableCollectionView(new List<Product>());
         private DateTime saleDate = DateTime.Now;
         private string customeName = "Khách lẻ", phone = "", address = "";
-        private ulong total;
+        private long total;
         //private ulong customePay;
         private bool note;
         private ObjectId id;
@@ -149,7 +148,7 @@ namespace Manager.Data
         {
             get
             {
-                return (long)Total - (long)CustomerPay.Sum(x => (long)x.Amount);
+                return Total - CustomerPay.Sum(x => x.Amount);
             }
             set
             {
@@ -158,7 +157,7 @@ namespace Manager.Data
         }
 
         [Obsolete]
-        public ulong Total
+        public long Total
         {
             get
             {

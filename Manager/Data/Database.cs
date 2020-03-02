@@ -126,37 +126,57 @@ namespace Manager.Data
 
         [Obsolete]
         public async Task<ChartResult> DataChartsAsync(
-            FilterDefinition<T> filter = null,
-            FilterDefinition<T> filter_cash = null,
+            List<FilterDefinition<T>> filters = null,
             Func<CustomerPay, bool> condition = null,
             string format = "dd/MM")
         {
-            var query = await ReadAll(filter);
-            var data = query.Cast<Bill>().ToArray();
-            ulong oneMilion = 1000000;
-            var list = data.GroupBy(x => new { V = x.SaleDate.ToString(format), x.IsDept })
+            long oneMilion = 1000000;
+            var result = new ChartResult();
+
+            // Chưa thanh toán
+            var query1 = await ReadAll(filters[0]);
+            var data1 = query1.Cast<Bill>().ToArray();
+
+            var list1 = data1.Select(
+                    r => new PlotInfo
+                    {
+                        Value = 1.0 * r.Total / oneMilion,
+                        Value1 = 1.0 * r.CustomerPay.Sum(x => x.Amount) / oneMilion,
+                        Value2 = 1.0 * r.Remain / oneMilion
+                    }
+                );
+
+            result.Total1 = (long)(oneMilion * list1.Sum(x => x.Value));
+            result.Cash1 = (long)(oneMilion * list1.Sum(x => x.Value1));
+            result.Dept1 = (long)(oneMilion * list1.Sum(x => x.Value2));
+
+            // Đã thanh toán
+            var query2 = await ReadAll(filters[1]);
+            var data2 = query2.Cast<Bill>().ToArray();
+
+            var list2 = data2
                 .Select(
                     r => new PlotInfo
                     {
-                        Category = r.First().SaleDate.ToString(format),
-                        Value = 1.0 * r.Sum(a => (long)a.Total) / oneMilion,
-                        Type = r.First().IsDept
+                        Value = 1.0 * r.Total / oneMilion,
+                        Value1 = 1.0 * r.CustomerPay.Sum(z => z.Amount) / oneMilion,
+                        Value2 = 1.0 * r.Remain / oneMilion
                     }
-                ).OrderBy(x => x.Category);
+                );
 
-            var result = new ChartResult();
-
-            result.Total = Convert.ToUInt64(oneMilion * list.Sum(x => x.Value));
-            result.Paid = Convert.ToUInt64(oneMilion * list.Where(x => !x.Type).Sum(x => x.Value));
-            result.Dept = Convert.ToUInt64(oneMilion * list.Where(x => x.Type).Sum(x => x.Value));
+            result.Total2 = (long)(oneMilion * list2.Sum(x => x.Value));
+            result.Cash2 = (long)(oneMilion * list2.Sum(x => x.Value1));
+            result.Dept2 = (long)(oneMilion * list2.Sum(x => x.Value2));
 
 
-            var query_cash = await ReadAll(filter_cash);
+            var query_cash = await ReadAll(filters[2]);
             var data_cash = query_cash.Cast<Bill>().ToArray();
             var list_cash = new List<PlotInfo>();
             foreach (var item in data_cash)
             {
-                var temp = item.CustomerPay.Where(condition).Select(
+                var temp = item.CustomerPay
+                    .Where(condition)
+                    .Select(
                 r => new PlotInfo
                 {
                     Category = r.PayTime.ToString(format),
@@ -171,8 +191,6 @@ namespace Manager.Data
                     Category = r.First().Category,
                     Value = 1.0 * r.Sum(a => a.Value)
                 }).OrderBy(x => x.Category).ToList();
-
-            result.Cash = Convert.ToUInt64(oneMilion * result.Chart.Sum(x => x.Value));
 
             return result;
         }

@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace Manager.UserControls
 {
@@ -95,19 +96,29 @@ namespace Manager.UserControls
         [System.Obsolete]
         public async void Initialize()
         {
-            var filter = Builders<Bill>.Filter.Where(x =>
+            var filter1 = Builders<Bill>.Filter.Where(x =>
                             !x.IsDeleted
+                            && x.IsDept
+                            );
+
+            var filter2 = Builders<Bill>.Filter.Where(x =>
+                            !x.IsDeleted
+                            && !x.IsDept
                             && x.SaleDate >= StartDate
                             && x.SaleDate < EndDate
                             );
-            var filter_cash = Builders<Bill>.Filter.Where(x =>
+
+            var filter3 = Builders<Bill>.Filter.Where(x =>
                             !x.IsDeleted
-                            //&& x.CustomerPay.Exists(y =>
-                            //    y.PayTime >= StartDate &&
-                            //    y.PayTime < EndDate)
                             );
+            var filters = new List<FilterDefinition<Bill>>();
+
+            filters.Add(filter1);
+            filters.Add(filter2);
+            filters.Add(filter3);
+
             Func<CustomerPay, bool> condition = y => y.PayTime >= StartDate && y.PayTime < EndDate;
-            ChartResult = await Database<Bill>.Instance.DataChartsAsync(filter, filter_cash, condition, Format[SelectedFormat]);
+            ChartResult = await Database<Bill>.Instance.DataChartsAsync(filters, condition, Format[SelectedFormat]);
         }
 
         private ChartResult chartResult;

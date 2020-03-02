@@ -41,33 +41,96 @@
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                      ></ComboBox>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
-                <TextBlock FontSize="16" Text="{Binding Instance.ChartResult.Total,UpdateSourceTrigger=PropertyChanged, StringFormat='Tổng: 0,0 đ'}"></TextBlock>
+                <TextBlock FontSize="16" FontWeight="Bold" Text="Hoá đơn chưa thanh toán"></TextBlock>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Total1,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Tổng: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                <TextBlock FontSize="16" Text="{Binding Instance.ChartResult.Dept,UpdateSourceTrigger=PropertyChanged, StringFormat='Chưa thanh toán: 0,0 đ'}"></TextBlock>
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Cash1,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Đưa trước: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                <TextBlock FontSize="16" Text="{Binding Instance.ChartResult.Paid,UpdateSourceTrigger=PropertyChanged, StringFormat='Đã thanh toán: 0,0 đ'}"></TextBlock>
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Dept1,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Còn lại: 0,0 đ'}"></TextBlock>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" FontWeight="Bold" Text="Hoá đơn đã thanh toán"></TextBlock>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Total2,
+                    UpdateSourceTrigger=PropertyChanged, StringFormat='Tổng: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                <TextBlock FontSize="16" Text="{Binding Instance.ChartResult.Cash,UpdateSourceTrigger=PropertyChanged, StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Cash2,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Dept2,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Còn lại: 0,0 đ'}"></TextBlock>
+            </StackPanel>
+
+
+            <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" FontWeight="Bold" Text="Tổng kết"></TextBlock>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Total,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Tổng: 0,0 đ'}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Cash,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Dept,
+                    UpdateSourceTrigger=PropertyChanged, 
+                    StringFormat='Còn lại: 0,0 đ'}"></TextBlock>
+            </StackPanel>-->
         </StackPanel>
 
 
         <Grid Grid.Column="1" Height="auto" >
 
             <telerik:RadCartesianChart Palette="Natural" HoverMode="FadeOtherSeries" FontSize="16">
-                
+
                 <telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:CategoricalAxis/>
                 </telerik:RadCartesianChart.HorizontalAxis>
-                
+
                 <telerik:RadCartesianChart.VerticalAxis>
                     <telerik:LinearAxis Minimum="0"/>
                 </telerik:RadCartesianChart.VerticalAxis>
@@ -82,7 +145,7 @@
                         <telerik:BarSeries.LegendSettings>
                             <telerik:DataPointLegendSettings/>
                         </telerik:BarSeries.LegendSettings>
-                       
+
                     </telerik:BarSeries>
                 </telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart>

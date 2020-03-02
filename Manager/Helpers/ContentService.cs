@@ -12,9 +12,9 @@ namespace Manager.Helpers
 {
     public static class ContentService
     {
-        public static ulong RoundMoney(double value)
+        public static long RoundMoney(double value)
         {
-            ulong result = (ulong)value;
+            long result = (long)value;
             var mod = result % 1000;
             if (mod >= 500)
             {
