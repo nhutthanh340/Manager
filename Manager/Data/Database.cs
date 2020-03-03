@@ -190,7 +190,7 @@ namespace Manager.Data
                 {
                     Category = r.First().Category,
                     Value = 1.0 * r.Sum(a => a.Value)
-                }).OrderBy(x => x.Category).ToList();
+                }).OrderBy(x => DateTime.Parse(x.Category)).ToList();
 
             return result;
         }

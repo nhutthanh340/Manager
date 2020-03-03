@@ -234,10 +234,10 @@
 
                     <telerik:RadButton
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Content="Thanh toán"                     
+                    Content="Lưu"                     
                     HorizontalAlignment="Right"
-                    telerik:ScreenTip.Title="Thanh toán"
-                    telerik:ScreenTip.Description="Ấn vào đây để thanh toán hoá đơn"
+                    telerik:ScreenTip.Title="Lưu"
+                    telerik:ScreenTip.Description="Ấn vào đây để lưu hoá đơn"
                     Command="{Binding Instance.PayCommand}"
                     CommandParameter="{Binding Instance.SelectedBill}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"

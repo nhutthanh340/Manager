@@ -496,6 +496,11 @@ namespace Manager.Data
                 ContentService.ConvertToUnsigned(this.UnitDisplay.ToLower()) == ContentService.ConvertToUnsigned(product.UnitDisplay.ToLower());
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         private bool isDeleted;
         public bool IsDeleted
         {

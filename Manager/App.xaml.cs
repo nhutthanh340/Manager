@@ -22,7 +22,7 @@ namespace Manager
             splashScreen.Show();
 
             mainWindow = new MainWindow();
-            Thread.Sleep(3000);
+            //Thread.Sleep(000);
             splashScreen.Close();
             mainWindow.Show();
 
