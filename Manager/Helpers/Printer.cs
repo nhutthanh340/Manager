@@ -130,7 +130,7 @@ namespace Manager.Helpers
                 {
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     FontWeight = FontWeights.Bold,
-                    Text = $"+ {item.PayTime.ToString("dd/MM/yyyy HH:mm")} : "
+                    Text = $"{item.PayTime.ToString("dd/MM/yyyy HH:mm")} : "
                 };
                 TextBlock Amount = new TextBlock()
                 {
