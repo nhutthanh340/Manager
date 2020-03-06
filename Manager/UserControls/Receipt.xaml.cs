@@ -11,6 +11,8 @@ using MongoDB.Driver;
 using System.Windows.Data;
 using System.Globalization;
 using System.Threading;
+using Telerik.Windows.Controls.GridView;
+using System.Linq.Expressions;
 
 namespace Manager.UserControls
 {
@@ -79,16 +81,13 @@ namespace Manager.UserControls
             }
         }
 
-        public DelegateCommand RemoveProductCommand { get; private set; }
         public DelegateCommand PayCommand { get; private set; }
 
 
         [Obsolete]
         private void InitializeCommand()
         {
-            this.RemoveProductCommand = new DelegateCommand(RemoveProduct);
             this.PayCommand = new DelegateCommand(Pay);
-
         }
 
         [Obsolete]
@@ -228,72 +227,16 @@ namespace Manager.UserControls
             {
                 NewReceipt(null);
             }
-            //Product item = GetProduct(product as Product);
-
             SelectedBill.ListProducts.AddNew((product as Product).Clone());
-            //if (item == null)
-            //{
-            //    SelectedBill.ListProducts.AddNew(product/*(product as Product).Clone()*/);
-            //}
-            //else
-            //{
-            //    item.Count += 1;
-            //}
-            //Receipt.Instance.IsSaved = false;
             SelectedBill.NotifyChanged();
         }
 
-        [Obsolete]
-        private void RemoveProduct(object product)
-        {
-            Receipt.Instance.IsSaved = false;
-            SelectedBill.ListProducts.Remove(product);
-            SelectedBill.NotifyChanged();
-        }
-
-        //[Obsolete]
-        //public Product GetProduct(Product product)
-        //{
-        //    QueryableCollectionView ListProducts = SelectedBill.ListProducts;
-        //    foreach (Product item in ListProducts)
-        //    {
-        //        if (item.Id == product.Id)
-        //        {
-        //            return item;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //[Obsolete]
-        //public void ConfirmSave()
-        //{
-        //    RadWindow.Confirm(
-        //        string.Format("Hoá đơn hiện tại chưa được lưu, bạn có muốn lưu không ?"),
-        //        delegate (object sender, WindowClosedEventArgs e)
-        //        {
-        //            var result = e.DialogResult;
-        //            if (result == true)
-        //            {
-        //                Save(SelectedBill);
-        //                IsSaved = true;
-        //            }
-
-        //        });
-        //}
 
         [Obsolete]
         public void NewReceipt(object receipt)
         {
-            //if (!Instance.IsSaved)
-            //{
-            //    ConfirmSave();
-            //}
-            //else
-            //{
             ListBills.AddNew(new Bill());
             SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
-            //}
         }
 
         [Obsolete]
@@ -338,33 +281,38 @@ namespace Manager.UserControls
 
                 });
         }
-        private void RemoveProduct(object sender, RoutedEventArgs e)
-        {
-            this.SelectedProduct = ((e.OriginalSource as RadButton).DataContext as Product);
-        }
+
 
         [Obsolete]
         private void SelectBillChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (!IsLoaded && !Instance.IsSaved)
-            //{
-            //    Instance.IsSaved = true;
-            //}
-
-            //if (!Instance.IsSaved)
-            //{
-            //    ConfirmSave();
-            //}
-            //else
-            //{
             if (e.AddedItems.Count == 0)
             {
                 return;
             }
             SelectedBill = e.AddedItems[0] as Bill;
-            //}
         }
 
+        [Obsolete]
+        private void radGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            FrameworkElement originalSender = e.OriginalSource as FrameworkElement;
+            if (originalSender != null)
+            {
+                var cell = originalSender.ParentOfType<GridViewCell>();
+                if (cell != null)
+                {
+                    bool isCellCount = cell.DataColumn.DataMemberBinding.Path.Path == MemberInfoGetting.GetMemberName(() => new Product().Count);
+                    if(!isCellCount)
+                    {
+                        SelectedBill.ListProducts.Remove(originalSender.DataContext as Product);
+                        SelectedBill.NotifyChanged();
+                    }
+                }
+                
+            }
+
+        }
     }
 
     public class StringFormatter : IMultiValueConverter
@@ -381,6 +329,15 @@ namespace Manager.UserControls
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public static class MemberInfoGetting
+    {
+        public static string GetMemberName<T>(Expression<Func<T>> memberExpression)
+        {
+            MemberExpression expressionBody = (MemberExpression)memberExpression.Body;
+            return expressionBody.Member.Name;
         }
     }
 }

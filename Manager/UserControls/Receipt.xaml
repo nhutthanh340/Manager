@@ -43,7 +43,10 @@
                                      IsReadOnly="False"
                                      ColumnWidth="*" Width="auto"
                                      GridLinesVisibility="Horizontal" 
-                                     GroupRenderMode="Flat"
+                                     GroupRenderMode="Flat" RowHeight="50"
+                                 CanUserDeleteRows="False"
+                                 CanUserInsertRows="False"
+                                 MouseDoubleClick="radGridView_MouseDoubleClick"
                                     AllowDrop="True"
                                  >
 
@@ -82,7 +85,7 @@
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
                     <telerik:GridViewDataColumn                   DataMemberBinding="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Total, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Thành tiền"/>
-                    <telerik:GridViewDataColumn Width="auto">
+                    <!--<telerik:GridViewDataColumn Width="auto">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <telerik:RadButton 
@@ -104,7 +107,7 @@
                                 </telerik:RadButton>
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
-                    </telerik:GridViewDataColumn>
+                    </telerik:GridViewDataColumn>-->
 
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>

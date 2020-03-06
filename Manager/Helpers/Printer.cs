@@ -66,7 +66,7 @@ namespace Manager.Helpers
 
             (stackPanels[0].FindName("IdBill") as TextBlock).Text = $"MÃ: {bill.Id}";
             (stackPanels[0].FindName("Name") as TextBlock).Text = $"Khách hàng: {bill.CustomeName}";
-            (stackPanels[0].FindName("Phone") as TextBlock).Text = $"Số điện thoại: {bill.Phone}";
+            (stackPanels[0].FindName("Phone") as TextBlock).Text = $"SĐT: {bill.Phone}";
             (stackPanels[0].FindName("Address") as TextBlock).Text = $"Địa chỉ: {bill.Address}";
             (stackPanels[0].FindName("Date") as TextBlock).Text = $"Ngày bán: {bill.SaleDate.ToString("dd/MM/yyyy")}";
 

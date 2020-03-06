@@ -28,6 +28,8 @@
                                                      ShowGroupPanel="False"
                                                      IsReadOnly="True"
                                                      GridLinesVisibility="Horizontal"
+                                                     CanUserDeleteRows="False"
+                                                     CanUserInsertRows="False"
                                                      ColumnWidth="*">
 
             <telerik:RadGridView.Columns>

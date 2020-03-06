@@ -9,6 +9,7 @@ using Telerik.Windows.Data;
 using Manager.Helpers;
 using System.Threading;
 using MongoDB.Driver;
+using Telerik.Windows.Controls.GridView;
 
 namespace Manager.UserControls
 {
@@ -28,7 +29,6 @@ namespace Manager.UserControls
                 return instance;
             }
         }
-        public DelegateCommand RemoveProductCommand { get; private set; }
         public DelegateCommand DeleteAllCommand { get; private set; }
         private bool isHidenPrice = false;
         private bool isHidenDate = false;
@@ -100,7 +100,6 @@ namespace Manager.UserControls
         [Obsolete]
         private void InititalizeCommand()
         {
-            this.RemoveProductCommand = new DelegateCommand(Receipt.Instance.AddProduct);
             this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
@@ -137,14 +136,14 @@ namespace Manager.UserControls
 
                 var order = Builders<Product>.Sort.Descending(x => x.Name);
                 Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters), order:order);
-                if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
-                {
-                    Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;
-                }
-                else
-                {
-                    Instance.SelectedProduct = null;
-                }
+                //if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
+                //{
+                //    Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;
+                //}
+                //else
+                //{
+                //    Instance.SelectedProduct = null;
+                //}
                 Instance.IsBusy = false;
             });
             thread.Start();
@@ -163,26 +162,22 @@ namespace Manager.UserControls
                 }
             }
         }
-        private Product selectProduct;
-        public Product SelectedProduct
-        {
-            get => selectProduct;
-            set
-            {
-                if (selectProduct != value)
-                {
-                    selectProduct = value;
-                    this.NotifyChanged(PropertyChanged);
-                }
-            }
-        }
+        //private Product selectProduct;
+        //public Product SelectedProduct
+        //{
+        //    get => selectProduct;
+        //    set
+        //    {
+        //        if (selectProduct != value)
+        //        {
+        //            selectProduct = value;
+        //            this.NotifyChanged(PropertyChanged);
+        //        }
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void RemoveProduct(object sender, RoutedEventArgs e)
-        {
-            this.SelectedProduct = ((e.OriginalSource as RadButton).DataContext as Product);
-        }
 
         [Obsolete]
         public void NoneRepeat(object obj)
@@ -228,6 +223,16 @@ namespace Manager.UserControls
                         Initialize();
                     }
                 });
+        }
+
+        [Obsolete]
+        private void RadGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            FrameworkElement originalSender = e.OriginalSource as FrameworkElement;
+            if (originalSender != null)
+            {                
+                Receipt.Instance.AddProduct((originalSender.DataContext as Product).Clone());
+            }
         }
     }
 

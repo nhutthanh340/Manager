@@ -77,7 +77,8 @@
                ShowGroupPanel="False"                   
                GridLinesVisibility="Horizontal"              
                ColumnWidth="*"
-                                 
+               CanUserDeleteRows="False"
+               CanUserInsertRows="False" 
                SelectionMode="Single">
 
 

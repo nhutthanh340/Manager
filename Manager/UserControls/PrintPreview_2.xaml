@@ -7,7 +7,7 @@
         <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Total"/>
 
         <TextBlock HorizontalAlignment="Left" FontWeight="Bold">Đưa trước: </TextBlock>
-        <StackPanel x:Name="CustomerPayList" Orientation="Vertical" Margin="20,0,0,0">
+        <StackPanel x:Name="CustomerPayList" Orientation="Vertical" Margin="0,0,0,0">
             <!--<StackPanel x:Name="CustomerPayItem" Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="PayTime"></TextBlock>
                 <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Amount"></TextBlock>

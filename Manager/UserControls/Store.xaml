@@ -46,8 +46,7 @@
                     ItemsSource="{Binding Instance.ListProducts, IsAsync=True}"
                     SelectedItem="{Binding Instance.SelectedProduct}"
                     IsSynchronizedWithCurrentItem="True"                
-                    AutoGenerateColumns="False" 
-                    CanUserInsertRows="True"
+                    AutoGenerateColumns="False"                   
                     local:CustomFilterBehavior.TextBox="{Binding ElementName=SearchWatermarkTextBox}"                                                   
                     RowIndicatorVisibility="Collapsed"
                     CanUserFreezeColumns="False"
@@ -56,39 +55,20 @@
                     IsReadOnly="True"
                     AlternateRowBackground="Azure"
                     GridLinesVisibility="Horizontal"
-                    AlternationCount="2" 
+                    AlternationCount="2" RowHeight="50"
+                    MouseDoubleClick="RadGridView_MouseDoubleClick"
+                    CanUserDeleteRows="False"
+                    CanUserInsertRows="False"
                     ColumnWidth="*">
 
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
-                        <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
+                        <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
                         <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy - HH:mm:ss',UpdateSourceTrigger=PropertyChanged}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
-                        <telerik:GridViewDataColumn Width="auto">
-                            <telerik:GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <telerik:RadButton
-                                       Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                       Height="30"
-                                       Width="30"
-                                       Click="RemoveProduct"
-                                       Command="{Binding Path=DataContext.RemoveProductCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
-                                       CommandParameter="{Binding Path=DataContext.SelectedProduct, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
-                                       Margin="10,10,10,10"
-                                       telerik:ScreenTip.Title="Thêm"
-                                       telerik:ScreenTip.Description="Ấn vào đây để thêm mặt hàng này vào hoá đơn"
-                                       Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
-                                              >
-                                        <materialDesign:PackIcon
-                                               Kind="Export"
-                                               Height="20"
-                                               Width="20" />
-                                    </telerik:RadButton>
-                                </DataTemplate>
-                            </telerik:GridViewColumn.CellTemplate>
-                        </telerik:GridViewDataColumn>
+                     
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>
             </Grid>
