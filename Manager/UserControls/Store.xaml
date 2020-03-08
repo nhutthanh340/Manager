@@ -60,7 +60,7 @@
                     CanUserDeleteRows="False"
                     CanUserInsertRows="False"
                     ColumnWidth="*">
-
+              
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                         <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>

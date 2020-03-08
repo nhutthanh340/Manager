@@ -9,7 +9,6 @@ using Telerik.Windows.Data;
 using Manager.Helpers;
 using System.Threading;
 using MongoDB.Driver;
-using Telerik.Windows.Controls.GridView;
 
 namespace Manager.UserControls
 {
@@ -135,15 +134,8 @@ namespace Manager.UserControls
 
 
                 var order = Builders<Product>.Sort.Descending(x => x.Name);
-                Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters), order:order);
-                //if (Instance.ListProducts.QueryableSourceCollection.Count() > 0)
-                //{
-                //    Instance.SelectedProduct = Instance.ListProducts.QueryableSourceCollection.First() as Product;
-                //}
-                //else
-                //{
-                //    Instance.SelectedProduct = null;
-                //}
+                Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters), order: order);
+
                 Instance.IsBusy = false;
             });
             thread.Start();
@@ -162,19 +154,7 @@ namespace Manager.UserControls
                 }
             }
         }
-        //private Product selectProduct;
-        //public Product SelectedProduct
-        //{
-        //    get => selectProduct;
-        //    set
-        //    {
-        //        if (selectProduct != value)
-        //        {
-        //            selectProduct = value;
-        //            this.NotifyChanged(PropertyChanged);
-        //        }
-        //    }
-        //}
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -228,10 +208,9 @@ namespace Manager.UserControls
         [Obsolete]
         private void RadGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            FrameworkElement originalSender = e.OriginalSource as FrameworkElement;
-            if (originalSender != null)
-            {                
-                Receipt.Instance.AddProduct((originalSender.DataContext as Product).Clone());
+            if (!(e.Source as RadGridView).IsFocused &&!(e.Source as RadGridView).IsMouseCaptureWithin)
+            {
+                Receipt.Instance.AddProduct(((sender as RadGridView).CurrentItem as Product).Clone());
             }
         }
     }

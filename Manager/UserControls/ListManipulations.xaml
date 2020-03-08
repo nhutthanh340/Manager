@@ -124,7 +124,7 @@
         </telerik:RadBusyIndicator>
         <telerik:RadDataPager 
             Grid.Row="2" 
-            PageSize="20" 
+            PageSize="40" 
             Source="{Binding ItemsSource, ElementName=gridViewBill}"/>
 
     </Grid>

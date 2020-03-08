@@ -8,8 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
 
-            
-            
+
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/GridViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/OutlookBarStyle.xaml" />
@@ -28,25 +28,6 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-
-            <!--<Style x:Name="StyleCheckedIsDept" TargetType="telerik:GridViewCell">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsDept}" Value="True">
-                        <Setter Property="Background" Value="Red"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-            
-            <Style x:Name="StyleCheckedNote" TargetType="telerik:GridViewCell">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Note}" Value="False">
-                        <Setter Property="Background" Value="Red"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>-->
-            
             <Style x:Key="FlatProgressBar" TargetType="{x:Type ProgressBar}">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -62,8 +43,8 @@
             </Style>
             
             <Style x:Key="RowStyle" TargetType="telerik:GridViewHeaderRow">
-                <Setter Property="Background" Value="AntiqueWhite"/>
-                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Background" Value="Black"/>
+                
             </Style>
             <Style x:Key="RowStyleWithAlternation" TargetType="telerik:GridViewRow">
                 <Setter Property="SnapsToDevicePixels" Value="True" />
