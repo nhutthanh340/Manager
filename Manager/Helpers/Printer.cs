@@ -59,7 +59,7 @@ namespace Manager.Helpers
                 (bill.ListProducts[i - 1] as Product).STT = i;
             }
 
-            int NumItemInPages = 30, NumItemInPages_1 = 38, NumItemInPages_2 = 22, lengthPage = length + 15, j = 0;
+            int NumItemInPages = 30, NumItemInPages_1 = 40, NumItemInPages_2 = 27, lengthPage = length + 15, j = 0;
             decimal numPages = (decimal)Math.Ceiling(1.0 * lengthPage / NumItemInPages);
 
             FixedPage[] fixedPages = new FixedPage[2];
@@ -108,7 +108,7 @@ namespace Manager.Helpers
                     stackPanel.Children.Add(stackPanels[1]);
                 }
 
-                if (list.Count <= NumItemInPages_1 && list.Count >= NumItemInPages)
+                if (list.Count <= NumItemInPages_1 && list.Count >= NumItemInPages+5)
                 {
                     fixedPages[1].Children.Add(stackPanel);
                     ((IAddChild)pageContent).AddChild(fixedPages[1]);
@@ -121,7 +121,6 @@ namespace Manager.Helpers
             }
 
             (stackPanels[2].FindName("Total") as TextBlock).Text = $"Tổng cộng:  {string.Format("{0:0,0}đ", bill.Total)} {new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
-            //(stackPanels[2].FindName("CustomePay") as TextBlock).Text = $"Đưa trước: {string.Format("{0:0,0}đ", bill.CustomePay)} {new NumberToText(Convert.ToDouble(bill.CustomePay)).ReadThis()}";
 
 
             foreach (var item in bill.CustomerPay)
