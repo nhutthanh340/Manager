@@ -1,0 +1,28 @@
+android.support.design.widget.FloatingActionButton;obj\Debug\90\res\layout\activity_main.xml
+cache-path;G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+color;obj\Debug\90\res\values\colors.xml
+EditText;obj\Debug\90\res\layout\input_url_mongodb.xml
+external-cache-path;G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-path;G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+gradient;obj\Debug\90\res\drawable\item_state_normal.xml
+gradient;obj\Debug\90\res\drawable\item_state_pressed.xml
+gradient;obj\Debug\90\res\drawable\item_state_selected.xml
+item;obj\Debug\90\res\drawable\list_selector.xml
+item;obj\Debug\90\res\values\styles.xml
+LinearLayout;obj\Debug\90\res\layout\input_url_mongodb.xml
+ListView;obj\Debug\90\res\layout\activity_main.xml
+paths;G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+RelativeLayout;obj\Debug\90\res\layout\activity_main.xml
+RelativeLayout;obj\Debug\90\res\layout\card_product.xml
+resources;obj\Debug\90\res\values\colors.xml
+resources;obj\Debug\90\res\values\strings.xml
+resources;obj\Debug\90\res\values\styles.xml
+SearchView;obj\Debug\90\res\layout\activity_main.xml
+selector;obj\Debug\90\res\drawable\list_selector.xml
+shape;obj\Debug\90\res\drawable\item_state_normal.xml
+shape;obj\Debug\90\res\drawable\item_state_pressed.xml
+shape;obj\Debug\90\res\drawable\item_state_selected.xml
+string;obj\Debug\90\res\values\strings.xml
+style;obj\Debug\90\res\values\styles.xml
+TextView;obj\Debug\90\res\layout\card_product.xml
+TextView;obj\Debug\90\res\layout\input_url_mongodb.xml

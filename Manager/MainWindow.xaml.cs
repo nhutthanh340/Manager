@@ -1,4 +1,5 @@
 ﻿using Manager.Data;
+using Manager.Dialogs;
 using Manager.Helpers;
 using Manager.UserControls;
 using System;
@@ -170,12 +171,14 @@ namespace Manager
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Store.Instance.IsBusy = true;
-                Thread thread = new Thread(() =>
-                {
-                    FileExcel.Instance.Import(ofd.FileName);
-                });
-                thread.Start();
+                //Store.Instance.IsBusy = true;
+                //Thread thread = new Thread(() =>
+                //{
+                //    FileExcel.Instance.Import(ofd.FileName);
+                //});
+                //thread.Start();
+                ImportDialog importDialog = new ImportDialog();
+                importDialog.Show();
             }
         }
 

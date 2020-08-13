@@ -1,0 +1,11 @@
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\UserControls\PrintPreview.baml
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\UserControls\PrintPreview_1.baml
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\UserControls\PrintPreview_2.baml
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\StartUp.g.cs
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\UserControls\GroupCustomerPayControl.g.cs
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\UserControls\Home.g.cs
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\Manager_Content.g.cs
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\GeneratedInternalTypeHelper.g.cs
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\Manager_MarkupCompile.cache
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\Manager\Release\Manager_MarkupCompile.lref

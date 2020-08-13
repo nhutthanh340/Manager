@@ -10,11 +10,11 @@ none
 false
 TRACE
 G:\Visual Studio 2019\Manager\Manager\App.xaml
-21-719484039
+22-1367489555
 1-690838624
-34278716561
-51613320896
-MainWindow.xaml;StartUp.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\CustomerPayControl.xaml;UserControls\GroupCustomerPayControl.xaml;UserControls\History.xaml;UserControls\HistoryManipulation.xaml;UserControls\Home.xaml;UserControls\ListManipulations.xaml;UserControls\ListProductsHistory.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\PrintPreview_1.xaml;UserControls\PrintPreview_2.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
+351363373381
+51-287735454
+MainWindow.xaml;StartUp.xaml;Styles\GridViewStyle.xaml;Styles\OutlookBarStyle.xaml;Styles\RichTextBoxRibbonUIStyle.xaml;Styles\TreeViewStyle.xaml;UserControls\CustomerPayControl.xaml;UserControls\GroupCustomerPayControl.xaml;UserControls\History.xaml;UserControls\HistoryManipulation.xaml;UserControls\Home.xaml;UserControls\ImportDialog.xaml;UserControls\ListManipulations.xaml;UserControls\ListProductsHistory.xaml;UserControls\Paid.xaml;UserControls\PrintPreview.xaml;UserControls\PrintPreview_1.xaml;UserControls\PrintPreview_2.xaml;UserControls\Receipt.xaml;UserControls\Report.xaml;UserControls\Sold.xaml;UserControls\Store.xaml;
 
 True
 

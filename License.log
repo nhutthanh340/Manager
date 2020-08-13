@@ -1,0 +1,41 @@
+    ======  ======
+    Time:13/08/2020 10:54:24 SA
+    Title: Initiate log
+    Message: 
+    Time:13/08/2020 10:54:24 SA
+    Title: Initiate InternalManager
+    Message: Trying to Validate License
+    Time:13/08/2020 10:54:24 SA
+    Title: Requesting EVT
+    Message: EVTP
+    Time:13/08/2020 10:54:24 SA
+    Title: Requesting Validation
+    Message: ILMValidate
+    Time:13/08/2020 10:54:24 SA
+    Title: LICENSER
+    Message: TRL MODE
+    Time:13/08/2020 10:54:24 SA
+    Title: LICENSER
+    Message: DS LEFT29
+    Time:13/08/2020 10:54:24 SA
+    Title: LICENSER
+    Message: DT MARK PASSED29.00:00:00
+    Time:13/08/2020 10:54:25 SA
+    Title: Access to the path 'C:\ProgramData\Telerik\Hash.lic' is denied.
+    Message:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Telerik.Licensing.Licenser.ReadHashPass()
+    Entering constructor for: Telerik.CommonPackage.VSPackage
+    Entering Initialize() of: Telerik.CommonPackage.VSPackage
+    Entering constructor for: Telerik.VSX.UserSettingsPackage.UserSettingsPackage
+    Entering Initialize() of: Telerik.VSX.UserSettingsPackage.UserSettingsPackage
+    Entering constructor for: Telerik.Windows.WPF.VSPackage.VSPackage
+    Entering Initialize() for: Telerik.Windows.WPF.VSPackage.VSPackage
+    TestWindow package loaded
+    Informational: Log level is set to Informational (Default).
+    given range is not current
+    given range is not current
+    given range is not current
+    given range is not current
+   Informational: Log level is set to Informational (Default).

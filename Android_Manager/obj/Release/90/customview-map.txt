@@ -15,14 +15,14 @@ paths;G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\90\lp\35\jl\res\
 RelativeLayout;obj\Release\90\res\layout\activity_main.xml
 RelativeLayout;obj\Release\90\res\layout\card_product.xml
 resources;obj\Release\90\res\values\colors.xml
-resources;obj\Release\90\res\values\strings.xml
 resources;obj\Release\90\res\values\styles.xml
+resources;obj\Release\90\res\values\strings.xml
 SearchView;obj\Release\90\res\layout\activity_main.xml
 selector;obj\Release\90\res\drawable\list_selector.xml
 shape;obj\Release\90\res\drawable\item_state_normal.xml
 shape;obj\Release\90\res\drawable\item_state_pressed.xml
 shape;obj\Release\90\res\drawable\item_state_selected.xml
-string;obj\Release\90\res\values\strings.xml
 style;obj\Release\90\res\values\styles.xml
+string;obj\Release\90\res\values\strings.xml
 TextView;obj\Release\90\res\layout\card_product.xml
 TextView;obj\Release\90\res\layout\input_url_mongodb.xml

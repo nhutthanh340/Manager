@@ -1,15 +1,4 @@
 ﻿
 
-FG:\Visual Studio 2019\Manager\Manager\MainWindow.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\CustomerPayControl.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\GroupCustomerPayControl.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\History.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\HistoryManipulation.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\Home.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\ListManipulations.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\ListProductsHistory.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\Paid.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\Receipt.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\Sold.xaml;;
-FG:\Visual Studio 2019\Manager\Manager\UserControls\Store.xaml;;
+FG:\Visual Studio 2019\Manager\Manager\UserControls\ImportDialog.xaml;;
 

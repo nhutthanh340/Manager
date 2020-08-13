@@ -1,0 +1,7 @@
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Release\TestApp.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Release\TestApp.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Release\TestApp.csproj.CopyComplete
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Release\TestApp.dll

@@ -1,0 +1,8 @@
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Debug\mongocrypt.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\b\TestApp\bin\Debug\TestApp.dll
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Debug\TestApp.csproj.CoreCompileInputs.cache
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Debug\TestApp.csproj.CopyComplete
+G:\Visual Studio 2019\Manager\.vs\Manager\v16\lut\0\i\TestApp\Debug\TestApp.dll
