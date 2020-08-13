@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Manager.Dialogs" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
-        Title="ImportDialog" Height="450" Width="800">
+        Title="Nhập hàng" Height="450" Width="800">
     <Grid >
 
         <Grid.RowDefinitions>
@@ -13,10 +13,15 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <telerik:RadGridView 
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <telerik:RadGridView 
                     Grid.Row="0"
-                    ItemsSource="{Binding Instance.ListProducts, IsAsync=True}"
-                    SelectedItem="{Binding Instance.SelectedProduct}"
+                    ItemsSource="{Binding DataList.Create, IsAsync=True}"
                     IsSynchronizedWithCurrentItem="True"                
                     AutoGenerateColumns="False"                                                                      
                     RowIndicatorVisibility="Collapsed"
@@ -31,16 +36,74 @@
                     CanUserInsertRows="False"
                     ColumnWidth="*">
 
-            <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
-                <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
-                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
-                <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
-                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
-                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy - HH:mm:ss',UpdateSourceTrigger=PropertyChanged}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
+                    <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
+                    <telerik:GridViewDataColumn Width="*" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy',UpdateSourceTrigger=PropertyChanged}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
 
-            </telerik:RadGridView.Columns>
-        </telerik:RadGridView>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <telerik:RadGridView 
+                    Grid.Row="1"
+                    ItemsSource="{Binding DataList.Update, IsAsync=True}"
+                    IsSynchronizedWithCurrentItem="True"                
+                    AutoGenerateColumns="False"                                                                      
+                    RowIndicatorVisibility="Collapsed"
+                    CanUserFreezeColumns="False"
+                    ShowGroupPanel="False"
+                    SelectionMode="Single"
+                    IsReadOnly="True"
+                    AlternateRowBackground="Azure"
+                    GridLinesVisibility="Horizontal"
+                    AlternationCount="2" RowHeight="50"
+                    CanUserDeleteRows="False"
+                    CanUserInsertRows="False"
+                    ColumnWidth="*">
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
+                    <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
+                    <telerik:GridViewDataColumn Width="*" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy',UpdateSourceTrigger=PropertyChanged}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <telerik:RadGridView 
+                    Grid.Row="2"
+                    ItemsSource="{Binding DataList.Delete, IsAsync=True}"
+                    IsSynchronizedWithCurrentItem="True"                
+                    AutoGenerateColumns="False"                                                                      
+                    RowIndicatorVisibility="Collapsed"
+                    CanUserFreezeColumns="False"
+                    ShowGroupPanel="False"
+                    SelectionMode="Single"
+                    IsReadOnly="True"
+                    AlternateRowBackground="Azure"
+                    GridLinesVisibility="Horizontal"
+                    AlternationCount="2" RowHeight="50"
+                    CanUserDeleteRows="False"
+                    CanUserInsertRows="False"
+                    ColumnWidth="*">
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
+                    <telerik:GridViewDataColumn Width="*"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
+                    <telerik:GridViewDataColumn Width="*" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
+                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy',UpdateSourceTrigger=PropertyChanged}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+        
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <telerik:RadButton 
                     Margin="0,0,10,0" 
@@ -49,7 +112,7 @@
                     Content="Đồng ý" 
                     telerik:ScreenTip.Title="Chấp nhận nhập danh sách trên vào kho"
                     telerik:ScreenTip.Description="Ấn vào đây để nhập hàng"
-                    Command="{Binding Instance.DeleteAllCommand}"
+                    Command="{Binding Ok}"
                     CommandParameter="{Binding Instance.ListProducts}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
                     Width="200"/>
@@ -58,7 +121,7 @@
                     Content="Hủy bỏ" 
                     telerik:ScreenTip.Title="Hủy bỏ nhập hàng"
                     telerik:ScreenTip.Description="Ấn vào đây để hủy bỏ nhập hàng"
-                    Command="{Binding Instance.DeleteAllCommand}"
+                    Command="{Binding Cancel}"
                     CommandParameter="{Binding Instance.ListProducts}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
                     Width="200"/>

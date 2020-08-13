@@ -211,6 +211,9 @@
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ImportHistory.xaml.cs">
+      <DependentUpon>ImportHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ListManipulations.xaml.cs">
       <DependentUpon>ListManipulations.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,9 @@
     </Compile>
     <Compile Include="UserControls\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Warehouse.xaml.cs">
+      <DependentUpon>Warehouse.xaml</DependentUpon>
     </Compile>
     <Page Include="Dialogs\ImportDialog.xaml">
       <SubType>Designer</SubType>
@@ -288,6 +294,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ImportHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ListManipulations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +335,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Store.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Warehouse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

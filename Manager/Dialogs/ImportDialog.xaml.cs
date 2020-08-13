@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Manager.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 
 namespace Manager.Dialogs
 {
@@ -22,6 +24,30 @@ namespace Manager.Dialogs
         public ImportDialog()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+        public ImportDialog(DataProduct data)
+        {
+            InitializeComponent();
+            DataList = data;
+            DataContext = this;
+            this.Ok = new DelegateCommand(Agree);
+            this.Cancel = new DelegateCommand(Disagree);
+        }
+        private void Agree(object obj)
+        {
+
+            this.Close();
+        }
+
+        private void Disagree(object obj)
+        {
+            this.Close();
+        }
+        public DataProduct DataList { get; set; }
+
+        public DelegateCommand Ok { get; private set; }
+        public DelegateCommand Cancel { get; private set; }
     }
 }

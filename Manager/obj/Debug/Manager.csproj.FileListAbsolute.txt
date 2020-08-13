@@ -306,3 +306,7 @@ G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Manager.pdb
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Dialogs\ImportDialog.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\Dialogs\ImportDialog.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportHistory.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportHistory.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\Warehouse.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\Warehouse.baml

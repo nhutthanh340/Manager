@@ -32,10 +32,18 @@
                         <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="3">
                             <Setter Property="Height" Value="53"></Setter>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="4">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="5">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </telerik:RadRichTextBoxRibbonUI.Style>
 
+            
+            
             <telerik:RadRibbonTab Header="Quản lý" telerik:KeyTipService.AccessText="Q" Height="25" VerticalAlignment="Top">
 
                 <telerik:RadRibbonGroup Header="File">
@@ -245,6 +253,8 @@
                 </telerik:RadRibbonGroup>
 
             </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Kho hàng" telerik:KeyTipService.AccessText="K">
+            </telerik:RadRibbonTab>
 
             <telerik:RadRibbonTab Header="Đã thanh toán" telerik:KeyTipService.AccessText="Đ">
             </telerik:RadRibbonTab>
@@ -252,9 +262,12 @@
 
             <telerik:RadRibbonTab Header="Báo cáo" telerik:KeyTipService.AccessText="B">
             </telerik:RadRibbonTab>
-            <telerik:RadRibbonTab Header="Lịch sử thao tác hoá đơn" telerik:KeyTipService.AccessText="B">
+            <telerik:RadRibbonTab Header="Lịch sử thao tác hoá đơn" telerik:KeyTipService.AccessText="L">
             </telerik:RadRibbonTab>
 
+            <telerik:RadRibbonTab Header="Lịch sử nhập hàng" telerik:KeyTipService.AccessText="L">
+            </telerik:RadRibbonTab>
+            
         </telerik:RadRichTextBoxRibbonUI>
 
 
@@ -265,10 +278,14 @@
             </telerik:RadTabItem>
 
             <telerik:RadTabItem Visibility="Collapsed">
+                <store:Warehouse/>
+            </telerik:RadTabItem>
+            
+            <telerik:RadTabItem Visibility="Collapsed">
                 <store:History/>
             </telerik:RadTabItem>
 
-            
+       
             
             <telerik:RadTabItem Visibility="Collapsed">
                 <store:Report/>
@@ -276,6 +293,10 @@
 
             <telerik:RadTabItem Visibility="Collapsed">
                 <store:HistoryManipulation/>
+            </telerik:RadTabItem>
+
+            <telerik:RadTabItem Visibility="Collapsed">
+                <store:ImportHistory/>
             </telerik:RadTabItem>
 
         </telerik:RadTabControl>

@@ -177,7 +177,8 @@ namespace Manager
                 //    FileExcel.Instance.Import(ofd.FileName);
                 //});
                 //thread.Start();
-                ImportDialog importDialog = new ImportDialog();
+
+                ImportDialog importDialog = new ImportDialog(FileExcel.Instance.ReadAllFile(ofd.FileName));
                 importDialog.Show();
             }
         }
