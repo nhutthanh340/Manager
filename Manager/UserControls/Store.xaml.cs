@@ -210,7 +210,9 @@ namespace Manager.UserControls
         {
             if (!(e.Source as RadGridView).IsFocused &&!(e.Source as RadGridView).IsMouseCaptureWithin)
             {
-                Receipt.Instance.AddProduct(((sender as RadGridView).CurrentItem as Product).Clone());
+                var temp = ((sender as RadGridView).CurrentItem as Product).Clone() as Product;
+                temp.Count = 1;
+                Receipt.Instance.AddProduct(temp);
             }
         }
     }

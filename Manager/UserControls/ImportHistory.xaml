@@ -3,10 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Manager.UserControls"
+             xmlns:local="clr-namespace:Manager.UserControls" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Thanh</TextBlock>
+        <telerik:RadDocking BorderThickness="0" RetainPaneSizeMode="DockingAndFloating" ConstraintAutoHideArea="True">
+            <telerik:RadSplitContainer Width="400">
+                <telerik:RadPaneGroup IsContentPreserved="True">
+                    <telerik:RadPane 
+                                    Header="Danh sách nhập hàng" 
+                                    CanUserClose="False" 
+                                    CanUserPin="True"
+                                    IsSelected="True"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                             >
+                        <local:ImportList/>
+
+                    </telerik:RadPane>
+                </telerik:RadPaneGroup>
+
+            </telerik:RadSplitContainer>
+
+
+            <telerik:RadDocking.DocumentHost>
+
+                <telerik:RadSplitContainer>
+                    <telerik:RadPaneGroup IsContentPreserved="False">
+                        <telerik:RadPane Header="Chi tiết" CanUserClose="False" CanUserPin="False">
+
+                            <local:ImportDetail/>
+
+                        </telerik:RadPane>
+
+                    </telerik:RadPaneGroup>
+                </telerik:RadSplitContainer>
+
+            </telerik:RadDocking.DocumentHost>
+
+
+        </telerik:RadDocking>
     </Grid>
 </UserControl>

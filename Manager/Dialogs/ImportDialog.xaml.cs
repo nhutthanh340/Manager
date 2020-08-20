@@ -1,18 +1,12 @@
 ﻿using Manager.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Telerik.Windows.Controls;
+using Manager.Data;
+using System.Linq;
+using System.Collections.Generic;
+using MongoDB.Driver;
+using Manager.UserControls;
 
 namespace Manager.Dialogs
 {
@@ -35,9 +29,50 @@ namespace Manager.Dialogs
             this.Ok = new DelegateCommand(Agree);
             this.Cancel = new DelegateCommand(Disagree);
         }
-        private void Agree(object obj)
-        {
 
+        [System.Obsolete]
+        private async void Agree(object obj)
+        {
+            HistoryImport delete = new HistoryImport(DataList.Delete.Cast<Product>().ToList(), "XOA");
+            HistoryImport update = new HistoryImport(DataList.Update.Cast<Product>().ToList(), "CAPNHAT");
+            HistoryImport create = new HistoryImport(DataList.Create.Cast<Product>().ToList(), "THEM");
+
+            if (delete.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(delete);
+            }
+
+            if (update.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(update);
+            }
+
+            if (create.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(create);
+            }
+
+            foreach(var item in delete.Source)
+            {
+                item.IsDeleted = true;
+                await Database<Product>.Instance.Update(item);
+            }
+
+            foreach (var item in update.Source)
+            {
+                item.Count += item.NewCount;
+                item.NewCount = 0;
+                await Database<Product>.Instance.Update(item);
+            }
+
+            foreach (var item in create.Source)
+            {
+                item.Count += item.NewCount;
+                item.NewCount = 0;
+                await Database<Product>.Instance.Update(item);
+            }
+            ImportList.Instance.Initialize();
+            Store.Instance.Initialize();
             this.Close();
         }
 
@@ -45,8 +80,8 @@ namespace Manager.Dialogs
         {
             this.Close();
         }
-        public DataProduct DataList { get; set; }
 
+        public DataProduct DataList { get; set; }
         public DelegateCommand Ok { get; private set; }
         public DelegateCommand Cancel { get; private set; }
     }

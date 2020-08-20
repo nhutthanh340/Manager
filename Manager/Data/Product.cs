@@ -91,11 +91,22 @@ namespace Manager.Data
         private Unit unit = new Unit();
         private DateTime updateDate;
         private float count = 0;
+        private float newCount = 0;
         private bool isRetailing = false;
         private List<Unit> listUnit = new List<Unit>();
         private long total;
 
-
+        public float NewCount
+        {
+            get => newCount;
+            set
+            {
+                if (newCount != value)
+                {
+                    newCount = value;
+                }
+            }
+        }
         public string RetailUnit
         {
             get => unit.Retail;

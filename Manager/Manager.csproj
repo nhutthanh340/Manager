@@ -179,7 +179,9 @@
     <Compile Include="Data\ChartModel.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\HistoryBill.cs" />
+    <Compile Include="Data\HistoryImport.cs" />
     <Compile Include="Data\Product.cs" />
+    <Compile Include="Data\ProductHelpers.cs" />
     <Compile Include="Dialogs\ImportDialog.xaml.cs">
       <DependentUpon>ImportDialog.xaml</DependentUpon>
     </Compile>
@@ -211,8 +213,14 @@
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ImportDetail.xaml.cs">
+      <DependentUpon>ImportDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ImportHistory.xaml.cs">
       <DependentUpon>ImportHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImportList.xaml.cs">
+      <DependentUpon>ImportList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ListManipulations.xaml.cs">
       <DependentUpon>ListManipulations.xaml</DependentUpon>
@@ -294,7 +302,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ImportDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ImportHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ImportList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

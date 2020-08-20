@@ -67,6 +67,22 @@ namespace Manager.Data
         }
 
 
+        public async Task<bool> Delete(T obj)
+        {
+            try
+            {
+                var filter = Builders<T>.Filter.Eq("Id", (obj as dynamic).Id);
+                await instance.collection.DeleteOne(filter);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         public async Task<bool> Update(T obj)
         {
             try

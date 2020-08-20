@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Threading;
 using Telerik.Windows.Controls.GridView;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace Manager.UserControls
 {
@@ -158,12 +159,66 @@ namespace Manager.UserControls
             billSelected.SaleDate = DateTime.Now;
             if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId))
             {
+                // Thêm hóa đơn xuất hàng tại đây
+                //status = await Database<>
                 status = await Database<Bill>.Instance.Add(billSelected);
+                //HistoryImport historyImport = new HistoryImport("XOA");
+                //status = status && await Database<HistoryImport>.Instance.Add(historyImport);
+                foreach (var item in billSelected.ListProducts)
+                {
+                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                    var temp = await Database<Product>.Instance.ReadAll(filter);
+                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+                    if (oldObject != null)
+                    {
+                        var newObjet = (item as Product).Clone() as Product;
+                        newObjet.Count = oldObject.Count - newObjet.Count;
+                        newObjet.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(newObjet);
+                    }
+                }
+
                 method = "Thêm";
             }
             else
             {
+                var filter1 = Builders<Bill>.Filter.Where(x => x.Id == billSelected.Id);
+                var temp1 = await Database<Bill>.Instance.ReadAll(filter1);
+                var oldObject1 = temp1.Cast<Bill>().ToList().FirstOrDefault();
+                
                 status = await Database<Bill>.Instance.Update(billSelected);
+
+                foreach (var item in oldObject1.ListProducts)
+                {
+                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                    var temp = await Database<Product>.Instance.ReadAll(filter);
+                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+                    if (oldObject != null)
+                    {
+                        var newObjet = (item as Product).Clone() as Product;
+                        newObjet.Count = oldObject.Count + newObjet.Count;
+                        newObjet.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(newObjet);
+                    }
+                }
+
+                
+                foreach (var item in billSelected.ListProducts)
+                {
+                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                    var temp = await Database<Product>.Instance.ReadAll(filter);
+                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+
+                    if (oldObject != null)
+                    {
+                        var newObjet = (item as Product).Clone() as Product;
+                        newObjet.Count = oldObject.Count - newObjet.Count;
+                        newObjet.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(newObjet);
+                    }
+                }
+
+                
                 method = "Cập nhật";
             }
 
@@ -177,8 +232,10 @@ namespace Manager.UserControls
                 {
                     Initialize();
                 }
+                Store.Instance.Initialize();
                 Paid.Instance.Initialize();
                 Report.Instance.Initialize();
+                ImportList.Instance.Initialize();
             }
             else
             {
@@ -261,6 +318,8 @@ namespace Manager.UserControls
                                 Initialize();
                                 ListManipulations.Instance.Initialize();
                                 Report.Instance.Initialize();
+                                ImportList.Instance.Initialize();
+                                //SelectedBill.ListProducts
                             }
                             else
                             {
@@ -303,13 +362,13 @@ namespace Manager.UserControls
                 if (cell != null)
                 {
                     bool isCellCount = cell.DataColumn.DataMemberBinding.Path.Path == MemberInfoGetting.GetMemberName(() => new Product().Count);
-                    if(!isCellCount)
+                    if (!isCellCount)
                     {
                         SelectedBill.ListProducts.Remove(originalSender.DataContext as Product);
                         SelectedBill.NotifyChanged();
                     }
                 }
-                
+
             }
 
         }

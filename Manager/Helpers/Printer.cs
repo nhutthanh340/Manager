@@ -120,20 +120,20 @@ namespace Manager.Helpers
                 j++;
             }
 
-            (stackPanels[2].FindName("Total") as TextBlock).Text = $"Tổng cộng:  {string.Format("{0:0,0}đ", bill.Total)} {new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
+            (stackPanels[2].FindName("Total") as TextBlock).Text = $"TỔNG CỘNG:  {string.Format("{0:0,0}đ", bill.Total)} {new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
 
 
             foreach (var item in bill.CustomerPay)
             {
                 TextBlock PayTime = new TextBlock()
                 {
-                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Right,
                     FontWeight = FontWeights.Bold,
                     Text = $"{item.PayTime.ToString("dd/MM/yyyy HH:mm")} : "
                 };
                 TextBlock Amount = new TextBlock()
                 {
-                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Right,
                     FontWeight = FontWeights.Bold,
                     Text = $"{string.Format("{0:0,0}đ", item.Amount)} {new NumberToText(Convert.ToDouble(item.Amount)).ReadThis()}"
                 };
@@ -150,15 +150,15 @@ namespace Manager.Helpers
             string temp;
             if (bill.Remain > 0)
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"Còn lại:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(bill.Remain)).ReadThis()}";
+                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"CÒN LẠI:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(bill.Remain)).ReadThis()}";
             }
             else if (bill.Remain < 0)
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"Trả lại cho khách:  {string.Format("{0:0,0}đ", -bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
+                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"TRẢ LẠI CHO KHÁCH:  {string.Format("{0:0,0}đ", -bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
             }
             else
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"Còn lại:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
+                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"CÒN LẠI:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
             }
 
             stackPanel.Children.Add(stackPanels[2]);

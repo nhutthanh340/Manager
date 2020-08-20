@@ -34,7 +34,7 @@
 
                 <telerik:RadSplitContainer>
                     <telerik:RadPaneGroup IsContentPreserved="False">
-                        <telerik:RadPane IsHidden="{Binding IsHidenReceipt}" Header="Danh sách các mặt hàng đã mua" CanUserClose="False" CanUserPin="False">
+                        <telerik:RadPane Header="Danh sách các mặt hàng đã mua" CanUserClose="False" CanUserPin="False">
 
                             <local:ListProductsHistory/>
 
