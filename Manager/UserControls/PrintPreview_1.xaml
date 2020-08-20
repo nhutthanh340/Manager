@@ -51,7 +51,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
                                     <StackPanel Margin="7,3,7,3">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Count}" Width="auto" TextAlignment="Center"/>
+                                        <TextBlock FontWeight="Bold" Text="{Binding Count}" Width="auto" TextAlignment="Right"/>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -81,7 +81,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
                                     <StackPanel Margin="7,3,7,3">
-                                        <TextBlock FontWeight="Bold" Text="{Binding PriceDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                        <TextBlock FontWeight="Bold" Text="{Binding PriceDisplay, StringFormat='0,0'}" Width="auto" TextAlignment="Right"/>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -98,7 +98,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="#FF000000" BorderThickness="1,1,1,1" Margin="-7,-3,-6,-3">
                                     <StackPanel Margin="7,3,7,3">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Total, StringFormat='0,0'}" Width="auto" TextAlignment="Center"/>
+                                        <TextBlock FontWeight="Bold" Text="{Binding Total, StringFormat='0,0'}" Width="auto" TextAlignment="Right"/>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
