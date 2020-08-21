@@ -106,32 +106,35 @@ namespace Manager.UserControls
 
                 await Database<Bill>.Instance.Update(billHistorySelected.Bill);
 
-                foreach (var item in oldObject1.ListProducts)
+                if (!billHistorySelected.Bill.IsDeleted)
                 {
-                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
-                    var temp = await Database<Product>.Instance.ReadAll(filter);
-                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
-                    if (oldObject != null)
+                    foreach (var item in oldObject1.ListProducts)
                     {
-                        var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count + newObjet.Count;
-                        newObjet.NewCount = 0;
-                        await Database<Product>.Instance.Update(newObjet);
+                        var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                        var temp = await Database<Product>.Instance.ReadAll(filter);
+                        var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+                        if (oldObject != null)
+                        {
+                            var newObjet = (item as Product).Clone() as Product;
+                            newObjet.Count = oldObject.Count + newObjet.Count;
+                            newObjet.NewCount = 0;
+                            await Database<Product>.Instance.Update(newObjet);
+                        }
                     }
-                }
 
-                foreach (var item in billHistorySelected.Bill.ListProducts)
-                {
-                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
-                    var temp = await Database<Product>.Instance.ReadAll(filter);
-                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
-
-                    if (oldObject != null)
+                    foreach (var item in billHistorySelected.Bill.ListProducts)
                     {
-                        var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count - newObjet.Count;
-                        newObjet.NewCount = 0;
-                        await Database<Product>.Instance.Update(newObjet);
+                        var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                        var temp = await Database<Product>.Instance.ReadAll(filter);
+                        var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+
+                        if (oldObject != null)
+                        {
+                            var newObjet = (item as Product).Clone() as Product;
+                            newObjet.Count = oldObject.Count - newObjet.Count;
+                            newObjet.NewCount = 0;
+                            await Database<Product>.Instance.Update(newObjet);
+                        }
                     }
                 }
             }
@@ -139,9 +142,7 @@ namespace Manager.UserControls
             Paid.Instance.Initialize();
             Receipt.Instance.Initialize();
             Report.Instance.Initialize();
-            ImportList.Instance.Initialize();
             ListManipulations.Instance.IsBusy = false;
-            
         }
     }
 }

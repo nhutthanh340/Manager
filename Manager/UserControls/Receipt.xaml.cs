@@ -235,7 +235,6 @@ namespace Manager.UserControls
                 Store.Instance.Initialize();
                 Paid.Instance.Initialize();
                 Report.Instance.Initialize();
-                ImportList.Instance.Initialize();
             }
             else
             {
