@@ -49,19 +49,19 @@ namespace Manager.Data
             }
         }
 
-        private bool selected = false;
-        public bool Selected
-        {
-            get => selected;
-            set
-            {
-                if (selected != value)
-                {
-                    selected = value;
-                    OnPropertyChanged(() => this.Selected);
-                }
-            }
-        }
+        //private bool selected = false;
+        //public bool Selected
+        //{
+        //    get => selected;
+        //    set
+        //    {
+        //        if (selected != value)
+        //        {
+        //            selected = value;
+        //            OnPropertyChanged(() => this.Selected);
+        //        }
+        //    }
+        //}
 
         public List<Product> Source { get; set; }
         private ObjectId id;
@@ -81,7 +81,31 @@ namespace Manager.Data
             }
         }
 
+        private bool isDeleted = false;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                if (isDeleted != value)
+                {
+                    isDeleted = value;
+                    this.OnPropertyChanged(() => this.IsDeleted);
+                    OnChanged();
+                }
+            }
+        }
 
+        public void OnChanged()
+        {
+            if (Changed != null)
+            {
+                Changed(this);
+            }
+        }
+
+        public delegate void change(object obj);
+        public event change Changed;
         //private ObjectId idBill;
         //public ObjectId IdBill
         //{

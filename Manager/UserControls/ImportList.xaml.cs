@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
 namespace Manager.UserControls
@@ -98,7 +99,7 @@ namespace Manager.UserControls
                 IsBusy = true;
                 List<FilterDefinition<HistoryImport>> filters = new List<FilterDefinition<HistoryImport>>();
                 var order = Builders<HistoryImport>.Sort.Descending(x => x.UpdateTime);
-                var filter = Builders<HistoryImport>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate);
+                var filter = Builders<HistoryImport>.Filter.Where(x => x.UpdateTime >= StartDate && x.UpdateTime < EndDate && !x.IsDeleted);
                 filters.Add(filter);
 
 
@@ -128,6 +129,7 @@ namespace Manager.UserControls
         public void Initialize()
         {
             Search();
+            SaveCommand = new DelegateCommand(Save);
         }
 
         private bool isBusy = false;
@@ -153,14 +155,14 @@ namespace Manager.UserControls
                     Thread thread = new Thread(() =>
                     {
                         listImports = value;
-                        //foreach (var item in listImports)
-                        //{
-                        //    if (item as HistoryBill != null)
-                        //    {
-                        //        (item as HistoryBill).Changed += ListProductsHistory.Instance.Restore;
-                        //    }
-                        //}
-                        //Instance.ListChanges = new QueryableCollectionView(new List<HistoryBill>());
+                        foreach (var item in listImports)
+                        {
+                            if (item as HistoryImport != null)
+                            {
+                                (item as HistoryImport).Changed += Restore;
+                            }
+                        }
+                        Instance.ListChanges = new QueryableCollectionView(new List<HistoryImport>());
 
                     });
                     thread.SetApartmentState(ApartmentState.STA);
@@ -170,6 +172,85 @@ namespace Manager.UserControls
             }
         }
 
+        [Obsolete]
+        public void Restore(object bill)
+        {
+            if (ImportList.Instance.ListChanges != null)
+            {
+                if (!ImportList.Instance.ListChanges.Contains(bill))
+                {
+                    ImportList.Instance.ListChanges.AddNew(bill);
+                }
+                else
+                {
+                    ImportList.Instance.ListChanges.Remove(bill);
+                }
+            }
+        }
+
+        private QueryableCollectionView listChanges;
+        public QueryableCollectionView ListChanges
+        {
+            get => listChanges;
+            set
+            {
+                if (listChanges != value)
+                {
+                    listChanges = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        [Obsolete]
+        public async void Save(object obj)
+        {
+            Instance.IsBusy = true;
+
+            foreach (HistoryImport importHistorySelected in Instance.ListChanges)
+            {
+                var filter1 = Builders<HistoryImport>.Filter.Where(x => x.Id == importHistorySelected.Id);
+                var temp1 = await Database<HistoryImport>.Instance.ReadAll(filter1);
+                var oldObject1 = temp1.Cast<HistoryImport>().ToList().FirstOrDefault();
+
+                await Database<HistoryImport>.Instance.Update(importHistorySelected);
+
+                foreach (var item in importHistorySelected.Source)
+                {
+                    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                    var temp = await Database<Product>.Instance.ReadAll(filter);
+                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+                    if (oldObject != null)
+                    {
+                        var newObjet = (item as Product).Clone() as Product;
+                        newObjet.Count = oldObject.Count - newObjet.NewCount;
+                        newObjet.NewCount = 0;
+                        await Database<Product>.Instance.Update(newObjet);
+                    }
+                }
+
+                //foreach (var item in billHistorySelected.Bill.ListProducts)
+                //{
+                //    var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                //    var temp = await Database<Product>.Instance.ReadAll(filter);
+                //    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+
+                //    if (oldObject != null)
+                //    {
+                //        var newObjet = (item as Product).Clone() as Product;
+                //        newObjet.Count = oldObject.Count - newObjet.Count;
+                //        newObjet.NewCount = 0;
+                //        await Database<Product>.Instance.Update(newObjet);
+                //    }
+                //}
+            }
+
+            Store.Instance.Initialize();
+            Instance.Initialize();
+            Instance.IsBusy = false;
+        }
+
+        public DelegateCommand SaveCommand { get; private set; }
         [Obsolete]
         public ImportList()
         {

@@ -49,7 +49,7 @@
                             SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" 
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
         </StackPanel>
-        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding IsBusy,UpdateSourceTrigger=PropertyChanged}" BusyContent="Đang tải vui lòng chờ ...">
+        <telerik:RadBusyIndicator x:Name="BusyIndicatorBill" Grid.Row="1" IsBusy="{Binding Instance.IsBusy,UpdateSourceTrigger=PropertyChanged}" BusyContent="Đang tải vui lòng chờ ...">
             <telerik:RadGridView x:Name="gridViewBill"
                ItemsSource="{Binding Instance.ListImports, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
                SelectedItem="{Binding Instance.SelectedImport, UpdateSourceTrigger=PropertyChanged}"
@@ -70,7 +70,7 @@
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
+                                    IsChecked="{Binding IsDeleted, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignUserForegroundCheckBox}" 
                                     >
                                     <CheckBox.LayoutTransform>
@@ -112,8 +112,7 @@
                     telerik:RadDockPanel.Dock="Right"
                     telerik:ScreenTip.Title="Xoá toàn bộ danh sách được chọn"
                     telerik:ScreenTip.Description="Ấn vào đây để xoá toàn bộ danh sách được chọn ở trên"
-                    Command="{Binding Instance.DeleteAllCommand}"
-                    CommandParameter="{Binding Instance.ListProducts}"
+                    Command="{Binding Instance.SaveCommand}"
                     Background="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
                     Width="Auto"/>
 
