@@ -129,7 +129,7 @@ namespace Manager.UserControls
 
                 foreach (var item in textSearch)
                 {
-                    filters.Add(Builders<Product>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                    filters.Add(Builders<Product>.Filter.Where(x => !x.IsDeleted && x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
                 }
 
 
