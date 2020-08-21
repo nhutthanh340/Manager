@@ -105,6 +105,10 @@ namespace Manager.Helpers
                             product.Method = "CAPNHAT";
                             ListData.Update.AddNew(product);
                         }
+                        else
+                        {
+                            ListError.AddNew(product);
+                        }
                     }
 
                     if (product.IsEmpty())
@@ -114,11 +118,20 @@ namespace Manager.Helpers
 
                     if (product.IsReady())
                     {
-                        if (ContentService.ConvertToUnsigned(product.Method.ToUpper()).Contains("THEM"))
+                        if (product.Id == ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
-                            product.Method = "THEM";
-                            ListData.Create.AddNew(product);
+                            if(ContentService.ConvertToUnsigned(product.Method.ToUpper()).Contains("THEM"))
+                            {
+                                product.Method = "THEM";
+                                ListData.Create.AddNew(product);
+                            }
+                            else
+                            {
+                                ListError.AddNew(product);
+                            }
+
                         }
+                        
                     }
                     else
                     {
@@ -132,14 +145,14 @@ namespace Manager.Helpers
             }
             if (ListError.Count > 0)
             {
-                Export(ListError);
+                Export(ListError, "Danh sách lỗi khi nhập hàng");
             }
             return ListData;
         }
 
 
         [Obsolete]
-        public void Export(QueryableCollectionView obj)
+        public void Export(QueryableCollectionView obj, string fileName = "")
         {
             string row = "Mã;Tên hàng;Giá nhập;Có bán lẻ;Giá bán;Đơn vị;Thao tác;Số lượng hiện tại;Số lượng nhập thêm\n";
             string rows = row;
@@ -150,7 +163,7 @@ namespace Manager.Helpers
                 rows += $"{item.Id.ToString()};{item.Name};{item.PriceOrigin};{isRetail};{item.PriceDisplay};{item.UnitDisplay};{item.Method};{item.Count};{item.NewCount}\n";
             }
 
-            string FileName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + DateTime.Now.ToString("HH-mm-ss dd-MM-yyyy") + ".csv";
+            string FileName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + fileName + DateTime.Now.ToString("HH-mm-ss dd-MM-yyyy") + ".csv";
 
             Store.Instance.IsBusy = true;
             Thread download = new Thread(() =>

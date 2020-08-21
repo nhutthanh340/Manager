@@ -69,7 +69,7 @@ namespace Manager.Dialogs
             {
                 item.Count += item.NewCount;
                 item.NewCount = 0;
-                await Database<Product>.Instance.Update(item);
+                await Database<Product>.Instance.Add(item);
             }
             ImportList.Instance.Initialize();
             Store.Instance.Initialize();
