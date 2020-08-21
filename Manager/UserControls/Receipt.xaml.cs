@@ -10,7 +10,6 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Windows.Data;
 using System.Globalization;
-using System.Threading;
 using Telerik.Windows.Controls.GridView;
 using System.Linq.Expressions;
 using System.Linq;

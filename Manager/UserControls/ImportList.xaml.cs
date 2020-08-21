@@ -213,8 +213,23 @@ namespace Manager.UserControls
                     if (oldObject != null)
                     {
                         var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count - newObjet.NewCount;
-                        newObjet.NewCount = 0;
+                        
+                        if (importHistorySelected.Method == "CAPNHAT" || importHistorySelected.Method == "THEM")
+                        {
+                            newObjet.Count = oldObject.Count - newObjet.NewCount;
+                            newObjet.NewCount = 0;
+                        }
+
+                        if (importHistorySelected.Method == "THEM")
+                        {
+                            newObjet.IsDeleted = true;
+                        }
+                        else
+                        {
+                            newObjet.IsDeleted = false;
+                        }
+
+                        
                         await Database<Product>.Instance.Update(newObjet);
                     }
                 }

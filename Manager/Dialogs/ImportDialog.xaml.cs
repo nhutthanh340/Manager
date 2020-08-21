@@ -35,22 +35,7 @@ namespace Manager.Dialogs
         {
             HistoryImport delete = new HistoryImport(DataList.Delete.Cast<Product>().ToList(), "XOA");
             HistoryImport update = new HistoryImport(DataList.Update.Cast<Product>().ToList(), "CAPNHAT");
-            HistoryImport create = new HistoryImport(DataList.Create.Cast<Product>().ToList(), "THEM");
-
-            if (delete.Source.Count > 0)
-            {
-                await Database<HistoryImport>.Instance.Add(delete);
-            }
-
-            if (update.Source.Count > 0)
-            {
-                await Database<HistoryImport>.Instance.Add(update);
-            }
-
-            if (create.Source.Count > 0)
-            {
-                await Database<HistoryImport>.Instance.Add(create);
-            }
+            HistoryImport create = new HistoryImport(DataList.Create.Cast<Product>().ToList(), "THEM");          
 
             foreach(var item in delete.Source)
             {
@@ -71,6 +56,22 @@ namespace Manager.Dialogs
                 item.NewCount = 0;
                 await Database<Product>.Instance.Add(item);
             }
+
+            if (delete.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(delete);
+            }
+
+            if (update.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(update);
+            }
+
+            if (create.Source.Count > 0)
+            {
+                await Database<HistoryImport>.Instance.Add(create);
+            }
+
             ImportList.Instance.Initialize();
             Store.Instance.Initialize();
             this.Close();

@@ -2,23 +2,10 @@
 using Manager.Helpers;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 
 namespace Manager.UserControls
 {
@@ -142,6 +129,7 @@ namespace Manager.UserControls
             Paid.Instance.Initialize();
             Receipt.Instance.Initialize();
             Report.Instance.Initialize();
+            Store.Instance.Initialize();
             ListManipulations.Instance.IsBusy = false;
         }
     }
