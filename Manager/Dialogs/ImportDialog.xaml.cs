@@ -45,16 +45,18 @@ namespace Manager.Dialogs
 
             foreach (var item in update.Source)
             {
-                item.Count += item.NewCount;
-                item.NewCount = 0;
-                await Database<Product>.Instance.Update(item);
+                var newObject = item.Clone() as Product;
+                newObject.Count += newObject.NewCount;
+                newObject.NewCount = 0;
+                await Database<Product>.Instance.Update(newObject);
             }
 
             foreach (var item in create.Source)
             {
-                item.Count += item.NewCount;
-                item.NewCount = 0;
-                await Database<Product>.Instance.Add(item);
+                var newObject = item.Clone() as Product;
+                newObject.Count += newObject.NewCount;
+                newObject.NewCount = 0;
+                await Database<Product>.Instance.Add(newObject);
             }
 
             if (delete.Source.Count > 0)
