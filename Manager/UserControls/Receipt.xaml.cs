@@ -307,13 +307,33 @@ namespace Manager.UserControls
                         if (SelectedBill.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
                             SelectedBill.IsDeleted = true;
+                            var filter1 = Builders<Bill>.Filter.Where(x => x.Id == SelectedBill.Id);
+                            var temp1 = await Database<Bill>.Instance.ReadAll(filter1);
+                            var oldObject1 = temp1.Cast<Bill>().ToList().FirstOrDefault();
+
                             bool status = await Database<Bill>.Instance.Update(SelectedBill);
+                            // Trả lại số lượng hàng
+                            foreach (var item in oldObject1.ListProducts)
+                            {
+                                var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
+                                var temp = await Database<Product>.Instance.ReadAll(filter);
+                                var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
+                                if (oldObject != null)
+                                {
+                                    var newObjet = (item as Product).Clone() as Product;
+                                    newObjet.Count = oldObject.Count + newObjet.Count;
+                                    newObjet.NewCount = 0;
+                                    await Database<Product>.Instance.Update(newObjet);
+                                }
+                            }
+
                             string message = "Xoá hoá đơn ";
                             if (status)
                             {
                                 message += "thành công";
                                 await Database<HistoryBill>.Instance.Add(new HistoryBill() { Bill = SelectedBill });
                                 Initialize();
+                                Store.Instance.Initialize();
                                 ListManipulations.Instance.Initialize();
                                 Report.Instance.Initialize();
                                 ImportList.Instance.Initialize();
