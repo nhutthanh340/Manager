@@ -14,10 +14,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Sold : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly Sold instance = new Sold();
 
-        [Obsolete]
+        
         public static Sold Instance
         {
             get
@@ -28,17 +28,17 @@ namespace Manager.UserControls
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
 
-        [Obsolete]
+        
         public void InitializeCommand()
         {
             SaveCommand = new DelegateCommand(Save);
             PrintCommand = new DelegateCommand(Receipt.Instance.Print);
         }
 
-        [Obsolete]
+        
         public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
 
-        [Obsolete]
+        
         public async void Save(object obj)
         {
             Paid.Instance.IsBusy = true;
@@ -80,7 +80,7 @@ namespace Manager.UserControls
 
         }
 
-        [Obsolete]
+        
         public Sold()
         {
             InitializeComponent();
@@ -91,7 +91,7 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [Obsolete]
+        
         public Bill SelectedBill
         {
             get => selectedBill;
@@ -105,7 +105,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public void BillChanged(object bill)
         {
             if (Paid.Instance.ListChanges != null)
@@ -117,6 +117,18 @@ namespace Manager.UserControls
             }
         }
 
-        
+        private bool isHidenPrice = false;
+        public bool IsHidenPrice
+        {
+            get => isHidenPrice;
+            set
+            {
+                if (isHidenPrice != value)
+                {
+                    isHidenPrice = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
     }
 }

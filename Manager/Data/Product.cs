@@ -195,7 +195,7 @@ namespace Manager.Data
         { }
         public ushort STT { get; set; }
 
-        [Obsolete]
+        
         public long Total
         {
             get
@@ -233,7 +233,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public long PriceDisplay
         {
             get
@@ -365,7 +365,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public float Count
         {
             get
@@ -470,7 +470,7 @@ namespace Manager.Data
             return objTarget;
         }
 
-        [Obsolete]
+        
         public bool IsReady()
         {
             if (Name != "" && PriceOrigin != 0 && PriceDisplay != 0 && UnitDisplay != "")
@@ -483,7 +483,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public bool IsEmpty()
         {
             if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId) && Name == "" && PriceOrigin == 0 && PriceDisplay == 0 && UnitDisplay == "")

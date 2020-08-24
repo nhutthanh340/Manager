@@ -57,10 +57,10 @@ namespace Manager.Data
     [BsonIgnoreExtraElements]
     public class Bill : ViewModelBase
     {
-        [Obsolete]
+        
         private static readonly Bill instance = new Bill();
 
-        [Obsolete]
+        
         public static Bill Instance
         {
             get
@@ -71,13 +71,13 @@ namespace Manager.Data
 
 
 
-        [Obsolete]
+        
         private void ListProducts_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             NotifyChanged();
         }
 
-        [Obsolete]
+        
         public void NotifyChanged()
         {
             //Receipt.Instance.IsSaved = false;
@@ -143,7 +143,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public long Remain
         {
             get
@@ -156,7 +156,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public long Total
         {
             get
@@ -182,7 +182,7 @@ namespace Manager.Data
 
         private List<CustomerPay> customerPay = new List<CustomerPay>();
 
-        [Obsolete]
+        
         private void CustomerPayChanged()
         {
             OnPropertyChanged(() => this.CustomerPay);
@@ -190,7 +190,7 @@ namespace Manager.Data
             OnChanged();
         }
 
-        [Obsolete]
+        
         public void AddControl()
         {
             customerPay = new List<CustomerPay>(customerPay);
@@ -201,7 +201,7 @@ namespace Manager.Data
             OnChanged();
         }
 
-        [Obsolete]
+        
         public void SubControl()
         {
             if (customerPay.Count > 0)
@@ -212,7 +212,7 @@ namespace Manager.Data
                 OnChanged();
             }
         }
-        [Obsolete]
+        
         public List<CustomerPay> CustomerPay
         {
             get
@@ -237,7 +237,7 @@ namespace Manager.Data
         }
 
         [BsonIgnore]
-        [Obsolete]
+        
         public QueryableCollectionView ListProducts
         {
             get
@@ -309,7 +309,7 @@ namespace Manager.Data
 
         private bool isDept = true;
 
-        [Obsolete]
+        
         public bool IsDept
         {
             get
@@ -343,7 +343,7 @@ namespace Manager.Data
         }
 
 
-        [Obsolete]
+        
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;

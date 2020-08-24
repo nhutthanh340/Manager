@@ -28,6 +28,7 @@
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Width="3*" DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
                 <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
+                <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
                 <telerik:GridViewDataColumn Width="2*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
                 <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count}" Header="Số lượng hiện tại" />
                 <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount}" Header="Số lượng nhập" />

@@ -14,7 +14,7 @@ namespace Manager.UserControls
             InitializeComponent();
         }
 
-        [Obsolete]
+        
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);

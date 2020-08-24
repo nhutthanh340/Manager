@@ -82,6 +82,7 @@
 
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Header="Tên hàng" />
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
+                    <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
                     <telerik:GridViewDataColumn                   DataMemberBinding="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Total, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Thành tiền"/>

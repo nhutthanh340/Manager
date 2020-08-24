@@ -21,10 +21,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Receipt : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly Receipt instance = new Receipt();
 
-        [Obsolete]
+        
         public static Receipt Instance
         {
             get
@@ -84,13 +84,13 @@ namespace Manager.UserControls
         public DelegateCommand PayCommand { get; private set; }
 
 
-        [Obsolete]
+        
         private void InitializeCommand()
         {
             this.PayCommand = new DelegateCommand(Pay);
         }
 
-        [Obsolete]
+        
         public void Pay(object bill)
         {
             if ((bill as Bill).ListProducts == null || (bill as Bill).ListProducts.IsEmpty)
@@ -119,7 +119,7 @@ namespace Manager.UserControls
             Print(bill);
         }
 
-        [Obsolete]
+        
         public void Print(object bill)
         {
             Printer.PrintMethod printMethod = Printer.PrintMethod.None;
@@ -148,7 +148,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public async void Save(object bill)
         {
             bool status = false;
@@ -247,7 +247,7 @@ namespace Manager.UserControls
             });
         }
 
-        [Obsolete]
+        
         public Receipt()
         {
             InitializeComponent();
@@ -257,7 +257,7 @@ namespace Manager.UserControls
             DataContext = this;
         }
 
-        [Obsolete]
+        
         public async void Initialize()
         {
 
@@ -275,7 +275,7 @@ namespace Manager.UserControls
 
         }
 
-        [Obsolete]
+        
         public void AddProduct(object product)
         {
             if (SelectedBill == null)
@@ -287,14 +287,14 @@ namespace Manager.UserControls
         }
 
 
-        [Obsolete]
+        
         public void NewReceipt(object receipt)
         {
             ListBills.AddNew(new Bill());
             SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
         }
 
-        [Obsolete]
+        
         public void DeleteReceipt(object receipt)
         {
             RadWindow.Confirm(
@@ -360,7 +360,7 @@ namespace Manager.UserControls
         }
 
 
-        [Obsolete]
+        
         private void SelectBillChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
@@ -370,7 +370,7 @@ namespace Manager.UserControls
             SelectedBill = e.AddedItems[0] as Bill;
         }
 
-        [Obsolete]
+        
         private void radGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             FrameworkElement originalSender = e.OriginalSource as FrameworkElement;
@@ -389,6 +389,20 @@ namespace Manager.UserControls
 
             }
 
+        }
+
+        private bool isHidenPrice = false;
+        public bool IsHidenPrice
+        {
+            get => isHidenPrice;
+            set
+            {
+                if (isHidenPrice != value)
+                {
+                    isHidenPrice = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
         }
     }
 

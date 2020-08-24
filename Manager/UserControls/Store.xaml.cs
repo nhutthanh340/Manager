@@ -17,10 +17,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Store : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly Store instance = new Store();
 
-        [Obsolete]
+        
         public static Store Instance
         {
             get
@@ -57,7 +57,7 @@ namespace Manager.UserControls
         }
         private string textSearch;
 
-        [Obsolete]
+        
         public string TextSearch
         {
             get => textSearch;
@@ -89,6 +89,10 @@ namespace Manager.UserControls
             if (code == "0")
             {
                 IsHidenPrice = !IsHidenPrice;
+                Sold.Instance.IsHidenPrice = !Sold.Instance.IsHidenPrice;
+                Receipt.Instance.IsHidenPrice = !Receipt.Instance.IsHidenPrice;
+                ListProductsHistory.Instance.IsHidenPrice = !ImportDetail.Instance.IsHidenPrice;
+                ImportDetail.Instance.IsHidenPrice = !ImportDetail.Instance.IsHidenPrice;
             }
             else if (code == "1")
             {
@@ -96,13 +100,12 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
         private void InititalizeCommand()
         {
             this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
-        [Obsolete]
+        
         public Store()
         {
             InitializeComponent();
@@ -111,13 +114,13 @@ namespace Manager.UserControls
             Initialize();
         }
 
-        [Obsolete]
+        
         public void Initialize()
         {
             Search();
         }
 
-        [Obsolete]
+        
         public void Search(string text = "")
         {
             Thread thread = new Thread(async () =>
@@ -159,7 +162,7 @@ namespace Manager.UserControls
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        [Obsolete]
+        
         public void NoneRepeat(object obj)
         {
             Thread thread = new Thread(async () =>
@@ -185,7 +188,7 @@ namespace Manager.UserControls
             thread.Start();
         }
 
-        [Obsolete]
+        
         public void DeleteAll(object obj)
         {
 
@@ -205,10 +208,10 @@ namespace Manager.UserControls
                 });
         }
 
-        [Obsolete]
+        
         private void RadGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (!(e.Source as RadGridView).IsFocused &&!(e.Source as RadGridView).IsMouseCaptureWithin)
+            if (!(e.Source as RadGridView).IsFocused && !(e.Source as RadGridView).IsMouseCaptureWithin)
             {
                 var temp = ((sender as RadGridView).CurrentItem as Product).Clone() as Product;
                 temp.Count = 1;

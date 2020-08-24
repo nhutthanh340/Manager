@@ -25,10 +25,10 @@ namespace Manager.UserControls
     public partial class ImportDetail : UserControl, INotifyPropertyChanged
     {
 
-        [Obsolete]
+        
         private static readonly ImportDetail instance = new ImportDetail();
 
-        [Obsolete]
+        
         public static ImportDetail Instance
         {
             get
@@ -53,7 +53,19 @@ namespace Manager.UserControls
                 }
             }
         }
-
+        private bool isHidenPrice = false;
+        public bool IsHidenPrice
+        {
+            get => isHidenPrice;
+            set
+            {
+                if (isHidenPrice != value)
+                {
+                    isHidenPrice = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
         public ImportDetail()
         {
             InitializeComponent();

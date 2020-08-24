@@ -82,7 +82,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public HistoryBill()
         {
         }

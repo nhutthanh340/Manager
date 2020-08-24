@@ -13,7 +13,7 @@ namespace Manager
         public static MainWindow mainWindow { get; set; }
         public static StartUp splashScreen { get; set; }
 
-        [Obsolete]
+        
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

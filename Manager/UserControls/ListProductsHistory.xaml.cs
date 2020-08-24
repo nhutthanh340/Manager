@@ -14,10 +14,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class ListProductsHistory : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly ListProductsHistory instance = new ListProductsHistory();
 
-        [Obsolete]
+        
         public static ListProductsHistory Instance
         {
             get
@@ -26,7 +26,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public ListProductsHistory()
         {
             InitializeComponent();
@@ -37,13 +37,26 @@ namespace Manager.UserControls
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
 
-        [Obsolete]
+        
         public void InitializeCommand()
         {
             PrintCommand = new DelegateCommand(Receipt.Instance.Print);
             SaveCommand = new DelegateCommand(Save);
         }
-        [Obsolete]
+        private bool isHidenPrice = false;
+        public bool IsHidenPrice
+        {
+            get => isHidenPrice;
+            set
+            {
+                if (isHidenPrice != value)
+                {
+                    isHidenPrice = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+        
         public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
         private HistoryBill selectedBill;
 
@@ -64,7 +77,7 @@ namespace Manager.UserControls
 
 
 
-        [Obsolete]
+        
         public void Restore(object bill)
         {
             if (ListManipulations.Instance.ListChanges != null)
@@ -80,7 +93,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public async void Save(object obj)
         {
             ListManipulations.Instance.IsBusy = true;

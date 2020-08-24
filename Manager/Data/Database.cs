@@ -34,7 +34,7 @@ namespace Manager.Data
         public IMongoCollection<T> collection;
         //public FirestoreDb db = null;
 
-        [Obsolete]
+        
         public async Task<bool> Add(T obj)
         {
             try
@@ -140,7 +140,7 @@ namespace Manager.Data
             }
         }
 
-        [Obsolete]
+        
         public async Task<ChartResult> DataChartsAsync(
             List<FilterDefinition<T>> filters = null,
             Func<CustomerPay, bool> condition = null,

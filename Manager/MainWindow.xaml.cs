@@ -19,10 +19,10 @@ namespace Manager
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly MainWindow instance = new MainWindow();
 
-        [Obsolete]
+        
         public static MainWindow Instance
         {
             get
@@ -44,7 +44,7 @@ namespace Manager
         public DelegateCommand UpdateModelCommand { get; private set; }
         
 
-        [Obsolete]
+        
         private void InitializeCommand()
         {
 
@@ -60,7 +60,7 @@ namespace Manager
             this.RefreshCommand = new DelegateCommand(Refresh);
         }
 
-        [Obsolete]
+        
         private async void UpdateModel(object refresh)
         {
             var ListProduct = await Database<Product>.Instance.ReadAll();
@@ -83,7 +83,7 @@ namespace Manager
             }
         }
 
-        [Obsolete]
+        
         private void Refresh(object refresh)
         {
             Store.Instance.Initialize();
@@ -123,7 +123,7 @@ namespace Manager
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [Obsolete]
+        
         public bool IsPdf
         {
             get => isPdf;
@@ -141,7 +141,7 @@ namespace Manager
 
         private StartUp startUp = new StartUp();
 
-        [Obsolete]
+        
         public bool IsPrinter
         {
             get => isPrinter;
@@ -157,13 +157,13 @@ namespace Manager
             }
         }
 
-        [Obsolete]
+        
         public void ExportExcel(object file)
         {
             FileExcel.Instance.Export(Store.Instance.ListProducts);
         }
 
-        [Obsolete]
+        
         public void ImportExcel(object file)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -183,14 +183,14 @@ namespace Manager
             }
         }
 
-        [Obsolete]
+        
         public MainWindow()
         {
             Initialize();
             DataContext = this;
         }
 
-        [Obsolete]
+        
         public void Initialize()
         {
 
@@ -216,7 +216,7 @@ namespace Manager
 
         NotifyIcon NotifyIcon = new NotifyIcon();
 
-        [Obsolete]
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
