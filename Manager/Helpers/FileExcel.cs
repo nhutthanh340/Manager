@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using Telerik.Windows.Data;
 namespace Manager.Helpers
@@ -168,10 +169,27 @@ namespace Manager.Helpers
             Store.Instance.IsBusy = true;
             Thread download = new Thread(() =>
             {
-                File.WriteAllText(FileName, rows);
+
+                // Use BOM.
+                var enc = new UTF8Encoding();
+                Byte[] bytes = enc.GetBytes(rows);
+                enc = new UTF8Encoding(true);
+                WriteToFile(FileName, enc, bytes);
+
+                //Encoding.UTF8.GetPreamble()
+                //File.WriteAllText(FileName, rows);
                 Store.Instance.IsBusy = false;
             });
             download.Start();
+        }
+
+        private static void WriteToFile(String fn, Encoding enc, Byte[] bytes)
+        {
+            var fs = new FileStream(fn, FileMode.Create);
+            Byte[] preamble = enc.GetPreamble();
+            fs.Write(preamble, 0, preamble.Length);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Close();
         }
     }
 }
