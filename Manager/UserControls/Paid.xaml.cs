@@ -88,12 +88,29 @@ namespace Manager.UserControls
                             if (item as Bill != null)
                             {
                                 (item as Bill).Changed += Sold.Instance.BillChanged;
+                                (item as Bill).Select += Sold.Instance.BillOnSelect;
                             }
                         }
                         Instance.ListChanges = new QueryableCollectionView(new List<Bill>());
+                        Instance.ListSelected = new QueryableCollectionView(new List<Bill>());
+                        Instance.TotalSelected = 0;
                     });
                     thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private long totalSelected = 0;
+        public long TotalSelected
+        {
+            get => totalSelected;
+            set
+            {
+                if (totalSelected != value)
+                {
+                    totalSelected = value;
                     this.NotifyChanged(PropertyChanged);
                 }
             }
@@ -113,7 +130,21 @@ namespace Manager.UserControls
             }
         }
 
-        
+        private QueryableCollectionView listSelected;
+        public QueryableCollectionView ListSelected
+        {
+            get => listSelected;
+            set
+            {
+                if (listSelected != value)
+                {
+                    listSelected = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+
         public Bill SelectedBill
         {
             get => Sold.Instance.SelectedBill;

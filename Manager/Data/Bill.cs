@@ -342,8 +342,22 @@ namespace Manager.Data
             }
         }
 
+        private bool isSeleted = false;
+        [BsonIgnore]
+        public bool IsSeleted
+        {
+            get => isSeleted;
+            set
+            {
+                if (isSeleted != value)
+                {
+                    isSeleted = value;
+                    this.OnPropertyChanged(() => this.IsSeleted);
+                    OnSelect();
+                }
+            }
+        }
 
-        
         public Bill()
         {
             ListProducts.PropertyChanged += ListProducts_PropertyChanged;
@@ -357,6 +371,15 @@ namespace Manager.Data
             if (Changed != null)
             {
                 Changed(this);
+            }
+        }
+        public delegate void select(object bill);
+        public event select Select;
+        public void OnSelect()
+        {
+            if (Select != null)
+            {
+                Select(this);
             }
         }
     }

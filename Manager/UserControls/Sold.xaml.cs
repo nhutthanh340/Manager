@@ -115,7 +115,28 @@ namespace Manager.UserControls
                     Paid.Instance.ListChanges.AddNew(bill);
                 }
             }
+
         }
+
+        public void BillOnSelect(object bill)
+        {
+            if (Paid.Instance.ListSelected != null)
+            {
+                if (!Paid.Instance.ListSelected.Contains(bill))
+                {
+                    Paid.Instance.ListSelected.AddNew(bill);
+                    Paid.Instance.TotalSelected += (bill as Bill).Total;
+                }
+                else
+                {
+                    Paid.Instance.ListSelected.Remove(bill);
+                    Paid.Instance.TotalSelected -= (bill as Bill).Total;
+                }
+
+            }
+
+        }
+        
 
         private bool isHidenPrice = false;
         public bool IsHidenPrice

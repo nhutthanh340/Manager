@@ -62,6 +62,13 @@
                             SelectedDate="{Binding Instance.EndDate, UpdateSourceTrigger=PropertyChanged}" 
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
 
+                <TextBlock 
+                        Margin="10,0,10,0" 
+                        FontWeight="Bold"
+                        Text="{Binding Instance.TotalSelected, StringFormat='TỔNG CỘNG: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        />
             </StackPanel>
 
         </Grid>
@@ -165,6 +172,30 @@
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
+
+
+                    <telerik:GridViewDataColumn Width="auto" Header="Tính tổng" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsChecked="{Binding IsSeleted, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                    >
+
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+                    
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </telerik:RadBusyIndicator>
@@ -173,6 +204,6 @@
             Grid.Row="2" 
             PageSize="40" 
             Source="{Binding ItemsSource, ElementName=gridViewBill}"/>
-
+        
     </Grid>
 </UserControl>
