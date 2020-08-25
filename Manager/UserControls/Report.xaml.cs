@@ -16,10 +16,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Report : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly Report instance = new Report();
 
-        [Obsolete]
+        
         public static Report Instance
         {
             get
@@ -37,7 +37,7 @@ namespace Manager.UserControls
             "dd/MM"
         };
 
-        [Obsolete]
+        
         public int SelectedFormat
         {
             get => selectedFormat;
@@ -49,7 +49,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public string[] Format
         {
             get => format;
@@ -60,7 +60,7 @@ namespace Manager.UserControls
                 this.NotifyChanged(PropertyChanged);
             }
         }
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -73,7 +73,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -133,7 +133,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         private void UserControl_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);

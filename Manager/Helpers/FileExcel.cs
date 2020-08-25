@@ -49,7 +49,7 @@ namespace Manager.Helpers
             }
         }
 
-        [Obsolete]
+        
         public DataProduct ReadAllFile(string filePath)
         {
             string[] rows = File.ReadAllText(filePath).Split('\n');
@@ -152,7 +152,7 @@ namespace Manager.Helpers
         }
 
 
-        [Obsolete]
+        
         public void Export(QueryableCollectionView obj, string fileName = "")
         {
             string row = "Mã;Tên hàng;Giá nhập;Có bán lẻ;Giá bán;Đơn vị;Thao tác;Số lượng hiện tại;Số lượng nhập thêm\n";

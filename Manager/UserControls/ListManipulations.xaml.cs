@@ -16,10 +16,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class ListManipulations : UserControl, INotifyPropertyChanged
     {
-        [Obsolete]
+        
         private static readonly ListManipulations instance = new ListManipulations();
 
-        [Obsolete]
+        
         public static ListManipulations Instance
         {
             get
@@ -28,20 +28,20 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public ListManipulations()
         {
             InitializeComponent();
             DataContext = this;
             Initialize();
         }
-        [Obsolete]
+        
         public void Initialize()
         {
             Search(TextSearch);
         }
 
-        [Obsolete]
+        
         public async void Save(object billSelected)
         {
             await Database<HistoryBill>.Instance.Add(new HistoryBill { Bill = billSelected as Bill });
@@ -50,7 +50,7 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [Obsolete]
+        
         public QueryableCollectionView ListBills
         {
             get => listBills;
@@ -92,7 +92,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public HistoryBill SelectedBill
         {
             get => ListProductsHistory.Instance.SelectedBill;
@@ -107,7 +107,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -124,7 +124,7 @@ namespace Manager.UserControls
         }
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -153,7 +153,7 @@ namespace Manager.UserControls
 
         private string textSearch = "";
 
-        [Obsolete]
+        
         public string TextSearch
         {
             get => textSearch;
@@ -168,7 +168,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public void Search(string text = "")
         {
             Thread thread = new Thread(async () =>

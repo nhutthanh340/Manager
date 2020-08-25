@@ -21,7 +21,7 @@ namespace Manager.Helpers
             None, Pdf, Printer, All
         }
 
-        [Obsolete]
+        
         public static void Print(Bill bill, PrintMethod printMethod)
         {
             #region Validation Receipt

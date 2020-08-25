@@ -20,10 +20,10 @@ namespace Manager.UserControls
     public partial class ImportList : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        [Obsolete]
+        
         private static readonly ImportList instance = new ImportList();
 
-        [Obsolete]
+        
         public static ImportList Instance
         {
             get
@@ -32,7 +32,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -49,7 +49,7 @@ namespace Manager.UserControls
         }
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
-        [Obsolete]
+        
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -65,7 +65,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public HistoryImport SelectedImport
         {
             get => ImportDetail.Instance.SelectedImport;
@@ -81,7 +81,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public void Search()
         {
             Thread thread = new Thread(async () =>
@@ -115,7 +115,7 @@ namespace Manager.UserControls
             thread.Start();
         }
 
-        [Obsolete]
+        
         public void Initialize()
         {
             Search();
@@ -134,7 +134,7 @@ namespace Manager.UserControls
         }
 
         private QueryableCollectionView listImports = new QueryableCollectionView(new List<HistoryImport>());
-        [Obsolete]
+        
         public QueryableCollectionView ListImports
         {
             get => listImports;
@@ -162,7 +162,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public void Restore(object bill)
         {
             if (ImportList.Instance.ListChanges != null)
@@ -192,7 +192,7 @@ namespace Manager.UserControls
             }
         }
 
-        [Obsolete]
+        
         public async void Save(object obj)
         {
             Instance.IsBusy = true;
@@ -256,7 +256,7 @@ namespace Manager.UserControls
         }
 
         public DelegateCommand SaveCommand { get; private set; }
-        [Obsolete]
+        
         public ImportList()
         {
             InitializeComponent();

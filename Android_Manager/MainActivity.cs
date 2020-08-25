@@ -25,7 +25,7 @@ namespace Android_Manager
         List<Product> Source = new List<Product>();
         SearchView searchView;
 
-        [Obsolete]
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -43,7 +43,7 @@ namespace Android_Manager
             fab.Click += Fab_Click;
         }
 
-        [Obsolete]
+        
         private void Update_Source(List<Product> products, string text = "")
         {
             if (listView == null)
@@ -53,18 +53,18 @@ namespace Android_Manager
 
             string[] textSearch = text.ToLower().Split(' ');
 
-            var predicate = PredicateBuilder.True<Product>();
+            var predicate = PredicateBuilder.New<Product>();
 
             foreach (var item in textSearch)
             {
                 predicate = predicate.And(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
             }
             products = products.Where(predicate.Compile()).ToList();
-            listView.SetAdapter(new CustomListAdapter(this, products));
+            listView.Adapter = new CustomListAdapter(this, products);
         }
 
 
-        [Obsolete]
+        
         private void Fab_Click(object sender, EventArgs e)
         {
             // get prompts.xml view
@@ -81,7 +81,7 @@ namespace Android_Manager
             {
                 try
                 {
-                    List<Product> products = await Database<Product>.ReadAll(editText.Text.Trim());
+                    List<Product> products = await Database<Product>.ReadAll(editText.Text.Trim() == "" ? "mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net" : editText.Text.Trim());
                     Source = products;
                     string json = JsonConvert.SerializeObject(products);
                     await SaveData(json, "data_products.bin");
@@ -108,7 +108,7 @@ namespace Android_Manager
 
         }
 
-        [Obsolete]
+        
         private void SearchView_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
         {
             List<Product> products = new List<Product>(Source);
