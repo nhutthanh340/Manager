@@ -12,6 +12,7 @@ namespace Manager.Helpers
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.FileName = "cmd.exe";
             startInfo.Arguments = "/C " + command;
+            startInfo.Verb = "runas";
             process.StartInfo = startInfo;
             process.Start();
         }

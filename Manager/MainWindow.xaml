@@ -248,6 +248,19 @@
                                                 Width="32" />
                         </telerik:RadRibbonButton>
 
+                        <telerik:RadRibbonButton Text="Bật DB"
+                                             Command="{Binding RestartServerCommand}"
+                                             Size="Large"
+                                             CollapseToSmall="WhenGroupIsMedium"
+                                             telerik:ScreenTip.Title="Khởi động lại server mongodb"
+                                             telerik:ScreenTip.Description="Ấn vào đây khởi động lại server"
+                                             telerik:KeyTipService.AccessText="R">
+                            <materialDesign:PackIcon
+                                                Kind="Server" Foreground="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"
+                                                Height="32"
+                                                Width="32" />
+                        </telerik:RadRibbonButton>
+
                     </telerik:RadCollapsiblePanel>
 
                 </telerik:RadRibbonGroup>

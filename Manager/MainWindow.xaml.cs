@@ -19,10 +19,10 @@ namespace Manager
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        
+
         private static readonly MainWindow instance = new MainWindow();
 
-        
+
         public static MainWindow Instance
         {
             get
@@ -42,12 +42,13 @@ namespace Manager
         public DelegateCommand RefreshCommand { get; private set; }
 
         public DelegateCommand UpdateModelCommand { get; private set; }
-        
 
-        
+        public DelegateCommand RestartServerCommand { get; private set; }
+
+
         private void InitializeCommand()
         {
-
+            this.RestartServerCommand = new DelegateCommand(RestartServer);
             this.UpdateModelCommand = new DelegateCommand(UpdateModel);
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
             this.ImportExcelCommand = new DelegateCommand(ImportExcel);
@@ -60,14 +61,19 @@ namespace Manager
             this.RefreshCommand = new DelegateCommand(Refresh);
         }
 
-        
+        private void RestartServer(object restart)
+        {
+            CMD.Execute($"net start MongoDB");
+            Refresh(restart);
+        }
+
         private async void UpdateModel(object refresh)
         {
             var ListProduct = await Database<Product>.Instance.ReadAll();
             var ListBill = await Database<Bill>.Instance.ReadAll();
             var ListHistoryBill = await Database<HistoryBill>.Instance.ReadAll();
 
-            foreach(var item in ListProduct)
+            foreach (var item in ListProduct)
             {
                 await Database<Product>.Instance.Update(item as Product);
             }
@@ -83,7 +89,7 @@ namespace Manager
             }
         }
 
-        
+
         private void Refresh(object refresh)
         {
             Store.Instance.Initialize();
@@ -124,7 +130,7 @@ namespace Manager
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+
         public bool IsPdf
         {
             get => isPdf;
@@ -142,7 +148,7 @@ namespace Manager
 
         private StartUp startUp = new StartUp();
 
-        
+
         public bool IsPrinter
         {
             get => isPrinter;
@@ -158,13 +164,13 @@ namespace Manager
             }
         }
 
-        
+
         public void ExportExcel(object file)
         {
             FileExcel.Instance.Export(Store.Instance.ListProducts);
         }
 
-        
+
         public void ImportExcel(object file)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -184,14 +190,14 @@ namespace Manager
             }
         }
 
-        
+
         public MainWindow()
         {
             Initialize();
             DataContext = this;
         }
 
-        
+
         public void Initialize()
         {
 
@@ -217,7 +223,7 @@ namespace Manager
 
         NotifyIcon NotifyIcon = new NotifyIcon();
 
-        
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
