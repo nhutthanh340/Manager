@@ -55,7 +55,7 @@ namespace Manager.UserControls
                 }
             }
         }
-        private string textSearch;
+        private string textSearch="";
 
         
         public string TextSearch
@@ -117,7 +117,7 @@ namespace Manager.UserControls
         
         public void Initialize()
         {
-            Search();
+            Search(textSearch);
         }
 
         

@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
             <telerik:RadWatermarkTextBox Grid.Column="0"
                 Margin="0,0,10,0" 
-                Text="{Binding TextSearch, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Instance.TextSearch, UpdateSourceTrigger=PropertyChanged}"
                 WatermarkContent="Tìm kiếm"/>
 
 

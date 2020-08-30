@@ -38,7 +38,7 @@ namespace Manager.UserControls
         
         public void Initialize()
         {
-            Search(TextSearch);
+            Search(textSearch);
         }
 
         
