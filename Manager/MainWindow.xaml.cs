@@ -120,7 +120,7 @@ namespace Manager
                 if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     CMD.Execute($"mongorestore \"{fbd.SelectedPath}\"");
-                    CMD.Execute($"mongorestore \"{fbd.SelectedPath}\" --uri mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net");
+                    //CMD.Execute($"mongorestore \"{fbd.SelectedPath}\" --uri mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net");
                 }
             }
         }

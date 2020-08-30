@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Manager.Data
 {
-    public class Database<T> where T : new()
+    public class Database<T> /*where T : new()*/
     {
         private static Database<T> instance;
         public static Database<T> Instance

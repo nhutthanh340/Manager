@@ -85,7 +85,6 @@ namespace Manager.UserControls
                 this.NotifyChanged(PropertyChanged);
             }
         }
-        [System.Obsolete]
         public Report()
         {
             InitializeComponent();
@@ -93,7 +92,7 @@ namespace Manager.UserControls
             Initialize();
         }
 
-        [System.Obsolete]
+        
         public async void Initialize()
         {
             var filter1 = Builders<Bill>.Filter.Where(x =>
