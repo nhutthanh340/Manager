@@ -64,7 +64,7 @@
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                         <telerik:GridViewDataColumn Width="auto"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
-                        <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Count,UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
+                        <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Count,StringFormat='{}{0:#,#.###}',UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UnitDisplay,UpdateSourceTrigger=PropertyChanged}" Header="Đơn vị"/>
                         <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá bán"/>
