@@ -56,19 +56,7 @@ namespace Manager.UserControls
                 await Database<Bill>.Instance.Update(item as Bill);
 
                 // Trả lại số lượng hàng
-                foreach (var e in oldObject1.ListProducts)
-                {
-                    var filter = Builders<Product>.Filter.Where(x => x.Id == (e as Product).Id);
-                    var temp = await Database<Product>.Instance.ReadAll(filter);
-                    var oldObject = temp.Cast<Product>().ToList().FirstOrDefault();
-                    if (oldObject != null)
-                    {
-                        var newObjet = (e as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count + newObjet.Count;
-                        newObjet.NewCount = 0;
-                        await Database<Product>.Instance.Update(newObjet);
-                    }
-                }
+                UpdateCountProduct.Update(oldObject1, item as Bill);
             }
             Store.Instance.Initialize();
             Paid.Instance.Initialize();
