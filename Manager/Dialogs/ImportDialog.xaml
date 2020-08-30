@@ -42,8 +42,8 @@
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
                     <telerik:GridViewDataColumn Width="*" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0'}" Header="Giá nhập"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count, StringFormat='0,0'}" Header="Số lượng hiện tại"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount, StringFormat='0,0'}" Header="Số lượng nhập thêm"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count, StringFormat='{}{0:#,#.###}'}" Header="Số lượng hiện tại"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount, StringFormat='{}{0:#,#.###}'}" Header="Số lượng nhập thêm"/>
                     <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy'}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
 
                 </telerik:RadGridView.Columns>
@@ -72,8 +72,8 @@
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
                     <telerik:GridViewDataColumn Width="*" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0'}" Header="Giá nhập"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count, StringFormat='0,0'}" Header="Số lượng hiện tại"/>
-                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount, StringFormat='0,0'}" Header="Số lượng nhập thêm"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count, StringFormat='{}{0:#,#.###}'}" Header="Số lượng hiện tại"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount, StringFormat='{}{0:#,#.###}'}" Header="Số lượng nhập thêm"/>
                     <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UpdateDate, StringFormat='dd/MM/yyyy'}" Header="Ngày cập nhật" IsVisible="{Binding Instance.IsHidenDate}"/>
 
                 </telerik:RadGridView.Columns>
