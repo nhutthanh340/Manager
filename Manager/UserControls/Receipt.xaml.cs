@@ -230,6 +230,7 @@ namespace Manager.UserControls
                 if (!billSelected.IsDept)
                 {
                     Initialize();
+                    NewReceipt(null);
                 }
                 Store.Instance.Initialize();
                 Paid.Instance.Initialize();
