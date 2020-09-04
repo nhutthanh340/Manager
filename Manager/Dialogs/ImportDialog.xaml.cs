@@ -19,6 +19,8 @@ namespace Manager.Dialogs
         {
             InitializeComponent();
             DataContext = this;
+            this.Ok = new DelegateCommand(Agree);
+            this.Cancel = new DelegateCommand(Disagree);
         }
 
         public ImportDialog(DataProduct data)
@@ -30,7 +32,7 @@ namespace Manager.Dialogs
             this.Cancel = new DelegateCommand(Disagree);
         }
 
-        [System.Obsolete]
+        
         private async void Agree(object obj)
         {
             HistoryImport delete = new HistoryImport(DataList.Delete.Cast<Product>().ToList(), "XOA");
@@ -76,7 +78,7 @@ namespace Manager.Dialogs
 
             ImportList.Instance.Initialize();
             Store.Instance.Initialize();
-            this.Close();
+            Disagree(null);
         }
 
         private void Disagree(object obj)

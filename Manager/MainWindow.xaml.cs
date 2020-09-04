@@ -51,7 +51,7 @@ namespace Manager
             this.RestartServerCommand = new DelegateCommand(RestartServer);
             this.UpdateModelCommand = new DelegateCommand(UpdateModel);
             this.ExportExcelCommand = new DelegateCommand(ExportExcel);
-            this.ImportExcelCommand = new DelegateCommand(ImportExcel);
+            this.ImportExcelCommand = new DelegateCommand(ImportExcelAsync);
             this.VisibilityCommand = new DelegateCommand(Store.Instance.VisibilityColumn);
             this.NewReceiptCommand = new DelegateCommand(Receipt.Instance.NewReceipt);
             this.DeleteReceiptCommand = new DelegateCommand(Receipt.Instance.DeleteReceipt);
@@ -171,22 +171,27 @@ namespace Manager
         }
 
 
-        public void ImportExcel(object file)
+        public async void ImportExcelAsync(object file)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Nguồn dữ liệu";
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                //Store.Instance.IsBusy = true;
-                //Thread thread = new Thread(() =>
+                Store.Instance.IsBusy = true;
+                //Thread thread = new Thread(async () =>
                 //{
-                //    FileExcel.Instance.Import(ofd.FileName);
+                // FileExcel.Instance.Import(ofd.FileName);
+                DataProduct temp = await FileExcel.Instance.ReadAllFileAsync(ofd.FileName);
+                ImportDialog importDialog = new ImportDialog(temp);
+                importDialog.Show();
+                Store.Instance.IsBusy = false;
+
                 //});
+                //thread.SetApartmentState(ApartmentState.STA);
                 //thread.Start();
 
-                ImportDialog importDialog = new ImportDialog(FileExcel.Instance.ReadAllFile(ofd.FileName));
-                importDialog.Show();
+
             }
         }
 

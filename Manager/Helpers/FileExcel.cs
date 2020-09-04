@@ -1,11 +1,15 @@
 ﻿using Manager.Data;
 using Manager.UserControls;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Xaml;
 using Telerik.Windows.Data;
 namespace Manager.Helpers
 {
@@ -49,8 +53,8 @@ namespace Manager.Helpers
             }
         }
 
-        
-        public DataProduct ReadAllFile(string filePath)
+
+        public async Task<DataProduct> ReadAllFileAsync(string filePath)
         {
             string[] rows = File.ReadAllText(filePath).Split('\n');
             int numRows = rows.Length;
@@ -83,18 +87,23 @@ namespace Manager.Helpers
                 product.UpdateDate = DateTime.Today;
 
                 product.Method = item[6];
-                float count = 0;
-                float.TryParse(item[7], out count);
-                product.Count = count;
+
+                //float count = 0;
+                //float.TryParse(item[7], out count);
+                //product.Count = count;
+
 
                 float newCount = 0;
-                float.TryParse(item[8], out newCount);
+                float.TryParse(item[7], out newCount);
                 product.NewCount = newCount;
 
                 try
                 {
                     if (product.Id != ObjectId.Parse(Properties.Settings.Default.EmptyId))
                     {
+                        FilterDefinition<Product> filter = Builders<Product>.Filter.Where(x => x.Id == product.Id);
+                        var temp = await Database<Product>.Instance.ReadAll(filter);
+                        product.Count = (temp.GetItemAt(0) as Product).Count;
 
                         if (ContentService.ConvertToUnsigned(product.Method.ToUpper()).Contains("XOA"))
                         {
@@ -121,7 +130,7 @@ namespace Manager.Helpers
                     {
                         if (product.Id == ObjectId.Parse(Properties.Settings.Default.EmptyId))
                         {
-                            if(ContentService.ConvertToUnsigned(product.Method.ToUpper()).Contains("THEM"))
+                            if (ContentService.ConvertToUnsigned(product.Method.ToUpper()).Contains("THEM"))
                             {
                                 product.Method = "THEM";
                                 ListData.Create.AddNew(product);
@@ -132,7 +141,7 @@ namespace Manager.Helpers
                             }
 
                         }
-                        
+
                     }
                     else
                     {
@@ -152,16 +161,16 @@ namespace Manager.Helpers
         }
 
 
-        
+
         public void Export(QueryableCollectionView obj, string fileName = "")
         {
-            string row = "Mã;Tên hàng;Giá nhập;Có bán lẻ;Giá bán;Đơn vị;Thao tác;Số lượng hiện tại;Số lượng nhập thêm\n";
+            string row = "Mã;Tên hàng;Giá nhập;Có bán lẻ;Giá bán;Đơn vị;Thao tác;Số lượng nhập thêm;Số lượng hiện tại\n";
             string rows = row;
             foreach (Product item in obj)
             {
                 string isRetail = item.IsRetailing ? "O" : "";
                 item.Method = "capnhat";
-                rows += $"{item.Id.ToString()};{item.Name};{item.PriceOrigin};{isRetail};{item.PriceDisplay};{item.UnitDisplay};{item.Method};{item.Count};{item.NewCount}\n";
+                rows += $"{item.Id.ToString()};{item.Name};{item.PriceOrigin};{isRetail};{item.PriceDisplay};{item.UnitDisplay};{item.Method};{item.NewCount};{item.Count}\n";
             }
 
             string FileName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + fileName + DateTime.Now.ToString("HH-mm-ss dd-MM-yyyy") + ".csv";
