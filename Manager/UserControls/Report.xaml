@@ -113,11 +113,11 @@
                     StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
             </StackPanel>
             
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+            <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Count2,
                     StringFormat='Tổng cột: 0,0'}"></TextBlock>
-            </StackPanel>
+            </StackPanel>-->
             <!--
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
