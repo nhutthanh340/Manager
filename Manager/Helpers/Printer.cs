@@ -21,7 +21,7 @@ namespace Manager.Helpers
             None, Pdf, Printer, All
         }
 
-        
+
         public static void Print(Bill bill, PrintMethod printMethod)
         {
             #region Validation Receipt
@@ -108,7 +108,7 @@ namespace Manager.Helpers
                     stackPanel.Children.Add(stackPanels[1]);
                 }
 
-                if (list.Count <= NumItemInPages_1 && list.Count >= NumItemInPages+5)
+                if (list.Count <= NumItemInPages_1 && list.Count >= NumItemInPages + 5)
                 {
                     fixedPages[1].Children.Add(stackPanel);
                     ((IAddChild)pageContent).AddChild(fixedPages[1]);
@@ -120,8 +120,8 @@ namespace Manager.Helpers
                 j++;
             }
 
-            (stackPanels[2].FindName("Total") as TextBlock).Text = $"TỔNG CỘNG:  {string.Format("{0:0,0}đ", bill.Total)} {new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
-
+            (stackPanels[2].FindName("Total") as TextBlock).Text = $" {string.Format("{0:0,0}đ", bill.Total)} ";
+            (stackPanels[2].FindName("TotalText") as TextBlock).Text = $"{new NumberToText(Convert.ToDouble(bill.Total)).ReadThis()}";
 
             foreach (var item in bill.CustomerPay)
             {
@@ -147,18 +147,23 @@ namespace Manager.Helpers
             }
 
 
-            string temp;
             if (bill.Remain > 0)
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"CÒN LẠI:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(bill.Remain)).ReadThis()}";
+                (stackPanels[2].FindName("RemainLabel") as TextBlock).Text = $"CÒN LẠI:";
+                (stackPanels[2].FindName("Remain") as TextBlock).Text = $" {string.Format("{0:0,0}đ", bill.Remain)} ";
+                (stackPanels[2].FindName("RemainText") as TextBlock).Text = $"{new NumberToText(Convert.ToDouble(bill.Remain)).ReadThis()}";
             }
             else if (bill.Remain < 0)
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"TRẢ LẠI CHO KHÁCH:  {string.Format("{0:0,0}đ", -bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
+                (stackPanels[2].FindName("RemainLabel") as TextBlock).Text = $"TRẢ LẠI CHO KHÁCH:";
+                (stackPanels[2].FindName("Remain") as TextBlock).Text = $" {string.Format("{0:0,0}đ", -bill.Remain)} ";
+                (stackPanels[2].FindName("RemainText") as TextBlock).Text = $"{new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
             }
             else
             {
-                temp = (stackPanels[2].FindName("Remain") as TextBlock).Text = $"CÒN LẠI:  {string.Format("{0:0,0}đ", bill.Remain)} {new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
+                (stackPanels[2].FindName("RemainLabel") as TextBlock).Text = $"CÒN LẠI:";
+                (stackPanels[2].FindName("Remain") as TextBlock).Text = $" {string.Format("{0:0,0}đ", bill.Remain)} ";
+                (stackPanels[2].FindName("RemainText") as TextBlock).Text = $"{new NumberToText(Convert.ToDouble(-bill.Remain)).ReadThis()}";
             }
 
             stackPanel.Children.Add(stackPanels[2]);
