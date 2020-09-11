@@ -96,25 +96,29 @@
             </StackPanel>
 
 
-            <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
-                <TextBlock FontSize="16" FontWeight="Bold" Text="Tổng kết"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
+                <TextBlock FontSize="16" FontWeight="Bold" Text="Trung bình (chỉ bao gồm hóa đơn đã thanh toán)"></TextBlock>
             </StackPanel>
-
-
+            
+            
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" >
                 <TextBlock FontSize="16" Text="{
-                    Binding Instance.ChartResult.Total,
-                    UpdateSourceTrigger=PropertyChanged, 
+                    Binding Instance.ChartResult.Mean_Total2,
                     StringFormat='Tổng: 0,0 đ'}"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
-                    Binding Instance.ChartResult.Cash,
-                    UpdateSourceTrigger=PropertyChanged, 
+                    Binding Instance.ChartResult.Mean_Cash2,
                     StringFormat='Tiền mặt: 0,0 đ'}"></TextBlock>
             </StackPanel>
-
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <TextBlock FontSize="16" Text="{
+                    Binding Instance.ChartResult.Count2,
+                    StringFormat='Tổng cột: 0,0'}"></TextBlock>
+            </StackPanel>
+            <!--
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                 <TextBlock FontSize="16" Text="{
                     Binding Instance.ChartResult.Dept,
