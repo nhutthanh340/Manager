@@ -18,11 +18,11 @@ namespace Manager.Data
     {
 
         private List<PlotInfo> chart;
-        private long total = 0, dept = 0, cash = 0,
+        private double total = 0, dept = 0, cash = 0, mean_total2 = 0, mean_cash2 = 0, count_2 = 0,
             total1 = 0, dept1 = 0, cash1 = 0,
             total2 = 0, dept2 = 0, cash2 = 0;
 
-        public long Cash
+        public double Cash
         {
             get => cash;
             set
@@ -32,7 +32,7 @@ namespace Manager.Data
             }
         }
 
-        public long Total
+        public double Total
         {
             get => total;
             set
@@ -42,7 +42,7 @@ namespace Manager.Data
             }
         }
 
-        public long Dept
+        public double Dept
         {
             get => dept;
             set
@@ -52,7 +52,7 @@ namespace Manager.Data
             }
         }
 
-        public long Cash1
+        public double Cash1
         {
             get => cash1;
             set
@@ -62,7 +62,7 @@ namespace Manager.Data
             }
         }
 
-        public long Total1
+        public double Total1
         {
             get => total1;
             set
@@ -72,7 +72,7 @@ namespace Manager.Data
             }
         }
 
-        public long Dept1
+        public double Dept1
         {
             get => dept1;
             set
@@ -82,7 +82,7 @@ namespace Manager.Data
             }
         }
 
-        public long Cash2
+        public double Cash2
         {
             get => cash2;
             set
@@ -92,7 +92,7 @@ namespace Manager.Data
             }
         }
 
-        public long Total2
+        public double Total2
         {
             get => total2;
             set
@@ -102,7 +102,7 @@ namespace Manager.Data
             }
         }
 
-        public long Dept2
+        public double Dept2
         {
             get => dept2;
             set
@@ -111,7 +111,27 @@ namespace Manager.Data
                 OnPropertyChanged(() => Dept2);
             }
         }
+        public double Mean_Total2
+        {
+            get => mean_total2;
+        }
 
+        public double Mean_Cash2
+        {
+            get => mean_cash2;
+        }
+
+        public double Count2
+        {
+            get => count_2;
+            set
+            {
+                count_2 = Math.Max(1, value);
+                mean_cash2 = Cash2 / count_2;
+                mean_total2 = Total2 / count_2;
+                OnPropertyChanged(() => Count2);
+            }
+        }
         public List<PlotInfo> Chart
         {
             get => chart;

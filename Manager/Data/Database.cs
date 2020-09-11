@@ -179,11 +179,11 @@ namespace Manager.Data
                         Value2 = 1.0 * r.Remain / oneMilion
                     }
                 );
-
+            
             result.Total2 = (long)(oneMilion * list2.Sum(x => x.Value));
             result.Cash2 = (long)(oneMilion * list2.Sum(x => x.Value1));
             result.Dept2 = (long)(oneMilion * list2.Sum(x => x.Value2));
-
+            
 
             var query_cash = await ReadAll(filters[2]);
             var data_cash = query_cash.Cast<Bill>().ToArray();
@@ -207,7 +207,7 @@ namespace Manager.Data
                     Category = r.First().Category,
                     Value = 1.0 * r.Sum(a => a.Value)
                 }).OrderBy(x => DateTime.Parse(x.Category)).ToList();
-
+            result.Count2 = result.Chart.Count();
             return result;
         }
     }
