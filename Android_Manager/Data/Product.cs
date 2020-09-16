@@ -87,7 +87,7 @@ namespace Manager.Data
         private Price price = new Price();
         private Unit unit = new Unit();
         private DateTime updateDate;
-        private float count = 0;
+        private float count = 0, newCount = 0;
         private bool isRetailing = false;
         private List<Unit> listUnit = new List<Unit>();
         private long total;
@@ -180,7 +180,7 @@ namespace Manager.Data
         { }
         public ushort STT { get; set; }
 
-        
+
         public long Total
         {
             get
@@ -198,7 +198,7 @@ namespace Manager.Data
             }
             set
             {
-                
+
             }
         }
 
@@ -215,7 +215,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public long PriceDisplay
         {
             get
@@ -250,7 +250,7 @@ namespace Manager.Data
         }
 
         [BsonId]
-        [JsonConverter(typeof(ObjectIdConverter))]     
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id
         {
             get
@@ -339,7 +339,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public float Count
         {
             get
@@ -352,6 +352,23 @@ namespace Manager.Data
                 if (this.count != value)
                 {
                     this.count = value;
+                }
+
+            }
+        }
+
+        public float NewCount
+        {
+            get
+            {
+                return this.newCount;
+            }
+
+            set
+            {
+                if (this.newCount != value)
+                {
+                    this.newCount = value;
                 }
 
             }
@@ -430,7 +447,7 @@ namespace Manager.Data
             return objTarget;
         }
 
-        
+
         public bool IsReady()
         {
             if (Name != "" && PriceOrigin != 0 && PriceDisplay != 0 && UnitDisplay != "")

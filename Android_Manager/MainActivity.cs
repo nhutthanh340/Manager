@@ -57,9 +57,10 @@ namespace Android_Manager
 
             foreach (var item in textSearch)
             {
-                predicate = predicate.And(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
+                predicate = predicate.And(x => !x.IsDeleted && x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
             }
-            products = products.Where(predicate.Compile()).ToList();
+            
+            products = products.Where(predicate.Compile()).OrderBy(x=> x.Name).ToList();
             listView.Adapter = new CustomListAdapter(this, products);
         }
 

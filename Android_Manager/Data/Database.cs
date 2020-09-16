@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Android.Util;
 using MongoDB.Driver;
 
 namespace Manager.Data
@@ -48,10 +50,12 @@ namespace Manager.Data
                 {
                     return new List<T>();
                 }
+                Log.Debug("thanh", results.Count().ToString());
                 return await results.ToListAsync();
             }
-            catch
+            catch(Exception ex)
             {
+                Log.Debug("thanh",ex.Message);
                 return new List<T>();
             }
         }
