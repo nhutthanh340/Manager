@@ -86,11 +86,15 @@
                ColumnWidth="*"
                CanUserDeleteRows="False"
                CanUserInsertRows="False" 
+                                 AlternateRowBackground="Azure"
+                    AlternationCount="2"
                SelectionMode="Single">
 
 
                 <telerik:RadGridView.Columns>
-
+                    <helpers:NumberRow Header="STT"
+								 Width="auto"
+								 />
 
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding Id}"/>
@@ -99,10 +103,10 @@
 
                     </telerik:GridViewDataColumn>
 
-                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
-                    <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
-                    <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
-                    <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
+                    <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
 
                     <telerik:GridViewDataColumn Width="auto" Header="Giao hàng" >
                         <telerik:GridViewColumn.CellTemplate>

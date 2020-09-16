@@ -29,12 +29,12 @@ namespace Manager.Data
         }
 
         private readonly string databaseName = "manager";
-        private readonly string hostName = "mongodb://localhost:27017";
+        private readonly string hostName = /*"mongodb://192.168.1.240";*/ "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
         //public FirestoreDb db = null;
 
-        
+
         public async Task<bool> Add(T obj)
         {
             try
@@ -140,7 +140,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public async Task<ChartResult> DataChartsAsync(
             List<FilterDefinition<T>> filters = null,
             Func<CustomerPay, bool> condition = null,
@@ -179,11 +179,11 @@ namespace Manager.Data
                         Value2 = 1.0 * r.Remain / oneMilion
                     }
                 );
-            
+
             result.Total2 = (long)(oneMilion * list2.Sum(x => x.Value));
             result.Cash2 = (long)(oneMilion * list2.Sum(x => x.Value1));
             result.Dept2 = (long)(oneMilion * list2.Sum(x => x.Value2));
-            
+
 
             var query_cash = await ReadAll(filters[2]);
             var data_cash = query_cash.Cast<Bill>().ToArray();

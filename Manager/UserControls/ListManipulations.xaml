@@ -79,12 +79,16 @@
                ColumnWidth="*"
                CanUserDeleteRows="False"
                CanUserInsertRows="False"
+                                 AlternateRowBackground="Azure"
+                    AlternationCount="2"
                SelectionMode="Single">
 
 
                 <telerik:RadGridView.Columns>
 
-
+                    <helpers:NumberRow Header="STT"
+								 Width="auto"
+								 />
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding Bill.TextSearch}"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Bill.Id}" Header="Mã" Width="auto"/>
 

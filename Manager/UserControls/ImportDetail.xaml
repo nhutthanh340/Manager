@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Manager.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:Manager.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:local1="clr-namespace:Manager.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="10">
@@ -23,9 +23,14 @@
                              GridLinesVisibility="Horizontal"
                              CanUserDeleteRows="False"
                              CanUserInsertRows="False"
+                             AlternateRowBackground="Azure"
+                    AlternationCount="2" RowHeight="50"
                              ColumnWidth="*">
 
             <telerik:RadGridView.Columns>
+                <local1:NumberRow Header="STT"
+								 Width="auto"
+								 />
                 <telerik:GridViewDataColumn Width="3*" DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
                 <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
                 <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>

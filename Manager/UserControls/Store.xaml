@@ -47,21 +47,23 @@
                     SelectedItem="{Binding Instance.SelectedProduct}"
                     IsSynchronizedWithCurrentItem="True"                
                     AutoGenerateColumns="False"                   
-                                   
                     RowIndicatorVisibility="Collapsed"
                     CanUserFreezeColumns="False"
                     ShowGroupPanel="False"
                     SelectionMode="Single"
                     IsReadOnly="True"
                     AlternateRowBackground="Azure"
-                    GridLinesVisibility="Horizontal"
                     AlternationCount="2" RowHeight="50"
+                    GridLinesVisibility="Horizontal"                   
                     MouseDoubleClick="RadGridView_MouseDoubleClick"
                     CanUserDeleteRows="False"
                     CanUserInsertRows="False"
                     ColumnWidth="*">
-              
+
                     <telerik:RadGridView.Columns>
+                        <local:NumberRow Header="STT"
+								 Width="auto"
+								 />
                         <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding TextSearch}"/>
                         <telerik:GridViewDataColumn Width="auto"  DataMemberBinding="{Binding Name,UpdateSourceTrigger=PropertyChanged}"  Header="Tên hàng"/>
                         <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Count,StringFormat='{}{0:#,#.###}',UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
