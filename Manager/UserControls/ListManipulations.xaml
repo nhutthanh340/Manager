@@ -92,14 +92,12 @@
                     <telerik:GridViewDataColumn IsVisible="False" DataMemberBinding="{Binding Bill.TextSearch}"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" DataMemberBinding="{Binding Bill.Id}" Header="Mã" Width="auto"/>
 
-                    <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Bill.CustomeName}"  Header="Tên">
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Bill.CustomeName}"  Header="Tên">
 
                     </telerik:GridViewDataColumn>
 
-                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Bill.Total,StringFormat='0,0'}" Header="Tổng cộng"/>
-                    <!--<telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Note,Converter={StaticResource NoteConverter}}" Header="Trạng thái"/>-->
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding UpdateTime, StringFormat='dd/MM/yyyy'}" Header="Ngày cập nhật"/>
-
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Bill.Total,StringFormat='0,0'}" Header="Tổng cộng" TextAlignment="Right"/>
                     <telerik:GridViewDataColumn Width="auto" Header="Khôi phục">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>

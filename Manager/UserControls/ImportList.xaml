@@ -70,7 +70,7 @@
 								 Width="auto"
 								 />
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding UpdateTime, StringFormat='dd/MM/yyyy HH:mm:ss'}" Header="Ngày cập nhật"/>
-                    <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Method,StringFormat='0,0'}" Header="Thao tác"/>
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="*" DataMemberBinding="{Binding Method,StringFormat='0,0'}" Header="Thao tác" TextAlignment="Center"/>
                     <telerik:GridViewDataColumn Width="auto" Header="Xóa">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>

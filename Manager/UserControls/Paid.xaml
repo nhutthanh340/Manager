@@ -105,9 +105,9 @@
 
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
-                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng"/>
+                    
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
-
+                    <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng" TextAlignment="Right"/>
                     <telerik:GridViewDataColumn Width="auto" Header="Giao hàng" >
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>

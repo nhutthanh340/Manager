@@ -31,12 +31,12 @@
                 <local1:NumberRow Header="STT"
 								 Width="auto"
 								 />
-                <telerik:GridViewDataColumn Width="3*" DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
-                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị"/>
-                <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập"/>
-                <telerik:GridViewDataColumn Width="2*" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán"/>
-                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Count, StringFormat='{}{0:#,#.###}'}" Header="Số lượng hiện tại" />
-                <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding NewCount, StringFormat='{}{0:#,#.###}'}" Header="Số lượng nhập" />
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Name}" Header="Tên hàng"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding UnitDisplay}" Header="Đơn vị" TextAlignment="Center"/>
+                <telerik:GridViewDataColumn Width="auto" IsVisible="{Binding Instance.IsHidenPrice}" DataMemberBinding="{Binding PriceOrigin, StringFormat='0,0',UpdateSourceTrigger=PropertyChanged}" Header="Giá nhập" TextAlignment="Right"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding PriceDisplay, StringFormat='0,0'}" Header="Giá bán" TextAlignment="Right"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding Count, StringFormat='{}{0:#,#.###}'}" Header="Số lượng hiện tại" TextAlignment="Right"/>
+                <telerik:GridViewDataColumn Width="auto" DataMemberBinding="{Binding NewCount, StringFormat='{}{0:#,#.###}'}" Header="Số lượng nhập" TextAlignment="Right"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
     </Grid>
