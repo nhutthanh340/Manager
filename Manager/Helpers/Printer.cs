@@ -178,17 +178,7 @@ namespace Manager.Helpers
             {
 
                 pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print To PDF");
-                //RadPrintPreviewDialog dialog = new RadPrintPreviewDialog();
-                //dialog.Document = this.radPrintDocument1;
-                //pd.ShowDialog();
-
-
-
                 pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");
-                //XpsDocument xpsDocument = new XpsDocument(file, FileAccess.Write);
-                //XpsDocumentWriter documentWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-                //documentWriter.Write(doc);
-                //xpsDocument.Close();
             }
 
 
@@ -204,12 +194,8 @@ namespace Manager.Helpers
                         var result = e.DialogResult;
                         if (result == true)
                         {
-
-
-
                             pd.PrintQueue = new PrintQueue(new PrintServer(), "HP LaserJet P1006");
                             pd.PrintDocument(doc.DocumentPaginator, $"{bill.CustomeName} {bill.Id}.pdf");
-
                         }
                     });
             }

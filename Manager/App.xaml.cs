@@ -1,7 +1,5 @@
-﻿
-using System.Windows;
-using System.Threading;
-using System;
+﻿using System.Windows;
+using System.Diagnostics;
 
 namespace Manager
 {
@@ -13,19 +11,40 @@ namespace Manager
         public static MainWindow mainWindow { get; set; }
         public static StartUp splashScreen { get; set; }
 
-        
         protected override void OnStartup(StartupEventArgs e)
+        {         
+            Process thisProc = Process.GetCurrentProcess();
+
+            if (IsProcessOpening(thisProc.ProcessName))
+            {
+                Application.Current.Shutdown();
+                return;               
+            }
+            else
+            {
+                base.OnStartup(e);
+
+                splashScreen = new StartUp();
+                splashScreen.Show();
+
+                mainWindow = new MainWindow();
+
+                splashScreen.Close();
+                mainWindow.Show();
+            }
+
+        }
+
+        public bool IsProcessOpening(string name)
         {
-            base.OnStartup(e);
-
-            splashScreen = new StartUp();
-            splashScreen.Show();
-
-            mainWindow = new MainWindow();
-            //Thread.Sleep(000);
-            splashScreen.Close();
-            mainWindow.Show();
-
+            if (Process.GetProcessesByName(name).Length > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
