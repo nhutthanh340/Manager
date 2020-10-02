@@ -3,7 +3,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     Margin="20,0,20,0" Width="21cm" Background="White">
 
-    <StackPanel HorizontalAlignment="Right" Margin="50,0,50,0" Grid.Column="0">
+    <StackPanel HorizontalAlignment="Right" Margin="50,0,100,0" Grid.Column="0">
         <StackPanel Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="12">TỔNG CỘNG:</TextBlock>
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Name="Total" FontSize="18"/>

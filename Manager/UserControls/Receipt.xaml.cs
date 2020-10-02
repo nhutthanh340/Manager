@@ -93,6 +93,7 @@ namespace Manager.UserControls
         
         public void Pay(object bill)
         {
+            bill = SelectedBill;
             if ((bill as Bill).ListProducts == null || (bill as Bill).ListProducts.IsEmpty)
             {
                 RadWindow.Alert(
@@ -171,9 +172,9 @@ namespace Manager.UserControls
                     if (oldObject != null)
                     {
                         var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count - newObjet.Count;
-                        newObjet.NewCount = 0;
-                        status = status && await Database<Product>.Instance.Update(newObjet);
+                        oldObject.Count = oldObject.Count - newObjet.Count;
+                        oldObject.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(oldObject);
                     }
                 }
 
@@ -195,9 +196,9 @@ namespace Manager.UserControls
                     if (oldObject != null)
                     {
                         var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count + newObjet.Count;
-                        newObjet.NewCount = 0;
-                        status = status && await Database<Product>.Instance.Update(newObjet);
+                        oldObject.Count = oldObject.Count + newObjet.Count;
+                        oldObject.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(oldObject);
                     }
                 }
 
@@ -211,9 +212,9 @@ namespace Manager.UserControls
                     if (oldObject != null)
                     {
                         var newObjet = (item as Product).Clone() as Product;
-                        newObjet.Count = oldObject.Count - newObjet.Count;
-                        newObjet.NewCount = 0;
-                        status = status && await Database<Product>.Instance.Update(newObjet);
+                        oldObject.Count = oldObject.Count - newObjet.Count;
+                        oldObject.NewCount = 0;
+                        status = status && await Database<Product>.Instance.Update(oldObject);
                     }
                 }
 
@@ -322,9 +323,9 @@ namespace Manager.UserControls
                                 if (oldObject != null)
                                 {
                                     var newObjet = (item as Product).Clone() as Product;
-                                    newObjet.Count = oldObject.Count + newObjet.Count;
-                                    newObjet.NewCount = 0;
-                                    await Database<Product>.Instance.Update(newObjet);
+                                    oldObject.Count = oldObject.Count + newObjet.Count;
+                                    oldObject.NewCount = 0;
+                                    await Database<Product>.Instance.Update(oldObject);
                                 }
                             }
 
@@ -368,7 +369,7 @@ namespace Manager.UserControls
             {
                 return;
             }
-            SelectedBill = e.AddedItems[0] as Bill;
+            Instance.SelectedBill = e.AddedItems[0] as Bill;
         }
 
         
@@ -383,8 +384,8 @@ namespace Manager.UserControls
                     bool isCellCount = cell.DataColumn.DataMemberBinding.Path.Path == MemberInfoGetting.GetMemberName(() => new Product().Count);
                     if (!isCellCount)
                     {
-                        SelectedBill.ListProducts.Remove(originalSender.DataContext as Product);
-                        SelectedBill.NotifyChanged();
+                        Instance.SelectedBill.ListProducts.Remove(originalSender.DataContext as Product);
+                        Instance.SelectedBill.NotifyChanged();
                     }
                 }
 

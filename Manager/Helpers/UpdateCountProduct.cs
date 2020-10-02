@@ -25,9 +25,9 @@ namespace Manager.Helpers
                         if (oldObject != null)
                         {
                             var newObjet = (item as Product).Clone() as Product;
-                            newObjet.Count = oldObject.Count + newObjet.Count;
-                            newObjet.NewCount = 0;
-                            await Database<Product>.Instance.Update(newObjet);
+                            oldObject.Count = oldObject.Count + newObjet.Count;
+                            oldObject.NewCount = 0;
+                            await Database<Product>.Instance.Update(oldObject);
                         }
                     }
                 }
@@ -41,9 +41,9 @@ namespace Manager.Helpers
                         if (oldObject != null)
                         {
                             var newObjet = (item as Product).Clone() as Product;
-                            newObjet.Count = oldObject.Count + newObjet.Count;
-                            newObjet.NewCount = 0;
-                            await Database<Product>.Instance.Update(newObjet);
+                            oldObject.Count = oldObject.Count + newObjet.Count;
+                            oldObject.NewCount = 0;
+                            await Database<Product>.Instance.Update(oldObject);
                         }
                     }
 
@@ -56,9 +56,9 @@ namespace Manager.Helpers
                         if (oldObject != null)
                         {
                             var newObjet = (item as Product).Clone() as Product;
-                            newObjet.Count = oldObject.Count - newObjet.Count;
-                            newObjet.NewCount = 0;
-                            await Database<Product>.Instance.Update(newObjet);
+                            oldObject.Count = oldObject.Count - newObjet.Count;
+                            oldObject.NewCount = 0;
+                            await Database<Product>.Instance.Update(oldObject);
                         }
                     }
                 }
@@ -77,9 +77,9 @@ namespace Manager.Helpers
                         if (oldObject != null)
                         {
                             var newObjet = (item as Product).Clone() as Product;
-                            newObjet.Count = oldObject.Count - newObjet.Count;
-                            newObjet.NewCount = 0;
-                            await Database<Product>.Instance.Update(newObjet);
+                            oldObject.Count = oldObject.Count - newObjet.Count;
+                            oldObject.NewCount = 0;
+                            await Database<Product>.Instance.Update(oldObject);
                         }
                     }
                 }

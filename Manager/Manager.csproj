@@ -169,7 +169,6 @@
     <Compile Include="Data\HistoryBill.cs" />
     <Compile Include="Data\HistoryImport.cs" />
     <Compile Include="Data\Product.cs" />
-    <Compile Include="Data\ProductHelpers.cs" />
     <Compile Include="Dialogs\ImportDialog.xaml.cs">
       <DependentUpon>ImportDialog.xaml</DependentUpon>
     </Compile>
