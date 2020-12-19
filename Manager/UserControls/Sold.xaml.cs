@@ -139,5 +139,10 @@ namespace Manager.UserControls
                 }
             }
         }
+
+        private void gridViewBillItems_SelectionChanged(object sender, SelectionChangeEventArgs e)
+        {
+
+        }
     }
 }
