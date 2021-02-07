@@ -111,10 +111,59 @@ namespace Manager.UserControls
                 if (totalSelected != value)
                 {
                     totalSelected = value;
+                    Remain = ContentService.RoundMoney(totalSelected * (1 - percent / 100));
+                    SaleOff = ContentService.RoundMoney(totalSelected * (percent / 100));
                     this.NotifyChanged(PropertyChanged);
                 }
             }
         }
+
+
+        private double percent = 0.0;
+        public double Percent
+        {
+            get => percent;
+            set
+            {
+                if (percent != value)
+                {
+                    percent = value;
+                    SaleOff = ContentService.RoundMoney(totalSelected * (percent / 100));
+                    Remain = ContentService.RoundMoney(totalSelected * (1 - percent / 100));
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private long remain = 0;
+        public long Remain
+        {
+            get => remain;
+            set
+            {
+                if (remain != value)
+                {
+                    remain = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        private long saleOff = 0;
+        public long SaleOff
+        {
+            get => saleOff;
+            set
+            {
+                if (saleOff != value)
+                {
+                    saleOff = value;
+                    this.NotifyChanged(PropertyChanged);
+                }
+            }
+        }
+
+        
 
         private QueryableCollectionView listChanges;
         public QueryableCollectionView ListChanges

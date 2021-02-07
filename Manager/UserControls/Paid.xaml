@@ -52,6 +52,7 @@
 
 
             <StackPanel Grid.Column="1" Orientation="Horizontal">
+
                 <DatePicker Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             Margin="10,0,10,0" 
                             SelectedDate="{Binding Instance.StartDate, UpdateSourceTrigger=PropertyChanged}"  
@@ -62,13 +63,42 @@
                             SelectedDate="{Binding Instance.EndDate, UpdateSourceTrigger=PropertyChanged}" 
                             BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"></DatePicker>
 
-                <TextBlock 
+
+
+                <TextBox 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Margin="10,0,10,0"
+                        Text="{Binding Instance.Percent, StringFormat='N2',TargetNullValue=0,UpdateSourceTrigger=PropertyChanged}" 
+                        materialDesign:HintAssist.Hint="%" 
+                        VerticalAlignment="Center"
+                        BorderBrush="{telerik:Office2013Resource ResourceKey=AccentMainBrush}"/>
+
+
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock 
                         Margin="10,0,10,0" 
                         FontWeight="Bold"
                         Text="{Binding Instance.TotalSelected, StringFormat='TỔNG CỘNG: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         />
+                    
+                    <TextBlock 
+                        Margin="10,0,10,0" 
+                        FontWeight="Bold"
+                        Text="{Binding Instance.SaleOff, StringFormat='Giảm: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        />
+                    <TextBlock 
+                        Margin="10,0,10,0" 
+                        FontWeight="Bold"
+                        Text="{Binding Instance.Remain, StringFormat='CÒN LẠI: {0:0,0}đ',UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        />
+                </StackPanel>
             </StackPanel>
 
         </Grid>
@@ -105,7 +135,7 @@
 
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Phone}" Header="SĐT"/>
                     <telerik:GridViewDataColumn Width="*" DataMemberBinding="{Binding Address}" Header="Địa chỉ"/>
-                    
+
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding SaleDate, StringFormat='dd/MM/yyyy'}" Header="Ngày bán"/>
                     <telerik:GridViewDataColumn IsReadOnly="True" Width="auto" DataMemberBinding="{Binding Total,StringFormat='0,0'}" Header="Tổng cộng" TextAlignment="Right"/>
                     <telerik:GridViewDataColumn Width="auto" Header="Giao hàng" >
@@ -199,7 +229,7 @@
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
-                    
+
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
         </telerik:RadBusyIndicator>
@@ -208,6 +238,6 @@
             Grid.Row="2" 
             PageSize="40" 
             Source="{Binding ItemsSource, ElementName=gridViewBill}"/>
-        
+
     </Grid>
 </UserControl>
