@@ -11,6 +11,8 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace Manager.UserControls
 {
@@ -163,8 +165,6 @@ namespace Manager.UserControls
             }
         }
 
-        
-
         private QueryableCollectionView listChanges;
         public QueryableCollectionView ListChanges
         {
@@ -259,7 +259,23 @@ namespace Manager.UserControls
             }
         }
 
-        
+        private void Check(bool ischecked)
+        {
+            foreach (Bill item in Instance.ListBills.SourceCollection)
+            {
+                item.IsSeleted = ischecked;
+            }
+        }
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Check(true);
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Check(false);
+        }
+
         public void Search(string text = "")
         {
             Thread thread = new Thread(async () =>
@@ -293,7 +309,6 @@ namespace Manager.UserControls
             });
             thread.Start();
         }
-
     }
     public class NoteConverter : IValueConverter
     {

@@ -120,7 +120,9 @@
                     AlternationCount="2"
                SelectionMode="Single">
 
-
+                
+                
+                
                 <telerik:RadGridView.Columns>
                     <helpers:NumberRow Header="STT"
 								 Width="auto"
@@ -208,7 +210,19 @@
                     </telerik:GridViewDataColumn>
 
 
-                    <telerik:GridViewDataColumn Width="auto" Header="Tính tổng" >
+                    <telerik:GridViewDataColumn Width="auto">
+                        
+                        <telerik:GridViewColumn.Header >
+
+                            <CheckBox IsChecked="False"
+                                      HorizontalAlignment="Center" 
+                                      Checked="CheckBox_Checked"
+                                      Unchecked="CheckBox_Unchecked"
+                                      Style="{StaticResource MaterialDesignUserForegroundCheckBox}"
+                                      />
+
+                        </telerik:GridViewColumn.Header>
+                        
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
