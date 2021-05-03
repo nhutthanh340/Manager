@@ -17,7 +17,7 @@ namespace Manager.Helpers
         {
             this._compositeFilterDesriptor = new CompositeFilterDescriptor();
             this._compositeFilterDesriptor.LogicalOperator = FilterCompositionLogicalOperator.Or;
-            
+
             foreach (GridViewDataColumn column in columns)
             {
                 this._compositeFilterDesriptor.FilterDescriptors.Add(this.CreateFilterForColumn(column));

@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace Manager
 {
@@ -12,13 +12,13 @@ namespace Manager
         public static StartUp splashScreen { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
-        {         
+        {
             Process thisProc = Process.GetCurrentProcess();
 
             if (IsProcessOpening(thisProc.ProcessName))
             {
                 Application.Current.Shutdown();
-                return;               
+                return;
             }
             else
             {

@@ -1,14 +1,12 @@
 ﻿using Manager.Data;
-using System;
+using Manager.Helpers;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
+using System.Threading;
 using System.Windows.Controls;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
-using Manager.Helpers;
-using System.Threading;
-using MongoDB.Driver;
 
 namespace Manager.UserControls
 {
@@ -17,10 +15,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Store : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly Store instance = new Store();
 
-        
+
         public static Store Instance
         {
             get
@@ -55,9 +53,9 @@ namespace Manager.UserControls
                 }
             }
         }
-        private string textSearch="";
+        private string textSearch = "";
 
-        
+
         public string TextSearch
         {
             get => textSearch;
@@ -105,7 +103,7 @@ namespace Manager.UserControls
             this.DeleteAllCommand = new DelegateCommand(DeleteAll);
         }
 
-        
+
         public Store()
         {
             InitializeComponent();
@@ -114,13 +112,13 @@ namespace Manager.UserControls
             Initialize();
         }
 
-        
+
         public void Initialize()
         {
             Search(textSearch);
         }
 
-        
+
         public void Search(string text = "")
         {
             Thread thread = new Thread(async () =>
@@ -162,7 +160,7 @@ namespace Manager.UserControls
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        
+
         public void NoneRepeat(object obj)
         {
             Thread thread = new Thread(async () =>
@@ -188,7 +186,7 @@ namespace Manager.UserControls
             thread.Start();
         }
 
-        
+
         public void DeleteAll(object obj)
         {
 
@@ -208,7 +206,7 @@ namespace Manager.UserControls
                 });
         }
 
-        
+
         private void RadGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (!(e.Source as RadGridView).IsFocused && !(e.Source as RadGridView).IsMouseCaptureWithin)

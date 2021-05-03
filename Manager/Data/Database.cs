@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Telerik.Windows.Data;
-using MongoDB.Driver;
-using System.Linq;
 
 namespace Manager.Data
 {
@@ -29,7 +29,7 @@ namespace Manager.Data
         }
 
         private readonly string databaseName = "manager";
-        private readonly string hostName = /*"mongodb://192.168.1.240";*/ "mongodb://localhost:27017";
+        private readonly string hostName = /*@"mongodb+srv://nhutthanh:ThanhHai123@cluster0.r5idf.mongodb.net";*/ "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
         //public FirestoreDb db = null;

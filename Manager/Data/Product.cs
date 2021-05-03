@@ -195,18 +195,18 @@ namespace Manager.Data
         { }
         public ushort STT { get; set; }
 
-        
+
         public long Total
         {
             get
             {
                 if (IsRetailing)
                 {
-                    this.total = (long)(Count * price.Retail);
+                    this.total = (long)(Count * price.Retail * (100 - saleOff) / 100);
                 }
                 else
                 {
-                    this.total = (long)(Count * price.Display);
+                    this.total = (long)(Count * price.Display * (100 - saleOff) / 100);
                 }
 
                 return this.total;
@@ -214,8 +214,6 @@ namespace Manager.Data
             set
             {
                 OnPropertyChanged(() => this.Total);
-
-
             }
         }
 
@@ -233,18 +231,32 @@ namespace Manager.Data
             }
         }
 
-        
+        private float saleOff = 0;
+        public float SaleOff
+        {
+            get => saleOff;
+            set
+            {
+                if (this.saleOff != value)
+                {
+                    this.saleOff = value;
+                    this.OnPropertyChanged(() => this.SaleOff);
+                    this.OnPropertyChanged(() => this.PriceDisplay);
+                    this.OnPropertyChanged(() => this.Total);
+                }
+            }
+        }
         public long PriceDisplay
         {
             get
             {
                 if (isRetailing)
                 {
-                    return this.price.Retail;
+                    return (long)(this.price.Retail * (100 - saleOff) / 100);
                 }
                 else
                 {
-                    return this.price.Display;
+                    return (long)(this.price.Display * (100 - saleOff) / 100);
                 }
 
             }
@@ -365,7 +377,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public float Count
         {
             get
@@ -470,7 +482,7 @@ namespace Manager.Data
             return objTarget;
         }
 
-        
+
         public bool IsReady()
         {
             if (Name != "" && PriceOrigin != 0 && PriceDisplay != 0 && UnitDisplay != "")
@@ -483,7 +495,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public bool IsEmpty()
         {
             if (Id == ObjectId.Parse(Properties.Settings.Default.EmptyId) && Name == "" && PriceOrigin == 0 && PriceDisplay == 0 && UnitDisplay == "")

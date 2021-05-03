@@ -20,7 +20,7 @@ namespace Manager.UserControls
             get { return (List<CustomerPay>)GetValue(FoldersProperty); }
             set
             {
-                SetValue(FoldersProperty, value);          
+                SetValue(FoldersProperty, value);
             }
         }
 

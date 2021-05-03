@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Manager.UserControls
@@ -14,7 +13,7 @@ namespace Manager.UserControls
             InitializeComponent();
         }
 
-        
+
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);

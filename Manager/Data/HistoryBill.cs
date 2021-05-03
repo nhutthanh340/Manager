@@ -1,9 +1,6 @@
-﻿
-using Manager.UserControls;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-using System.Threading;
 using Telerik.Windows.Controls;
 
 namespace Manager.Data
@@ -82,7 +79,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public HistoryBill()
         {
         }

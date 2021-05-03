@@ -15,7 +15,7 @@ namespace Manager.Data
             this.method = method;
         }
 
-        public HistoryImport( string method)
+        public HistoryImport(string method)
         {
             //this.idBill= id;
             this.method = method;

@@ -3,7 +3,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     Margin="20,0,20,20" Background="White">
     <ListView Name="lstView"
-                  Background="White" Width="750" 
+                  Background="White" Width="700" 
                   BorderThickness="0"  AlternationCount="1000"      
                   Foreground="Black" TextElement.FontSize="13">
         <ListView.ItemContainerStyle>
@@ -14,7 +14,7 @@
         <ListView.View>
             <GridView TextBlock.TextAlignment="Center">
                 <GridView.Columns>
-                    <GridViewColumn Width="40">
+                    <GridViewColumn Width="30">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="STT" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>
@@ -28,7 +28,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="250">
+                    <GridViewColumn Width="270">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Tên hàng" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>
@@ -43,7 +43,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Width="70">
+                    <GridViewColumn Width="65">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Số lượng" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>
@@ -58,7 +58,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Width="50">
+                    <GridViewColumn Width="60">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Width="auto" Content="Đơn vị" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>
@@ -73,7 +73,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Width="120">
+                    <GridViewColumn Width="100">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Đơn giá" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>
@@ -90,7 +90,7 @@
 
 
 
-                    <GridViewColumn Width="200">
+                    <GridViewColumn Width="120">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Thành tiền" Background="Aqua" FontWeight="Bold"></GridViewColumnHeader>
                         </GridViewColumn.Header>

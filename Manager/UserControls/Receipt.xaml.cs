@@ -1,18 +1,18 @@
 ﻿using Manager.Data;
-using System;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 using Manager.Helpers;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Windows.Data;
+using System;
+using System.ComponentModel;
 using System.Globalization;
-using Telerik.Windows.Controls.GridView;
-using System.Linq.Expressions;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
+using Telerik.Windows.Data;
 
 namespace Manager.UserControls
 {
@@ -21,10 +21,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Receipt : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly Receipt instance = new Receipt();
 
-        
+
         public static Receipt Instance
         {
             get
@@ -84,13 +84,13 @@ namespace Manager.UserControls
         public DelegateCommand PayCommand { get; private set; }
 
 
-        
+
         private void InitializeCommand()
         {
             this.PayCommand = new DelegateCommand(Pay);
         }
 
-        
+
         public void Pay(object bill)
         {
             bill = SelectedBill;
@@ -120,7 +120,7 @@ namespace Manager.UserControls
             Print(bill);
         }
 
-        
+
         public void Print(object bill)
         {
             Printer.PrintMethod printMethod = Printer.PrintMethod.None;
@@ -149,7 +149,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public async void Save(object bill)
         {
             bool status = false;
@@ -185,7 +185,7 @@ namespace Manager.UserControls
                 var filter1 = Builders<Bill>.Filter.Where(x => x.Id == billSelected.Id);
                 var temp1 = await Database<Bill>.Instance.ReadAll(filter1);
                 var oldObject1 = temp1.Cast<Bill>().ToList().FirstOrDefault();
-                
+
                 status = await Database<Bill>.Instance.Update(billSelected);
 
                 foreach (var item in oldObject1.ListProducts)
@@ -202,7 +202,7 @@ namespace Manager.UserControls
                     }
                 }
 
-                
+
                 foreach (var item in billSelected.ListProducts)
                 {
                     var filter = Builders<Product>.Filter.Where(x => x.Id == (item as Product).Id);
@@ -218,7 +218,7 @@ namespace Manager.UserControls
                     }
                 }
 
-                
+
                 method = "Cập nhật";
             }
 
@@ -231,7 +231,7 @@ namespace Manager.UserControls
                 if (!billSelected.IsDept)
                 {
                     Initialize();
-                   
+
                 }
                 Store.Instance.Initialize();
                 Paid.Instance.Initialize();
@@ -249,7 +249,7 @@ namespace Manager.UserControls
             });
         }
 
-        
+
         public Receipt()
         {
             InitializeComponent();
@@ -259,7 +259,7 @@ namespace Manager.UserControls
             DataContext = this;
         }
 
-        
+
         public async void Initialize()
         {
 
@@ -277,26 +277,27 @@ namespace Manager.UserControls
             NewReceipt(null);
         }
 
-        
+
         public void AddProduct(object product)
         {
             if (SelectedBill == null)
             {
                 NewReceipt(null);
             }
-            SelectedBill.ListProducts.AddNew((product as Product).Clone());
+            SelectedBill.ListProducts.AddNewItem((product as Product).Clone());
+            SelectedBill.ListProducts.Refresh();
             SelectedBill.NotifyChanged();
         }
 
 
-        
+
         public void NewReceipt(object receipt)
         {
             ListBills.AddNew(new Bill());
             SelectedBill = ListBills.QueryableSourceCollection.ElementAt(ListBills.Count - 1) as Bill;
         }
 
-        
+
         public void DeleteReceipt(object receipt)
         {
             RadWindow.Confirm(
@@ -362,7 +363,7 @@ namespace Manager.UserControls
         }
 
 
-        
+
         private void SelectBillChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
@@ -372,7 +373,7 @@ namespace Manager.UserControls
             Instance.SelectedBill = e.AddedItems[0] as Bill;
         }
 
-        
+
         private void radGridView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             FrameworkElement originalSender = e.OriginalSource as FrameworkElement;

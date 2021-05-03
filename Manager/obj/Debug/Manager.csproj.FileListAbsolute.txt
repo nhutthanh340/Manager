@@ -200,10 +200,6 @@ G:\Visual Studio 2019\Manager\Manager\bin\Debug\MongoDB.Driver.GridFS.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\MongoDB.Driver.Legacy.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\MongoDB.Libmongocrypt.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\Newtonsoft.Json.dll
-G:\Visual Studio 2019\Manager\Manager\bin\Debug\NPOI.dll
-G:\Visual Studio 2019\Manager\Manager\bin\Debug\NPOI.OOXML.dll
-G:\Visual Studio 2019\Manager\Manager\bin\Debug\NPOI.OpenXml4Net.dll
-G:\Visual Studio 2019\Manager\Manager\bin\Debug\NPOI.OpenXmlFormats.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\ObjectsComparer.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\SharpCompress.dll
 G:\Visual Studio 2019\Manager\Manager\bin\Debug\Snappy.NET.dll
@@ -310,3 +306,7 @@ G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportHistory.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportHistory.baml
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\Warehouse.g.cs
 G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\Warehouse.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportDetail.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportList.g.cs
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportDetail.baml
+G:\Visual Studio 2019\Manager\Manager\obj\Debug\UserControls\ImportList.baml

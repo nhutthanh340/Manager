@@ -3,10 +3,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     Margin="20,0,20,0" Width="21cm" Background="White">
 
-    <StackPanel HorizontalAlignment="Left" Margin="50,0,100,0" Grid.Column="0">
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Total"/>
+    <StackPanel HorizontalAlignment="Right" Margin="50,0,100,0" Grid.Column="0">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="12">TỔNG CỘNG:</TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Name="Total" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Name="TotalText" FontSize="12"/>
+        </StackPanel>
 
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold">Đưa trước: </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Center" FontSize="12">ĐƯA TRƯỚC: </TextBlock>
         <StackPanel x:Name="CustomerPayList" Orientation="Vertical" Margin="0,0,0,0">
             <!--<StackPanel x:Name="CustomerPayItem" Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="PayTime"></TextBlock>
@@ -14,7 +19,12 @@
             </StackPanel>-->
         </StackPanel>
 
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Name="Remain"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom" Name="RemainLabel" FontSize="12"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom" Name="Remain" FontSize="18"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom" Name="RemainText" FontSize="12"></TextBlock>
+        </StackPanel>
+       
     </StackPanel>
 
 
@@ -25,7 +35,15 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
 ">Khách hàng</TextBlock>
-        <TextBlock Grid.Column="1" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
-">Người bán</TextBlock>
+
+        <Grid Margin="0,00,0,0"  Grid.Column="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--<TextBlock Grid.Row="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" >Người bán</TextBlock>-->
+            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="15">Thanh Hải</TextBlock>
+        </Grid>
     </Grid>
+    
 </StackPanel>

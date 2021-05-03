@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Manager.Helpers
@@ -18,7 +13,7 @@ namespace Manager.Helpers
             {
                 textBlock = new TextBlock();
             }
- 
+
             textBlock.Text = string.Format("{0}", this.DataControl.Items.IndexOf(dataItem) + 1);
 
             return textBlock;

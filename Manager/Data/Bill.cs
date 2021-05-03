@@ -57,10 +57,10 @@ namespace Manager.Data
     [BsonIgnoreExtraElements]
     public class Bill : ViewModelBase
     {
-        
+
         private static readonly Bill instance = new Bill();
 
-        
+
         public static Bill Instance
         {
             get
@@ -71,16 +71,17 @@ namespace Manager.Data
 
 
 
-        
+
         private void ListProducts_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             NotifyChanged();
         }
 
-        
+
         public void NotifyChanged()
         {
             //Receipt.Instance.IsSaved = false;
+            
             OnPropertyChanged(() => this.Total);
             OnPropertyChanged(() => this.Remain);
         }
@@ -143,7 +144,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public long Remain
         {
             get
@@ -156,7 +157,7 @@ namespace Manager.Data
             }
         }
 
-        
+
         public long Total
         {
             get
@@ -182,7 +183,7 @@ namespace Manager.Data
 
         private List<CustomerPay> customerPay = new List<CustomerPay>();
 
-        
+
         private void CustomerPayChanged()
         {
             OnPropertyChanged(() => this.CustomerPay);
@@ -190,7 +191,7 @@ namespace Manager.Data
             OnChanged();
         }
 
-        
+
         public void AddControl()
         {
             customerPay = new List<CustomerPay>(customerPay);
@@ -201,7 +202,7 @@ namespace Manager.Data
             OnChanged();
         }
 
-        
+
         public void SubControl()
         {
             if (customerPay.Count > 0)
@@ -212,7 +213,7 @@ namespace Manager.Data
                 OnChanged();
             }
         }
-        
+
         public List<CustomerPay> CustomerPay
         {
             get
@@ -237,7 +238,7 @@ namespace Manager.Data
         }
 
         [BsonIgnore]
-        
+
         public QueryableCollectionView ListProducts
         {
             get
@@ -309,7 +310,7 @@ namespace Manager.Data
 
         private bool isDept = true;
 
-        
+
         public bool IsDept
         {
             get

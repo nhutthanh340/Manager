@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 
 namespace Manager.Data
 {

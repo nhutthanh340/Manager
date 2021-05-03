@@ -1,11 +1,11 @@
 ﻿using Manager.Data;
+using Manager.Helpers;
+using MongoDB.Driver;
 using System;
 using System.ComponentModel;
-using System.Windows.Controls;
-using Manager.Helpers;
-using Telerik.Windows.Controls;
-using MongoDB.Driver;
 using System.Linq;
+using System.Windows.Controls;
+using Telerik.Windows.Controls;
 
 namespace Manager.UserControls
 {
@@ -14,10 +14,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Sold : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly Sold instance = new Sold();
 
-        
+
         public static Sold Instance
         {
             get
@@ -28,17 +28,17 @@ namespace Manager.UserControls
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
 
-        
+
         public void InitializeCommand()
         {
             SaveCommand = new DelegateCommand(Save);
             PrintCommand = new DelegateCommand(Receipt.Instance.Print);
         }
 
-        
+
         public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
 
-        
+
         public async void Save(object obj)
         {
             Paid.Instance.IsBusy = true;
@@ -46,7 +46,7 @@ namespace Manager.UserControls
             foreach (var item in Paid.Instance.ListChanges)
             {
                 (item as Bill).SaleDate = DateTime.Now;
-                
+
                 ListManipulations.Instance.Save(item);
 
                 var filter1 = Builders<Bill>.Filter.Where(x => x.Id == SelectedBill.Id);
@@ -68,7 +68,7 @@ namespace Manager.UserControls
 
         }
 
-        
+
         public Sold()
         {
             InitializeComponent();
@@ -79,7 +79,7 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+
         public Bill SelectedBill
         {
             get => selectedBill;
@@ -93,7 +93,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public void BillChanged(object bill)
         {
             if (Paid.Instance.ListChanges != null)
@@ -124,7 +124,7 @@ namespace Manager.UserControls
             }
 
         }
-        
+
 
         private bool isHidenPrice = false;
         public bool IsHidenPrice

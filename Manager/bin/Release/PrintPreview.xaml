@@ -18,7 +18,7 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic" FontWeight="Bold">Địa Chỉ : Chợ Đường Thét , Ấp Mỹ Tây 2 , Xã Mỹ Quí ,</TextBlock>
             <TextBlock Margin="100,0,0,0" FontSize="12" FontStyle="Italic" FontWeight="Bold">Huyện Tháp Mười , Đồng Tháp</TextBlock>
-            <TextBlock Margin="50,0,0,0" FontSize="12" FontStyle="Italic" FontWeight="Bold">☎ : 0945 956 891 - 0982 956 891 - 0913 956 891</TextBlock>
+            <TextBlock Margin="50,0,0,0" FontSize="12" FontWeight="Bold">☎ : 0913 956 891 - 0945 956 891 - 0982 956 891</TextBlock>
         </StackPanel>
         <StackPanel Margin="0,0,20,0" VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Center" FontSize="12" FontStyle="Italic" FontWeight="Bold">CHUYÊN BÁN CÁC LOẠI</TextBlock>

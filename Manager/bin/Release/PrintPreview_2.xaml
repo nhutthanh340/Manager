@@ -3,7 +3,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     Margin="20,0,20,0" Width="21cm" Background="White">
 
-    <StackPanel HorizontalAlignment="Right" Margin="50,0,50,0" Grid.Column="0">
+    <StackPanel HorizontalAlignment="Right" Margin="50,0,100,0" Grid.Column="0">
         <StackPanel Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="12">TỔNG CỘNG:</TextBlock>
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Name="Total" FontSize="18"/>
@@ -35,7 +35,15 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
 ">Khách hàng</TextBlock>
-        <TextBlock Grid.Column="1" FontWeight="Bold" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center
-">Người bán</TextBlock>
+
+        <Grid Margin="0,00,0,0"  Grid.Column="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--<TextBlock Grid.Row="0" FontWeight="Bold" FontSize="13" FontStyle="Italic" >Người bán</TextBlock>-->
+            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="15">Thanh Hải</TextBlock>
+        </Grid>
     </Grid>
+    
 </StackPanel>

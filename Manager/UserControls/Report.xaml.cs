@@ -1,13 +1,12 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
+﻿using Manager.Data;
 using Manager.Helpers;
-using Manager.Data;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
-using System.Linq;
-using MongoDB.Bson.Serialization.Attributes;
-using System.Windows.Input;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Manager.UserControls
 {
@@ -16,10 +15,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Report : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly Report instance = new Report();
 
-        
+
         public static Report Instance
         {
             get
@@ -37,7 +36,7 @@ namespace Manager.UserControls
             "dd/MM"
         };
 
-        
+
         public int SelectedFormat
         {
             get => selectedFormat;
@@ -49,7 +48,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public string[] Format
         {
             get => format;
@@ -60,7 +59,7 @@ namespace Manager.UserControls
                 this.NotifyChanged(PropertyChanged);
             }
         }
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -73,7 +72,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -92,7 +91,7 @@ namespace Manager.UserControls
             Initialize();
         }
 
-        
+
         public async void Initialize()
         {
             var filter1 = Builders<Bill>.Filter.Where(x =>
@@ -132,7 +131,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         private void UserControl_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             bool isCtrlPressed = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);

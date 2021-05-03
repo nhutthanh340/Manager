@@ -147,20 +147,20 @@ namespace Manager.Helpers
             _flagBlock[4] = 1;
             if (_flagBlock[0] == 0 & _flagBlock[1] == 0 & _flagBlock[2] == 0 & _flagBlock[3] == 0)
             {
-                _stringBlock[4] = ReadThisBlock(BlockNum[4])+Space;
+                _stringBlock[4] = ReadThisBlock(BlockNum[4]) + Space;
             }
             if (_flagBlock[0] != 1 && _flagBlock[1] != 1 && _flagBlock[2] != 1 && _flagBlock[3] != 1) return;
             if (BlockNum[4] < A)
             {
-                _stringBlock[4] = Readzero[5] + Space + ReadThisBlock(BlockNum[4])+Space;
+                _stringBlock[4] = Readzero[5] + Space + ReadThisBlock(BlockNum[4]) + Space;
             }
             if (BlockNum[4] < B & BlockNum[4] >= A)
             {
-                _stringBlock[4] = Readzero[2] + Space + ReadThisBlock(BlockNum[4])+Space;
+                _stringBlock[4] = Readzero[2] + Space + ReadThisBlock(BlockNum[4]) + Space;
             }
             if (BlockNum[4] < C & BlockNum[4] >= B)
             {
-                _stringBlock[4] = ReadThisBlock(BlockNum[4])+Space;
+                _stringBlock[4] = ReadThisBlock(BlockNum[4]) + Space;
             }
         }
 

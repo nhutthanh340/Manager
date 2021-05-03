@@ -1,6 +1,5 @@
 ﻿using Manager.Data;
 using Manager.Helpers;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
@@ -20,10 +19,10 @@ namespace Manager.UserControls
     public partial class ImportList : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private static readonly ImportList instance = new ImportList();
 
-        
+
         public static ImportList Instance
         {
             get
@@ -32,7 +31,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -49,7 +48,7 @@ namespace Manager.UserControls
         }
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -65,7 +64,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public HistoryImport SelectedImport
         {
             get => ImportDetail.Instance.SelectedImport;
@@ -81,7 +80,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public void Search()
         {
             Thread thread = new Thread(async () =>
@@ -115,7 +114,7 @@ namespace Manager.UserControls
             thread.Start();
         }
 
-        
+
         public void Initialize()
         {
             Search();
@@ -134,7 +133,7 @@ namespace Manager.UserControls
         }
 
         private QueryableCollectionView listImports = new QueryableCollectionView(new List<HistoryImport>());
-        
+
         public QueryableCollectionView ListImports
         {
             get => listImports;
@@ -162,7 +161,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public void Restore(object bill)
         {
             if (ImportList.Instance.ListChanges != null)
@@ -192,7 +191,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public async void Save(object obj)
         {
             Instance.IsBusy = true;
@@ -213,7 +212,7 @@ namespace Manager.UserControls
                     if (oldObject != null)
                     {
                         var newObjet = (item as Product).Clone() as Product;
-                        
+
                         if (importHistorySelected.Method == "CAPNHAT" || importHistorySelected.Method == "THEM")
                         {
                             newObjet.Count = oldObject.Count - newObjet.NewCount;
@@ -229,7 +228,7 @@ namespace Manager.UserControls
                             newObjet.IsDeleted = false;
                         }
 
-                        
+
                         await Database<Product>.Instance.Update(newObjet);
                     }
                 }
@@ -241,7 +240,7 @@ namespace Manager.UserControls
         }
 
         public DelegateCommand SaveCommand { get; private set; }
-        
+
         public ImportList()
         {
             InitializeComponent();

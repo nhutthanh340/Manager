@@ -1,18 +1,17 @@
 ﻿using Manager.Data;
-using System.Windows.Controls;
-using Telerik.Windows.Data;
-using System;
-using System.Windows.Data;
-using System.Globalization;
-using System.ComponentModel;
 using Manager.Helpers;
-using Telerik.Windows.Controls;
-using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Threading;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
+using System.Windows.Data;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 
 namespace Manager.UserControls
 {
@@ -21,10 +20,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class Paid : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly Paid instance = new Paid();
 
-        
+
         public static Paid Instance
         {
             get
@@ -46,14 +45,14 @@ namespace Manager.UserControls
 
         public DelegateCommand RemoveBillCommand { get; private set; }
 
-        
+
         private void InititalizeCommand()
         {
 
         }
 
 
-        
+
         public Paid()
         {
             InitializeComponent();
@@ -64,7 +63,7 @@ namespace Manager.UserControls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+
         public void Initialize()
         {
             Search(textSearch);
@@ -74,7 +73,7 @@ namespace Manager.UserControls
 
         private QueryableCollectionView listBills = new QueryableCollectionView(new List<Bill>());
 
-        
+
         public QueryableCollectionView ListBills
         {
             get => listBills;
@@ -208,7 +207,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime StartDate
         {
@@ -226,7 +225,7 @@ namespace Manager.UserControls
 
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
 
-        
+
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime EndDate
         {
@@ -244,7 +243,7 @@ namespace Manager.UserControls
 
         private string textSearch = "";
 
-        
+
         public string TextSearch
         {
             get => textSearch;

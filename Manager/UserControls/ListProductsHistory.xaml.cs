@@ -1,7 +1,6 @@
 ﻿using Manager.Data;
 using Manager.Helpers;
 using MongoDB.Driver;
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
@@ -14,10 +13,10 @@ namespace Manager.UserControls
     /// </summary>
     public partial class ListProductsHistory : UserControl, INotifyPropertyChanged
     {
-        
+
         private static readonly ListProductsHistory instance = new ListProductsHistory();
 
-        
+
         public static ListProductsHistory Instance
         {
             get
@@ -26,7 +25,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public ListProductsHistory()
         {
             InitializeComponent();
@@ -37,7 +36,7 @@ namespace Manager.UserControls
         public DelegateCommand SaveCommand { get; private set; }
         public DelegateCommand PrintCommand { get; private set; }
 
-        
+
         public void InitializeCommand()
         {
             PrintCommand = new DelegateCommand(Receipt.Instance.Print);
@@ -56,7 +55,7 @@ namespace Manager.UserControls
                 }
             }
         }
-        
+
         public bool IsPrint { get => MainWindow.Instance.IsPdf || MainWindow.Instance.IsPrinter; }
         private HistoryBill selectedBill;
 
@@ -77,7 +76,7 @@ namespace Manager.UserControls
 
 
 
-        
+
         public void Restore(object bill)
         {
             if (ListManipulations.Instance.ListChanges != null)
@@ -93,7 +92,7 @@ namespace Manager.UserControls
             }
         }
 
-        
+
         public async void Save(object obj)
         {
             ListManipulations.Instance.IsBusy = true;

@@ -3,7 +3,6 @@ using Manager.UserControls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +52,7 @@ namespace Manager.Helpers
             return (bool)obj.GetValue(IsEnabledProperty);
         }
 
-        
+
         public static void SetIsEnabled(DependencyObject obj, bool value)
         {
             RowReorderBehavior behavior = GetAttachedBehavior(obj as RadGridView);
@@ -76,7 +75,7 @@ namespace Manager.Helpers
             DependencyProperty.RegisterAttached("IsEnabled", typeof(bool), typeof(RowReorderBehavior),
                 new PropertyMetadata(new PropertyChangedCallback(OnIsEnabledPropertyChanged)));
 
-        
+
         public static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
             SetIsEnabled(dependencyObject, (bool)e.NewValue);
@@ -98,7 +97,7 @@ namespace Manager.Helpers
 
         }
 
-        
+
         protected virtual void Initialize()
         {
             this.AssociatedObject.RowLoaded -= this.AssociatedObject_RowLoaded;
@@ -118,7 +117,7 @@ namespace Manager.Helpers
             }));
         }
 
-        
+
         protected virtual void CleanUp()
         {
             this.AssociatedObject.RowLoaded -= this.AssociatedObject_RowLoaded;
@@ -145,7 +144,7 @@ namespace Manager.Helpers
             DragDropManager.AddDragOverHandler(row, OnRowDragOver);
         }
 
-        
+
         private void SubscribeToDragDropEvents()
         {
             DragDropManager.AddDragInitializeHandler(this.AssociatedObject, OnDragInitialize);
@@ -154,7 +153,7 @@ namespace Manager.Helpers
             DragDropManager.AddDragDropCompletedHandler(this.AssociatedObject, OnDragDropCompleted);
         }
 
-        
+
         private void UnsubscribeFromDragDropEvents()
         {
             DragDropManager.RemoveDragInitializeHandler(this.AssociatedObject, OnDragInitialize);
@@ -200,7 +199,7 @@ namespace Manager.Helpers
             e.Handled = true;
         }
 
-        
+
         private void OnDrop(object sender, Telerik.Windows.DragDrop.DragEventArgs e)
         {
             var draggedItem = DragDropPayloadManager.GetDataFromObject(e.Data, "DraggedItem");

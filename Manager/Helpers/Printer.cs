@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Manager.Data;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Printing;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
+using Telerik.Windows.Controls;
 using ListView = System.Windows.Controls.ListView;
 using PrintDialog = System.Windows.Controls.PrintDialog;
-using System.Printing;
-using Manager.Data;
-using Telerik.Windows.Controls;
-using System.Linq;
-using System.Collections.Generic;
-using System.Windows;
 
 namespace Manager.Helpers
 {

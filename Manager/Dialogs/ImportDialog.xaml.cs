@@ -1,12 +1,10 @@
-﻿using Manager.Helpers;
-using System.Data.Entity;
+﻿using Manager.Data;
+using Manager.Helpers;
+using Manager.UserControls;
+using MongoDB.Driver;
+using System.Linq;
 using System.Windows;
 using Telerik.Windows.Controls;
-using Manager.Data;
-using System.Linq;
-using System.Collections.Generic;
-using MongoDB.Driver;
-using Manager.UserControls;
 
 namespace Manager.Dialogs
 {
@@ -32,14 +30,14 @@ namespace Manager.Dialogs
             this.Cancel = new DelegateCommand(Disagree);
         }
 
-        
+
         private async void Agree(object obj)
         {
             HistoryImport delete = new HistoryImport(DataList.Delete.Cast<Product>().ToList(), "XOA");
             HistoryImport update = new HistoryImport(DataList.Update.Cast<Product>().ToList(), "CAPNHAT");
-            HistoryImport create = new HistoryImport(DataList.Create.Cast<Product>().ToList(), "THEM");          
+            HistoryImport create = new HistoryImport(DataList.Create.Cast<Product>().ToList(), "THEM");
 
-            foreach(var item in delete.Source)
+            foreach (var item in delete.Source)
             {
                 item.IsDeleted = true;
                 await Database<Product>.Instance.Update(item);

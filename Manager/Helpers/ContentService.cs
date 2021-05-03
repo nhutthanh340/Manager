@@ -1,12 +1,5 @@
-﻿using Manager.Data;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
-using Telerik.Windows.Data;
 
 namespace Manager.Helpers
 {

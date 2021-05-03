@@ -3,14 +3,11 @@ using Manager.Dialogs;
 using Manager.Helpers;
 using Manager.UserControls;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 
 namespace Manager
 {
