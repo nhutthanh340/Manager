@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.Util;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-
+using System.Linq;
 namespace Manager.Data
 {
     public class Database<T> where T : new()
@@ -11,17 +12,16 @@ namespace Manager.Data
         private static readonly string databaseName = "manager";
 
         public static IMongoCollection<T> collection;
-        public static async Task<List<T>> ReadAll(string hostName, FilterDefinition<T> filter = null, int? skip = null, int? limit = null, SortDefinition<T> order = null)
+        public static IEnumerable<T> ReadAll(string hostName, FilterDefinition<T> filter = null, int? skip = null, int? limit = null, SortDefinition<T> order = null)
         {
-            IFindFluent<T, T> results = null;
-
-            MongoClient client = new MongoClient(hostName);
-            IMongoDatabase database = client.GetDatabase(databaseName);
-            collection = database.GetCollection<T>(typeof(T).Name);
-
-
             try
             {
+                IFindFluent<T, T> results = null;
+
+                MongoClient client = new MongoClient(hostName);
+                IMongoDatabase database = client.GetDatabase(databaseName);
+                collection = database.GetCollection<T>(typeof(T).Name);
+                
                 if (filter == null)
                 {
                     results = collection.Find(x => true);
@@ -50,12 +50,10 @@ namespace Manager.Data
                 {
                     return new List<T>();
                 }
-                Log.Debug("thanh", results.Count().ToString());
-                return await results.ToListAsync();
+                return results.ToList();
             }
             catch(Exception ex)
             {
-                Log.Debug("thanh",ex.Message);
                 return new List<T>();
             }
         }

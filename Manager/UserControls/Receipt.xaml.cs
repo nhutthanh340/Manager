@@ -285,7 +285,6 @@ namespace Manager.UserControls
                 NewReceipt(null);
             }
             SelectedBill.ListProducts.AddNewItem((product as Product).Clone());
-            SelectedBill.ListProducts.Refresh();
             SelectedBill.NotifyChanged();
         }
 
@@ -383,6 +382,7 @@ namespace Manager.UserControls
                 if (cell != null)
                 {
                     bool isCellCount = cell.DataColumn.DataMemberBinding.Path.Path == MemberInfoGetting.GetMemberName(() => new Product().Count);
+                    isCellCount = isCellCount || cell.DataColumn.DataMemberBinding.Path.Path == MemberInfoGetting.GetMemberName(() => new Product().SaleOff);
                     if (!isCellCount)
                     {
                         Instance.SelectedBill.ListProducts.Remove(originalSender.DataContext as Product);

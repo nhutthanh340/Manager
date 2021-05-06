@@ -81,7 +81,7 @@ namespace Manager.Data
         public void NotifyChanged()
         {
             //Receipt.Instance.IsSaved = false;
-            
+            //OnPropertyChanged(() => this.ListProducts);
             OnPropertyChanged(() => this.Total);
             OnPropertyChanged(() => this.Remain);
         }
@@ -247,11 +247,8 @@ namespace Manager.Data
             }
             set
             {
-                if (listProducts != value)
-                {
-                    listProducts = value;
-                    NotifyChanged();
-                }
+                listProducts = value;
+                NotifyChanged();
             }
         }
 

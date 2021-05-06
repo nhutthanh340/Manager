@@ -82,7 +82,9 @@ namespace Android_Manager
             {
                 try
                 {
-                    List<Product> products = await Database<Product>.ReadAll(editText.Text.Trim() == "" ? "mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net" : editText.Text.Trim());
+                    var products = 
+                    Database<Product>.ReadAll(editText.Text.Trim() == "" ? "mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net" : editText.Text.Trim())
+                    .Select(x=>new Product { Name=x.Name, PriceDisplay=x.PriceDisplay, UnitDisplay=x.UnitDisplay}).ToList();
                     Source = products;
                     string json = JsonConvert.SerializeObject(products);
                     await SaveData(json, "data_products.bin");
@@ -93,7 +95,7 @@ namespace Android_Manager
                         .Make(sender as View, $"Đã cập nhật {Source.Count} mặt hàng từ máy tính", Snackbar.LengthLong)
                         .Show();
                 }
-                catch
+                catch(Exception ex)
                 {
                     Snackbar
                         .Make(sender as View, "Có lỗi xảy ra, hãy kiểm tra lại kết nối mạng", Snackbar.LengthLong)

@@ -120,9 +120,7 @@ namespace Manager.UserControls
                     Paid.Instance.ListSelected.Remove(bill);
                     Paid.Instance.TotalSelected -= (bill as Bill).Total;
                 }
-
             }
-
         }
 
 
