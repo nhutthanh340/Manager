@@ -160,7 +160,7 @@ namespace Manager.Data
 
         public float NewCount
         {
-            get;set;
+            get; set;
         }
         public string RetailUnit
         {
@@ -227,20 +227,22 @@ namespace Manager.Data
 
         public long Total
         {
-            get;set;
+            get; set;
         }
 
 
         public long PriceOrigin
         {
-            get;set;
+            get; set;
         }
 
         public float SaleOff
         {
-            get;set;
+            get; set;
         }
+    
         [BsonId]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id
         {
             get;set;
@@ -297,7 +299,7 @@ namespace Manager.Data
 
         public float Count
         {
-            get;set;
+            get; set;
         }
 
         [BsonIgnore]
@@ -353,23 +355,23 @@ namespace Manager.Data
         }
     }
 
-    //public class ObjectIdConverter : JsonConverter
-    //{
+    public class ObjectIdConverter : JsonConverter
+    {
 
-    //    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    //    {
-    //        serializer.Serialize(writer, value.ToString());
+        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            serializer.Serialize(writer, value?.ToString());
 
-    //    }
+        }
 
-    //    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-    //    {
-    //        return ObjectId.Parse(reader.Value.ToString());
-    //    }
+        public override object ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            return ObjectId.Parse(reader?.Value?.ToString());
+        }
 
-    //    public override bool CanConvert(Type objectType)
-    //    {
-    //        return typeof(ObjectId).IsAssignableFrom(objectType);
-    //    }
-    //}
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(ObjectId).IsAssignableFrom(objectType);
+        }
+    }
 }

@@ -25,7 +25,7 @@ namespace Android_Manager
         List<Product> Source = new List<Product>();
         SearchView searchView;
 
-        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -43,7 +43,7 @@ namespace Android_Manager
             fab.Click += Fab_Click;
         }
 
-        
+
         private void Update_Source(List<Product> products, string text = "")
         {
             if (listView == null)
@@ -59,13 +59,13 @@ namespace Android_Manager
             {
                 predicate = predicate.And(x => !x.IsDeleted && x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
             }
-            
-            products = products.Where(predicate.Compile()).OrderBy(x=> x.Name).ToList();
+
+            products = products.Where(predicate.Compile()).OrderBy(x => x.Name).ToList();
             listView.Adapter = new CustomListAdapter(this, products);
         }
 
 
-        
+
         private void Fab_Click(object sender, EventArgs e)
         {
             // get prompts.xml view
@@ -82,20 +82,26 @@ namespace Android_Manager
             {
                 try
                 {
-                    var products = 
-                    Database<Product>.ReadAll(editText.Text.Trim() == "" ? "mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net" : editText.Text.Trim())
-                    .Select(x=>new Product { Name=x.Name, PriceDisplay=x.PriceDisplay, UnitDisplay=x.UnitDisplay}).ToList();
+                    var url = editText.Text?.Trim();
+                    if (string.IsNullOrEmpty(url))
+                    {
+                        url = "mongodb+srv://nhutthanh:admin@cluster0.r5idf.mongodb.net";
+                    }
+                    var products =
+                    Database<Product>.ReadAll(url)
+                    .Select(x => new Product { Name = x.Name, PriceDisplay = x.PriceDisplay, UnitDisplay = x.UnitDisplay })
+                    .ToList();
                     Source = products;
                     string json = JsonConvert.SerializeObject(products);
                     await SaveData(json, "data_products.bin");
-                    await SaveData(editText.Text.Trim(), "data_url.bin");
+                    await SaveData(url, "data_url.bin");
 
                     Update_Source(products, searchView.Query);
                     Snackbar
                         .Make(sender as View, $"Đã cập nhật {Source.Count} mặt hàng từ máy tính", Snackbar.LengthLong)
                         .Show();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Snackbar
                         .Make(sender as View, "Có lỗi xảy ra, hãy kiểm tra lại kết nối mạng", Snackbar.LengthLong)
@@ -111,7 +117,7 @@ namespace Android_Manager
 
         }
 
-        
+
         private void SearchView_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
         {
             List<Product> products = new List<Product>(Source);

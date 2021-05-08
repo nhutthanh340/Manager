@@ -8,7 +8,7 @@
 .L.compressed_assembly_descriptors:
 	/* 0: Android_Manager.dll */
 	/* uncompressed_file_size */
-	.word	107008
+	.word	108544
 	/* loaded */
 	.byte	0
 	/* data */
@@ -170,7 +170,7 @@
 
 	/* 18: MongoDB.Driver.Core.dll */
 	/* uncompressed_file_size */
-	.word	824320
+	.word	820224
 	/* loaded */
 	.byte	0
 	/* data */
@@ -215,7 +215,7 @@
 
 	/* 23: Newtonsoft.Json.dll */
 	/* uncompressed_file_size */
-	.word	682496
+	.word	684544
 	/* loaded */
 	.byte	0
 	/* data */

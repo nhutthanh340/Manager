@@ -8,7 +8,6 @@ G:\Visual Studio 2019\Manager\Android_Manager\bin\Debug\com.companyname.android_
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\MonoAndroid,Version=v8.0.AssemblyAttributes.cs
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\build.props
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\adb.props
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\Android_Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_BuildLibraryImportsCache.stamp
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\res.flag
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\R.cs.flag
@@ -37,6 +36,7 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\res\layout\input_url_
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\R.txt
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\uploadflags.txt
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\resolvedassemblies.hash
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\link.flag
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Android_Manager.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Android_Manager.pdb
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\DnsClient.dll
@@ -55,6 +55,7 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Micros
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\MongoDB.Bson.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\MongoDB.Driver.Core.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\MongoDB.Driver.dll
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\MongoDB.Libmongocrypt.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Mono.Android.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Mono.Android.pdb
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Mono.Security.dll
@@ -222,8 +223,7 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_ConvertCustomV
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_GenerateJavaStubs.stamp
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_GeneratePackageManagerJava.stamp
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_ResolveLibraryProjectImports.stamp
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\MongoDB.Libmongocrypt.dll
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\link.flag
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\Android_Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Abstractions.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Binder.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.dll
