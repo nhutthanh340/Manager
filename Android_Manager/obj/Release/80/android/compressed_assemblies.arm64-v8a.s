@@ -8,7 +8,7 @@
 .L.compressed_assembly_descriptors:
 	/* 0: Android_Manager.dll */
 	/* uncompressed_file_size */
-	.word	108544
+	.word	108032
 	/* loaded */
 	.byte	0
 	/* data */

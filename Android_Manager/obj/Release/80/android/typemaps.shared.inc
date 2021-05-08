@@ -1,8 +1,8 @@
 	.section	.rodata.map_aname.0,"aMS",@progbits,1
 	.type	.L.map_aname.0, @object
 .L.map_aname.0:
-	.asciz	"Mono.Android"
-	.size	.L.map_aname.0, 13
+	.asciz	"Android_Manager"
+	.size	.L.map_aname.0, 16
 
 	.section	.rodata.map_aname.1,"aMS",@progbits,1
 	.type	.L.map_aname.1, @object
@@ -43,56 +43,56 @@
 	.section	.rodata.map_aname.7,"aMS",@progbits,1
 	.type	.L.map_aname.7, @object
 .L.map_aname.7:
-	.asciz	"Xamarin.Essentials"
-	.size	.L.map_aname.7, 19
+	.asciz	"Xamarin.Android.Support.v7.AppCompat"
+	.size	.L.map_aname.7, 37
 
 	.section	.rodata.map_aname.8,"aMS",@progbits,1
 	.type	.L.map_aname.8, @object
 .L.map_aname.8:
-	.asciz	"Xamarin.Android.Support.v7.AppCompat"
-	.size	.L.map_aname.8, 37
+	.asciz	"Xamarin.Android.Support.Compat"
+	.size	.L.map_aname.8, 31
 
 	.section	.rodata.map_aname.9,"aMS",@progbits,1
 	.type	.L.map_aname.9, @object
 .L.map_aname.9:
-	.asciz	"Xamarin.Android.Support.Compat"
-	.size	.L.map_aname.9, 31
+	.asciz	"Mono.Android"
+	.size	.L.map_aname.9, 13
 
 	.section	.rodata.map_aname.10,"aMS",@progbits,1
 	.type	.L.map_aname.10, @object
 .L.map_aname.10:
-	.asciz	"Xamarin.Android.Support.Animated.Vector.Drawable"
-	.size	.L.map_aname.10, 49
+	.asciz	"Xamarin.Essentials"
+	.size	.L.map_aname.10, 19
 
 	.section	.rodata.map_aname.11,"aMS",@progbits,1
 	.type	.L.map_aname.11, @object
 .L.map_aname.11:
-	.asciz	"Xamarin.Android.Arch.Lifecycle.Runtime"
-	.size	.L.map_aname.11, 39
+	.asciz	"Xamarin.Android.Support.Animated.Vector.Drawable"
+	.size	.L.map_aname.11, 49
 
 	.section	.rodata.map_aname.12,"aMS",@progbits,1
 	.type	.L.map_aname.12, @object
 .L.map_aname.12:
-	.asciz	"Xamarin.Android.Support.Annotations"
-	.size	.L.map_aname.12, 36
+	.asciz	"Xamarin.Android.Arch.Lifecycle.Runtime"
+	.size	.L.map_aname.12, 39
 
 	.section	.rodata.map_aname.13,"aMS",@progbits,1
 	.type	.L.map_aname.13, @object
 .L.map_aname.13:
-	.asciz	"Xamarin.Android.Support.Transition"
-	.size	.L.map_aname.13, 35
+	.asciz	"Xamarin.Android.Support.Annotations"
+	.size	.L.map_aname.13, 36
 
 	.section	.rodata.map_aname.14,"aMS",@progbits,1
 	.type	.L.map_aname.14, @object
 .L.map_aname.14:
-	.asciz	"Xamarin.Android.Support.Media.Compat"
-	.size	.L.map_aname.14, 37
+	.asciz	"Xamarin.Android.Support.Transition"
+	.size	.L.map_aname.14, 35
 
 	.section	.rodata.map_aname.15,"aMS",@progbits,1
 	.type	.L.map_aname.15, @object
 .L.map_aname.15:
-	.asciz	"Android_Manager"
-	.size	.L.map_aname.15, 16
+	.asciz	"Xamarin.Android.Support.Media.Compat"
+	.size	.L.map_aname.15, 37
 
 	.section	.rodata.map_aname.16,"aMS",@progbits,1
 	.type	.L.map_aname.16, @object
