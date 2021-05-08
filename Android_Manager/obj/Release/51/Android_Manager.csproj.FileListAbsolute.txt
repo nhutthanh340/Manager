@@ -1,0 +1,6 @@
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\MonoAndroid,Version=v5.1.AssemblyAttributes.cs
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\build.props
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\adb.props
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\Android_Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\stamp\_BuildLibraryImportsCache.stamp
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Release\51\res.flag

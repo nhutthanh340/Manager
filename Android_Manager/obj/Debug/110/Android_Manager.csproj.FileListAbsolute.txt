@@ -1,0 +1,9 @@
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\MonoAndroid,Version=v11.0.AssemblyAttributes.cs
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\build.props
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\adb.props
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\Android_Manager.csprojAssemblyReference.cache
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\_VerifyXamarinAndroidSupportVersions.stamp
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\stamp\_BuildLibraryImportsCache.stamp
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\res.flag
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\stamp\_AndroidXJetifyEmbeddedFiles.stamp
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\110\androidx\_AndroidXJetifyEmbeddedFiles.jetify

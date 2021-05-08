@@ -1,0 +1,46 @@
+package mono;
+public class MonoPackageManager_Resources {
+	public static String[] Assemblies = new String[]{
+		/* We need to ensure that "Android_Manager.dll" comes first in this list. */
+		"Android_Manager.dll",
+		"DnsClient.dll",
+		"LinqKit.Microsoft.EntityFrameworkCore.dll",
+		"Microsoft.EntityFrameworkCore.Abstractions.dll",
+		"Microsoft.EntityFrameworkCore.dll",
+		"Microsoft.Extensions.Caching.Abstractions.dll",
+		"Microsoft.Extensions.Caching.Memory.dll",
+		"Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+		"Microsoft.Extensions.DependencyInjection.dll",
+		"Microsoft.Extensions.Logging.Abstractions.dll",
+		"Microsoft.Extensions.Logging.dll",
+		"Microsoft.Extensions.Options.dll",
+		"Microsoft.Extensions.Primitives.dll",
+		"MongoDB.Bson.dll",
+		"MongoDB.Driver.Core.dll",
+		"MongoDB.Driver.dll",
+		"MongoDB.Libmongocrypt.dll",
+		"Newtonsoft.Json.dll",
+		"SharpCompress.dll",
+		"System.Collections.Immutable.dll",
+		"System.Diagnostics.DiagnosticSource.dll",
+		"Xamarin.Android.Arch.Core.Common.dll",
+		"Xamarin.Android.Arch.Lifecycle.Common.dll",
+		"Xamarin.Android.Arch.Lifecycle.Runtime.dll",
+		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+		"Xamarin.Android.Support.Annotations.dll",
+		"Xamarin.Android.Support.Compat.dll",
+		"Xamarin.Android.Support.Core.UI.dll",
+		"Xamarin.Android.Support.Core.Utils.dll",
+		"Xamarin.Android.Support.CustomTabs.dll",
+		"Xamarin.Android.Support.Design.dll",
+		"Xamarin.Android.Support.Fragment.dll",
+		"Xamarin.Android.Support.Media.Compat.dll",
+		"Xamarin.Android.Support.Transition.dll",
+		"Xamarin.Android.Support.v7.AppCompat.dll",
+		"Xamarin.Android.Support.v7.RecyclerView.dll",
+		"Xamarin.Android.Support.Vector.Drawable.dll",
+		"Xamarin.Essentials.dll",
+	};
+	public static String[] Dependencies = new String[]{
+	};
+}

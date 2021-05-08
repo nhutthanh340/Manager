@@ -107,7 +107,7 @@ namespace Manager.Data
 
         public Product()
         {
-            
+
         }
         public long PriceDisplay
         {
@@ -141,7 +141,7 @@ namespace Manager.Data
                 }
             }
         }
-   
+
         public string Name
         {
             get
@@ -156,6 +156,94 @@ namespace Manager.Data
                     this.TextSearch = ContentService.ConvertToUnsigned($"{name}").ToLower();
                 }
             }
+        }
+
+        public float NewCount
+        {
+            get;set;
+        }
+        public string RetailUnit
+        {
+            get => unit.Retail;
+            set
+            {
+                if (unit.Retail != value)
+                {
+                    unit.Retail = value;
+                }
+            }
+        }
+
+        public string Wholesale
+        {
+            get => unit.Wholesale;
+            set
+            {
+                if (unit.Wholesale != value)
+                {
+                    unit.Wholesale = value;
+                }
+            }
+        }
+
+        public long Origin
+        {
+            get => price.Origin;
+            set
+            {
+                if (price.Origin != value)
+                {
+                    price.Origin = value;
+                }
+            }
+        }
+
+        public long Display
+        {
+            get => price.Display;
+            set
+            {
+                if (price.Display != value)
+                {
+                    price.Display = value;
+                }
+            }
+        }
+
+        public long RetailPrice
+        {
+            get => price.Retail;
+            set
+            {
+                if (price.Retail != value)
+                {
+                    price.Retail = value;
+                }
+            }
+        }
+
+        public ushort STT { get; set; }
+
+
+        public long Total
+        {
+            get;set;
+        }
+
+
+        public long PriceOrigin
+        {
+            get;set;
+        }
+
+        public float SaleOff
+        {
+            get;set;
+        }
+        [BsonId]
+        public ObjectId Id
+        {
+            get;set;
         }
 
         public string UnitDisplay
@@ -173,12 +261,6 @@ namespace Manager.Data
             }
             set
             {
-                bool isContain = listUnit.Contains(this.unit);
-                if (isContain)
-                {
-                    listUnit.Remove(this.unit);
-                }
-
                 if (isRetailing)
                 {
                     if (this.unit.Retail != value)
@@ -193,10 +275,8 @@ namespace Manager.Data
                         this.unit.Wholesale = value;
                     }
                 }
-                listUnit.Add(this.unit);
             }
         }
-
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime UpdateDate
         {
@@ -213,7 +293,16 @@ namespace Manager.Data
                 }
             }
         }
-        
+
+
+        public float Count
+        {
+            get;set;
+        }
+
+        [BsonIgnore]
+        public string Method { get; set; }
+
         public override bool Equals(object obj)
         {
             Product product = obj as Product;
@@ -264,23 +353,23 @@ namespace Manager.Data
         }
     }
 
-    public class ObjectIdConverter : JsonConverter
-    {
+    //public class ObjectIdConverter : JsonConverter
+    //{
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            serializer.Serialize(writer, value.ToString());
+    //    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    //    {
+    //        serializer.Serialize(writer, value.ToString());
 
-        }
+    //    }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            return ObjectId.Parse(reader.Value.ToString());
-        }
+    //    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    //    {
+    //        return ObjectId.Parse(reader.Value.ToString());
+    //    }
 
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(ObjectId).IsAssignableFrom(objectType);
-        }
-    }
+    //    public override bool CanConvert(Type objectType)
+    //    {
+    //        return typeof(ObjectId).IsAssignableFrom(objectType);
+    //    }
+    //}
 }

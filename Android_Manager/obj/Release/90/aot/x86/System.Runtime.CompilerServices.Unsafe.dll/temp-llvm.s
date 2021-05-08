@@ -1,0 +1,255 @@
+	.text
+	.file	"aot"
+	.weak	gc.safepoint_poll
+	.p2align	4, 0x90
+	.type	gc.safepoint_poll,@function
+gc.safepoint_poll:
+.Lfunc_begin0:
+	pushl	%ebx
+.Ltmp0:
+	subl	$8, %esp
+.Ltmp1:
+.Ltmp2:
+	calll	.L0$pb
+.L0$pb:
+	popl	%ebx
+.Ltmp3:
+	addl	$_GLOBAL_OFFSET_TABLE_+(.Ltmp3-.L0$pb), %ebx
+	movl	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got@GOTOFF+28(%ebx), %eax
+	cmpl	$0, (%eax)
+	jne	.LBB0_1
+.LBB0_2:
+	addl	$8, %esp
+	popl	%ebx
+	retl
+.LBB0_1:
+	calll	mono_aot_System_Runtime_CompilerServices_Unsafe_icall_cold_wrapper_265
+	jmp	.LBB0_2
+.Lfunc_end0:
+	.size	gc.safepoint_poll, .Lfunc_end0-gc.safepoint_poll
+
+	.p2align	4, 0x90
+	.type	mono_aot_System_Runtime_CompilerServices_Unsafe_icall_cold_wrapper_265,@function
+mono_aot_System_Runtime_CompilerServices_Unsafe_icall_cold_wrapper_265:
+.Lfunc_begin1:
+	pushl	%ebx
+.Ltmp4:
+	subl	$8, %esp
+.Ltmp5:
+.Ltmp6:
+	calll	.L1$pb
+.L1$pb:
+	popl	%ebx
+.Ltmp7:
+	addl	$_GLOBAL_OFFSET_TABLE_+(.Ltmp7-.L1$pb), %ebx
+	calll	*mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got@GOTOFF+80(%ebx)
+	addl	$8, %esp
+	popl	%ebx
+	retl
+.Lfunc_end1:
+	.size	mono_aot_System_Runtime_CompilerServices_Unsafe_icall_cold_wrapper_265, .Lfunc_end1-mono_aot_System_Runtime_CompilerServices_Unsafe_icall_cold_wrapper_265
+
+	.type	mono_aot_file_info,@object
+	.data
+	.globl	mono_aot_file_info
+	.p2align	4
+mono_aot_file_info:
+	.long	172
+	.long	0
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafejit_got
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame
+	.long	0
+	.long	0
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafejit_code_start
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafejit_code_end
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafemethod_addresses
+	.long	0
+	.long	0
+	.long	blob
+	.long	class_name_table
+	.long	class_info_offsets
+	.long	method_info_offsets
+	.long	ex_info_offsets
+	.long	extra_method_info_offsets
+	.long	extra_method_table
+	.long	got_info_offsets
+	.long	llvm_got_info_offsets
+	.long	image_table
+	.long	weak_field_indexes
+	.long	0
+	.long	assembly_guid
+	.long	runtime_version
+	.long	0
+	.long	0
+	.long	0
+	.long	0
+	.long	0
+	.long	0
+	.long	0
+	.long	assembly_name
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeplt
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeplt_end
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeunwind_info
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampolines
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampolines_end
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampoline_addresses
+	.long	25
+	.long	116
+	.long	4
+	.long	46
+	.long	5
+	.long	33
+	.long	374417919
+	.long	0
+	.long	1917
+	.long	128
+	.long	4
+	.long	4
+	.long	8
+	.long	9
+	.long	0
+	.long	0
+	.long	5
+	.long	25
+	.long	0
+	.long	0
+	.long	0
+	.zero	44
+	.zero	24
+	.zero	24
+	.zero	24
+	.zero	24
+	.ascii	"\366 \224\210\321tQ\202\027\372\203\3648\034\330\r"
+	.size	mono_aot_file_info, 400
+
+	.type	method_info_offsets,@object
+	.section	.rodata,"a",@progbits
+	.p2align	3
+method_info_offsets:
+	.asciz	".\000\000\000\n\000\000\000\005\000\000\000\002\000\000\000\000\000\n\000\030\000\"\0000\000\001\001\001\001\001\001\001\001\001\001\013\377\377\377\377\365\000\000\000\000\000\000\000\f\r\001\001\001\001\001\001\001\001\001\027\001\001\001\001\001\001\001\377\377\377\377\342\000\000\000\000\000\000"
+	.size	method_info_offsets, 80
+
+	.type	extra_method_table,@object
+	.p2align	3
+extra_method_table:
+	.asciz	"\013\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
+	.size	extra_method_table, 136
+
+	.type	extra_method_info_offsets,@object
+	.p2align	3
+extra_method_info_offsets:
+	.asciz	"\005\000\000\000)\000\000\000\000\000\000\000*\000\000\000\000\000\000\000+\000\000\000\000\000\000\000,\000\000\000\000\000\000\000-\000\000\000\000\000\000"
+	.size	extra_method_info_offsets, 44
+
+	.type	class_name_table,@object
+	.p2align	3
+class_name_table:
+	.asciz	"\013\000\001\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\003\000\000\000\000\000\000\000\004\000\000\000\000\000\000\000\000\000\000\000\002\000\000\000\000\000\000"
+	.size	class_name_table, 46
+
+	.type	got_info_offsets,@object
+	.p2align	3
+got_info_offsets:
+	.ascii	"\031\000\000\000\n\000\000\000\003\000\000\000\002\000\000\000\000\000\n\000\024\000\037\002\001\001\001\001\001\001\001\002,\002\002\002\003\002\002\002\002\002B\003\002\003\003"
+	.size	got_info_offsets, 47
+
+	.type	llvm_got_info_offsets,@object
+	.p2align	3
+llvm_got_info_offsets:
+	.ascii	"\031\000\000\000\n\000\000\000\003\000\000\000\002\000\000\000\000\000\n\000\025\000y\002\001\001\001\001\001\001\001\002\200\206\002\002\002\003\002\002\002\002\002\200\234\003\002\003\003"
+	.size	llvm_got_info_offsets, 49
+
+	.type	ex_info_offsets,@object
+	.p2align	3
+ex_info_offsets:
+	.asciz	".\000\000\000\n\000\000\000\005\000\000\000\002\000\000\000\000\000\013\000\033\000&\0005\000\200\277888888886\202\351\377\377\377\375\027\000\000\000\000\000\000\000\203\033\203Q6J!288888\205t8888888\377\377\377\371\004\000\000\000\000\000\000"
+	.size	ex_info_offsets, 85
+
+	.type	class_info_offsets,@object
+	.p2align	3
+class_info_offsets:
+	.ascii	"\004\000\000\000\n\000\000\000\001\000\000\000\002\000\000\000\000\000\207\031\007\027#"
+	.size	class_info_offsets, 23
+
+	.type	image_table,@object
+	.p2align	3
+image_table:
+	.asciz	"\002\000\000\000System.Runtime.CompilerServices.Unsafe\000523CAB1E-D805-4300-A323-36A452CADD6C\000\000b03f5f7f11d50a3a\000\000\000\000\000\000\000\001\000\000\000\005\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000mscorlib\000E4F6FC6B-50A0-4EF5-AFB5-A707313ECFFA\000\0007cec85d7bea7798e\000\000\000\000\000\001\000\000\000\002\000\000\000\000\000\000\000\005\000\000\000\000\000\000"
+	.size	image_table, 212
+
+	.type	weak_field_indexes,@object
+	.p2align	3
+weak_field_indexes:
+	.zero	4
+	.size	weak_field_indexes, 4
+
+	.type	blob,@object
+	.p2align	3
+blob:
+	.asciz	"\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\013\000#%-13\037/6\t6\n6\0136\f6\r6\201\003\006]\006[\006Z\006\\\006e\006\200\274\006\201\t\006`\006\200\247\006\200\221\006\200\220\006\201\t\005\000\036\000\001\377\377\377\377\377\030\005\001\034\007S\001\007^\377\375\000\000\000\001\002\000\030\002c!f\224\005\007^\006k\013\000#%-13\037/6\t6\n6\0136\f6\r6\201\003\006]\006[\006Z\006\\\006e\006\200\274\006\201\t\006`\006\200\247\006\200\221\006\200\220\005\000\036\000\001\377\377\377\377\377\001\005\001\034\007\200\252\001\007\200\265\200\213\000!\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\001\002\200\273\000\000\004\000,\f\n\000\005\000\036\000\001\377\377\377\377\377\002\005\001\034\007\200\342\001\007\200\355\200\213\021?\020\000\000\001\005\377\377\377\377\364\f\377\375\000\000\000\001\002\000\002\002\200\363\000\000\004\0004\022<\000\005\000\036\000\001\377\377\377\377\377\003\005\001\034\007\201\032\001\007\201%\200\213\021?\020\000\000\001\005\377\377\377\377\364\f\377\375\000\000\000\001\002\000\003\002\201+\000\000\004\0004\022<\000\005\000\036\000\001\377\377\377\377\377\004\005\001\034\007\201R\001\007\201]\200\213\0002\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\004\002\201c\000\000\004\000,\016,\000\005\000\036\000\001\377\377\377\377\377\005\005\001\034\007\201\212\001\007\201\225\200\213\000I\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\005\002\201\233\000\000\004\000,\024Z\000\005\000\036\000\001\377\377\377\377\377\006\005\001\034\007\201\302\001\007\201\315\200\213\000I\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\006\002\201\323\000\000\004\000,\024Z\000\005\000\036\000\001\377\377\377\377\377\007\005\001\034\007\201\372\001\007\202\005\200\213\0004\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\007\002\202\013\000\000\004\000,\0300\000\005\000\036\000\001\377\377\377\377\377\b\005\001\034\007\2022\001\007\202=\200\213\0004\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\b\002\202C\000\000\004\000,\0300\000\005\000\036\000\001\377\377\377\377\377\t\005\001\034\007\202j\001\007\202u\200\213\000\037\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\t\002\202{\000\000\002\004,\000\005\000\036\000\001\377\377\377\377\377\n\005\001\034\007\202\240\001\007\202\253\200\213\000\034\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\n\002\202\261\000\000\000\000\005\000\036\000\001\377\377\377\377\377\013\005\001\034\007\202\324\001\007\202\337\013\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\013\002\202\345\000\000\002\f,\000\005\000\036\000\001\377\377\377\377\377\024\005\001\034\007\203\006\001\007\203\021\200\213\000\037\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\024\002\203\027\000\000\002\002,\000\005\000\036\000\001\377\377\377\377\377\025\005\001\034\007\203<\001\007\203G\200\213\000\037\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\025\002\203M\000\000\002\006,\000\005\000\036\000\001\377\377\377\377\377\026\005\001\034\007\203r\001\007\203}\200\213\000\037\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\026\002\203\203\000\000\002\002,\000\005\000\036\000\001\377\377\377\377\377\027\005\001\034\007\203\250\005\000\036\001\001\377\377\377\377\377\027\005\001\034\007\203\271\002\007\203\263\007\203\304\200\213\000\037\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\027\002\203\312\000\000\002\002,\000\200\213\000w\020\000\000\001\005\377\377\377\377\370\006\377\377\000\000\000f\000\000\004\000R\fp\000\005\000\036\000\001\377\377\377\377\377\031\005\001\034\007\204\017\001\007\204\032\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\031\002\204 \000\000\004\000,\026\026\000\005\000\036\000\001\377\377\377\377\377\032\005\001\034\007\204G\001\007\204R\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\032\002\204X\000\000\004\000,\026\026\000\005\000\036\000\001\377\377\377\377\377\033\005\001\034\007\204\177\001\007\204\212\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\033\002\204\220\000\000\004\000,\024\026\000\005\000\036\000\001\377\377\377\377\377\034\005\001\034\007\204\267\001\007\204\302\200\213\000\"\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\034\002\204\310\000\000\004\000,\006\f\000\005\000\036\000\001\377\377\377\377\377\035\005\001\034\007\204\357\001\007\204\372\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\035\002\205\000\000\000\004\000,\026\026\000\005\000\036\000\001\377\377\377\377\377\036\005\001\034\007\205'\001\007\2052\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\036\002\2058\000\000\004\000,\026\026\000\005\000\036\000\001\377\377\377\377\377\037\005\001\034\007\205_\001\007\205j\200\213\000'\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\037\002\205p\000\000\004\000,\024\026\000\005\000\036\000\001\377\377\377\377\377 \005\001\034\007\205\227\001\007\205\242\200\213\000\"\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000 \002\205\250\000\000\004\000,\006\f\000\005\000\036\000\001\377\377\377\377\377!\005\001\034\007\205\317\001\007\205\332\200\213\000\"\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000!\002\205\340\000\000\004\000,\006\f\000\005\000\036\000\001\377\377\377\377\377\"\005\001\034\007\206\007\001\007\206\022\200\213\000(\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000\"\002\206\030\000\000\004\000,\b\030\000\005\000\036\000\001\377\377\377\377\377#\005\001\034\007\206?\001\007\206J\200\213\000(\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000#\002\206P\000\000\004\000,\b\030\000\005\000\036\000\001\377\377\377\377\377$\005\001\034\007\206w\001\007\206\202\200\213\000(\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000$\002\206\210\000\000\004\000,\b\030\000\005\000\036\000\001\377\377\377\377\377%\005\001\034\007\206\257\001\007\206\272\200\213\000&\020\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000%\002\206\300\000\000\004\000,\n\024\000\005\000\036\000\001\377\377\377\377\377&\005\001\034\007\206\347\001\007\206\362\013\000\000\001\005\377\377\377\377\370\f\377\375\000\000\000\001\002\000&\002\206\370\000\000\002\004,\000\000\200\220\b\000\000\001\004\200\220\b\000\000\001\301\000\017\372\301\000\017\367\301\000\017\366\301\000\017\363\007\200\220\b\000\000\001\301\000\017\372\301\000\r1\301\000\017\366\301\000\r/\301\000\r4\301\000\r3\301\000\r2\007\200\220\b\000\000\001\301\000\017\372\301\000\r1\301\000\017\366\301\000\r/\301\000\r4\301\000\r3\301\000\r2sgen"
+	.size	blob, 1922
+
+	.type	runtime_version,@object
+	.p2align	3
+runtime_version:
+	.zero	1
+	.size	runtime_version, 1
+
+	.type	assembly_guid,@object
+	.p2align	3
+assembly_guid:
+	.asciz	"523CAB1E-D805-4300-A323-36A452CADD6C"
+	.size	assembly_guid, 37
+
+	.type	assembly_name,@object
+	.p2align	3
+assembly_name:
+	.asciz	"System.Runtime.CompilerServices.Unsafe"
+	.size	assembly_name, 39
+
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got
+	.type	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got,@object
+	.bss
+	.globl	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got
+	.p2align	4
+mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got:
+	.zero	104
+	.size	mono_aot_System_Runtime_CompilerServices_Unsafe_llvm_got, 104
+
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafejit_got
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafejit_code_start
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafejit_code_end
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafemethod_addresses
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeplt
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeplt_end
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeunwind_info
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampolines
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampolines_end
+	.hidden	mono_aot_System_Runtime_CompilerServices_Unsafeunbox_trampoline_addresses
+	.text
+	.p2align	4, 0x90
+mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame:
+	.type	mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame,@object
+	.size	mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame, .Lmono_eh_frame_end0-mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame
+	.byte	3
+	.byte	0
+	.p2align	2, 0x90
+	.long	0
+	.long	-1
+	.long	mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame-mono_aot_System_Runtime_CompilerServices_Unsafe_eh_frame
+	.byte	1
+	.byte	124
+	.byte	8
+	.byte	255
+	.byte	12
+	.byte	4
+	.byte	4
+	.byte	136
+	.byte	1
+	.byte	0
+
+.Lmono_eh_frame_end0:
+	.p2align	3, 0x90
+
+	.section	".note.GNU-stack","",@progbits
