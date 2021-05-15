@@ -89,6 +89,7 @@ namespace Android_Manager
                     }
                     var products =
                     Database<Product>.ReadAll(url)
+                    .Where(x => !x.IsDeleted)
                     .Select(x => new Product { Name = x.Name, PriceDisplay = x.PriceDisplay, UnitDisplay = x.UnitDisplay })
                     .ToList();
                     Source = products;
