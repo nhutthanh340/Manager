@@ -29,7 +29,7 @@ namespace Manager.Data
         }
 
         private readonly string databaseName = "manager";
-        private readonly string hostName = /*@"mongodb+srv://nhutthanh:ThanhHai123@cluster0.r5idf.mongodb.net";*/ "mongodb://localhost:27017";
+        private readonly string hostName = "mongodb://localhost:27017";
 
         public IMongoCollection<T> collection;
         //public FirestoreDb db = null;
