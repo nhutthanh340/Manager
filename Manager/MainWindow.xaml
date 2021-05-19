@@ -18,31 +18,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <telerik:RadRichTextBoxRibbonUI x:Name="richTextBoxRibbonUI" ApplicationName="Quản lý cửa hàng">
-
-            <telerik:RadRichTextBoxRibbonUI.Style>
-                <Style TargetType="telerik:RadRichTextBoxRibbonUI">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="1">
-                            <Setter Property="Height" Value="53"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="2">
-                            <Setter Property="Height" Value="53"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="3">
-                            <Setter Property="Height" Value="53"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="4">
-                            <Setter Property="Height" Value="53"></Setter>
-                        </DataTrigger>
-                        <!--<DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="5">
-                            <Setter Property="Height" Value="53"></Setter>
-                        </DataTrigger>-->
-                    </Style.Triggers>
-                </Style>
-            </telerik:RadRichTextBoxRibbonUI.Style>
-
-            
+        <telerik:RadRichTextBoxRibbonUI x:Name="richTextBoxRibbonUI" 
+                                        ApplicationName="Quản lý cửa hàng"
+                                        Style="{StaticResource tabStyles}"
+                                        >
             
             <telerik:RadRibbonTab Header="Quản lý" telerik:KeyTipService.AccessText="Q" Height="25" VerticalAlignment="Top">
 

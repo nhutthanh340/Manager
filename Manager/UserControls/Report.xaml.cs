@@ -4,28 +4,16 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Manager.UserControls
 {
     /// <summary>
-    /// Interaction logic for Product.xaml
+    /// Interaction logic for Report.xaml
     /// </summary>
-    public partial class Report : UserControl, INotifyPropertyChanged
+    public partial class Report : UserControlBase
     {
-
-        private static readonly Report instance = new Report();
-
-
-        public static Report Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
         private DateTime startDate = DateTime.Today, endDate = DateTime.Today.AddDays(1);
         private int selectedFormat = 2;
 
@@ -141,7 +129,5 @@ namespace Manager.UserControls
                 Report.Instance.Initialize();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

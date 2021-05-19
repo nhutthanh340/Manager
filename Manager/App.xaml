@@ -7,10 +7,8 @@
              >
     <Application.Resources>
         <ResourceDictionary>
-
-
-
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/RibbonTabStyle.xaml" />
                 <ResourceDictionary Source="/Styles/GridViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/OutlookBarStyle.xaml" />
                 <ResourceDictionary Source="/Styles/RichTextBoxRibbonUIStyle.xaml" />

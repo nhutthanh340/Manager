@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    >
+    <Style TargetType="telerik:RadRichTextBoxRibbonUI" x:Key="tabStyles">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="1">
+                <Setter Property="Height" Value="53"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="2">
+                <Setter Property="Height" Value="53"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="3">
+                <Setter Property="Height" Value="53"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="4">
+                <Setter Property="Height" Value="53"></Setter>
+            </DataTrigger>
+            <!--<DataTrigger Binding="{Binding ElementName=tab, Path=SelectedIndex}" Value="5">
+                            <Setter Property="Height" Value="53"></Setter>
+                        </DataTrigger>-->
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
