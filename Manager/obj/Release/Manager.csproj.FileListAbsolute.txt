@@ -310,4 +310,3 @@ G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CoreCompileInpu
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.csproj.CopyComplete
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.exe
 G:\Visual Studio 2019\Manager\Manager\obj\Release\Manager.pdb
-G:\Visual Studio 2019\Manager\Manager\obj\Release\Styles\RibbonTabStyle.baml
