@@ -10,12 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Manager;
-using Manager.Dialogs;
-using Manager.Helpers;
-using Manager.UserControls;
-using MaterialDesignThemes.Wpf;
-using MaterialDesignThemes.Wpf.Converters;
-using MaterialDesignThemes.Wpf.Transitions;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -36,6 +30,34 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using Telerik.Charting;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.Animation;
+using Telerik.Windows.Controls.Behaviors;
+using Telerik.Windows.Controls.Carousel;
+using Telerik.Windows.Controls.ChartView;
+using Telerik.Windows.Controls.Data.PropertyGrid;
+using Telerik.Windows.Controls.Docking;
+using Telerik.Windows.Controls.DragDrop;
+using Telerik.Windows.Controls.GridView;
+using Telerik.Windows.Controls.LayoutControl;
+using Telerik.Windows.Controls.Legend;
+using Telerik.Windows.Controls.MultiColumnComboBox;
+using Telerik.Windows.Controls.Primitives;
+using Telerik.Windows.Controls.RadialMenu;
+using Telerik.Windows.Controls.RibbonView;
+using Telerik.Windows.Controls.RichTextBoxUI;
+using Telerik.Windows.Controls.RichTextBoxUI.ColorPickers;
+using Telerik.Windows.Controls.RichTextBoxUI.TableControls;
+using Telerik.Windows.Controls.TransitionEffects;
+using Telerik.Windows.Controls.TreeListView;
+using Telerik.Windows.Controls.TreeView;
+using Telerik.Windows.Controls.Wizard;
+using Telerik.Windows.Data;
+using Telerik.Windows.DragDrop;
+using Telerik.Windows.DragDrop.Behaviors;
+using Telerik.Windows.Input.Touch;
+using Telerik.Windows.Shapes;
 
 
 namespace Manager {
