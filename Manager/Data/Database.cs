@@ -101,7 +101,7 @@ namespace Manager.Data
         public async Task<QueryableCollectionView> ReadAll(FilterDefinition<T> filter = null, int? skip = null, int? limit = null, SortDefinition<T> order = null)
         {
             IFindFluent<T, T> results = null;
-
+             
             try
             {
                 if (filter == null)

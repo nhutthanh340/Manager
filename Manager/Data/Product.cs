@@ -266,7 +266,7 @@ namespace Manager.Data
                 {
                     if (this.price.Retail != value)
                     {
-                        this.price.Retail = value;
+                        this.price.Retail = (long)(value * 100 / (100 - saleOff));
                         this.OnPropertyChanged(() => this.PriceDisplay);
                         this.OnPropertyChanged(() => this.Total);
                     }
@@ -275,7 +275,7 @@ namespace Manager.Data
                 {
                     if (this.price.Display != value)
                     {
-                        this.price.Display = value;
+                        this.price.Display = (long)(value * 100 / (100 - saleOff));
                         this.OnPropertyChanged(() => this.PriceDisplay);
                         this.OnPropertyChanged(() => this.Total);
                     }
