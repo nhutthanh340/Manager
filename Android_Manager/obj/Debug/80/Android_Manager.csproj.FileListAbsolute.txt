@@ -36,6 +36,7 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\res\layout\input_url_
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\R.txt
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\uploadflags.txt
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\resolvedassemblies.hash
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\Android_Manager.csprojAssemblyReference.cache
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\link.flag
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Android_Manager.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Android_Manager.pdb
@@ -46,6 +47,9 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Micros
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.EntityFrameworkCore.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Caching.Abstractions.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Caching.Memory.dll
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Abstractions.dll
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Binder.dll
+G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.DependencyInjection.dll
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Logging.Abstractions.dll
@@ -223,7 +227,3 @@ G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_ConvertCustomV
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_GenerateJavaStubs.stamp
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_GeneratePackageManagerJava.stamp
 G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\stamp\_ResolveLibraryProjectImports.stamp
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\Android_Manager.csprojAssemblyReference.cache
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Abstractions.dll
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.Binder.dll
-G:\Visual Studio 2019\Manager\Android_Manager\obj\Debug\80\android\assets\Microsoft.Extensions.Configuration.dll

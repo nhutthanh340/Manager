@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
@@ -55,7 +56,7 @@ namespace Manager.UserControls
         }
         private string textSearch = "";
 
-
+        private DispatcherTimer _searchTimer;
         public string TextSearch
         {
             get => textSearch;
@@ -66,7 +67,9 @@ namespace Manager.UserControls
                     textSearch = value;
 
                     this.NotifyChanged(PropertyChanged);
-                    Search(textSearch);
+                    //Search(textSearch);
+                    _searchTimer.Stop();
+                    _searchTimer.Start();
                 }
             }
         }
@@ -110,8 +113,16 @@ namespace Manager.UserControls
             this.InititalizeCommand();
             DataContext = this;
             Initialize();
+            _searchTimer = new DispatcherTimer();
+            _searchTimer.Interval = new System.TimeSpan(0, 0, 0, 0, 500);
+            _searchTimer.Tick += _searchTimer_Tick;
         }
 
+        private void _searchTimer_Tick(object sender, System.EventArgs e)
+        {
+            _searchTimer.Stop();
+            Search(textSearch);
+        }
 
         public void Initialize()
         {
@@ -130,9 +141,11 @@ namespace Manager.UserControls
 
                 foreach (var item in textSearch)
                 {
-                    filters.Add(Builders<Product>.Filter.Where(x => !x.IsDeleted && x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
+                    filters.Add(Builders<Product>.Filter.Where(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item))));
                 }
-
+                filters.Add(Builders<Product>.Filter.Where(x => !x.IsDeleted));
+                filters.Add(Builders<Product>.Filter.Where(x => x.PriceDisplay > 0));
+                //filters.Add(Builders<Product>.Filter.Where(x => x.PriceOrigin > 0));
 
                 var order = Builders<Product>.Sort.Descending(x => x.Name);
                 Instance.ListProducts = await Database<Product>.Instance.ReadAll(Builders<Product>.Filter.And(filters), order: order);

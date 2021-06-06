@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Threading;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
 
@@ -58,6 +59,15 @@ namespace Manager.UserControls
             InitializeComponent();
             InititalizeCommand();
             DataContext = this;
+            _searchTimer = new DispatcherTimer();
+            _searchTimer.Tick += _searchTimer_Tick;
+            _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            Initialize();
+        }
+
+        private void _searchTimer_Tick(object sender, EventArgs e)
+        {
+            _searchTimer.Stop();
             Initialize();
         }
 
@@ -69,7 +79,7 @@ namespace Manager.UserControls
             Search(textSearch);
         }
 
-
+        private DispatcherTimer _searchTimer;
 
         private QueryableCollectionView listBills = new QueryableCollectionView(new List<Bill>());
 
@@ -252,7 +262,8 @@ namespace Manager.UserControls
                 if (textSearch != value)
                 {
                     textSearch = value;
-                    Initialize();
+                    _searchTimer.Stop();
+                    _searchTimer.Start();
                     this.NotifyChanged(PropertyChanged);
                 }
             }

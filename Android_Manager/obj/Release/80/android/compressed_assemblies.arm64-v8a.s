@@ -8,7 +8,7 @@
 .L.compressed_assembly_descriptors:
 	/* 0: Android_Manager.dll */
 	/* uncompressed_file_size */
-	.word	108032
+	.word	109056
 	/* loaded */
 	.byte	0
 	/* data */
@@ -197,7 +197,7 @@
 
 	/* 21: Mono.Android.dll */
 	/* uncompressed_file_size */
-	.word	1383424
+	.word	1383936
 	/* loaded */
 	.byte	0
 	/* data */
@@ -359,7 +359,7 @@
 
 	/* 39: System.dll */
 	/* uncompressed_file_size */
-	.word	925184
+	.word	929280
 	/* loaded */
 	.byte	0
 	/* data */
@@ -512,7 +512,7 @@
 
 	/* 56: Xamarin.Essentials.dll */
 	/* uncompressed_file_size */
-	.word	20992
+	.word	21504
 	/* loaded */
 	.byte	0
 	/* data */

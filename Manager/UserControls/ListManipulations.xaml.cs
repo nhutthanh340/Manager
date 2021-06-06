@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Telerik.Windows.Data;
 
 namespace Manager.UserControls
@@ -27,12 +28,19 @@ namespace Manager.UserControls
                 return instance;
             }
         }
-
-
+        private void _searchTimer_Tick(object sender, EventArgs e)
+        {
+            _searchTimer.Stop();
+            Initialize();
+        }
+        private DispatcherTimer _searchTimer;
         public ListManipulations()
         {
             InitializeComponent();
             DataContext = this;
+            _searchTimer = new DispatcherTimer();
+            _searchTimer.Tick += _searchTimer_Tick;
+            _searchTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             Initialize();
         }
 
@@ -162,7 +170,8 @@ namespace Manager.UserControls
                 if (textSearch != value)
                 {
                     textSearch = value;
-                    Initialize();
+                    _searchTimer.Stop();
+                    _searchTimer.Start();
                     this.NotifyChanged(PropertyChanged);
                 }
             }

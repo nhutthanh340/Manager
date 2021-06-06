@@ -15,6 +15,8 @@ using Android.Views;
 using LinqKit;
 using Manager.Helpers;
 using System.Linq;
+using System.Timers;
+using Xamarin.Essentials;
 
 namespace Android_Manager
 {
@@ -41,9 +43,20 @@ namespace Android_Manager
 
             FloatingActionButton fab = (FloatingActionButton)FindViewById(Resource.Id.fab);
             fab.Click += Fab_Click;
+            _searchTimer = new Timer(500);
+            _searchTimer.Elapsed += _searchTimer_Elapsed;
         }
 
+        private void _searchTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            _searchTimer.Stop();
+            List<Product> products = new List<Product>(Source);
 
+            MainThread.BeginInvokeOnMainThread(() => { Update_Source(products, searchView.Query); });
+
+        }
+
+        private Timer _searchTimer;
         private void Update_Source(List<Product> products, string text = "")
         {
             if (listView == null)
@@ -57,11 +70,13 @@ namespace Android_Manager
 
             foreach (var item in textSearch)
             {
-                predicate = predicate.And(x => !x.IsDeleted && x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
+                predicate = predicate.And(x => x.TextSearch.Contains(ContentService.ConvertToUnsigned(item)));
             }
-
+            predicate = predicate.And(x => !x.IsDeleted);
+            predicate = predicate.And(x => x.PriceDisplay > 0);
             products = products.Where(predicate.Compile()).OrderBy(x => x.Name).ToList();
             listView.Adapter = new CustomListAdapter(this, products);
+            
         }
 
 
@@ -121,8 +136,8 @@ namespace Android_Manager
 
         private void SearchView_QueryTextChange(object sender, SearchView.QueryTextChangeEventArgs e)
         {
-            List<Product> products = new List<Product>(Source);
-            Update_Source(products, searchView.Query);
+            _searchTimer.Stop();
+            _searchTimer.Start();
         }
 
         private List<Product> getListData()
